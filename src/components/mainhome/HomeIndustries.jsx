@@ -5,8 +5,7 @@ const industries = [
   {
     number: "01",
     title: "Film & Entertainment",
-    description:
-      "Theatrical releases, films and production assets.",
+    description: "Theatrical releases, films and production assets.",
     link: "/industries",
     image:
       "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1000&q=85",
@@ -15,8 +14,7 @@ const industries = [
   {
     number: "02",
     title: "OTT & Streaming",
-    description:
-      "Series, premium video and on-demand catalogues.",
+    description: "Series, premium video and on-demand catalogues.",
     link: "/industries",
     image:
       "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=1000&q=85",
@@ -25,8 +23,7 @@ const industries = [
   {
     number: "03",
     title: "Live Sports",
-    description:
-      "Time-sensitive events and broadcast rights.",
+    description: "Time-sensitive events and broadcast rights.",
     link: "/industries",
     image:
       "https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1100&q=85",
@@ -35,8 +32,7 @@ const industries = [
   {
     number: "04",
     title: "Television & Broadcasting",
-    description:
-      "Channels, programmes and unauthorized redistribution.",
+    description: "Channels, programmes and unauthorized redistribution.",
     link: "/industries",
     image:
       "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1000&q=85",
@@ -45,8 +41,7 @@ const industries = [
   {
     number: "05",
     title: "Music",
-    description:
-      "Recordings, releases and protected audio assets.",
+    description: "Recordings, releases and protected audio assets.",
     link: "/industries",
     image:
       "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=85",
@@ -55,8 +50,7 @@ const industries = [
   {
     number: "06",
     title: "Brands & IP Owners",
-    description:
-      "Trademarks, creative assets and brand identity.",
+    description: "Trademarks, creative assets and brand identity.",
     link: "/industries",
     image:
       "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=1400&q=85",
@@ -75,8 +69,7 @@ const industries = [
   {
     number: "08",
     title: "Publishers & Digital Creators",
-    description:
-      "Books, courses, software and original digital publications.",
+    description: "Books, courses, software and original digital publications.",
     link: "/industries",
     image:
       "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=1200&q=85",
@@ -89,7 +82,7 @@ function IndustryCard({ industry, className = "" }) {
     <a
       href={industry.link}
       aria-label={`${industry.title} — Explore protection`}
-      className={`group relative isolate block h-full min-h-[230px] overflow-hidden rounded-md border border-[#DCE4D8] bg-[#152019] shadow-[0_5px_16px_rgba(21,32,25,0.08)] transition-all duration-300 hover:border-[#ADD132] hover:shadow-[0_10px_25px_rgba(21,32,25,0.15)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#6D900B] sm:min-h-[250px] ${className}`}
+      className={`group relative isolate block h-full min-h-[230px] overflow-hidden rounded-md border border-[#D8E2D2] bg-[#15334E] shadow-[0_5px_16px_rgba(21,51,78,0.08)] transition-all duration-300 hover:border-[#648A13] hover:shadow-[0_10px_25px_rgba(21,51,78,0.15)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#648A13] sm:min-h-[250px] ${className}`}
     >
       {/* IMAGE */}
       <img
@@ -100,18 +93,18 @@ function IndustryCard({ industry, className = "" }) {
       />
 
       {/* DARK OVERLAY */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#050906]/95 via-[#050906]/45 to-[#050906]/10 transition-colors duration-300 group-hover:from-[#050906]/95 group-hover:via-[#050906]/55 group-hover:to-[#050906]/20" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#08121D]/95 via-[#08121D]/45 to-[#08121D]/10 transition-colors duration-300 group-hover:from-[#08121D]/95 group-hover:via-[#08121D]/55 group-hover:to-[#08121D]/20" />
 
       {/* TEXT CONTENT */}
       <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-5 lg:p-6">
         <div className="max-w-[390px] transition-transform duration-300 group-hover:-translate-y-1">
           {/* NUMBER */}
           <div className="mb-2.5 flex items-center gap-3">
-            <span className="text-sm font-bold tracking-[0.06em] text-[#ADD132]">
+            <span className="text-sm font-bold tracking-[0.06em] text-[#8BB630]">
               {industry.number}
             </span>
 
-            <span className="h-px w-7 bg-[#ADD132] transition-all duration-300 group-hover:w-10" />
+            <span className="h-px w-7 bg-[#8BB630] transition-all duration-300 group-hover:w-10" />
           </div>
 
           {/* TITLE */}
@@ -129,7 +122,7 @@ function IndustryCard({ industry, className = "" }) {
           </div>
 
           {/* EXPLORE LINK */}
-          <div className="mt-3 inline-flex items-center gap-2 border-b border-[#ADD132] pb-1.5 text-sm font-semibold text-[#ADD132] transition-colors duration-300 group-hover:text-white">
+          <div className="mt-3 inline-flex items-center gap-2 border-b border-[#8BB630] pb-1.5 text-sm font-semibold text-[#8BB630] transition-colors duration-300 group-hover:text-white">
             <span>Explore protection</span>
 
             <svg
@@ -151,7 +144,7 @@ function IndustryCard({ industry, className = "" }) {
       </div>
 
       {/* SIMPLE BORDER ONLY — NO LIME CORNER OVERLAY */}
-      <div className="pointer-events-none absolute inset-0 rounded-md border border-transparent transition-colors duration-300 group-hover:border-[#ADD132]/80" />
+      <div className="pointer-events-none absolute inset-0 rounded-md border border-transparent transition-colors duration-300 group-hover:border-[#8BB630]/80" />
     </a>
   );
 }
@@ -160,38 +153,40 @@ function HomeIndustries() {
   return (
     <section
       id="home-industries"
-      className="relative w-full overflow-hidden bg-white font-['Roboto',Arial,sans-serif] text-[#152019]"
+      className="relative w-full overflow-hidden bg-[#FFFFFF] font-['Roboto',Arial,sans-serif] text-[#15334E]"
     >
       {/* BACKGROUND ACCENTS */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-32 top-10 h-72 w-72 rounded-full bg-[#ADD132]/[0.06] blur-3xl"
+        className="pointer-events-none absolute -left-32 top-10 h-72 w-72 rounded-full bg-[#8BB630]/[0.06] blur-3xl"
       />
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-[#ADD132]/[0.05] blur-3xl"
+        className="pointer-events-none absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-[#8BB630]/[0.05] blur-3xl"
       />
 
-      <div className="relative mx-auto max-w-[1420px] px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+      <div className="relative mx-auto max-w-[1380px] px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-12">
         {/* HEADER */}
         <div className="mb-7 grid grid-cols-1 items-end gap-5 sm:mb-8 lg:grid-cols-[1.4fr_0.6fr] lg:gap-12">
           <div>
             <div className="mb-6 inline-flex items-center gap-3">
-              <span className="h-[2px] w-8 bg-[#8EAF20]" />
+              <span className="h-[2px] w-8 bg-[#8BB630]" />
+
               <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#617D17]">
                 INDUSTRIES
               </span>
             </div>
 
-            <h2 className="m-0 max-w-[850px] text-[36px] font-bold leading-[1.06] tracking-[-0.055em] sm:text-[48px] lg:text-[64px]">
+            <h2 className="m-0 max-w-[850px] text-[36px] font-bold leading-[1.06] tracking-[-0.055em] text-[#15334E] sm:text-[48px] lg:text-[54px]">
               Built around
               <span className="block text-[#7C9D18]">
                 what you protect.
               </span>
             </h2>
           </div>
-          <p className="m-0 max-w-[330px] pb-1 text-[12px] leading-[1.9] text-[#68746C] sm:text-[12px] lg:justify-self-end">
+
+          <p className="m-0 max-w-[330px] pb-1 text-[12px] leading-[1.9] text-[#45637F] sm:text-[13px] lg:justify-self-end">
             Protection priorities differ by content, release window and
             rights. Start with your industry.
           </p>

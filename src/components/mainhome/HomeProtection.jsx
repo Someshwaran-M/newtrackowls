@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
 
-const BRAND = "#ADD132";
+import React, { useEffect, useState } from "react";
 
 const stages = [
   {
@@ -41,10 +40,10 @@ const stages = [
     asset: "Reference asset",
     channel: "Suspected distribution page",
     description:
-      "Review the available evidence and distinguish potential matches from verified cases.",
+      "Review available evidence and distinguish potential matches from verified cases.",
     bottomTitle: "Verify the evidence",
     bottomDescription:
-      "Analysts review the suspected material against reference assets and available context before determining the appropriate next step.",
+      "Analysts review suspected material against reference assets and available context before determining the appropriate next step.",
     record: "Reference comparison · Evidence review · Case status",
     action: "Explore verification",
   },
@@ -80,8 +79,7 @@ const stages = [
   },
 ];
 
-/* Four independent pins. Positions change for each workflow stage. */
-const pinLayouts = [
+const pins = [
   [
     { left: "24%", top: "34%" },
     { left: "48%", top: "25%" },
@@ -115,8 +113,16 @@ const pinLayouts = [
 ];
 
 function Icon({ name, className = "h-5 w-5" }) {
-  const paths = {
-    radar: (
+  const common = {
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.7,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+  };
+
+  const icons = {
+    monitor: (
       <>
         <circle cx="12" cy="12" r="9" />
         <circle cx="12" cy="12" r="5" />
@@ -124,33 +130,31 @@ function Icon({ name, className = "h-5 w-5" }) {
         <path d="m12 12 6-6" />
       </>
     ),
-    scan: (
+    detect: (
       <>
-        <path d="M4 8V5a1 1 0 0 1 1-1h3" />
-        <path d="M16 4h3a1 1 0 0 1 1 1v3" />
-        <path d="M20 16v3a1 1 0 0 1-1 1h-3" />
-        <path d="M8 20H5a1 1 0 0 1-1-1v-3" />
+        <path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3" />
         <circle cx="12" cy="12" r="3" />
       </>
     ),
-    shield: (
+    verify: (
       <>
         <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" />
         <path d="m9 12 2 2 4-4" />
       </>
     ),
-    target: (
+    enforce: (
       <>
         <circle cx="12" cy="12" r="9" />
         <circle cx="12" cy="12" r="5" />
         <circle cx="12" cy="12" r="1" />
       </>
     ),
-    chart: (
+    report: <path d="M4 19V5M4 19h16M7 14l4-4 3 2 5-6" />,
+    play: <path d="m8 5 12 7-12 7z" />,
+    reset: (
       <>
-        <path d="M4 19V5" />
-        <path d="M4 19h16" />
-        <path d="m7 14 4-4 3 2 5-6" />
+        <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+        <path d="M3 3v5h5" />
       </>
     ),
     arrow: (
@@ -159,169 +163,74 @@ function Icon({ name, className = "h-5 w-5" }) {
         <path d="m12 5 7 7-7 7" />
       </>
     ),
-    play: <path d="m8 5 12 7-12 7z" />,
-    reset: (
-      <>
-        <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
-        <path d="M3 3v5h5" />
-      </>
-    ),
-    file: (
-      <>
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-        <path d="M14 2v6h6M8 13h8M8 17h8" />
-      </>
-    ),
   };
 
   return (
     <svg
       viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
       className={className}
       aria-hidden="true"
+      {...common}
     >
-      {paths[name]}
+      {icons[name]}
     </svg>
   );
 }
 
-function WorldMap({ activeStage = 0 }) {
-  const currentPins = pinLayouts[activeStage] || pinLayouts[0];
-  const stageName = stages[activeStage]?.name || stages[0].name;
+function WorldMap({ activeStage }) {
+  const currentPins = pins[activeStage] || pins[0];
 
   return (
-    <div className="relative isolate min-h-[340px] overflow-hidden bg-[#101A14] sm:min-h-[410px] lg:min-h-[500px]">
-      {/* Atmospheric map background */}
+    <div className="group/map relative min-h-[260px] overflow-hidden bg-[#15334E] sm:min-h-[320px] lg:min-h-[360px]">
       <img
         src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1600&q=85"
-        alt="Illustrative world map for digital content protection"
-        className="absolute inset-0 h-full w-full object-cover opacity-40 grayscale"
+        alt="Illustrative world map showing sample monitoring locations"
+        className="absolute inset-0 h-full w-full object-cover opacity-75 grayscale transition-transform duration-700 group-hover/map:scale-[1.02]"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-br from-[#101A14]/65 via-[#101A14]/35 to-[#101A14]/80" />
+      <div className="absolute inset-0 bg-[#15334E]/45" />
 
-      {/* Subtle technical grid */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.12]"
+        aria-hidden="true"
+        className="absolute inset-0 opacity-30"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(173,209,50,.45) 1px, transparent 1px), linear-gradient(90deg, rgba(173,209,50,.45) 1px, transparent 1px)",
-          backgroundSize: "36px 36px",
+            "linear-gradient(rgba(139,182,48,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(139,182,48,.35) 1px,transparent 1px)",
+          backgroundSize: "21px 21px",
         }}
       />
 
-      {/* Map heading */}
-      <div className="absolute left-5 right-5 top-5 z-20 flex items-start justify-between gap-3 sm:left-7 sm:right-7 sm:top-7">
-        <div>
-          <p className="m-0 text-[9px] font-bold uppercase tracking-[0.25em] text-[#ADD132]">
-            TrackOwls intelligence
-          </p>
-          <p className="mb-0 mt-2 text-lg font-semibold tracking-tight text-white sm:text-xl">
-            Global watch
-          </p>
-          <p className="m-0 mt-1 text-xs text-white/50">
-            Illustrative monitoring environment
-          </p>
-        </div>
-
-        <div className="flex items-center gap-2 border border-white/10 bg-black/20 px-3 py-2 backdrop-blur-md">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ADD132]/60" />
-            <span className="relative h-2 w-2 rounded-full bg-[#ADD132]" />
-          </span>
-          <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-white/80">
-            {stageName}
-          </span>
-        </div>
-      </div>
-
-      {/* Four pins only — no routes or connecting lines */}
       {currentPins.map((pin, index) => (
         <div
           key={`${activeStage}-${index}`}
-          className="absolute z-10 -translate-x-1/2 -translate-y-1/2 animate-[pinEnter_.55s_ease-out_both]"
-          style={{
-            left: pin.left,
-            top: pin.top,
-            animationDelay: `${index * 90}ms`,
-          }}
+          className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
+          style={{ left: pin.left, top: pin.top }}
         >
-          <span className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 animate-ping rounded-full border border-[#ADD132]/20" />
-          <span className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#ADD132]/60" />
-
-          <div className="relative flex h-8 w-8 items-center justify-center rounded-full border border-[#DDF39B] bg-[#ADD132] text-[10px] font-extrabold text-[#152019] shadow-[0_0_25px_rgba(173,209,50,.35)] transition-transform duration-300 hover:scale-125 sm:h-9 sm:w-9">
-            {String(index + 1).padStart(2, "0")}
-          </div>
+          <span className="absolute inset-0 animate-ping rounded-full bg-[#8BB630]/30" />
+          <span className="relative flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-[#8BB630] text-[10px] font-bold text-[#15334E] shadow-[0_0_0_5px_rgba(139,182,48,.2)] sm:h-8 sm:w-8">
+            {index + 1}
+          </span>
         </div>
       ))}
 
-      {/* Map coordinates decoration */}
-      <div className="absolute bottom-[76px] left-5 z-10 flex items-center gap-2 text-[9px] uppercase tracking-[0.16em] text-white/45 sm:bottom-[88px] sm:left-7">
-        <span className="h-1 w-1 rounded-full bg-[#ADD132]" />
-        Four illustrative markers
+      <div className="absolute inset-x-0 bottom-0 flex items-center gap-2 border-t border-white/10 bg-[#15334E]/95 px-4 py-3 text-[10px] text-white sm:px-5">
+        <Icon name="monitor" className="h-4 w-4 shrink-0 text-[#8BB630]" />
+        <span>TrackOwls · Discovery to enforcement</span>
+        <span className="ml-auto text-[9px] text-white/60">
+          ILLUSTRATIVE
+        </span>
       </div>
-
-      {/* Map bottom status strip */}
-      <div className="absolute inset-x-0 bottom-0 z-20 border-t border-white/10 bg-[#101A14]/90 px-5 py-4 backdrop-blur-xl sm:px-7 sm:py-5">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex min-w-0 items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[#ADD132]/25 bg-[#ADD132]/10 text-[#ADD132]">
-              <Icon name="radar" className="h-5 w-5" />
-            </div>
-            <div className="min-w-0">
-              <p className="m-0 text-[9px] font-bold uppercase tracking-[0.17em] text-white/40">
-                Active workflow
-              </p>
-              <p className="m-0 mt-1 truncate text-sm font-semibold text-white">
-                {stageName}
-              </p>
-            </div>
-          </div>
-
-          <div className="shrink-0 text-right">
-            <p className="m-0 text-xl font-semibold tabular-nums text-[#ADD132]">
-              04
-            </p>
-            <p className="m-0 mt-0.5 text-[8px] font-bold uppercase tracking-[0.15em] text-white/40">
-              Pins active
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <style>{`
-        @keyframes pinEnter {
-          from {
-            opacity: 0;
-            transform: translate(-50%, -35%) scale(.55);
-          }
-          to {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-          }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .animate-ping {
-            animation: none !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }
 
-function HomeProtection() {
+export default function HomeProtection() {
   const [activeStage, setActiveStage] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
 
   const currentStage = stages[activeStage];
+  const stageIcons = ["monitor", "detect", "verify", "enforce", "report"];
 
   useEffect(() => {
     if (!isPlaying) return undefined;
@@ -336,9 +245,7 @@ function HomeProtection() {
 
         setActiveStage(nextStage);
 
-        if (next >= 120) {
-          setIsPlaying(false);
-        }
+        if (next >= 120) setIsPlaying(false);
 
         return next;
       });
@@ -347,14 +254,10 @@ function HomeProtection() {
     return () => window.clearInterval(timer);
   }, [isPlaying]);
 
-  const formatTime = (seconds) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-
-    return `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds
+  const formatTime = (seconds) =>
+    `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(
+      seconds % 60
     ).padStart(2, "0")}`;
-  };
 
   const resetWalkthrough = () => {
     setIsPlaying(false);
@@ -367,315 +270,217 @@ function HomeProtection() {
       setElapsed(0);
       setActiveStage(0);
     }
-
     setIsPlaying(true);
   };
 
   const selectStage = (index) => {
+    setIsPlaying(false);
     setActiveStage(index);
     setElapsed(Math.floor((index / stages.length) * 120));
   };
 
-  const stageIcons = ["radar", "scan", "shield", "target", "chart"];
-
   return (
     <section
       id="home-protection"
-      className="relative isolate w-full overflow-hidden bg-white font-['Roboto',sans-serif] text-[#152019]"
+      className="relative w-full overflow-hidden bg-[#FFFFFF] font-['Roboto',Arial,sans-serif] text-[#15334E]"
     >
-      {/* Premium ambient background */}
-      <div className="pointer-events-none absolute -right-40 top-20 h-[420px] w-[420px] rounded-full bg-[#ADD132]/10 blur-[120px]" />
-      <div className="pointer-events-none absolute -left-48 bottom-0 h-[400px] w-[400px] rounded-full bg-[#D9E6C7]/60 blur-[110px]" />
-
-      <div className="relative mx-auto max-w-[1450px] px-5 py-4 sm:px-8 sm:py-6 lg:px-14 lg:py-10">
-        {/* Editorial header */}
-        <div className="mb-10 grid gap-7 lg:mb-14 lg:grid-cols-[1.3fr_.7fr] lg:items-end lg:gap-12">
+      <div className="mx-auto max-w-[1420px] px-5 py-10 sm:px-7 sm:py-12 lg:px-10 lg:py-12 xl:px-12">
+        {/* Header */}
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1fr_330px] lg:items-end lg:gap-10">
           <div>
-            <div className="mb-6 inline-flex items-center gap-3">
-              <span className="h-[2px] w-8 bg-[#8EAF20]" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#617D17]">
-                Explore the protection workflow
-              </span>
-            </div>
+            <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-[#617D17]">
+              Explore the protection workflow
+            </p>
 
-            <h2 className="m-0 max-w-[850px] text-[36px] font-bold leading-[1.06] tracking-[-0.055em] sm:text-[48px] lg:text-[64px]">
-              From first signal
+            <h2 className="m-0 max-w-[760px] text-[36px] font-bold leading-[1.08] tracking-[-1.2px] text-[#15334E] sm:text-[48px] lg:text-[54px]">
+              Follow a finding.
               <span className="block text-[#7C9D18]">
-                to informed action.
+                See the path to action.
               </span>
             </h2>
           </div>
 
-          <div className="max-w-[420px] lg:justify-self-end">
-            <div className="mb-4 h-px w-full bg-[#D7DECF]" />
-            <p className="m-0 text-sm leading-[1.9] text-[#68746C] sm:text-base">
-              A two-minute guided demonstration. Select a highlight to explore
-              a sample case, or move through the stages at your own pace.
-            </p>
-            <div className="mt-5 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#6D900B]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#ADD132]" />
-              Monitor. Verify. Protect.
-            </div>
-          </div>
+          <p className="m-0 max-w-[330px] text-[13px] leading-[1.9] text-[#45637F] lg:justify-self-end">
+            A two-minute guided demonstration. Select a highlight to explore a
+            sample case, or move through the stages at your own pace.
+          </p>
         </div>
 
-        {/* Walkthrough control bar */}
-        <div className="mb-5 flex flex-col gap-4 border-y border-[#D8DFD1] py-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-start gap-3">
-            <span className="mt-1 flex h-2 w-2 shrink-0 rounded-full bg-[#9DBD2B]" />
-            <div>
-              <p className="m-0 text-xs font-semibold text-[#263329]">
-                Illustrative simulation
-              </p>
-              <p className="m-0 mt-1 text-[11px] text-[#7A857A]">
-                No live detections · Sample workflow
-              </p>
-            </div>
-          </div>
+        {/* Controls */}
+        <div className="mb-4 mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <span className="inline-flex w-fit items-center gap-2 border border-[#DCE6D3] bg-white px-3 py-2 text-[10px] text-[#45637F]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#8BB630]" />
+            Illustrative simulation · No live detections
+          </span>
 
           <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
               onClick={startWalkthrough}
               disabled={isPlaying}
-              className="inline-flex min-h-11 items-center justify-center gap-2 bg-[#ADD132] px-5 py-3 text-xs font-bold text-[#152019] transition duration-300 hover:bg-[#97BB20] disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex min-h-10 items-center justify-center gap-2 bg-[#648A13] px-4 py-2 text-[11px] font-bold text-white transition-colors hover:bg-[#4F7010] disabled:cursor-not-allowed disabled:opacity-60"
             >
-              <Icon name="play" className="h-4 w-4" />
-              {isPlaying ? "Walkthrough running" : "Start walkthrough"}
+              <Icon name="play" className="h-3 w-3" />
+              {isPlaying ? "Walkthrough running" : "Start 2-minute walkthrough"}
             </button>
 
             <button
               type="button"
               onClick={resetWalkthrough}
-              className="inline-flex min-h-11 items-center justify-center gap-2 border border-[#D8DFD1] bg-white px-4 py-3 text-xs font-semibold text-[#344137] transition duration-300 hover:border-[#9DBD2B] hover:bg-[#F8FAF4]"
+              className="inline-flex min-h-10 items-center justify-center gap-2 border border-[#D3E0E8] bg-white px-4 py-2 text-[11px] font-medium text-[#15334E] transition-colors hover:border-[#8BB630] hover:bg-[#F5F8F2]"
             >
-              <Icon name="reset" className="h-4 w-4" />
+              <Icon name="reset" className="h-3 w-3" />
               Reset
             </button>
 
-            <div className="ml-1 flex min-h-11 items-center gap-2 border-l border-[#D8DFD1] pl-4">
-              <span className="text-sm font-bold tabular-nums text-[#263329]">
-                {formatTime(elapsed)}
-              </span>
-              <span className="text-xs text-[#8A9487]">/ 02:00</span>
-            </div>
+            <span
+              aria-live="off"
+              className="pl-1 text-[11px] tabular-nums text-[#45637F]"
+            >
+              {formatTime(elapsed)} / 02:00
+            </span>
           </div>
         </div>
 
-        {/* Main premium case experience */}
-        <div className="grid border border-[#D8DFD1] bg-white lg:grid-cols-[1.35fr_.85fr]">
+        {/* Main case panel */}
+        <div className="grid overflow-hidden border border-[#DCE6D3] bg-white lg:grid-cols-[1.8fr_1fr]">
           <WorldMap activeStage={activeStage} />
 
-          {/* Case information */}
-          <div className="flex min-w-0 flex-col px-5 py-7 sm:px-8 sm:py-9 lg:px-9 lg:py-10">
-            <div className="flex items-center justify-between gap-3">
-              <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#779719]">
-                {currentStage.eyebrow}
-              </span>
-              <span className="text-3xl font-light tracking-[-0.06em] text-[#D5DDCC]">
-                {currentStage.number}
-              </span>
-            </div>
+          <div className="flex min-w-0 flex-col p-5 sm:p-6 lg:p-7">
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.18em] text-[#617D17]">
+              {currentStage.eyebrow}
+            </p>
 
-            <div key={currentStage.number} className="animate-[caseReveal_.4s_ease-out_both]">
-              <h3 className="mb-5 mt-5 text-[27px] font-bold leading-tight tracking-[-0.04em] text-[#172219] sm:text-[32px]">
-                {currentStage.title}
-              </h3>
+            <h3
+              key={currentStage.number}
+              className="m-0 text-[23px] font-bold leading-tight tracking-[-0.5px] text-[#15334E] sm:text-[26px]"
+            >
+              {currentStage.title}
+            </h3>
 
-              <p className="mb-7 max-w-[420px] text-sm leading-[1.9] text-[#68746C]">
-                {currentStage.description}
-              </p>
-
-              <div className="mb-7 border-y border-[#E3E8DE]">
-                <div className="grid grid-cols-[80px_1fr] gap-3 border-b border-[#E3E8DE] py-4">
-                  <span className="text-xs text-[#849083]">Asset</span>
-                  <span className="text-right text-xs font-semibold text-[#29372C] sm:text-sm">
-                    {currentStage.asset}
-                  </span>
-                </div>
-                <div className="grid grid-cols-[80px_1fr] gap-3 py-4">
-                  <span className="text-xs text-[#849083]">Channel</span>
-                  <span className="text-right text-xs font-semibold text-[#29372C] sm:text-sm">
-                    {currentStage.channel}
-                  </span>
-                </div>
+            <div className="mt-5 divide-y divide-[#E4EAE0] border-y border-[#E4EAE0]">
+              <div className="flex items-start justify-between gap-4 py-3">
+                <span className="text-[12px] text-[#687F91]">Asset</span>
+                <span className="text-right text-[12px] font-medium text-[#15334E]">
+                  {currentStage.asset}
+                </span>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#F0F5E5] text-[#6D900B]">
-                  <Icon name={stageIcons[activeStage]} className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="m-0 text-[9px] font-bold uppercase tracking-[0.17em] text-[#9AA394]">
-                    Current stage
-                  </p>
-                  <p className="m-0 mt-1 text-sm font-bold text-[#253329]">
-                    {currentStage.name}
-                  </p>
-                </div>
-                <div className="ml-auto flex items-center gap-1">
-                  {stages.map((stage, index) => (
-                    <span
-                      key={stage.number}
-                      className={`h-1.5 transition-all duration-300 ${
-                        index === activeStage
-                          ? "w-6 bg-[#ADD132]"
-                          : "w-1.5 bg-[#DCE3D5]"
-                      }`}
-                    />
-                  ))}
-                </div>
+              <div className="flex items-start justify-between gap-4 py-3">
+                <span className="text-[12px] text-[#687F91]">Channel</span>
+                <span className="text-right text-[12px] font-medium text-[#15334E]">
+                  {currentStage.channel}
+                </span>
               </div>
             </div>
 
-            <p className="mb-0 mt-8 border-t border-[#E3E8DE] pt-5 text-[11px] leading-[1.8] text-[#8A9487]">
+            <p className="mb-5 mt-4 text-[13px] leading-[1.85] text-[#45637F]">
+              {currentStage.description}
+            </p>
+
+            <div className="mt-auto flex items-center gap-2 border-t border-[#E4EAE0] pt-4 text-[#648A13]">
+              <Icon name={stageIcons[activeStage]} className="h-4 w-4" />
+              <span className="text-[12px] font-medium">
+                {currentStage.name}
+              </span>
+              <span className="ml-auto text-[10px] uppercase tracking-[0.12em] text-[#687F91]">
+                Stage {currentStage.number}
+              </span>
+            </div>
+
+            <p className="mb-0 mt-3 text-[10px] leading-[1.7] text-[#687F91]">
               Map positions are illustrative and do not identify actual
               infringers or their locations.
             </p>
           </div>
         </div>
 
-        {/* Stage navigator */}
-        <div className="mt-6">
-          <div className="mb-4 flex items-center justify-between gap-3">
-            <p className="m-0 text-[10px] font-bold uppercase tracking-[0.2em] text-[#75846B]">
-              Navigate the process
-            </p>
-            <p className="m-0 text-[10px] text-[#929B8D]">
-              Select a stage to explore
-            </p>
-          </div>
+        {/* Workflow stages */}
+        <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-5">
+          {stages.map((stage, index) => {
+            const isActive = activeStage === index;
 
-          <div className="grid grid-cols-1 border-y border-[#D8DFD1] sm:grid-cols-2 lg:grid-cols-5">
-            {stages.map((stage, index) => {
-              const isActive = activeStage === index;
-
-              return (
-                <button
-                  key={stage.number}
-                  type="button"
-                  onClick={() => selectStage(index)}
-                  aria-pressed={isActive}
-                  className={`group relative flex min-h-[88px] items-center gap-3 border-b border-[#D8DFD1] px-4 py-4 text-left transition-all duration-300 sm:border-r sm:last:border-r-0 lg:border-b-0 ${
-                    isActive
-                      ? "bg-[#172219] text-white"
-                      : "bg-white text-[#263329] hover:bg-[#F0F5E7]"
+            return (
+              <button
+                key={stage.number}
+                type="button"
+                onClick={() => selectStage(index)}
+                aria-pressed={isActive}
+                className={`group flex min-h-[48px] items-center gap-3 border px-3 py-3 text-left transition duration-200 ${
+                  isActive
+                    ? "border-[#15334E] bg-[#15334E] text-white"
+                    : "border-[#DCE6D3] bg-white text-[#45637F] hover:border-[#8BB630] hover:bg-[#F5F8F2]"
+                }`}
+              >
+                <span
+                  className={`text-[11px] font-bold ${
+                    isActive ? "text-[#B9D96C]" : "text-[#648A13]"
                   }`}
                 >
-                  {isActive && (
-                    <span className="absolute inset-x-0 top-0 h-[3px] bg-[#ADD132]" />
-                  )}
+                  {stage.number}
+                </span>
 
-                  <span
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center transition-colors duration-300 ${
+                <span className="text-[12px] font-medium">{stage.name}</span>
+
+                <span className="ml-auto">
+                  <Icon
+                    name={stageIcons[index]}
+                    className={`h-4 w-4 ${
                       isActive
-                        ? "bg-[#ADD132] text-[#152019]"
-                        : "bg-[#F0F4E9] text-[#6D900B] group-hover:bg-[#E6EFD2]"
+                        ? "text-[#B9D96C]"
+                        : "text-[#7C9D18] opacity-80"
                     }`}
-                  >
-                    <Icon name={stageIcons[index]} className="h-[18px] w-[18px]" />
-                  </span>
-
-                  <span className="min-w-0">
-                    <span
-                      className={`block text-[9px] font-bold tracking-[0.16em] ${
-                        isActive ? "text-[#ADD132]" : "text-[#8A9A76]"
-                      }`}
-                    >
-                      STEP {stage.number}
-                    </span>
-                    <span className="mt-1 block text-sm font-semibold">
-                      {stage.name}
-                    </span>
-                  </span>
-
-                  <span
-                    className={`ml-auto hidden text-xs transition-transform duration-300 group-hover:translate-x-1 sm:block ${
-                      isActive ? "text-[#ADD132]" : "text-[#A0AA9A]"
-                    }`}
-                  >
-                    →
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+                  />
+                </span>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Stage details */}
-        <div className="mt-12 grid gap-8 border-t border-[#D8DFD1] pt-8 sm:mt-14 sm:pt-10 lg:grid-cols-[1.4fr_.6fr] lg:gap-14">
-          <div key={`${currentStage.number}-details`} className="animate-[caseReveal_.4s_ease-out_both]">
-            <div className="mb-4 flex items-center gap-2">
-              <span className="h-1.5 w-1.5 bg-[#ADD132]" />
-              <p className="m-0 text-[10px] font-bold uppercase tracking-[0.2em] text-[#718D1B]">
-                {currentStage.name} / Protection workflow
-              </p>
+        {/* Bottom stage details */}
+        <div className="mt-3 grid gap-6 border-t border-[#DCE6D3] pt-5 sm:pt-6 lg:grid-cols-[1.65fr_1fr] lg:gap-10">
+          <div>
+            <div className="mb-3 flex items-center gap-3">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F0F5E6] text-[11px] font-bold text-[#648A13]">
+                {currentStage.number}
+              </span>
+
+              <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#617D17]">
+                Workflow overview
+              </span>
             </div>
 
-            <h3 className="m-0 text-[25px] font-bold tracking-[-0.04em] text-[#172219] sm:text-[32px]">
+            <h3 className="m-0 text-[22px] font-bold tracking-[-0.4px] text-[#15334E] sm:text-[24px]">
               {currentStage.bottomTitle}
             </h3>
 
-            <p className="mb-0 mt-4 max-w-[740px] text-sm leading-[2] text-[#68746C]">
+            <p className="mb-0 mt-3 max-w-[720px] text-[13px] leading-[1.9] text-[#45637F]">
               {currentStage.bottomDescription}
             </p>
           </div>
 
-          <div className="border-t border-[#D8DFD1] pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center bg-[#EAF1D9] text-[#6D900B]">
-                <Icon name="file" className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="m-0 text-[9px] font-bold uppercase tracking-[0.2em] text-[#8A9487]">
-                  Case record
-                </p>
-                <p className="m-0 mt-1 text-sm font-bold text-[#263329]">
-                  Evidence & documentation
-                </p>
-              </div>
-            </div>
+          <div className="border-t border-[#DCE6D3] pt-4 sm:pt-5 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.18em] text-[#617D17]">
+              Case record
+            </p>
 
-            <p className="mb-6 mt-4 text-sm leading-[1.9] text-[#68746C]">
+            <p className="m-0 text-[13px] leading-[1.9] text-[#45637F]">
               {currentStage.record}
             </p>
 
             <a
-              href="/how-it-works"
-              className="group inline-flex items-center gap-3 border-b border-[#B5C19F] pb-2 text-sm font-bold text-[#536F13] transition-colors duration-300 hover:border-[#ADD132] hover:text-[#172219]"
+              href="#solutions"
+              className="group mt-4 inline-flex items-center gap-2 border-b border-[#A9C46E] pb-1.5 text-[12px] font-medium text-[#648A13] transition-colors hover:border-[#45637F] hover:text-[#45637F]"
             >
               {currentStage.action}
               <Icon
                 name="arrow"
-                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
               />
             </a>
           </div>
         </div>
       </div>
-
-      <style>{`
-        @keyframes caseReveal {
-          from {
-            opacity: 0;
-            transform: translateY(8px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .animate-ping,
-          .animate-\\[caseReveal_\\.4s_ease-out_both\\],
-          .animate-\\[pinEnter_\\.55s_ease-out_both\\] {
-            animation: none !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }
-
-export default HomeProtection;

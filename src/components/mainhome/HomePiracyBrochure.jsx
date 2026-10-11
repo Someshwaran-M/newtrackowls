@@ -1,128 +1,123 @@
+
 import React from "react";
 
 export default function HomePiracyBrochure() {
   return (
     <section
       id="piracy-brochure"
-      className="relative w-full overflow-hidden bg-white font-['Roboto',sans-serif] text-[#102D48] py-20 lg:py-32"
+      className="relative w-full overflow-hidden bg-[#FFFFFF] py-10 font-['Roboto',sans-serif] text-[#15334E] sm:py-12 lg:py-12"
     >
-      {/* Background Accent Gradients */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#648C13]/5 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#102D48]/5 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="mx-auto max-w-[1450px] px-6 sm:px-10 lg:px-[60px]">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-[7%]">
+          {/* Left: Editorial content */}
+          <div className="flex flex-col items-start">
+            <p className="mb-7 text-[11px] font-bold uppercase tracking-[0.2em] text-[#617D17] sm:text-xs">
+              TrackOwls insights / Industry report
+            </p>
 
-      <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-16">
-        
-        {/* Top Header Badge */}
-        <div className="mb-6 inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#EEF2ED] border border-[#D5E3D8]">
-          <span className="h-2 w-2 rounded-full bg-[#648C13] animate-pulse" />
-          <span className="text-[11px] font-bold uppercase tracking-wider text-[#648C13]">
-            TrackOwls Impact Intelligence
-          </span>
-        </div>
-
-        {/* Main 2-Column Bento Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
-          {/* Left Column: Title, Description, and Action Buttons */}
-          <div className="lg:col-span-6 flex flex-col items-start">
-            <h2 className="text-[clamp(36px,4.5vw,60px)] font-extrabold leading-[1.06] tracking-[-1.5px] text-[#102D48]">
-              The value behind <br />
-              <span className="text-[#648C13]">every view.</span>
+            <h2 className="max-w-[650px] text-[36px] font-bold leading-[1.08] tracking-[-0.045em] text-[#15334E] sm:text-[48px] lg:text-[54px]">
+              Digital piracy.
+              <br />
+              <span className="text-[#7C9D18]">
+                Real consequences.
+              </span>
             </h2>
 
-            <p className="mt-6 max-w-[540px] text-base leading-[1.8] text-[#385A79] sm:text-lg">
-              Understand how piracy affects production, OTT and live sports. Explore dated industry research, commercial risks and the metrics that make protection measurable.
+            <p className="mt-6 max-w-[660px] text-[15px] leading-[1.9] text-[#45637F] sm:text-[17px]">
+              Explore our 12-page report on piracy exposure, commercial
+              impact and protection priorities for production, OTT and
+              live events. With sourced research, a measurement framework
+              and a practical roadmap.
             </p>
 
             {/* Action buttons */}
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-8 flex w-full flex-wrap items-center gap-3.5">
               <a
                 href="/brochure"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[52px] items-center justify-center rounded-2xl bg-[#648C13] px-8 py-3.5 text-center text-xs font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#52750E] hover:shadow-xl shadow-md gap-3"
+                className="inline-flex min-h-[56px] items-center justify-center gap-3 rounded-md bg-[#8BB630] px-7 py-4 text-sm font-bold text-[#15334E] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#7C9D18] sm:px-8"
               >
-                <span>Read the informative brochure</span>
-                <span className="text-sm font-bold" aria-hidden="true">→</span>
+                Read the industry report
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="h-4 w-4"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M5 12h14m-6-6 6 6-6 6"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </a>
 
               <a
                 href="/documents/trackowls-piracy-impact-brochure.pdf"
                 download
-                className="inline-flex min-h-[52px] items-center justify-center rounded-2xl border-2 border-[#D5E3D8] bg-[#EEF2ED]/60 px-8 py-3.5 text-xs font-bold text-[#102D48] transition-all duration-300 hover:border-[#648C13] hover:bg-white shadow-xs gap-3"
+                className="inline-flex min-h-[56px] items-center justify-center gap-3 rounded-md border border-[#DCE6ED] bg-[#FFFFFF] px-7 py-4 text-sm font-bold text-[#15334E] transition-all duration-300 hover:border-[#648A13] hover:bg-[#F5F8F2] hover:text-[#648A13] sm:px-8"
               >
-                <span>Download PDF</span>
-                <span className="text-sm font-bold" aria-hidden="true">↓</span>
+                Download PDF
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="h-4 w-4"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 3v12m-5-5 5 5 5-5M5 17v4h14v-4"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </a>
             </div>
-
-            {/* Quick Metrics Bar inside left column */}
-            <div className="mt-12 grid grid-cols-3 gap-6 pt-8 border-t border-slate-200 w-full max-w-[540px]">
-              <div>
-                <span className="block text-2xl sm:text-3xl font-extrabold text-[#102D48]">99.8%</span>
-                <span className="text-[11px] font-semibold text-[#385A79] uppercase tracking-wider mt-1 block">Detection Accuracy</span>
-              </div>
-              <div>
-                <span className="block text-2xl sm:text-3xl font-extrabold text-[#648C13]">24/7</span>
-                <span className="text-[11px] font-semibold text-[#385A79] uppercase tracking-wider mt-1 block">Live Surveillance</span>
-              </div>
-              <div>
-                <span className="block text-2xl sm:text-3xl font-extrabold text-[#102D48]">100+</span>
-                <span className="text-[11px] font-semibold text-[#385A79] uppercase tracking-wider mt-1 block">Global Networks</span>
-              </div>
-            </div>
           </div>
 
-          {/* Right Column: Modern Tech Interface Showcase Card (No Blob, Fully Modern) */}
-          <div className="lg:col-span-6">
-            <div className="relative mx-auto w-full max-w-[620px] rounded-3xl bg-[#102D48] p-6 sm:p-10 shadow-[0_25px_60px_rgba(16,45,72,0.2)] border border-[#234665]">
-              
-              {/* Card Top Bar */}
-              <div className="flex items-center justify-between pb-6 border-b border-[#234665]">
-                <div className="flex items-center gap-2">
-                  <span className="h-3 w-3 rounded-full bg-red-500/80" />
-                  <span className="h-3 w-3 rounded-full bg-yellow-500/80" />
-                  <span className="h-3 w-3 rounded-full bg-green-500/80" />
-                </div>
-                <span className="text-[11px] font-mono tracking-widest text-[#C8F52D] uppercase">TrackOwls Enterprise Security v2.4</span>
-              </div>
+          {/* Right: Editorial feature panel */}
+          <div className="relative w-full lg:pl-0">
+            <div className="relative isolate min-h-[370px] overflow-hidden rounded-[11px] border-b-[8px] border-[#8BB630] bg-[#15334E] px-7 py-10 text-white sm:min-h-[435px] sm:px-11 sm:py-[50px] lg:min-h-[435px]">
+              {/* Decorative circular outline */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-[76px] -top-[105px] -z-0 h-[265px] w-[265px] rounded-full border-[36px] border-[#8BB630]/25 sm:-right-[75px] sm:-top-[105px] sm:h-[310px] sm:w-[310px]"
+              />
 
-              {/* Central Radar / Global Feed simulation */}
-              <div className="py-8 text-center sm:text-left">
-                <div className="inline-block px-3 py-1 rounded-lg bg-[#648C13]/20 text-[#C8F52D] text-[10px] font-bold uppercase tracking-widest mb-4">
-                  Active Threat Intelligence
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                  Protecting Digital Content Across Every Channel.
-                </h3>
-                <p className="mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  Advanced automated scanning detects unauthorized streams, mirror sites, and illegal distribution channels instantly.
+              <div className="relative z-10 flex h-full min-h-[310px] flex-col items-start sm:min-h-[325px]">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8BB630] sm:text-xs">
+                  TrackOwls insights / 2026
                 </p>
+
+                <h3 className="mt-11 max-w-[530px] text-[29px] font-bold leading-[1.2] tracking-[-0.035em] text-white sm:text-[36px] lg:text-[43px]">
+                  Every release.
+                  <br />
+                  Every stream.
+                  <br />
+                  Every live moment.
+                </h3>
+
+                <p className="mt-10 text-[11px] font-medium uppercase tracking-[0.04em] text-[#E5EDF5] sm:text-sm">
+                  Film &amp; production
+                  <span className="mx-2 text-[#8BB630]">·</span>
+                  OTT
+                  <span className="mx-2 text-[#8BB630]">·</span>
+                  Live sports
+                </p>
+
+                <div className="mt-auto pt-9">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.19em] text-[#8BB630] sm:text-xs">
+                    Scan / Detect / Remove / Protect
+                  </p>
+                </div>
               </div>
-
-              {/* Bottom Feature Highlights Bar inside Dark Card */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 border-t border-[#234665]">
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-[#1a3854] border border-[#294e70]">
-                  <div className="h-8 w-8 rounded-lg bg-[#648C13]/20 flex items-center justify-center text-[#C8F52D] shrink-0 font-bold text-xs">🛡️</div>
-                  <span className="text-xs font-bold text-white">Global Monitoring</span>
-                </div>
-
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-[#1a3854] border border-[#294e70]">
-                  <div className="h-8 w-8 rounded-lg bg-[#648C13]/20 flex items-center justify-center text-[#C8F52D] shrink-0 font-bold text-xs">⚡</div>
-                  <span className="text-xs font-bold text-white">Piracy Detection</span>
-                </div>
-
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-[#1a3854] border border-[#294e70]">
-                  <div className="h-8 w-8 rounded-lg bg-[#648C13]/20 flex items-center justify-center text-[#C8F52D] shrink-0 font-bold text-xs">🔒</div>
-                  <span className="text-xs font-bold text-white">Content Protection</span>
-                </div>
-              </div>
-
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
   );
