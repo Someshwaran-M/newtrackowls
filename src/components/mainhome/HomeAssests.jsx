@@ -35,7 +35,7 @@ function AssetCard({ asset }) {
   return (
     <article className="group flex min-w-0 flex-col overflow-hidden rounded-[6px] border border-[#C8D9E8] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#A9C66C] hover:shadow-[0_12px_30px_rgba(21,51,78,0.07)]">
       {/* Image */}
-      <div className="relative h-[170px] shrink-0 overflow-hidden sm:h-[190px] lg:h-[138px] xl:h-[160px]">
+      <div className="relative h-[190px] shrink-0 overflow-hidden sm:h-[190px] lg:h-[148px] xl:h-[250px]">
         <img
           src={asset.image}
           alt={asset.imageAlt}
