@@ -27,8 +27,7 @@ export default function HomePiracyBrochure() {
               and a practical roadmap.
             </p>
 
-            {/* ACTION BUTTONS */}
-            <div className="mt-[36px] flex flex-wrap items-center gap-4">
+            <div className="brochure-actions mt-[36px] flex flex-wrap items-center gap-4">
               <a
                 href="/brochure"
                 target="_blank"
@@ -113,31 +112,87 @@ export default function HomePiracyBrochure() {
           }
         }
 
-        @media (max-width: 640px) {
-          #piracy-brochure > div {
-            padding-top: 44px;
-            padding-bottom: 44px;
-          }
+        
+@media (max-width: 640px) {
+  #piracy-brochure > div {
+    width: 100%;
+    padding: 26px 13px 34px;
+  }
 
-          #piracy-brochure h2 {
-            font-size: clamp(36px, 9vw, 46px);
-            letter-spacing: -1.2px;
-          }
+  #piracy-brochure .grid {
+    gap: 62px;
+  }
 
-          #piracy-brochure h3 {
-            font-size: clamp(30px, 8vw, 38px);
-          }
+  /* Left content */
+  #piracy-brochure p:first-child {
+    margin-bottom: 19px;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    line-height: 1.6;
+  }
 
-          #piracy-brochure .brochure-actions {
-            width: 100%;
-          }
-        }
+  #piracy-brochure h2 {
+    font-size: 30px;
+    line-height: 1.14;
+    letter-spacing: -0.8px;
+  }
 
-        @media (prefers-reduced-motion: reduce) {
-          #piracy-brochure * {
-            transition-duration: 0.01ms !important;
-          }
-        }
+  #piracy-brochure .grid > div:first-child > p:nth-of-type(2) {
+    margin-top: 17px;
+    font-size: 15px;
+    line-height: 1.62;
+  }
+
+  /* Buttons: side by side like the reference */
+  #piracy-brochure .brochure-actions {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    width: 100%;
+    gap: 12px;
+    margin-top: 27px;
+  }
+
+  #piracy-brochure .brochure-actions a {
+    width: 100%;
+    min-width: 0;
+    min-height: 47px;
+    padding: 12px 8px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.35;
+    white-space: normal;
+  }
+
+  /* Right feature panel */
+  #piracy-brochure .grid > div:last-child > div {
+    min-height: 390px;
+    padding: 32px 26px 25px;
+    border-bottom-width: 8px;
+    border-radius: 10px;
+  }
+
+  #piracy-brochure h3 {
+    margin-top: 36px;
+    font-size: 36px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+
+  #piracy-brochure .grid > div:last-child p:nth-of-type(2) {
+    margin-top: 36px;
+    font-size: 11px;
+    line-height: 1.7;
+    letter-spacing: 0.45px;
+  }
+
+  #piracy-brochure .grid > div:last-child p:last-child {
+    padding-top: 25px;
+    font-size: 10px;
+    letter-spacing: 1.3px;
+  }
+}
+
       `}</style>
     </section>
   );

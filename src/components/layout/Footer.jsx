@@ -1,3 +1,4 @@
+
 import React from "react";
 
 const protectionLinks = [
@@ -21,7 +22,7 @@ const companyLinks = [
   { name: "How it works", href: "/how-it-works" },
   { name: "Case studies", href: "/insights" },
   { name: "Insights", href: "/insights" },
-  { name: "Piracy impact brochure", href: "/piracy" },
+  { name: "Piracy impact report", href: "/piracy" },
   { name: "FAQs", href: "/faq" },
   { name: "Technology", href: "/platform" },
   { name: "Careers", href: "/careers" },
@@ -32,13 +33,13 @@ const informationLinks = [
   { name: "Privacy", href: "/privacy" },
   { name: "Terms", href: "/terms" },
   { name: "Cookies", href: "/cookies" },
-  { name: "Copyright", href: "/copyrights" },
+  { name: "Copyright reporting", href: "/copyrights" },
   { name: "Content editor", href: "/content-editor" },
 ];
 
-function FooterColumn({ title, links }) {
+function FooterColumn({ title, links, className = "" }) {
   return (
-    <div>
+    <div className={className}>
       <h3 className="mb-4 text-[12px] font-bold text-[#17334d]">
         {title}
       </h3>
@@ -61,12 +62,15 @@ function FooterColumn({ title, links }) {
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-white font-['Roboto',sans-serif] text-[#17334d]">
+    <footer
+      id="footer"
+      className="w-full bg-[#EDF5FC] font-['Roboto',sans-serif] text-[#17334d]"
+    >
       <div className="mx-auto max-w-[1420px] px-5 pt-12 sm:px-8 sm:pt-14 lg:px-10 lg:pt-16">
         {/* Main footer content */}
-        <div className="grid grid-cols-1 gap-10 pb-12 sm:grid-cols-2 lg:grid-cols-[1.25fr_1fr_0.78fr_0.72fr] lg:gap-8 lg:pb-16">
+        <div className="footer-grid grid grid-cols-1 gap-10 pb-12 sm:grid-cols-2 lg:grid-cols-[1.25fr_1fr_0.78fr_0.72fr] lg:gap-8 lg:pb-16">
           {/* Brand section */}
-          <div className="max-w-[280px]">
+          <div className="footer-brand max-w-[280px]">
             <a
               href="/"
               aria-label="TrackOwls home"
@@ -107,18 +111,21 @@ export default function Footer() {
           <FooterColumn
             title="Protection"
             links={protectionLinks}
+            className="footer-protection"
           />
 
           {/* Company links */}
           <FooterColumn
             title="Company"
             links={companyLinks}
+            className="footer-company"
           />
 
           {/* Information links */}
           <FooterColumn
             title="Information"
             links={informationLinks}
+            className="footer-information"
           />
         </div>
 
@@ -136,6 +143,115 @@ export default function Footer() {
           </p>
         </div>
       </div>
+
+      {/* Mobile-only layout adjustments */}
+      <style>{`
+        @media (max-width: 639px) {
+          #footer > div {
+            padding-top: 26px;
+            padding-left: 10px;
+            padding-right: 10px;
+          }
+
+          #footer .footer-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            column-gap: 22px;
+            row-gap: 36px;
+            padding-bottom: 36px;
+          }
+
+          /* Logo and description span both columns */
+          #footer .footer-brand {
+            grid-column: 1 / -1;
+            grid-row: 1;
+            max-width: 280px;
+          }
+
+          #footer .footer-brand > a {
+            gap: 7px;
+          }
+
+          #footer .footer-brand > a img:last-child {
+            width: 175px;
+          }
+
+          #footer .footer-brand > p {
+            margin-top: 16px;
+          }
+
+          #footer .footer-brand > div {
+            margin-top: 27px;
+          }
+
+          /* Protection: left column */
+          #footer .footer-protection {
+            grid-column: 1;
+            grid-row: 2;
+            min-width: 0;
+          }
+
+          /* Company: right column */
+          #footer .footer-company {
+            grid-column: 2;
+            grid-row: 2;
+            min-width: 0;
+          }
+
+          /* Information: full width below both columns */
+          #footer .footer-information {
+            grid-column: 1 / -1;
+            grid-row: 3;
+            margin-top: 0;
+          }
+
+          #footer .footer-grid h3 {
+            margin-bottom: 16px;
+            font-size: 12px;
+          }
+
+          #footer .footer-grid ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+          }
+
+          #footer .footer-grid li {
+            min-width: 0;
+            line-height: 1.65;
+          }
+
+          #footer .footer-grid li a {
+            display: inline;
+            font-size: 12px;
+            line-height: 1.65;
+            overflow-wrap: anywhere;
+          }
+
+          /* Copyright area */
+          #footer .footer-grid + div {
+            width: 100%;
+          }
+
+          #footer .footer-grid + div + div {
+            gap: 8px;
+            padding-top: 20px;
+            padding-bottom: 12px;
+            font-size: 10px;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          #footer *,
+          #footer *::before,
+          #footer *::after {
+            transition-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 }
