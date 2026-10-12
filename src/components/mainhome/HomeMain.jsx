@@ -84,7 +84,7 @@ function HomeMain() {
               rgba(5, 24, 42, .78),
               rgba(5, 24, 42, .05) 75%
             ),
-            url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2200&q=85');
+            url('/world-map.png');
           background-position: center center;
           background-size: cover;
           filter: saturate(.6);

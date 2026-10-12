@@ -1,190 +1,570 @@
+import React, { useEffect, useState } from "react";
 
-import React, { useEffect, useRef, useState } from "react";
-import "../../styles/Loader.css";
+const protectionServices = [
+  ["Live Sports", "Television & Broadcasting"],
+  ["Film & Entertainment", "OTT & Streaming"],
+  ["Music & Audio", "Digital Content Distribution"],
+  ["Brands & Marketplaces", "Websites & Applications"],
+];
 
-export default function Loader({ onComplete }) {
-  const [progress, setProgress] = useState(0);
-  const [revealed, setRevealed] = useState(false);
+export default function Loader({ onComplete, duration = 6000 }) {
+  const [activeService, setActiveService] = useState(0);
   const [exiting, setExiting] = useState(false);
 
-  const completeRef = useRef(onComplete);
-
   useEffect(() => {
-    completeRef.current = onComplete;
-  }, [onComplete]);
+    const serviceTimer = setInterval(() => {
+      setActiveService(
+        (previous) => (previous + 1) % protectionServices.length
+      );
+    }, 1500);
 
-  useEffect(() => {
-    let value = 0;
-    let exitTimer;
-    let finishTimer;
-
-    const revealTimer = window.setTimeout(() => {
-      setRevealed(true);
-    }, 200);
-
-    const progressTimer = window.setInterval(() => {
-      value += value < 70 ? 2 : value < 90 ? 1 : 0.5;
-      value = Math.min(value, 100);
-
-      setProgress(Math.floor(value));
-
-      if (value >= 100) {
-        window.clearInterval(progressTimer);
-
-        exitTimer = window.setTimeout(() => {
-          setExiting(true);
-
-          finishTimer = window.setTimeout(() => {
-            completeRef.current?.();
-          }, 700);
-        }, 400);
-      }
-    }, 45);
+    const finishTimer = setTimeout(() => {
+      setExiting(true);
+      setTimeout(() => onComplete?.(), 500);
+    }, duration);
 
     return () => {
-      window.clearTimeout(revealTimer);
-      window.clearTimeout(exitTimer);
-      window.clearTimeout(finishTimer);
-      window.clearInterval(progressTimer);
+      clearInterval(serviceTimer);
+      clearTimeout(finishTimer);
     };
-  }, []);
+  }, [duration, onComplete]);
 
-  const dotSizes = [
-    3, 4, 5, 7, 9, 11, 13, 15, 17,
-    15, 13, 11, 9, 7, 5, 4, 3,
-  ];
+  const enterWebsite = () => {
+    if (exiting) return;
+
+    setExiting(true);
+    setTimeout(() => onComplete?.(), 500);
+  };
+
+  const [serviceTitle, serviceSubtitle] = protectionServices[activeService];
 
   return (
-    <div
-      role="status"
-      aria-label={`Loading TrackOwls website, ${progress}%`}
-      className={`track-loader fixed inset-0 z-[99999] flex min-h-screen items-center justify-center overflow-hidden text-[#11150c] transition-all duration-700 ${
-        exiting
-          ? "scale-[1.01] opacity-0"
-          : "scale-100 opacity-100"
+    <section
+      className={`trackowls-loader-screen ${
+        exiting ? "loader-exiting" : ""
       }`}
+      aria-label="TrackOwls loading screen"
     >
-      {/* White background */}
-      <div className="absolute inset-0 bg-white" />
+      {/* Full-screen background */}
+      <div className="loader-bg" />
+      <div className="loader-map" />
+      <div className="loader-vignette" />
+      <div className="loader-scan-line" />
 
-      {/* Subtle lime glow */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(213,245,31,0.12)_0%,rgba(213,245,31,0.035)_40%,transparent_72%)]" />
+      {/* World map scanning points */}
+      <div className="loader-map-points" aria-hidden="true">
+        {[
+          [23, 10],
+          [34, 18],
+          [48, 12],
+          [60, 15],
+          [72, 17],
+          [83, 21],
+          [19, 32],
+          [68, 33],
+          [86, 49],
+          [33, 67],
+          [74, 76],
+          [81, 80],
+        ].map(([left, top], index) => (
+          <span
+            key={index}
+            className={`loader-map-point point-${index + 1}`}
+            style={{ left: `${left}%`, top: `${top}%` }}
+          />
+        ))}
+      </div>
 
-      {/* Background grid */}
-      <div className="loader-grid pointer-events-none absolute inset-0" />
-
-      {/* Main loader composition */}
-      <div
-        className={`logo-stage relative z-10 flex w-[min(90vw,540px)] flex-col items-center px-3 text-center ${
-          revealed ? "logo-visible" : ""
-        }`}
-      >
+      {/* Centered brand and content */}
+      <div className="loader-center">
         {/* Owl logo */}
-        <div className="owl-frame relative flex h-24 w-24 items-center justify-center sm:h-28 sm:w-28 md:h-32 md:w-32">
-          <div className="absolute inset-0 rounded-full border border-[#a6c91b]/20" />
-
-          <div className="owl-ring absolute inset-[-6px] rounded-full border border-dashed border-[#a6c91b]/30" />
-
-          <span className="absolute left-1 top-1 h-2.5 w-2.5 border-l border-t border-[#91b51a]" />
-          <span className="absolute right-1 top-1 h-2.5 w-2.5 border-r border-t border-[#91b51a]" />
-          <span className="absolute bottom-1 left-1 h-2.5 w-2.5 border-b border-l border-[#91b51a]" />
-          <span className="absolute bottom-1 right-1 h-2.5 w-2.5 border-b border-r border-[#91b51a]" />
-
+        <div className="loader-owl-ring">
           <img
             src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owl-bg.png"
-            alt="TrackOwls owl"
-            draggable="false"
-            fetchPriority="high"
-            className={`owl-image relative z-10 h-[84%] w-[84%] object-contain ${
-              revealed ? "owl-visible" : ""
-            }`}
+            alt="TrackOwls owl logo"
+            className="loader-owl-image"
           />
-
-          {/* Owl scanning beam */}
-          <div
-            className={`owl-scan pointer-events-none absolute inset-0 z-20 overflow-hidden rounded-full ${
-              revealed ? "scan-start" : ""
-            }`}
-          >
-            <div className="scan-beam absolute left-0 right-0 top-0 h-[2px]" />
-          </div>
         </div>
 
-        {/* TrackOwls wordmark image */}
-        <div className="mt-5 flex w-full items-center justify-center overflow-hidden px-2 sm:mt-6">
+        {/* TrackOwls wordmark */}
+        <div className="loader-wordmark">
           <img
-            src="/images/logo/Trackowls_Owl_text_Banner-remove-bg.png"
+            src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owltext-bg.png"
             alt="TrackOwls"
-            draggable="false"
-            className={`wordmark h-auto w-full max-w-[320px] object-contain sm:max-w-[370px] md:max-w-[410px] ${
-              revealed ? "wordmark-visible" : ""
-            }`}
           />
         </div>
 
-        {/* Graduated center-enlarged dots */}
-        <div className="mt-3 flex h-5 w-full items-center justify-center gap-[clamp(3px,0.65vw,6px)] sm:mt-4">
-          {dotSizes.map((size, index) => (
-            <span
-              key={index}
-              className="brand-dot"
-              style={{
-                "--dot-index": index,
-                "--dot-size": `${size}px`,
-              }}
-            />
-          ))}
-        </div>
+        {/* Rotating service text */}
+        <div className="loader-protection-text" aria-live="polite">
+          <p className="loader-protecting">PROTECTING</p>
 
-        {/* Tagline */}
-        <p
-          className={`tagline mt-3 flex items-center justify-center whitespace-nowrap ${
-            revealed ? "tagline-visible" : ""
-          }`}
-        >
-          <span>Scan</span>
-          <i aria-hidden="true" />
-          <span>Detect</span>
-          <i aria-hidden="true" />
-          <span>Remove</span>
-          <i aria-hidden="true" />
-          <span>Protect</span>
-        </p>
-
-        {/* Loading progress */}
-        <div className="mt-8 w-full max-w-[250px] sm:mt-9 sm:max-w-[270px]">
-          <div className="mb-2.5 flex items-center justify-between">
-            <span className="flex items-center gap-2 text-[8px] font-bold uppercase tracking-[0.13em] text-black/55 sm:text-[9px]">
-              <span className="status-dot" />
-
-              {progress >= 100 ? "System ready" : "Scanning content"}
-            </span>
-
-            <span className="font-mono text-xs font-bold tabular-nums text-[#647e0b]">
-              {String(progress).padStart(3, "0")}%
-            </span>
+          <div className="loader-service-copy" key={activeService}>
+            <h2>{serviceTitle}</h2>
+            <h3>{serviceSubtitle}</h3>
           </div>
 
-          <div className="h-[3px] overflow-hidden rounded-full bg-black/10">
-            <div
-              className="progress-fill h-full rounded-full"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-
-          <div className="mt-2.5 flex justify-between text-[7px] font-medium uppercase tracking-[0.1em] text-black/40 sm:text-[8px]">
-            <span>Content protection</span>
-            <span>TrackOwls / 001</span>
-          </div>
+          <p className="loader-scan-caption">
+            <span className="loader-status-dot" />
+            Illustrative scan animation
+          </p>
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="absolute bottom-3 left-0 right-0 px-3 text-center sm:bottom-4">
-        <span className="text-[7px] font-bold uppercase tracking-[0.14em] text-black/35 sm:text-[8px] sm:tracking-[0.2em]">
-          TrackOwls Anti-Piracy Private Limited
-        </span>
-      </div>
-    </div>
+      {/* Bottom button */}
+      <button
+        type="button"
+        className="loader-enter-button"
+        onClick={enterWebsite}
+      >
+        Enter website
+      </button>
+
+      <style>{`
+        .trackowls-loader-screen,
+        .trackowls-loader-screen * {
+          box-sizing: border-box;
+        }
+
+        .trackowls-loader-screen {
+          position: fixed;
+          inset: 0;
+          z-index: 99999;
+          width: 100%;
+          height: 100vh;
+          height: 100dvh;
+          min-height: 500px;
+          overflow: hidden;
+          background: #102d35;
+          color: #071c30;
+          font-family: Roboto, Arial, sans-serif;
+          isolation: isolate;
+          animation: loaderFadeIn 0.65s ease both;
+        }
+
+        .loader-bg {
+          position: absolute;
+          inset: -3%;
+          z-index: -5;
+          background:
+            radial-gradient(
+              ellipse at 50% 43%,
+              rgba(255, 255, 247, 0.99) 0%,
+              rgba(235, 241, 244, 0.94) 24%,
+              rgba(171, 190, 195, 0.8) 43%,
+              rgba(49, 80, 76, 0.76) 66%,
+              rgba(11, 37, 47, 0.99) 100%
+            );
+          animation: loaderBackgroundMove 8s ease-in-out infinite alternate;
+        }
+
+        /* World map background */
+        .loader-map {
+          position: absolute;
+          z-index: -4;
+          inset: 0;
+          background-image: url("/world-map.png");
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          opacity: 0.88;
+          animation: loaderMapReveal 1.5s ease both;
+        }
+
+        .loader-vignette {
+          position: absolute;
+          z-index: -3;
+          inset: 0;
+          pointer-events: none;
+          background:
+            linear-gradient(
+              90deg,
+              rgba(12, 39, 35, 0.42),
+              transparent 25%,
+              transparent 75%,
+              rgba(9, 34, 47, 0.42)
+            ),
+            linear-gradient(
+              0deg,
+              rgba(10, 39, 48, 0.76),
+              transparent 24%,
+              transparent 75%,
+              rgba(13, 35, 40, 0.16)
+            );
+        }
+
+        .loader-scan-line {
+          position: absolute;
+          z-index: -1;
+          top: 0;
+          bottom: 0;
+          left: 12.7%;
+          width: 1px;
+          background: rgba(171, 212, 80, 0.15);
+          box-shadow: 0 0 12px rgba(171, 212, 80, 0.1);
+          animation: loaderScanMove 8s ease-in-out infinite alternate;
+        }
+
+        .loader-map-points {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          pointer-events: none;
+        }
+
+        .loader-map-point {
+          position: absolute;
+          width: clamp(5px, 0.75vw, 10px);
+          height: clamp(5px, 0.75vw, 10px);
+          border-radius: 50%;
+          background: #ffd18a;
+          box-shadow:
+            0 0 5px 3px rgba(255, 188, 88, 0.55),
+            0 0 19px 9px rgba(255, 168, 58, 0.25);
+          animation: loaderPointPulse 2.1s ease-in-out infinite alternate;
+        }
+
+        .point-2 { animation-delay: .6s; }
+        .point-3 { animation-delay: 1.2s; }
+        .point-4 { animation-delay: .3s; }
+        .point-5 { animation-delay: 1.5s; }
+        .point-6 { animation-delay: .9s; }
+        .point-7 { animation-delay: .4s; }
+        .point-8 { animation-delay: 1.3s; }
+        .point-9 { animation-delay: .7s; }
+        .point-10 { animation-delay: 1.6s; }
+        .point-11 { animation-delay: .5s; }
+        .point-12 { animation-delay: 1.1s; }
+
+        .loader-center {
+          position: absolute;
+          top: 49%;
+          left: 50%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: min(90%, 650px);
+          text-align: center;
+          transform: translate(-50%, -50%);
+          animation: loaderContentEnter 1s cubic-bezier(.2,.7,.2,1) both;
+        }
+
+        .loader-owl-ring {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: clamp(100px, 10vw, 184px);
+          height: clamp(100px, 10vw, 184px);
+          margin-bottom: clamp(17px, 2vw, 30px);
+          border: 1px solid rgba(137, 158, 115, 0.15);
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.06);
+          box-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
+          animation: loaderRingEnter 1s ease both;
+        }
+
+        .loader-owl-image {
+          display: block;
+          width: 55%;
+          height: 76%;
+          object-fit: contain;
+          filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.12));
+        }
+
+        .loader-wordmark {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+
+        .loader-wordmark > img {
+          display: block;
+          width: clamp(235px, 27vw, 390px);
+          max-width: 90%;
+          height: auto;
+          max-height: 90px;
+          object-fit: contain;
+        }
+
+        .loader-logo-dots {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: clamp(5px, 0.55vw, 9px);
+          margin-top: 8px;
+        }
+
+        .loader-logo-dots span {
+          width: clamp(4px, 0.42vw, 7px);
+          height: clamp(4px, 0.42vw, 7px);
+          border-radius: 50%;
+          background: #102b43;
+          animation: loaderDotPulse 1.6s ease-in-out infinite alternate;
+        }
+
+        .loader-logo-dots span:nth-child(3n) {
+          animation-delay: .3s;
+        }
+
+        .loader-logo-dots span:nth-child(3n + 1) {
+          animation-delay: .6s;
+        }
+
+        .loader-brand-tagline {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: clamp(7px, 0.8vw, 13px);
+          margin: 24px 0 0;
+          color: #102b43;
+          font-size: clamp(10px, 0.8vw, 14px);
+          font-weight: 800;
+          letter-spacing: 1.2px;
+          white-space: nowrap;
+        }
+
+        .loader-brand-tagline i {
+          display: block;
+          width: 2px;
+          height: 13px;
+          background: #80a900;
+        }
+
+        .loader-protection-text {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: clamp(27px, 3vw, 39px);
+        }
+
+        .loader-protecting {
+          margin: 0;
+          color: #24465d;
+          font-size: clamp(11px, 0.8vw, 14px);
+          font-weight: 800;
+          letter-spacing: 2.5px;
+        }
+
+        .loader-service-copy {
+          margin-top: 24px;
+          animation: loaderServiceChange .45s ease both;
+        }
+
+        .loader-service-copy h2 {
+          margin: 0;
+          color: #071c30;
+          font-size: clamp(16px, 1.15vw, 21px);
+          font-weight: 700;
+          line-height: 1.45;
+        }
+
+        .loader-service-copy h3 {
+          margin: 2px 0 0;
+          color: #173a52;
+          font-size: clamp(15px, 1.05vw, 20px);
+          font-weight: 700;
+          line-height: 1.45;
+        }
+
+        .loader-scan-caption {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          margin: 22px 0 0;
+          color: #36566b;
+          font-size: clamp(10px, 0.8vw, 14px);
+        }
+
+        .loader-status-dot {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background: #80a900;
+          animation: loaderStatusPulse 1.2s ease-in-out infinite alternate;
+        }
+
+        .loader-enter-button {
+          position: absolute;
+          bottom: 9.1%;
+          left: 50%;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 151px;
+          min-height: 53px;
+          padding: 13px 24px;
+          border: 1px solid rgba(197, 215, 228, 0.68);
+          border-radius: 5px;
+          background: #102d46;
+          color: #fff;
+          font-family: inherit;
+          font-size: 16px;
+          font-weight: 500;
+          cursor: pointer;
+          transform: translateX(-50%);
+          transition:
+            background .25s ease,
+            border-color .25s ease,
+            box-shadow .25s ease;
+        }
+
+        .loader-enter-button:hover {
+          border-color: #d0f20a;
+          background: #1c4055;
+          box-shadow: 0 0 22px rgba(208, 242, 10, 0.16);
+        }
+
+        .loader-enter-button:focus-visible {
+          outline: 2px solid #d0f20a;
+          outline-offset: 4px;
+        }
+
+        .loader-exiting {
+          pointer-events: none;
+          animation: loaderFadeOut .5s ease forwards;
+        }
+
+        @keyframes loaderFadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
+        @keyframes loaderFadeOut {
+          to { opacity: 0; visibility: hidden; }
+        }
+
+        @keyframes loaderBackgroundMove {
+          from { transform: scale(1); }
+          to { transform: scale(1.035); }
+        }
+
+        @keyframes loaderMapReveal {
+          from { opacity: 0; transform: scale(1.035); }
+          to { opacity: .88; transform: scale(1); }
+        }
+
+        @keyframes loaderScanMove {
+          from { left: 12.7%; }
+          to { left: 87.3%; }
+        }
+
+        @keyframes loaderPointPulse {
+          from { opacity: .55; transform: scale(.72); }
+          to { opacity: 1; transform: scale(1.25); }
+        }
+
+        @keyframes loaderDotPulse {
+          from { opacity: .45; }
+          to { opacity: 1; }
+        }
+
+        @keyframes loaderRingEnter {
+          from { opacity: 0; transform: scale(.82); }
+          to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes loaderContentEnter {
+          from { opacity: 0; margin-top: 15px; }
+          to { opacity: 1; margin-top: 0; }
+        }
+
+        @keyframes loaderServiceChange {
+          from { opacity: 0; transform: translateY(7px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes loaderStatusPulse {
+          from { opacity: .4; }
+          to { opacity: 1; }
+        }
+
+        @media (max-width: 640px) {
+          .trackowls-loader-screen {
+            min-height: 440px;
+          }
+
+          .loader-map {
+            background-size: auto 100%;
+            background-position: center;
+          }
+
+          .loader-center {
+            top: 43%;
+            width: 94%;
+          }
+
+          .loader-owl-ring {
+            width: 105px;
+            height: 105px;
+            margin-bottom: 17px;
+          }
+
+          .loader-wordmark > img {
+            width: min(78vw, 300px);
+          }
+
+          .loader-logo-dots {
+            gap: 5px;
+            margin-top: 6px;
+          }
+
+          .loader-logo-dots span {
+            width: 4px;
+            height: 4px;
+          }
+
+          .loader-brand-tagline {
+            gap: 6px;
+            margin-top: 19px;
+            font-size: 8px;
+            letter-spacing: .7px;
+          }
+
+          .loader-brand-tagline i {
+            height: 10px;
+          }
+
+          .loader-protection-text {
+            margin-top: 27px;
+          }
+
+          .loader-service-copy {
+            margin-top: 19px;
+          }
+
+          .loader-scan-caption {
+            margin-top: 16px;
+          }
+
+          .loader-enter-button {
+            bottom: 6%;
+            min-width: 142px;
+            min-height: 48px;
+            font-size: 14px;
+          }
+        }
+
+        @media (max-height: 650px) and (min-width: 641px) {
+          .loader-center {
+            top: 45%;
+            transform: translate(-50%, -50%) scale(.78);
+          }
+
+          .loader-enter-button {
+            bottom: 4%;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .trackowls-loader-screen *,
+          .trackowls-loader-screen *::before,
+          .trackowls-loader-screen *::after {
+            animation-duration: .01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: .01ms !important;
+          }
+        }
+      `}</style>
+    </section>
   );
 }

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+
 import { Routes, Route } from "react-router-dom";
 
-
+import Loader from "./components/common/Loader";
 
 // Layout
 import Navbar from "./components/layout/Navbar";
@@ -34,8 +35,14 @@ import ContentEditor from "./components/information/ContentEditor";
 import Career from "./components/information/Career";
 
 function App() {
+
+  const [loading, setLoading] = useState(true);
+
   return (
     <div className="min-h-screen bg-white text-[#152019] dark:bg-[#070A07] dark:text-white">
+      {loading && (
+        <Loader onComplete={() => setLoading(false)} />
+      )}
       <Navbar />
 
       <main>
