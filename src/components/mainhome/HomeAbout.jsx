@@ -63,7 +63,7 @@ export default function HomeAbout() {
   </p>
 </div>
           <a
-            href="#about"
+            href="/about"
             className="group mt-4 inline-flex items-center gap-2 border-b border-[#B8CE87] pb-1 text-[12px] font-medium text-[#648A13] transition-colors duration-200 hover:border-[#648A13] hover:text-[#45650B] sm:text-[14px]"
           >
             Meet TrackOwls

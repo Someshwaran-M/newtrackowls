@@ -1,8 +1,19 @@
+import AboutMain from "../mainabout/AboutMain";
+import AboutMission from "../mainabout/AboutMission";
+import AboutPrinciples from "../mainabout/AboutPrinciples";
+import HomeCTA from "../mainhome/HomeCTA";
 function About() {
   return (
-    <div>
-      {/* Your existing About page */}
-    </div>
+    <>
+    <AboutMain />
+    
+    <AboutMission />
+    
+    <AboutPrinciples />
+    
+    <HomeCTA />
+
+    </>
   );
 }
 

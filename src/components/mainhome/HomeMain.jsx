@@ -55,7 +55,7 @@ function HomeMain() {
         block: "start",
       });
     } else {
-      navigate("/#contact");
+      navigate("/contact");
     }
   };
 
@@ -148,7 +148,7 @@ function HomeMain() {
       </div>
 
       {/* Hero content and right-side animation */}
-      <section className="relative z-10 mx-auto grid min-h-[100svh] max-w-[1420px] grid-cols-1 items-center gap-8 px-5 pb-24 pt-28 sm:px-8 sm:pt-32 lg:grid-cols-[0.98fr_1.02fr] lg:gap-10 lg:px-10 lg:pb-24 lg:pt-32 xl:px-14 2xl:px-16">
+      <section className="relative z-10 mx-auto grid min-h-[100svh] max-w-[1400px] grid-cols-1 items-center gap-8 px-5 pb-24 pt-28 sm:px-8 sm:pt-32 lg:grid-cols-[0.98fr_1.02fr] lg:gap-10 lg:px-10 lg:pb-24 lg:pt-32 xl:px-14 2xl:px-16">
         {/* LEFT: original homepage content */}
         <div className="home-content-enter relative z-10 flex min-w-0 flex-col items-start">
       <div>
@@ -194,7 +194,7 @@ function HomeMain() {
 
             <button
               type="button"
-              onClick={() => navigate("/services")}
+              onClick={() => navigate("/solutions")}
               className="inline-flex min-h-[48px] items-center justify-center gap-3 rounded-[7px] border border-white/30 bg-white/[0.04] px-5 py-3 text-[12px] font-bold text-white backdrop-blur-md transition-all duration-300 hover:border-[#8BB630] hover:bg-[#8BB630]/10 sm:px-6 sm:text-[13px]"
             >
               Explore our solutions

@@ -12,7 +12,7 @@ const categories = [
 export default function HomeDown() {
   return (
     <section className="relative w-full overflow-hidden   font-['Roboto',sans-serif] text-[#152019]">
-      <div className="mx-auto flex min-h-[76px] max-w-[1420px] items-center gap-6 px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto flex min-h-[76px] max-w-[1380px] items-center gap-6 px-5 sm:px-8 lg:px-12">
         {/* Intro label — stays fixed */}
         <div className="relative z-10 flex w-[95px] shrink-0 flex-col justify-center border-r border-[#e1e8d9] py-2 pr-4 sm:w-[125px]">
           <span className="text-[9px] font-bold uppercase leading-[1.6] tracking-[0.12em] text-[#68746C]">

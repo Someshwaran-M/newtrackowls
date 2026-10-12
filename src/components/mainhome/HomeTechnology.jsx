@@ -36,7 +36,7 @@ export default function HomeTechnology() {
       id="home-technology"
       className="relative w-full overflow-hidden border-y border-[#E0E9F1] bg-[#FFFFFF] font-['Roboto',Arial,sans-serif] text-[#15334E]"
     >
-      <div className="mx-auto grid max-w-[1450px] grid-cols-1 gap-12 px-5 py-10 sm:px-8 sm:py-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16 lg:px-[4.8%] lg:py-12">
+      <div className="mx-auto grid max-w-[1430px] grid-cols-1 gap-12 px-5 py-10 sm:px-8 sm:py-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16 lg:px-[4.8%] lg:py-12">
         {/* Left content */}
         <div className="relative">
           <p className="mb-7 text-[11px] font-bold uppercase tracking-[0.24em] text-[#617D17] sm:text-xs">

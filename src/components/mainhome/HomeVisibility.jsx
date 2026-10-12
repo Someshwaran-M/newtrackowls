@@ -70,7 +70,7 @@ export default function HomeVisibility() {
       id="home-visibility"
       className="w-full overflow-hidden bg-[#FFFFFF] py-10 font-['Roboto',sans-serif] text-[#15334E] sm:py-12 lg:py-12"
     >
-      <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-[5%]">
+      <div className="mx-auto max-w-[1450px] px-5 sm:px-8 lg:px-[5%]">
         {/* Section heading */}
         <div className="mb-10 flex flex-col justify-between gap-5 sm:mb-12 lg:flex-row lg:items-center lg:gap-12">
           <div className="max-w-[720px]">

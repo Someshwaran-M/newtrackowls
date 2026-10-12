@@ -1,8 +1,19 @@
+
+import HowItWorksScope from "../mainhowitworks/HowItWorksScope.jsx";
+import HowItWorksClient from "../mainhowitworks/HowItWorksClient.jsx";
+import HowItWorksReport from "../mainhowitworks/HowItWorksReport.jsx";
+import HomeCTA from "../mainhome/HomeCTA.jsx";
+import HowItWorksMain from "../mainhowitworks/howitworksmain.jsx";
+
 function HowItWorks() {
   return (
-    <div>
-      {/* Your existing About page */}
-    </div>
+    <>
+      <HowItWorksMain />
+      <HowItWorksScope />
+      <HowItWorksClient />
+      <HowItWorksReport />
+      <HomeCTA />
+    </>
   );
 }
 

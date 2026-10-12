@@ -6,11 +6,11 @@ const navItems = [
   { name: "Home", path: "/" },
   { name: "How it works", path: "/how-it-works" },
   { name: "About", path: "/about" },
-  { name: "Solutions", path: "/services" },
+  { name: "Solutions", path: "/solutions" },
   { name: "Industries", path: "/industries" },
   { name: "Platform", path: "/platform" },
   { name: "Insights", path: "/insights" },
-  { name: "Piracy Impact Brochure", path: "/brochure" },
+  { name: "Piracy Impact Brochure", path: "/piracy" },
 ];
 
 export default function Navbar() {
@@ -41,7 +41,7 @@ export default function Navbar() {
   useEffect(() => {
     setMenuOpen(false);
 
-    if (location.hash === "#contact") {
+    if (location.hash === "/contact") {
       requestAnimationFrame(() => {
         document.getElementById("contact")?.scrollIntoView({
           behavior: "smooth",
@@ -61,7 +61,7 @@ export default function Navbar() {
     closeMenu();
 
     if (location.pathname !== "/") {
-      navigate("/#contact");
+      navigate("/contact");
       return;
     }
 
@@ -73,7 +73,7 @@ export default function Navbar() {
         block: "start",
       });
     } else {
-      navigate("/#contact");
+      navigate("/contact");
     }
   };
 

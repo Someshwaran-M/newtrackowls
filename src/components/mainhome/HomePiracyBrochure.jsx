@@ -7,7 +7,7 @@ export default function HomePiracyBrochure() {
       id="piracy-brochure"
       className="relative w-full overflow-hidden bg-[#FFFFFF] py-10 font-['Roboto',sans-serif] text-[#15334E] sm:py-12 lg:py-12"
     >
-      <div className="mx-auto max-w-[1450px] px-6 sm:px-10 lg:px-[60px]">
+      <div className="mx-auto max-w-[1420px] px-6 sm:px-10 lg:px-[60px]">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-[7%]">
           {/* Left: Editorial content */}
           <div className="flex flex-col items-start">

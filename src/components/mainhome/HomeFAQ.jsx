@@ -90,7 +90,7 @@ export default function HomeFAQ() {
       id="home-faq"
       className="w-full border-t border-[#E0E9F1] bg-[#FFFFFF] py-10 font-['Roboto',sans-serif] text-[#15334E] sm:py-12 lg:py-12"
     >
-      <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12 xl:px-[4.8%]">
+      <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-[4.8%]">
         {/* Heading */}
         <div className="mb-10 flex flex-col justify-between gap-6 border-b border-[#E0E9F1] pb-10 sm:mb-0 sm:flex-row sm:items-center sm:pb-12">
           <div className="min-w-0">

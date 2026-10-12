@@ -1,15 +1,15 @@
 import React from "react";
 
 const protectionLinks = [
-  { name: "Live Streaming Protection", href: "/services" },
-  { name: "OTT & VOD Protection", href: "/services" },
-  { name: "Website & App Monitoring", href: "/services" },
-  { name: "Copyright Enforcement", href: "/services" },
-  { name: "Brand Protection", href: "/services" },
-  { name: "Piracy Intelligence", href: "/services" },
-  { name: "Marketplace & Counterfeit Monitoring", href: "/services" },
-  { name: "Domain & Impersonation Monitoring", href: "/services" },
-  { name: "Social Media & Video Protection", href: "/services" },
+  { name: "Live Streaming Protection", href: "/solutions" },
+  { name: "OTT & VOD Protection", href: "/solutions" },
+  { name: "Website & App Monitoring", href: "/solutions" },
+  { name: "Copyright Enforcement", href: "/solutions" },
+  { name: "Brand Protection", href: "/solutions" },
+  { name: "Piracy Intelligence", href: "/solutions" },
+  { name: "Marketplace & Counterfeit Monitoring", href: "/solutions" },
+  { name: "Domain & Impersonation Monitoring", href: "/solutions" },
+  { name: "Social Media & Video Protection", href: "/solutions" },
 ];
 
 const companyLinks = [
@@ -21,11 +21,11 @@ const companyLinks = [
   { name: "How it works", href: "/how-it-works" },
   { name: "Case studies", href: "/insights" },
   { name: "Insights", href: "/insights" },
-  { name: "Piracy impact brochure", href: "/brochure" },
-  { name: "FAQs", href: "/#faq" },
+  { name: "Piracy impact brochure", href: "/piracy" },
+  { name: "FAQs", href: "/faq" },
   { name: "Technology", href: "/platform" },
   { name: "Careers", href: "/careers" },
-  { name: "Contact", href: "/#contact" },
+  { name: "Contact", href: "/contact" },
 ];
 
 const informationLinks = [
@@ -62,7 +62,7 @@ function FooterColumn({ title, links }) {
 export default function Footer() {
   return (
     <footer className="w-full bg-white font-['Roboto',sans-serif] text-[#17334d]">
-      <div className="mx-auto max-w-[1420px] px-5 pt-12 sm:px-8 sm:pt-14 lg:px-10 lg:pt-16">
+      <div className="mx-auto max-w-[1380px] px-5 pt-12 sm:px-8 sm:pt-14 lg:px-10 lg:pt-16">
         {/* Main footer content */}
         <div className="grid grid-cols-1 gap-10 pb-12 sm:grid-cols-2 lg:grid-cols-[1.25fr_1fr_0.78fr_0.72fr] lg:gap-8 lg:pb-16">
           {/* Brand section */}

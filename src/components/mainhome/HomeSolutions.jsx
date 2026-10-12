@@ -100,7 +100,7 @@ export default function HomeSolutions() {
       id="home-solutions"
       className="relative overflow-hidden bg-[#FFFFFF] px-5 py-10 font-['Roboto',Arial,sans-serif] text-[#15334E] sm:px-8 sm:py-12 lg:px-10 lg:py-12"
     >
-      <div className="mx-auto max-w-[1350px]">
+      <div className="mx-auto max-w-[1290px]">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}

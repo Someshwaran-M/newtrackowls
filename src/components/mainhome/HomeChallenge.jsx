@@ -28,7 +28,7 @@ function HomeChallenge() {
       id="home-challenge"
       className="relative w-full overflow-hidden bg-[#FFFFFF] font-['Roboto',sans-serif] text-[#15334E]"
     >
-      <div className="mx-auto max-w-[1420px] px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-12">
+      <div className="mx-auto max-w-[1380px] px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-12">
         {/* Heading and supporting description */}
         <div className="grid grid-cols-1 items-end gap-5 sm:gap-6 md:grid-cols-[1fr_300px] lg:grid-cols-[1fr_340px] lg:gap-12">
           <div>

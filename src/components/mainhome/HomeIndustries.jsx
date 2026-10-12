@@ -166,7 +166,7 @@ function HomeIndustries() {
         className="pointer-events-none absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-[#8BB630]/[0.05] blur-3xl"
       />
 
-      <div className="relative mx-auto max-w-[1380px] px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-12">
+      <div className="relative mx-auto max-w-[1350px] px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-12">
         {/* HEADER */}
         <div className="mb-7 grid grid-cols-1 items-end gap-5 sm:mb-8 lg:grid-cols-[1.4fr_0.6fr] lg:gap-12">
           <div>

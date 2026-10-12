@@ -284,7 +284,7 @@ export default function HomeProtection() {
       id="home-protection"
       className="relative w-full overflow-hidden bg-[#FFFFFF] font-['Roboto',Arial,sans-serif] text-[#15334E]"
     >
-      <div className="mx-auto max-w-[1420px] px-5 py-10 sm:px-7 sm:py-12 lg:px-10 lg:py-12 xl:px-12">
+      <div className="mx-auto max-w-[1380px] px-5 py-10 sm:px-7 sm:py-12 lg:px-10 lg:py-12 xl:px-12">
         {/* Header */}
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1fr_330px] lg:items-end lg:gap-10">
           <div>
