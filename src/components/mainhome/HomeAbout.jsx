@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -10,12 +9,12 @@ export default function HomeAbout() {
     >
       <div
         className="
-          mx-auto grid w-full max-w-[1580px]
+          mx-auto grid w-full max-w-[1600px]
           grid-cols-1 gap-8
           px-6 py-[76px]
           sm:px-10 sm:py-[90px]
           md:grid-cols-2 md:items-start md:gap-12
-          lg:px-[5.5%] lg:py-[119px]
+          lg:px-[4.5%] lg:py-[119px]
           xl:gap-[100px]
         "
       >
@@ -28,8 +27,8 @@ export default function HomeAbout() {
           className="min-w-0"
         >
           {/* Eyebrow */}
-          <div className="mb-[32px] flex items-center">
-            <span className="text-[12px] font-bold uppercase tracking-[0.17em] text-[#547F17]">
+          <div className="mb-5 flex items-center sm:mb-[32px]">
+            <span className="text-[10px] font-bold uppercase tracking-[0.17em] text-[#547F17] sm:text-[12px]">
               Content. Identity. Digital trust.
             </span>
           </div>
@@ -38,20 +37,25 @@ export default function HomeAbout() {
           <h2
             className="
               m-0 max-w-[700px]
-              text-[34px] font-bold
-              leading-[1.12] tracking-[-1.6px]
+              text-[32px] font-bold
+              leading-[1.12] tracking-[-1.2px]
               text-[#172D48]
               sm:text-[52px]
+              sm:tracking-[-1.6px]
               lg:text-[64px]
               lg:leading-[1.12]
               lg:tracking-[-2px]
             "
           >
-            Protect what makes
-            <br />
-            your business
-            <br />
-            valuable.
+            <span className="block sm:inline">
+              Protect what makes
+            </span>{" "}
+            <span className="block sm:inline">
+              your business
+            </span>{" "}
+            <span className="block sm:inline">
+              valuable.
+            </span>
           </h2>
         </motion.div>
 
@@ -71,7 +75,7 @@ export default function HomeAbout() {
           <p
             className="
               m-0 max-w-[800px]
-              text-[1px] font-normal
+              text-[15px] font-normal
               leading-[1.65] tracking-[-0.15px]
               text-[#586F89]
               sm:text-[18px]
@@ -88,10 +92,11 @@ export default function HomeAbout() {
           {/* Second paragraph */}
           <p
             className="
-              mt-[32px] mb-0 max-w-[800px]
-              text-[12px] font-normal
+              mt-6 mb-0 max-w-[800px]
+              text-[15px] font-normal
               leading-[1.65] tracking-[-0.15px]
               text-[#586F89]
+              sm:mt-[32px]
               sm:text-[18px]
               lg:text-[20px]
               lg:leading-[1.65]
@@ -106,15 +111,18 @@ export default function HomeAbout() {
           <a
             href="/about"
             className="
-              mt-[37px] inline-flex
+              mt-6 inline-flex
               border-b border-[#B7CC8B]
-              pb-[9px]
-              text-[12px] font-normal
+              pb-[7px]
+              text-[13px] font-normal
               tracking-[-0.2px]
               text-[#638B15]
               transition-colors duration-200
               hover:border-[#638B15]
               hover:text-[#45650B]
+              sm:mt-[37px]
+              sm:pb-[9px]
+              sm:text-[12px]
             "
           >
             Meet TrackOwls

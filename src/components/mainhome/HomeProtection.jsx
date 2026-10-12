@@ -285,7 +285,7 @@ export default function HomeProtection() {
         .hp-section, .hp-section * { box-sizing: border-box; }
 
         .hp-container {
-          width: min(1196px, calc(100% - 64px));
+          width: min(1370px, calc(100% - 64px));
           margin-inline: auto;
           padding-top: 91px;
           padding-bottom: 60px;

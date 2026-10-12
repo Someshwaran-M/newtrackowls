@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const navItems = [
+  { name: "How it works", path: "/how-it-works" },
+  { name: "About", path: "/about" },
   { name: "Solutions", path: "/solutions" },
   { name: "Industries", path: "/industries" },
   { name: "Platform", path: "/platform" },
-  { name: "How it works", path: "/how-it-works" },
-  { name: "About", path: "/about" },
   { name: "Insights", path: "/insights" },
   { name: "Piracy impact report", path: "/piracy" },
 ];
@@ -58,7 +58,7 @@ export default function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50 w-full bg-[#f8fafc] border-b border-[#e2e8f0]">
       <nav
         aria-label="Main navigation"
-        className="relative mx-auto flex h-20 w-full max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-12"
+        className="relative mx-auto flex h-20 w-full max-w-[1500px] items-center justify-between px-4 sm:px-6 lg:px-12"
       >
         {/* Brand logo & text image matching the reference */}
         <Link
@@ -71,13 +71,13 @@ export default function Navbar() {
             src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owl-bg.png"
             alt="TrackOwls Owl"
             draggable="false"
-            className="h-12 w-12 object-contain"
+            className="h-16 w-16 object-contain"
           />
           <img
             src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owltext-bg.png"
             alt="TRACKOWLS"
             draggable="false"
-            className="h-6 w-auto object-contain"
+            className="h-14 w-auto object-contain"
           />
         </Link>
 

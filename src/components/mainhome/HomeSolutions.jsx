@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import {
@@ -29,7 +28,7 @@ const solutions = [
     title: "OTT & VOD Protection",
     description: "Protect every release window.",
     image:
-      "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=85",
+      "/ott.png",
     icon: Play,
     link: "/industries",
   },
@@ -55,7 +54,7 @@ const solutions = [
     number: "05",
     title: "Brand Protection",
     description: "Defend the identity you built.",
-    image: null,
+    image: "/brand.png",
     icon: ShieldCheck,
     link: "/services",
   },
@@ -64,7 +63,7 @@ const solutions = [
     title: "Piracy Intelligence",
     description: "Understand the patterns behind piracy.",
     image:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=85",
+      "/piracyintelligence.png",
     icon: ScanSearch,
     link: "/platform",
   },
@@ -72,7 +71,7 @@ const solutions = [
     number: "07",
     title: "Marketplace & Counterfeit Monitoring",
     description: "Investigate listings that misuse your brand.",
-    image: null,
+    image: "/marketplacecounterfeitmonitoring.png",
     icon: Search,
     link: "/industries",
   },
@@ -80,7 +79,7 @@ const solutions = [
     number: "08",
     title: "Domain & Impersonation Monitoring",
     description: "Protect the identity behind your digital presence.",
-    image: null,
+    image: "/impersonationmonitoring.png",
     icon: Globe,
     link: "/services",
   },
@@ -88,7 +87,7 @@ const solutions = [
     number: "09",
     title: "Social Media & Video Protection",
     description: "Follow infringement across public social channels.",
-    image: null,
+    image: "/social.png",
     icon: Eye,
     link: "/platform",
   },
@@ -99,17 +98,16 @@ function SolutionCard({ solution, index }) {
 
   return (
     <motion.article
-      key={solution.number}
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.08 }}
-      transition={{ duration: 0.35, delay: (index % 3) * 0.04 }}
+      transition={{ duration: 0.3, delay: (index % 3) * 0.04 }}
       className={`solution-card ${
-        solution.image ? "solution-card--image" : "solution-card--plain"
+        solution.image ? "has-image" : "no-image"
       }`}
     >
       {solution.image && (
-        <div className="solution-card__image">
+        <div className="solution-image">
           <img
             src={solution.image}
             alt={solution.title}
@@ -118,37 +116,32 @@ function SolutionCard({ solution, index }) {
         </div>
       )}
 
-      <span className="solution-card__corner" aria-hidden="true" />
+      <span className="solution-corner" aria-hidden="true" />
 
-      <div className="solution-card__body">
-        <div className="solution-card__meta">
+      <div className="solution-content">
+        <div className="solution-meta">
           <Icon
-            size={18}
-            strokeWidth={1.65}
-            className="solution-card__icon"
+            size={17}
+            strokeWidth={1.6}
+            className="solution-icon"
             aria-hidden="true"
           />
 
-          <span className="solution-card__number">
+          <span className="solution-number">
             {solution.number}
           </span>
         </div>
 
-        <h3 className="solution-card__title">
-          {solution.title}
-        </h3>
+        <h3 className="solution-title">{solution.title}</h3>
 
-        <p className="solution-card__description">
+        <p className="solution-description">
           {solution.description}
         </p>
 
-        <div className="solution-card__footer">
-          <Link
-            to={solution.link}
-            className="solution-card__link"
-          >
+        <div className="solution-footer">
+          <Link to={solution.link} className="solution-link">
             Explore solution
-            <ArrowUpRight size={13} strokeWidth={1.7} />
+            <ArrowUpRight size={11} strokeWidth={1.6} />
           </Link>
         </div>
       </div>
@@ -168,32 +161,33 @@ export default function HomeSolutions() {
         .solutions-section {
           width: 100%;
           overflow: hidden;
-          background: #edf5fc;
-          color: #172e49;
-          border-top: 1px solid #dbe7f1;
-          border-bottom: 1px solid #dbe7f1;
+          background: #EDF5FC;
+          color: #172E49;
+          border-top: 1px solid #DBE7F1;
+          border-bottom: 1px solid #DBE7F1;
           font-family: Roboto, Arial, sans-serif;
         }
 
         .solutions-container {
           width: calc(100% - 64px);
-          max-width: 1038px;
+          max-width: 1380px;
           margin: 0 auto;
-          padding: 81px 0 78px;
+          padding: 58px 0 48px;
         }
 
         /* Heading */
+
         .solutions-header {
           display: flex;
           align-items: flex-end;
           justify-content: space-between;
           gap: 24px;
-          margin-bottom: 36px;
+          margin-bottom: 26px;
         }
 
         .solutions-eyebrow {
-          margin: 0 0 19px;
-          color: #5a8117;
+          margin: 0 0 17px;
+          color: #5A8117;
           font-size: 10px;
           font-weight: 700;
           line-height: 1.3;
@@ -203,7 +197,7 @@ export default function HomeSolutions() {
 
         .solutions-heading {
           margin: 0;
-          color: #172e49;
+          color: #172E49;
           font-size: 40px;
           font-weight: 700;
           line-height: 1.19;
@@ -216,59 +210,64 @@ export default function HomeSolutions() {
 
         .solutions-view-all {
           display: inline-flex;
-          flex-shrink: 0;
           align-items: center;
           gap: 3px;
+          flex-shrink: 0;
           margin-bottom: 4px;
-          padding-bottom: 6px;
-          border-bottom: 1px solid #cbdcb3;
-          color: #5d8615;
+          padding-bottom: 5px;
+          border-bottom: 1px solid #CBDCB3;
+          color: #5D8615;
           font-size: 11px;
-          font-weight: 400;
-          line-height: 1.3;
           text-decoration: none;
         }
 
         .solutions-view-all:hover {
-          border-color: #638b15;
-          color: #405f0b;
+          border-color: #638B15;
+          color: #405F0B;
         }
 
-        /* Exact three-column arrangement */
+        /* Card grid */
+
         .solutions-grid {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
-          grid-auto-rows: 322px;
-          gap: 14px 15px;
+          grid-auto-rows: 350px;
+          gap: 12px;
           align-items: stretch;
         }
+
+        /* Individual card */
 
         .solution-card {
           position: relative;
           display: flex;
-          min-width: 0;
-          height: 100%;
           flex-direction: column;
+          min-width: 0;
+          height: 350px;
           overflow: hidden;
-          border: 1px solid #dce7f1;
-          border-radius: 6px;
-          background: #ffffff;
+          border: 1px solid #D5E3F0;
+          border-radius: 5px;
+          background: #FFFFFF;
           transition: border-color 180ms ease;
         }
 
         .solution-card:hover {
-          border-color: #bdd3b0;
+          border-color: #BDD3B0;
         }
 
-        /* Image dimensions */
-        .solution-card__image {
-          flex: 0 0 139px;
-          height: 139px;
+        /* Image: fixed height and inset width */
+
+        .solution-image {
+          flex: 0 0 206px;
+          width: calc(100% - 35px);
+          height: 506px;
+          margin: 0;
           overflow: hidden;
-          background: #dce6ec;
+          background: #E5EDF3;
+          border-radius: 0 0 3px 0;
         }
 
-        .solution-card__image img {
+        .solution-image img {
           display: block;
           width: 100%;
           height: 100%;
@@ -277,130 +276,122 @@ export default function HomeSolutions() {
           transition: transform 350ms ease;
         }
 
-        .solution-card:hover .solution-card__image img {
+        .solution-card:hover .solution-image img {
           transform: scale(1.025);
         }
 
-        /* Content */
-        .solution-card__body {
-          position: relative;
+        /* Text and icons */
+
+        .solution-content {
           display: flex;
           flex: 1;
-          min-height: 0;
           flex-direction: column;
-          padding: 22px 23px 23px;
+          min-height: 0;
+          padding: 15px 17px 13px;
         }
 
-        .solution-card__meta {
+        .solution-meta {
           display: flex;
+          flex-shrink: 0;
           align-items: center;
           justify-content: space-between;
-          min-height: 18px;
-          margin-bottom: 23px;
+          min-height: 17px;
+          margin-bottom: 16px;
         }
 
-        .solution-card__icon {
+        .solution-icon {
           flex-shrink: 0;
-          color: #638b15;
+          color: #638B15;
         }
 
-        .solution-card__number {
-          color: #6a849d;
-          font-size: 10px;
-          font-weight: 400;
+        .solution-number {
+          color: #68839D;
+          font-size: 9px;
           line-height: 1;
         }
 
-        .solution-card__title {
+        .solution-title {
           margin: 0;
-          color: #172e49;
-          font-size: 16px;
+          color: #172E49;
+          font-size: 14px;
           font-weight: 600;
           line-height: 1.4;
-          letter-spacing: -0.2px;
+          letter-spacing: -0.12px;
+          overflow-wrap: anywhere;
         }
 
-        .solution-card__description {
-          margin: 10px 0 0;
+        .solution-description {
+          margin: 7px 0 0;
           color: #506985;
-          font-size: 12px;
+          font-size: 10px;
           font-weight: 400;
           line-height: 1.7;
         }
 
-        .solution-card__footer {
+        .solution-footer {
           margin-top: auto;
-          padding-top: 17px;
+          padding-top: 10px;
         }
 
-        .solution-card__link {
+        .solution-link {
           display: inline-flex;
           align-items: center;
           gap: 3px;
           width: fit-content;
           max-width: 100%;
-          padding-bottom: 6px;
-          border-bottom: 1px solid #d5e3c6;
-          color: #5d8615;
-          font-size: 11px;
-          font-weight: 400;
+          padding-bottom: 4px;
+          border-bottom: 1px solid #D5E3C6;
+          color: #5D8615;
+          font-size: 9px;
           line-height: 1.3;
           text-decoration: none;
-          transition: color 180ms ease, border-color 180ms ease;
+          transition: color 180ms ease,
+            border-color 180ms ease;
         }
 
-        .solution-card__link:hover {
-          color: #405f0b;
-          border-color: #638b15;
+        .solution-link:hover {
+          color: #405F0B;
+          border-color: #638B15;
         }
 
-        .solution-card__link svg,
-        .solutions-view-all svg {
+        .solution-link svg {
           flex-shrink: 0;
           transition: transform 180ms ease;
         }
 
-        .solution-card__link:hover svg,
-        .solutions-view-all:hover svg {
+        .solution-link:hover svg {
           transform: translate(2px, -2px);
         }
 
-        /* Small corner detail */
-        .solution-card__corner {
+        /* Corner accent */
+
+        .solution-corner {
           position: absolute;
           z-index: 2;
-          top: 11px;
-          right: 11px;
+          top: 9px;
+          right: 9px;
           width: 12px;
           height: 12px;
-          border-top: 1px solid #b6e1ee;
-          border-right: 1px solid #b6e1ee;
+          border-top: 1px solid #B6E1EE;
+          border-right: 1px solid #B6E1EE;
           pointer-events: none;
         }
 
-        .solution-card--plain .solution-card__corner {
-          top: 11px;
-          right: 11px;
+        .no-image .solution-content {
+          padding-top: 15px;
         }
 
-        .solution-card--plain .solution-card__body {
-          padding-top: 22px;
-        }
-
-        .solution-card--plain .solution-card__meta {
-          margin-bottom: 23px;
-        }
-
-        .solutions-mobile-link {
+        .mobile-view-all {
           display: none;
         }
 
         /* Tablet */
+
         @media (max-width: 900px) {
           .solutions-container {
             width: calc(100% - 48px);
-            padding-top: 60px;
-            padding-bottom: 56px;
+            padding-top: 48px;
+            padding-bottom: 42px;
           }
 
           .solutions-heading {
@@ -408,120 +399,139 @@ export default function HomeSolutions() {
           }
 
           .solutions-grid {
-            grid-auto-rows: 300px;
+            grid-auto-rows: 245px;
             gap: 12px;
           }
 
-          .solution-card__image {
-            flex-basis: 125px;
-            height: 125px;
+          .solution-image {
+            flex-basis: 100px;
+            height: 100px;
+            width: calc(100% - 28px);
           }
 
-          .solution-card__body {
-            padding: 19px 16px 19px;
+          .solution-content {
+            padding: 14px 13px 12px;
           }
 
-          .solution-card__title {
-            font-size: 15px;
+          .solution-meta {
+            margin-bottom: 13px;
+          }
+
+          .solution-title {
+            font-size: 13px;
           }
         }
 
         /* Mobile */
+
         @media (max-width: 620px) {
           .solutions-container {
-            width: calc(100% - 36px);
-            padding-top: 43px;
-            padding-bottom: 42px;
+            width: calc(100% - 32px);
+            padding-top: 38px;
+            padding-bottom: 35px;
           }
 
           .solutions-header {
             align-items: flex-start;
-            margin-bottom: 27px;
+            margin-bottom: 23px;
           }
 
           .solutions-eyebrow {
-            margin-bottom: 16px;
+            margin-bottom: 13px;
             font-size: 9px;
           }
 
           .solutions-heading {
-            font-size: clamp(31px, 7.5vw, 39px);
-            line-height: 1.18;
-            letter-spacing: -1px;
+            font-size: clamp(29px, 7vw, 37px);
+            line-height: 1.17;
+            letter-spacing: -0.9px;
           }
 
-          .solutions-view-all {
+          .solutions-header > .solutions-view-all {
             display: none;
           }
 
           .solutions-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            grid-auto-rows: 290px;
+            grid-auto-rows: 250px;
+            gap: 20px;
+          }
+
+          .solution-image {
+            flex-basis: 95px;
+            height: 95px;
+            width: calc(100% - 20px);
+          }
+
+          .solution-content {
+            padding: 12px 11px 11px;
+          }
+
+          .solution-meta {
+            margin-bottom: 12px;
+          }
+
+          .solution-title {
+            font-size: 12px;
+          }
+
+          .solution-description {
+            margin-top: 7px;
+            font-size: 10px;
+            line-height: 1.55;
+          }
+
+          .solution-link {
+            font-size: 9px;
+          }
+
+          .mobile-view-all {
+            display: flex;
+            margin-top: 20px;
+          }
+        }
+
+        /* Narrow phones */
+
+        @media (max-width: 420px) {
+          .solutions-container {
+            width: calc(100% - 28px);
+          }
+
+          .solutions-grid {
+            grid-template-columns: 1fr;
+            grid-auto-rows: 355px;
             gap: 12px;
           }
 
-          .solution-card__image {
-            flex-basis: 105px;
-            height: 105px;
+          .solution-image {
+            flex-basis: 162px;
+            height: 142px;
+            width: calc(100% - 30px);
           }
 
-          .solution-card__body {
-            padding: 15px 12px 15px;
+          .solution-content {
+            padding: 14px 15px 12px;
           }
 
-          .solution-card__meta {
-            margin-bottom: 15px;
-          }
-
-          .solution-card__title {
+          .solution-title {
             font-size: 14px;
-            line-height: 1.4;
           }
 
-          .solution-card__description {
-            margin-top: 8px;
+          .solution-description {
             font-size: 11px;
           }
 
-          .solution-card__link {
+          .solution-link {
             font-size: 10px;
           }
         }
 
-        @media (max-width: 420px) {
-          .solutions-grid {
-            grid-template-columns: 1fr;
-            grid-auto-rows: 285px;
-          }
-
-          .solution-card__image {
-            flex-basis: 130px;
-            height: 130px;
-          }
-
-          .solution-card__body {
-            padding: 17px 17px 18px;
-          }
-
-          .solution-card__title {
-            font-size: 15px;
-          }
-
-          .solution-card__description {
-            font-size: 12px;
-          }
-
-          .solution-card__link {
-            font-size: 11px;
-          }
-
-          .solutions-mobile-link {
-            display: flex;
-            margin-top: 22px;
-          }
-
-          .solutions-mobile-link .solutions-view-all {
-            display: inline-flex;
+        @media (prefers-reduced-motion: reduce) {
+          .solution-card,
+          .solution-image img,
+          .solution-link {
+            transition: none;
           }
         }
       `}</style>
@@ -535,7 +545,9 @@ export default function HomeSolutions() {
           className="solutions-header"
         >
           <div>
-            <p className="solutions-eyebrow">Our solutions</p>
+            <p className="solutions-eyebrow">
+              Our solutions
+            </p>
 
             <h2 className="solutions-heading">
               Protection with a
@@ -543,7 +555,10 @@ export default function HomeSolutions() {
             </h2>
           </div>
 
-          <Link to="/solutions" className="solutions-view-all">
+          <Link
+            to="/solutions"
+            className="solutions-view-all"
+          >
             View all solutions
             <ArrowUpRight size={13} />
           </Link>
@@ -559,8 +574,11 @@ export default function HomeSolutions() {
           ))}
         </div>
 
-        <div className="solutions-mobile-link">
-          <Link to="/solutions" className="solutions-view-all">
+        <div className="mobile-view-all">
+          <Link
+            to="/solutions"
+            className="solutions-view-all"
+          >
             View all solutions
             <ArrowUpRight size={13} />
           </Link>

@@ -112,7 +112,7 @@ function HomeMain() {
 
         /* Main layout: extra space below the navbar */
         .track-content {
-          width: min(1570px, calc(100% - 130px));
+          width: min(1400px, calc(100% - 130px));
           min-height: 906px;
           margin: 0 auto;
           padding-top: 116px;
@@ -537,7 +537,7 @@ function HomeMain() {
           .track-content {
             width: calc(100% - 36px);
             row-gap: 27px;
-            padding-top: 54px;
+            padding-top: 104px;
             padding-bottom: 45px;
           }
 
@@ -650,16 +650,53 @@ function HomeMain() {
             white-space: normal;
           }
 
-          .track-footer-inner {
-            width: calc(100% - 36px);
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 22px 15px;
-            padding: 22px 0;
-          }
+        
+.track-footer {
+  min-height: unset;
+}
 
-          .track-footer-item {
-            font-size: 12px;
-          }
+.track-footer-inner {
+  display: grid;
+  width: calc(100% - 24px);
+  min-height: unset;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  gap: 17px 5px;
+  margin: 0 auto;
+  padding: 23px 0;
+}
+
+.track-footer-item {
+  min-width: 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Center the heading across the full row */
+.track-footer-item:first-child {
+  grid-column: 1 / -1;
+}
+
+/* Center MUSIC and BRANDS in the last row */
+.track-footer-item:nth-child(6) {
+  grid-column: 2;
+}
+
+.track-footer-item:nth-child(7) {
+  grid-column: 3;
+}
+
+.track-footer-label {
+  font-size: 10px;
+  line-height: 1.7;
+  text-align: center;
+}
+
         }
       `}</style>
 

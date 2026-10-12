@@ -8,7 +8,7 @@ function HomeCTA() {
       id="home-cta"
       className="w-full border-y border-[#203B53] bg-[#112D45] font-['Roboto',sans-serif]"
     >
-      <div className="mx-auto flex max-w-[1420px] flex-col justify-between gap-8 px-6 py-12 sm:px-10 sm:py-14 lg:flex-row lg:items-center lg:gap-12 lg:px-16 lg:py-[72px]">
+      <div className="mx-auto flex max-w-[1480px] flex-col justify-between gap-8 px-6 py-12 sm:px-10 sm:py-14 lg:flex-row lg:items-center lg:gap-12 lg:px-16 lg:py-[72px]">
         {/* Left content */}
         <div className="min-w-0">
           <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.19em] text-[#ADD132] sm:text-xs">

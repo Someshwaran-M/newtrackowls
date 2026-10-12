@@ -80,7 +80,7 @@ export default function HomeAssets() {
       id="protected-assets"
       className="relative w-full overflow-hidden border-y border-[#D8E4EF] bg-[#EDF5FC] font-['Roboto',Arial,sans-serif] text-[#172D48]"
     >
-      <div className="mx-auto w-full max-w-[1660px] px-6 py-[72px] sm:px-10 sm:py-[78px] lg:px-[6.7%] lg:py-[96px]">
+      <div className="mx-auto w-full max-w-[1600px] px-6 py-[72px] sm:px-10 sm:py-[78px] lg:px-[4.5%] lg:py-[96px]">
         {/* Section heading */}
         <div className="mb-[44px] grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-end lg:gap-[70px]">
           <div className="min-w-0">

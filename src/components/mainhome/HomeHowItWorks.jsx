@@ -57,7 +57,7 @@ export default function HomeHowItWorks() {
 
         .workflow-container {
           width: calc(100% - 80px);
-          max-width: 1566px;
+          max-width: 1380px;
           margin: 0 auto;
           padding: 120px 0 118px;
         }

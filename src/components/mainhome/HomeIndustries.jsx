@@ -6,6 +6,7 @@ const industries = [
     number: "01",
     title: "Film & Entertainment",
     description: "Theatrical releases, films and production assets.",
+    image: "/industries/film.png",
     link: "/industries",
   },
   {
@@ -95,7 +96,7 @@ export default function HomeIndustries() {
       id="home-industries"
       className="w-full overflow-hidden border-y border-[#D8E4EF] bg-[#F3F7FC] font-['Roboto',Arial,sans-serif] text-[#172D48]"
     >
-      <div className="mx-auto w-full max-w-[1580px] px-6 pb-[95px] pt-[94px] sm:px-10 lg:px-[5.2%]">
+      <div className="mx-auto w-full max-w-[1590px] px-6 pb-[95px] pt-[94px] sm:px-10 lg:px-[5.1%]">
         {/* Header */}
         <div className="mb-[43px] grid grid-cols-1 gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(330px,0.53fr)] lg:items-end lg:gap-[75px]">
           <div>

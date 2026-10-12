@@ -66,7 +66,7 @@ export default function HomePlatform() {
   return (
     <section
       id="platform"
-      className="relative isolate overflow-hidden bg-[#FFFFFF] px-5 py-10 font-['Roboto',sans-serif] text-[#15334E] sm:px-8 sm:py-12 lg:min-h-[650px] lg:px-28 lg:py-12"
+      className="relative isolate overflow-hidden bg-[#F3F7FC] px-5 py-10 font-['Roboto',sans-serif] text-[#15334E] sm:px-8 sm:py-12 lg:min-h-[650px] lg:px-18 lg:py-12"
     >
       {/* Soft technical background */}
       <div
@@ -79,7 +79,7 @@ export default function HomePlatform() {
         }}
       />
 
-      <div className="mx-auto grid max-w-[1320px] items-center gap-9 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
+      <div className="mx-auto grid max-w-[1380px] items-center gap-9 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
         {/* LEFT CONTENT */}
         <div className="max-w-[500px]">
           <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.19em] text-[#617D17] sm:mb-6">

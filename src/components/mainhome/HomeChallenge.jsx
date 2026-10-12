@@ -28,7 +28,7 @@ export default function HomeChallenge() {
       id="home-challenge"
       className="w-full overflow-hidden border-y border-[#D8E4EF] bg-[#F2F7FC] font-['Roboto',Arial,sans-serif] text-[#172D48]"
     >
-      <div className="mx-auto w-full max-w-[1580px] px-6 py-[78px] sm:px-10 sm:py-[86px] lg:px-[5.5%] lg:py-[119px]">
+      <div className="mx-auto w-full max-w-[1600px] px-6 py-[78px] sm:px-10 sm:py-[86px] lg:px-[4.5%] lg:py-[119px]">
         {/* Header: eyebrow, heading and supporting text */}
         <div className="grid grid-cols-1 gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(340px,0.47fr)] lg:items-end lg:gap-[75px]">
           <div className="min-w-0">

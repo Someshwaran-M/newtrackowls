@@ -84,7 +84,7 @@ export default function HomeVisibility() {
 
         .visibility-container {
           width: calc(100% - 64px);
-          max-width: 1190px;
+          max-width: 1370px;
           margin: 0 auto;
           padding: 82px 0 85px;
         }
