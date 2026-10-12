@@ -534,6 +534,266 @@ export default function HomeSolutions() {
             transition: none;
           }
         }
+
+
+/* ===== Responsive fixes for HomeSolutions ===== */
+
+/* Tablets and smaller laptops */
+@media (min-width: 621px) and (max-width: 900px) {
+  .solutions-container {
+    width: calc(100% - 40px);
+  }
+
+  .solutions-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: auto;
+    gap: 18px;
+  }
+
+  .solution-card {
+    height: 320px;
+    min-height: 0;
+  }
+
+  .solution-image {
+    flex: 0 0 145px;
+    height: 145px;
+    width: calc(100% - 24px);
+  }
+
+  .solution-content {
+    padding: 13px 14px 12px;
+  }
+
+  .solution-meta {
+    margin-bottom: 10px;
+  }
+
+  .solution-title {
+    font-size: 14px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+  .solution-description {
+    font-size: 11px;
+    line-height: 1.55;
+  }
+
+  .solution-link {
+    font-size: 10px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 620px) {
+  .solutions-container {
+    width: calc(100% - 32px);
+    padding-top: 36px;
+    padding-bottom: 32px;
+  }
+
+  .solutions-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+
+  .solutions-eyebrow {
+    margin-bottom: 12px;
+    font-size: 9px;
+    letter-spacing: 1.4px;
+  }
+
+  .solutions-heading {
+    font-size: clamp(28px, 7vw, 36px);
+    line-height: 1.18;
+    letter-spacing: -0.8px;
+  }
+
+  .solutions-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: auto;
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  .solution-card {
+    height: auto;
+    min-height: 0;
+    align-self: stretch;
+  }
+
+  .solution-image {
+    flex: 0 0 auto;
+    width: calc(100% - 16px);
+    height: auto;
+    aspect-ratio: 1.5 / 1;
+    margin: 0;
+  }
+
+  .solution-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .solution-content {
+    flex: 1;
+    min-height: 0;
+    padding: 11px 10px 12px;
+  }
+
+  .solution-meta {
+    min-height: 17px;
+    margin-bottom: 10px;
+  }
+
+  .solution-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .solution-number {
+    font-size: 9px;
+  }
+
+  .solution-title {
+    font-size: 12px;
+    line-height: 1.45;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+
+  .solution-description {
+    margin-top: 6px;
+    font-size: 10px;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+  }
+
+  .solution-footer {
+    margin-top: auto;
+    padding-top: 12px;
+  }
+
+  .solution-link {
+    gap: 3px;
+    font-size: 9px;
+    line-height: 1.45;
+  }
+
+  .solution-link svg {
+    width: 11px;
+    height: 11px;
+  }
+
+  .solutions-header > .solutions-view-all {
+    display: none;
+  }
+
+  .mobile-view-all {
+    display: flex;
+    justify-content: center;
+    margin-top: 22px;
+  }
+
+  .mobile-view-all .solutions-view-all {
+    font-size: 11px;
+  }
+}
+
+/* Narrow phones */
+@media (max-width: 420px) {
+  .solutions-container {
+    width: calc(100% - 28px);
+    padding-top: 32px;
+    padding-bottom: 30px;
+  }
+
+  .solutions-heading {
+    font-size: clamp(27px, 7.5vw, 32px);
+    letter-spacing: -0.7px;
+  }
+
+  .solutions-grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: auto;
+    gap: 16px;
+  }
+
+  .solution-card {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+  }
+
+  .solution-image {
+    flex: 0 0 auto;
+    width: calc(100% - 22px);
+    aspect-ratio: 1.9 / 1;
+    height: auto;
+  }
+
+  .solution-content {
+    padding: 13px 14px 14px;
+  }
+
+  .solution-meta {
+    margin-bottom: 11px;
+  }
+
+  .solution-title {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .solution-description {
+    font-size: 11px;
+    line-height: 1.65;
+  }
+
+  .solution-link {
+    font-size: 10px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 350px) {
+  .solutions-container {
+    width: calc(100% - 24px);
+  }
+
+  .solutions-grid {
+    gap: 13px;
+  }
+
+  .solution-content {
+    padding: 11px 10px 12px;
+  }
+
+  .solution-title {
+    font-size: 13px;
+  }
+
+  .solution-description {
+    font-size: 10px;
+  }
+}
+
+/* Respect reduced-motion settings */
+@media (prefers-reduced-motion: reduce) {
+  .solution-card,
+  .solution-image img,
+  .solution-link {
+    transition: none;
+  }
+}
+
       `}</style>
 
       <div className="solutions-container">
