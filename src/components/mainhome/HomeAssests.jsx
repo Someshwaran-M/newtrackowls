@@ -39,7 +39,7 @@ function AssetCard({ asset }) {
         <img
           src={asset.image}
           alt={asset.imageAlt}
-          loading="lazy"
+          loading="eager"
           className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.025]"
         />
       </div>

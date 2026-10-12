@@ -7,15 +7,19 @@ const protectionServices = [
   ["Brands & Marketplaces", "Websites & Applications"],
 ];
 
+const mapPoints = [
+  [23, 10], [34, 18], [48, 12], [60, 15],
+  [72, 17], [83, 21], [19, 32], [68, 33],
+  [86, 49], [33, 67], [74, 76], [81, 80],
+];
+
 export default function Loader({ onComplete, duration = 6000 }) {
   const [activeService, setActiveService] = useState(0);
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
     const serviceTimer = setInterval(() => {
-      setActiveService(
-        (previous) => (previous + 1) % protectionServices.length
-      );
+      setActiveService((previous) => (previous + 1) % protectionServices.length);
     }, 1500);
 
     const finishTimer = setTimeout(() => {
@@ -40,33 +44,18 @@ export default function Loader({ onComplete, duration = 6000 }) {
 
   return (
     <section
-      className={`trackowls-loader-screen ${
-        exiting ? "loader-exiting" : ""
-      }`}
+      className={`trackowls-loader-screen ${exiting ? "loader-exiting" : ""}`}
       aria-label="TrackOwls loading screen"
     >
-      {/* Full-screen background */}
+      {/* Background */}
       <div className="loader-bg" />
       <div className="loader-map" />
-      <div className="loader-vignette" />
+      <div className="loader-overlay" />
       <div className="loader-scan-line" />
 
-      {/* World map scanning points */}
+      {/* Animated map points */}
       <div className="loader-map-points" aria-hidden="true">
-        {[
-          [23, 10],
-          [34, 18],
-          [48, 12],
-          [60, 15],
-          [72, 17],
-          [83, 21],
-          [19, 32],
-          [68, 33],
-          [86, 49],
-          [33, 67],
-          [74, 76],
-          [81, 80],
-        ].map(([left, top], index) => (
+        {mapPoints.map(([left, top], index) => (
           <span
             key={index}
             className={`loader-map-point point-${index + 1}`}
@@ -75,7 +64,7 @@ export default function Loader({ onComplete, duration = 6000 }) {
         ))}
       </div>
 
-      {/* Centered brand and content */}
+      {/* Centered brand content */}
       <div className="loader-center">
         {/* Owl logo */}
         <div className="loader-owl-ring">
@@ -86,7 +75,7 @@ export default function Loader({ onComplete, duration = 6000 }) {
           />
         </div>
 
-        {/* TrackOwls wordmark */}
+        {/* Wordmark */}
         <div className="loader-wordmark">
           <img
             src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owltext-bg.png"
@@ -94,7 +83,9 @@ export default function Loader({ onComplete, duration = 6000 }) {
           />
         </div>
 
-        {/* Rotating service text */}
+       
+
+        {/* Rotating service information */}
         <div className="loader-protection-text" aria-live="polite">
           <p className="loader-protecting">PROTECTING</p>
 
@@ -110,11 +101,12 @@ export default function Loader({ onComplete, duration = 6000 }) {
         </div>
       </div>
 
-      {/* Bottom button */}
+      {/* Enter button */}
       <button
         type="button"
         className="loader-enter-button"
         onClick={enterWebsite}
+        disabled={exiting}
       >
         Enter website
       </button>
@@ -132,63 +124,49 @@ export default function Loader({ onComplete, duration = 6000 }) {
           width: 100%;
           height: 100vh;
           height: 100dvh;
-          min-height: 500px;
+          min-height: 460px;
           overflow: hidden;
-          background: #102d35;
-          color: #071c30;
-          font-family: Roboto, Arial, sans-serif;
           isolation: isolate;
-          animation: loaderFadeIn 0.65s ease both;
+          background: #a4c4d4;
+          color: #102b43;
+          font-family: Roboto, Arial, sans-serif;
+          animation: loaderFadeIn .6s ease both;
         }
 
-        .loader-bg {
-          position: absolute;
-          inset: -3%;
-          z-index: -5;
-          background:
-            radial-gradient(
-              ellipse at 50% 43%,
-              rgba(255, 255, 247, 0.99) 0%,
-              rgba(235, 241, 244, 0.94) 24%,
-              rgba(171, 190, 195, 0.8) 43%,
-              rgba(49, 80, 76, 0.76) 66%,
-              rgba(11, 37, 47, 0.99) 100%
-            );
-          animation: loaderBackgroundMove 8s ease-in-out infinite alternate;
-        }
-
-        /* World map background */
+        
+        /* World map */
         .loader-map {
           position: absolute;
-          z-index: -4;
           inset: 0;
+          z-index: -4;
           background-image: url("/world-map.png");
           background-position: center center;
           background-repeat: no-repeat;
           background-size: 100% 100%;
-          opacity: 0.88;
-          animation: loaderMapReveal 1.5s ease both;
+          opacity: .30;
+          filter: saturate(.62) brightness(1.04);
+          animation: loaderMapReveal 1.4s ease both;
         }
 
-        .loader-vignette {
+        /* Bright center, gently shaded edges */
+        .loader-overlay {
           position: absolute;
-          z-index: -3;
           inset: 0;
+          z-index: -3;
           pointer-events: none;
           background:
-            linear-gradient(
-              90deg,
-              rgba(12, 39, 35, 0.42),
-              transparent 25%,
-              transparent 75%,
-              rgba(9, 34, 47, 0.42)
+            radial-gradient(
+              ellipse at 50% 43%,
+              rgba(255, 255, 255, .76) 0%,
+              rgba(255, 255, 255, .52) 25%,
+              rgba(239, 246, 250, .18) 54%,
+              rgba(16, 43, 61, .22) 100%
             ),
             linear-gradient(
-              0deg,
-              rgba(10, 39, 48, 0.76),
-              transparent 24%,
-              transparent 75%,
-              rgba(13, 35, 40, 0.16)
+              180deg,
+              rgba(14, 41, 59, .05) 0%,
+              transparent 72%,
+              rgba(14, 41, 59, .16) 100%
             );
         }
 
@@ -197,10 +175,10 @@ export default function Loader({ onComplete, duration = 6000 }) {
           z-index: -1;
           top: 0;
           bottom: 0;
-          left: 12.7%;
+          left: 12%;
           width: 1px;
-          background: rgba(171, 212, 80, 0.15);
-          box-shadow: 0 0 12px rgba(171, 212, 80, 0.1);
+          background: rgba(73, 122, 149, .20);
+          box-shadow: 0 0 12px rgba(73, 122, 149, .12);
           animation: loaderScanMove 8s ease-in-out infinite alternate;
         }
 
@@ -213,14 +191,14 @@ export default function Loader({ onComplete, duration = 6000 }) {
 
         .loader-map-point {
           position: absolute;
-          width: clamp(5px, 0.75vw, 10px);
-          height: clamp(5px, 0.75vw, 10px);
+          width: clamp(4px, .55vw, 7px);
+          height: clamp(4px, .55vw, 7px);
           border-radius: 50%;
-          background: #ffd18a;
+          background: #8bbbd5;
           box-shadow:
-            0 0 5px 3px rgba(255, 188, 88, 0.55),
-            0 0 19px 9px rgba(255, 168, 58, 0.25);
-          animation: loaderPointPulse 2.1s ease-in-out infinite alternate;
+            0 0 5px 2px rgba(91, 160, 197, .22),
+            0 0 15px 5px rgba(91, 160, 197, .12);
+          animation: loaderPointPulse 2.2s ease-in-out infinite alternate;
         }
 
         .point-2 { animation-delay: .6s; }
@@ -235,188 +213,179 @@ export default function Loader({ onComplete, duration = 6000 }) {
         .point-11 { animation-delay: .5s; }
         .point-12 { animation-delay: 1.1s; }
 
+        /* Main content positioning */
         .loader-center {
           position: absolute;
-          top: 49%;
+          top: 47%;
           left: 50%;
           display: flex;
           flex-direction: column;
           align-items: center;
-          width: min(90%, 650px);
+          width: min(92%, 650px);
           text-align: center;
           transform: translate(-50%, -50%);
-          animation: loaderContentEnter 1s cubic-bezier(.2,.7,.2,1) both;
+          animation: loaderContentEnter .9s cubic-bezier(.2, .7, .2, 1) both;
         }
 
+        /* Owl emblem */
         .loader-owl-ring {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: clamp(100px, 10vw, 184px);
-          height: clamp(100px, 10vw, 184px);
-          margin-bottom: clamp(17px, 2vw, 30px);
-          border: 1px solid rgba(137, 158, 115, 0.15);
+          width: clamp(90px, 9vw, 125px);
+          height: clamp(90px, 9vw, 125px);
+          margin-bottom: 22px;
+          border: 1px solid rgba(33, 68, 88, .12);
           border-radius: 50%;
-          background: rgba(255, 255, 255, 0.06);
-          box-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
+          background: rgba(255, 255, 255, .14);
+          box-shadow: 0 5px 25px rgba(21, 53, 73, .035);
           animation: loaderRingEnter 1s ease both;
         }
 
         .loader-owl-image {
           display: block;
-          width: 55%;
+          width: 58%;
           height: 76%;
           object-fit: contain;
-          filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.12));
+          filter: drop-shadow(0 3px 4px rgba(0, 0, 0, .10));
         }
 
+        /* Large TrackOwls logo */
         .loader-wordmark {
           display: flex;
-          flex-direction: column;
           align-items: center;
+          justify-content: center;
           width: 100%;
         }
 
         .loader-wordmark > img {
           display: block;
-          width: clamp(235px, 27vw, 390px);
-          max-width: 90%;
-          height: auto;
+          width: clamp(260px, 30vw, 390px);
+          max-width: 94%;
           max-height: 90px;
+          height: auto;
           object-fit: contain;
         }
 
-        .loader-logo-dots {
+        /* SCAN | DETECT | REMOVE | PROTECT */
+        .loader-tagline {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: clamp(5px, 0.55vw, 9px);
-          margin-top: 8px;
-        }
-
-        .loader-logo-dots span {
-          width: clamp(4px, 0.42vw, 7px);
-          height: clamp(4px, 0.42vw, 7px);
-          border-radius: 50%;
-          background: #102b43;
-          animation: loaderDotPulse 1.6s ease-in-out infinite alternate;
-        }
-
-        .loader-logo-dots span:nth-child(3n) {
-          animation-delay: .3s;
-        }
-
-        .loader-logo-dots span:nth-child(3n + 1) {
-          animation-delay: .6s;
-        }
-
-        .loader-brand-tagline {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: clamp(7px, 0.8vw, 13px);
-          margin: 24px 0 0;
+          flex-wrap: wrap;
+          gap: 11px;
+          margin: 12px 0 0;
           color: #102b43;
-          font-size: clamp(10px, 0.8vw, 14px);
+          font-size: clamp(10px, .82vw, 13px);
           font-weight: 800;
-          letter-spacing: 1.2px;
-          white-space: nowrap;
+          letter-spacing: 1.1px;
+          line-height: 1.6;
         }
 
-        .loader-brand-tagline i {
+        .loader-tagline i {
           display: block;
           width: 2px;
-          height: 13px;
-          background: #80a900;
+          height: 12px;
+          background: #8bb630;
         }
 
+        /* Service text: no card */
         .loader-protection-text {
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin-top: clamp(27px, 3vw, 39px);
+          width: 100%;
+          margin-top: 33px;
+          padding: 0 12px;
+          text-shadow: 0 1px 1px rgba(255, 255, 255, .45);
         }
 
         .loader-protecting {
           margin: 0;
-          color: #24465d;
-          font-size: clamp(11px, 0.8vw, 14px);
-          font-weight: 800;
-          letter-spacing: 2.5px;
+          color: #41637a;
+          font-size: clamp(11px, .85vw, 14px);
+          font-weight: 900;
+          letter-spacing: 2.8px;
         }
 
         .loader-service-copy {
-          margin-top: 24px;
-          animation: loaderServiceChange .45s ease both;
+          margin-top: 23px;
+          animation: loaderServiceChange .4s ease both;
         }
 
         .loader-service-copy h2 {
           margin: 0;
-          color: #071c30;
-          font-size: clamp(16px, 1.15vw, 21px);
-          font-weight: 700;
+          color: #102b43;
+          font-size: clamp(17px, 1.2vw, 22px);
+          font-weight: 800;
           line-height: 1.45;
         }
 
         .loader-service-copy h3 {
-          margin: 2px 0 0;
-          color: #173a52;
-          font-size: clamp(15px, 1.05vw, 20px);
+          margin: 3px 0 0;
+          color: #294a62;
+          font-size: clamp(15px, 1.05vw, 19px);
           font-weight: 700;
-          line-height: 1.45;
+          line-height: 1.5;
         }
 
         .loader-scan-caption {
           display: flex;
           align-items: center;
-          gap: 7px;
-          margin: 22px 0 0;
-          color: #36566b;
-          font-size: clamp(10px, 0.8vw, 14px);
+          justify-content: center;
+          gap: 8px;
+          margin: 24px 0 0;
+          color: #496a80;
+          font-size: clamp(10px, .8vw, 13px);
+          line-height: 1.5;
         }
 
         .loader-status-dot {
-          width: 5px;
-          height: 5px;
+          flex: 0 0 6px;
+          width: 6px;
+          height: 6px;
           border-radius: 50%;
-          background: #80a900;
+          background: #8bb630;
+          box-shadow: 0 0 8px rgba(139, 182, 48, .35);
           animation: loaderStatusPulse 1.2s ease-in-out infinite alternate;
         }
 
+        /* Button */
         .loader-enter-button {
           position: absolute;
-          bottom: 9.1%;
+          bottom: 7%;
           left: 50%;
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          min-width: 151px;
+          min-width: 152px;
           min-height: 53px;
           padding: 13px 24px;
-          border: 1px solid rgba(197, 215, 228, 0.68);
+          border: 1px solid #738fa3;
           border-radius: 5px;
-          background: #102d46;
-          color: #fff;
+          background: #102e47;
+          color: #ffffff;
           font-family: inherit;
-          font-size: 16px;
-          font-weight: 500;
+          font-size: 15px;
+          font-weight: 700;
           cursor: pointer;
           transform: translateX(-50%);
-          transition:
-            background .25s ease,
-            border-color .25s ease,
-            box-shadow .25s ease;
+          box-shadow: 0 7px 22px rgba(12, 40, 59, .12);
+          transition: background .25s ease, border-color .25s ease;
         }
 
-        .loader-enter-button:hover {
-          border-color: #d0f20a;
-          background: #1c4055;
-          box-shadow: 0 0 22px rgba(208, 242, 10, 0.16);
+        .loader-enter-button:hover:not(:disabled) {
+          background: #1d435d;
+          border-color: #8bb630;
         }
 
         .loader-enter-button:focus-visible {
-          outline: 2px solid #d0f20a;
+          outline: 3px solid #8bb630;
           outline-offset: 4px;
+        }
+
+        .loader-enter-button:disabled {
+          cursor: default;
         }
 
         .loader-exiting {
@@ -435,46 +404,41 @@ export default function Loader({ onComplete, duration = 6000 }) {
 
         @keyframes loaderBackgroundMove {
           from { transform: scale(1); }
-          to { transform: scale(1.035); }
+          to { transform: scale(1.025); }
         }
 
         @keyframes loaderMapReveal {
-          from { opacity: 0; transform: scale(1.035); }
-          to { opacity: .88; transform: scale(1); }
+          from { opacity: 0; transform: scale(1.02); }
+          to { opacity: .30; transform: scale(1); }
         }
 
         @keyframes loaderScanMove {
-          from { left: 12.7%; }
-          to { left: 87.3%; }
+          from { left: 12%; }
+          to { left: 88%; }
         }
 
         @keyframes loaderPointPulse {
-          from { opacity: .55; transform: scale(.72); }
-          to { opacity: 1; transform: scale(1.25); }
-        }
-
-        @keyframes loaderDotPulse {
-          from { opacity: .45; }
-          to { opacity: 1; }
+          from { opacity: .25; transform: scale(.8); }
+          to { opacity: .75; transform: scale(1.15); }
         }
 
         @keyframes loaderRingEnter {
-          from { opacity: 0; transform: scale(.82); }
+          from { opacity: 0; transform: scale(.85); }
           to { opacity: 1; transform: scale(1); }
         }
 
         @keyframes loaderContentEnter {
-          from { opacity: 0; margin-top: 15px; }
+          from { opacity: 0; margin-top: 12px; }
           to { opacity: 1; margin-top: 0; }
         }
 
         @keyframes loaderServiceChange {
-          from { opacity: 0; transform: translateY(7px); }
+          from { opacity: 0; transform: translateY(6px); }
           to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes loaderStatusPulse {
-          from { opacity: .4; }
+          from { opacity: .45; }
           to { opacity: 1; }
         }
 
@@ -489,69 +453,111 @@ export default function Loader({ onComplete, duration = 6000 }) {
           }
 
           .loader-center {
-            top: 43%;
+            top: 44%;
             width: 94%;
           }
 
           .loader-owl-ring {
-            width: 105px;
-            height: 105px;
-            margin-bottom: 17px;
+            width: 76px;
+            height: 76px;
+            margin-bottom: 13px;
           }
 
           .loader-wordmark > img {
-            width: min(78vw, 300px);
+            width: min(82vw, 300px);
+            max-height: 66px;
           }
 
-          .loader-logo-dots {
-            gap: 5px;
-            margin-top: 6px;
-          }
-
-          .loader-logo-dots span {
-            width: 4px;
-            height: 4px;
-          }
-
-          .loader-brand-tagline {
-            gap: 6px;
-            margin-top: 19px;
-            font-size: 8px;
+          .loader-tagline {
+            gap: 7px;
+            margin-top: 9px;
+            font-size: 9px;
             letter-spacing: .7px;
           }
 
-          .loader-brand-tagline i {
+          .loader-tagline i {
             height: 10px;
           }
 
           .loader-protection-text {
-            margin-top: 27px;
+            margin-top: 24px;
           }
 
           .loader-service-copy {
-            margin-top: 19px;
-          }
-
-          .loader-scan-caption {
             margin-top: 16px;
           }
 
+          .loader-service-copy h2 {
+            font-size: 16px;
+          }
+
+          .loader-service-copy h3 {
+            font-size: 13px;
+          }
+
+          .loader-scan-caption {
+            margin-top: 15px;
+            font-size: 10px;
+          }
+
           .loader-enter-button {
-            bottom: 6%;
+            bottom: 5%;
             min-width: 142px;
-            min-height: 48px;
+            min-height: 47px;
             font-size: 14px;
+          }
+        }
+
+        @media (max-width: 380px) {
+          .loader-center {
+            top: 42%;
+          }
+
+          .loader-owl-ring {
+            width: 66px;
+            height: 66px;
+            margin-bottom: 9px;
+          }
+
+          .loader-wordmark > img {
+            width: min(80vw, 255px);
+          }
+
+          .loader-tagline {
+            gap: 5px;
+            font-size: 8px;
+          }
+
+          .loader-protection-text {
+            margin-top: 18px;
+          }
+
+          .loader-service-copy {
+            margin-top: 12px;
+          }
+
+          .loader-service-copy h2 {
+            font-size: 15px;
+          }
+
+          .loader-service-copy h3 {
+            font-size: 12px;
+          }
+
+          .loader-scan-caption {
+            margin-top: 11px;
+            font-size: 9px;
           }
         }
 
         @media (max-height: 650px) and (min-width: 641px) {
           .loader-center {
-            top: 45%;
-            transform: translate(-50%, -50%) scale(.78);
+            top: 43%;
+            transform: translate(-50%, -50%) scale(.82);
           }
 
           .loader-enter-button {
-            bottom: 4%;
+            bottom: 3%;
           }
         }
 
