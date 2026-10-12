@@ -71,7 +71,7 @@ export default function HomeAbout() {
           <p
             className="
               m-0 max-w-[800px]
-              text-[12px] font-normal
+              text-[1px] font-normal
               leading-[1.65] tracking-[-0.15px]
               text-[#586F89]
               sm:text-[18px]

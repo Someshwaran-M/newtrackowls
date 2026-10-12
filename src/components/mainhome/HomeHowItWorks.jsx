@@ -1,6 +1,6 @@
 
 import React from "react";
-import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const workflowStages = [
@@ -38,73 +38,376 @@ const workflowStages = [
 
 export default function HomeHowItWorks() {
   return (
-    <section
-      id="home-how-it-works"
-      className="relative w-full overflow-hidden border-y border-[#DCE6D3] bg-[#FFFFFF] font-['Roboto',Arial,sans-serif] text-[#15334E]"
-    >
-      <div className="mx-auto max-w-[1600px] px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-12 xl:px-[7.5%]">
-        {/* Heading */}
-        <div className="mb-8 grid grid-cols-1 items-end gap-5 sm:mb-9 md:grid-cols-[1fr_0.7fr] lg:gap-10">
+    <section id="home-how-it-works" className="workflow-section">
+      <style>{`
+        .workflow-section,
+        .workflow-section * {
+          box-sizing: border-box;
+        }
+
+        .workflow-section {
+          width: 100%;
+          overflow: hidden;
+          background: #f3f8fd;
+          border-top: 1px solid #d9e6f0;
+          border-bottom: 1px solid #d9e6f0;
+          color: #172d47;
+          font-family: Roboto, Arial, sans-serif;
+        }
+
+        .workflow-container {
+          width: calc(100% - 80px);
+          max-width: 1566px;
+          margin: 0 auto;
+          padding: 120px 0 118px;
+        }
+
+        /* Header layout */
+        .workflow-header {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) 485px;
+          align-items: end;
+          column-gap: 50px;
+          margin-bottom: 54px;
+        }
+
+        .workflow-eyebrow {
+          margin: 0 0 30px;
+          color: #5b811b;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 1.3;
+          letter-spacing: 2.1px;
+          text-transform: uppercase;
+        }
+
+        .workflow-heading {
+          margin: 0;
+          color: #172d47;
+          font-size: 64px;
+          font-weight: 700;
+          line-height: 1.12;
+          letter-spacing: -2.2px;
+        }
+
+        .workflow-heading span {
+          display: block;
+        }
+
+        .workflow-intro {
+          max-width: 485px;
+          margin: 0 0 1px;
+          color: #58708a;
+          font-size: 20px;
+          font-weight: 400;
+          line-height: 1.65;
+        }
+
+        /* Five aligned columns */
+        .workflow-grid {
+          display: grid;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          column-gap: 30px;
+          align-items: start;
+        }
+
+        .workflow-stage {
+          min-width: 0;
+          border-top: 1px solid #53badb;
+          padding-top: 40px;
+        }
+
+        .workflow-number {
+          display: block;
+          margin: 0 0 32px;
+          color: #648b17;
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 1.3;
+        }
+
+        .workflow-title {
+          margin: 0 0 19px;
+          color: #172d47;
+          font-size: 28px;
+          font-weight: 700;
+          line-height: 1.25;
+          letter-spacing: -0.8px;
+        }
+
+        .workflow-description {
+          margin: 0;
+          color: #58708a;
+          font-size: 18px;
+          font-weight: 400;
+          line-height: 1.65;
+        }
+
+        /* Simple text link */
+        .workflow-cta-wrap {
+          margin-top: 76px;
+        }
+
+        .workflow-cta {
+          display: inline-block;
+          width: fit-content;
+          padding-bottom: 10px;
+          border-bottom: 1px solid #c6d8b0;
+          color: #628b13;
+          font-size: 17px;
+          font-weight: 400;
+          line-height: 1.4;
+          text-decoration: none;
+          transition: color 180ms ease, border-color 180ms ease;
+        }
+
+        .workflow-cta:hover {
+          color: #405f0b;
+          border-color: #628b13;
+        }
+
+        /* Tablet */
+        @media (max-width: 1200px) {
+          .workflow-container {
+            width: calc(100% - 64px);
+            padding-top: 86px;
+            padding-bottom: 82px;
+          }
+
+          .workflow-header {
+            grid-template-columns: minmax(0, 1fr) 360px;
+            column-gap: 32px;
+            margin-bottom: 45px;
+          }
+
+          .workflow-heading {
+            font-size: 50px;
+            letter-spacing: -1.6px;
+          }
+
+          .workflow-eyebrow {
+            font-size: 11px;
+            margin-bottom: 23px;
+          }
+
+          .workflow-intro {
+            font-size: 16px;
+          }
+
+          .workflow-grid {
+            column-gap: 22px;
+          }
+
+          .workflow-stage {
+            padding-top: 30px;
+          }
+
+          .workflow-number {
+            margin-bottom: 25px;
+            font-size: 13px;
+          }
+
+          .workflow-title {
+            margin-bottom: 15px;
+            font-size: 23px;
+          }
+
+          .workflow-description {
+            font-size: 14px;
+          }
+
+          .workflow-cta-wrap {
+            margin-top: 58px;
+          }
+        }
+
+        /* Small tablet */
+        @media (max-width: 760px) {
+          .workflow-container {
+            width: calc(100% - 48px);
+            padding-top: 64px;
+            padding-bottom: 62px;
+          }
+
+          .workflow-header {
+            grid-template-columns: 1fr;
+            row-gap: 24px;
+            margin-bottom: 38px;
+          }
+
+          .workflow-eyebrow {
+            margin-bottom: 20px;
+          }
+
+          .workflow-heading {
+            font-size: clamp(38px, 7vw, 48px);
+            line-height: 1.12;
+            letter-spacing: -1.5px;
+          }
+
+          .workflow-intro {
+            max-width: 480px;
+            font-size: 16px;
+            line-height: 1.7;
+          }
+
+          .workflow-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: 26px;
+            row-gap: 30px;
+          }
+
+          .workflow-stage {
+            padding-top: 23px;
+          }
+
+          .workflow-number {
+            margin-bottom: 19px;
+          }
+
+          .workflow-title {
+            margin-bottom: 12px;
+            font-size: 23px;
+          }
+
+          .workflow-description {
+            font-size: 14px;
+            line-height: 1.75;
+          }
+
+          .workflow-cta-wrap {
+            margin-top: 42px;
+          }
+        }
+
+        /* Mobile */
+        @media (max-width: 480px) {
+          .workflow-container {
+            width: calc(100% - 40px);
+            padding-top: 48px;
+            padding-bottom: 48px;
+          }
+
+          .workflow-header {
+            row-gap: 19px;
+            margin-bottom: 32px;
+          }
+
+          .workflow-eyebrow {
+            margin-bottom: 17px;
+            font-size: 10px;
+            letter-spacing: 1.7px;
+          }
+
+          .workflow-heading {
+            font-size: 37px;
+            line-height: 1.15;
+            letter-spacing: -1.3px;
+          }
+
+          .workflow-intro {
+            font-size: 15px;
+          }
+
+          .workflow-grid {
+            grid-template-columns: 1fr;
+            row-gap: 25px;
+          }
+
+          .workflow-stage {
+            padding-top: 21px;
+          }
+
+          .workflow-number {
+            margin-bottom: 15px;
+            font-size: 13px;
+          }
+
+          .workflow-title {
+            margin-bottom: 10px;
+            font-size: 23px;
+          }
+
+          .workflow-description {
+            max-width: 360px;
+            font-size: 14px;
+          }
+
+          .workflow-cta-wrap {
+            margin-top: 36px;
+          }
+
+          .workflow-cta {
+            font-size: 15px;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .workflow-section *,
+          .workflow-section *::before,
+          .workflow-section *::after {
+            transition-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+          }
+        }
+      `}</style>
+
+      <div className="workflow-container">
+        <motion.header
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
+          className="workflow-header"
+        >
           <div>
-            <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#617D17] sm:text-[11px]">
+            <p className="workflow-eyebrow">
               How TrackOwls Works
             </p>
 
-            <h2 className="m-0 max-w-[650px] text-[36px] font-bold leading-[1.12] tracking-[-1.2px] text-[#15334E] sm:text-[48px] lg:text-[54px]">
-              From detection
-              <br />
-              <span className="text-[#7C9D18]">to enforcement.</span>
+            <h2 className="workflow-heading">
+              <span>From detection</span>
+              <span>to enforcement.</span>
             </h2>
           </div>
 
-          <p className="m-0 max-w-[490px] text-[13px] leading-[1.8] text-[#45637F] md:justify-self-end lg:text-[15px] lg:leading-[1.85]">
-            Five connected stages. One traceable record of what was found,
-            verified and actioned.
+          <p className="workflow-intro">
+            Five connected stages. One traceable record of what
+            was found, verified and actioned.
           </p>
-        </div>
+        </motion.header>
 
-        {/* Five workflow stages */}
-        <div className="grid grid-cols-1 gap-x-6 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-[30px]">
-          {workflowStages.map((stage) => (
-            <article
+        <div className="workflow-grid">
+          {workflowStages.map((stage, index) => (
+            <motion.article
               key={stage.number}
-              className="group relative border-t border-[#8BB630]/80 py-5 transition-colors duration-300 hover:border-[#648A13] sm:min-h-[200px] lg:min-h-0 lg:border-t lg:py-7"
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{
+                duration: 0.35,
+                delay: index * 0.05,
+              }}
+              className="workflow-stage"
             >
-              {/* Stage number */}
-              <span className="font-mono text-[12px] font-medium text-[#648A13]">
+              <span className="workflow-number">
                 {stage.number}
               </span>
 
-              {/* Stage title */}
-              <h3 className="mb-3 mt-5 text-[23px] font-bold leading-tight tracking-[-0.035em] text-[#15334E] transition-colors duration-300 group-hover:text-[#648A13] sm:text-[25px] lg:mt-6 lg:text-[27px]">
+              <h3 className="workflow-title">
                 {stage.title}
               </h3>
 
-              {/* Stage description */}
-              <p className="m-0 max-w-[290px] text-[13px] leading-[1.85] text-[#45637F] sm:text-[14px]">
+              <p className="workflow-description">
                 {stage.description}
               </p>
-
-              {/* Subtle hover indicator */}
-              <div
-                className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#8BB630] transition-all duration-300 group-hover:w-full"
-                aria-hidden="true"
-              />
-            </article>
+            </motion.article>
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-7 sm:mt-9">
-          <Link
-            to="/how-it-works"
-            className="group inline-flex w-fit items-center gap-3 border-b border-[#C9D9AD] pb-2 text-[13px] font-medium text-[#648A13] transition-colors duration-300 hover:border-[#648A13] hover:text-[#45637F] sm:text-[14px]"
-          >
-            <span>Understand the workflow</span>
-
-            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-[#C9D9AD] transition-all duration-300 group-hover:translate-x-1 group-hover:border-[#8BB630] group-hover:bg-[#8BB630] group-hover:text-[#15334E]">
-              <ArrowUpRight size={16} strokeWidth={1.8} />
-            </span>
+        <div className="workflow-cta-wrap">
+          <Link to="/how-it-works" className="workflow-cta">
+            Understand the workflow
           </Link>
         </div>
       </div>

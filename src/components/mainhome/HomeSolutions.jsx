@@ -20,7 +20,7 @@ const solutions = [
     title: "Live Streaming Protection",
     description: "Act while the event still matters.",
     image:
-      "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=85",
+      "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=85",
     icon: Radio,
     link: "/services",
   },
@@ -29,7 +29,7 @@ const solutions = [
     title: "OTT & VOD Protection",
     description: "Protect every release window.",
     image:
-      "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=85",
+      "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=85",
     icon: Play,
     link: "/industries",
   },
@@ -38,7 +38,7 @@ const solutions = [
     title: "Website & App Monitoring",
     description: "See where your content travels.",
     image:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=85",
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=85",
     icon: Globe,
     link: "/platform",
   },
@@ -47,7 +47,7 @@ const solutions = [
     title: "Copyright Enforcement",
     description: "Turn evidence into action.",
     image:
-      "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=800&q=85",
+      "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=900&q=85",
     icon: FileCheck2,
     link: "/services",
   },
@@ -64,7 +64,7 @@ const solutions = [
     title: "Piracy Intelligence",
     description: "Understand the patterns behind piracy.",
     image:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=85",
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=85",
     icon: ScanSearch,
     link: "/platform",
   },
@@ -94,127 +94,475 @@ const solutions = [
   },
 ];
 
+function SolutionCard({ solution, index }) {
+  const Icon = solution.icon;
+
+  return (
+    <motion.article
+      key={solution.number}
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.08 }}
+      transition={{ duration: 0.35, delay: (index % 3) * 0.04 }}
+      className={`solution-card ${
+        solution.image ? "solution-card--image" : "solution-card--plain"
+      }`}
+    >
+      {solution.image && (
+        <div className="solution-card__image">
+          <img
+            src={solution.image}
+            alt={solution.title}
+            loading="lazy"
+          />
+        </div>
+      )}
+
+      <span className="solution-card__corner" aria-hidden="true" />
+
+      <div className="solution-card__body">
+        <div className="solution-card__meta">
+          <Icon
+            size={18}
+            strokeWidth={1.65}
+            className="solution-card__icon"
+            aria-hidden="true"
+          />
+
+          <span className="solution-card__number">
+            {solution.number}
+          </span>
+        </div>
+
+        <h3 className="solution-card__title">
+          {solution.title}
+        </h3>
+
+        <p className="solution-card__description">
+          {solution.description}
+        </p>
+
+        <div className="solution-card__footer">
+          <Link
+            to={solution.link}
+            className="solution-card__link"
+          >
+            Explore solution
+            <ArrowUpRight size={13} strokeWidth={1.7} />
+          </Link>
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
 export default function HomeSolutions() {
   return (
-    <section
-      id="home-solutions"
-      className="relative overflow-hidden bg-[#FFFFFF] px-5 py-10 font-['Roboto',Arial,sans-serif] text-[#15334E] sm:px-8 sm:py-12 lg:px-10 lg:py-12"
-    >
-      <div className="mx-auto max-w-[1290px]">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
+    <section id="home-solutions" className="solutions-section">
+      <style>{`
+        .solutions-section,
+        .solutions-section * {
+          box-sizing: border-box;
+        }
+
+        .solutions-section {
+          width: 100%;
+          overflow: hidden;
+          background: #edf5fc;
+          color: #172e49;
+          border-top: 1px solid #dbe7f1;
+          border-bottom: 1px solid #dbe7f1;
+          font-family: Roboto, Arial, sans-serif;
+        }
+
+        .solutions-container {
+          width: calc(100% - 64px);
+          max-width: 1038px;
+          margin: 0 auto;
+          padding: 81px 0 78px;
+        }
+
+        /* Heading */
+        .solutions-header {
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          gap: 24px;
+          margin-bottom: 36px;
+        }
+
+        .solutions-eyebrow {
+          margin: 0 0 19px;
+          color: #5a8117;
+          font-size: 10px;
+          font-weight: 700;
+          line-height: 1.3;
+          letter-spacing: 1.8px;
+          text-transform: uppercase;
+        }
+
+        .solutions-heading {
+          margin: 0;
+          color: #172e49;
+          font-size: 40px;
+          font-weight: 700;
+          line-height: 1.19;
+          letter-spacing: -1.25px;
+        }
+
+        .solutions-heading span {
+          display: block;
+        }
+
+        .solutions-view-all {
+          display: inline-flex;
+          flex-shrink: 0;
+          align-items: center;
+          gap: 3px;
+          margin-bottom: 4px;
+          padding-bottom: 6px;
+          border-bottom: 1px solid #cbdcb3;
+          color: #5d8615;
+          font-size: 11px;
+          font-weight: 400;
+          line-height: 1.3;
+          text-decoration: none;
+        }
+
+        .solutions-view-all:hover {
+          border-color: #638b15;
+          color: #405f0b;
+        }
+
+        /* Exact three-column arrangement */
+        .solutions-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-auto-rows: 322px;
+          gap: 14px 15px;
+          align-items: stretch;
+        }
+
+        .solution-card {
+          position: relative;
+          display: flex;
+          min-width: 0;
+          height: 100%;
+          flex-direction: column;
+          overflow: hidden;
+          border: 1px solid #dce7f1;
+          border-radius: 6px;
+          background: #ffffff;
+          transition: border-color 180ms ease;
+        }
+
+        .solution-card:hover {
+          border-color: #bdd3b0;
+        }
+
+        /* Image dimensions */
+        .solution-card__image {
+          flex: 0 0 139px;
+          height: 139px;
+          overflow: hidden;
+          background: #dce6ec;
+        }
+
+        .solution-card__image img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center 45%;
+          transition: transform 350ms ease;
+        }
+
+        .solution-card:hover .solution-card__image img {
+          transform: scale(1.025);
+        }
+
+        /* Content */
+        .solution-card__body {
+          position: relative;
+          display: flex;
+          flex: 1;
+          min-height: 0;
+          flex-direction: column;
+          padding: 22px 23px 23px;
+        }
+
+        .solution-card__meta {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          min-height: 18px;
+          margin-bottom: 23px;
+        }
+
+        .solution-card__icon {
+          flex-shrink: 0;
+          color: #638b15;
+        }
+
+        .solution-card__number {
+          color: #6a849d;
+          font-size: 10px;
+          font-weight: 400;
+          line-height: 1;
+        }
+
+        .solution-card__title {
+          margin: 0;
+          color: #172e49;
+          font-size: 16px;
+          font-weight: 600;
+          line-height: 1.4;
+          letter-spacing: -0.2px;
+        }
+
+        .solution-card__description {
+          margin: 10px 0 0;
+          color: #506985;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 1.7;
+        }
+
+        .solution-card__footer {
+          margin-top: auto;
+          padding-top: 17px;
+        }
+
+        .solution-card__link {
+          display: inline-flex;
+          align-items: center;
+          gap: 3px;
+          width: fit-content;
+          max-width: 100%;
+          padding-bottom: 6px;
+          border-bottom: 1px solid #d5e3c6;
+          color: #5d8615;
+          font-size: 11px;
+          font-weight: 400;
+          line-height: 1.3;
+          text-decoration: none;
+          transition: color 180ms ease, border-color 180ms ease;
+        }
+
+        .solution-card__link:hover {
+          color: #405f0b;
+          border-color: #638b15;
+        }
+
+        .solution-card__link svg,
+        .solutions-view-all svg {
+          flex-shrink: 0;
+          transition: transform 180ms ease;
+        }
+
+        .solution-card__link:hover svg,
+        .solutions-view-all:hover svg {
+          transform: translate(2px, -2px);
+        }
+
+        /* Small corner detail */
+        .solution-card__corner {
+          position: absolute;
+          z-index: 2;
+          top: 11px;
+          right: 11px;
+          width: 12px;
+          height: 12px;
+          border-top: 1px solid #b6e1ee;
+          border-right: 1px solid #b6e1ee;
+          pointer-events: none;
+        }
+
+        .solution-card--plain .solution-card__corner {
+          top: 11px;
+          right: 11px;
+        }
+
+        .solution-card--plain .solution-card__body {
+          padding-top: 22px;
+        }
+
+        .solution-card--plain .solution-card__meta {
+          margin-bottom: 23px;
+        }
+
+        .solutions-mobile-link {
+          display: none;
+        }
+
+        /* Tablet */
+        @media (max-width: 900px) {
+          .solutions-container {
+            width: calc(100% - 48px);
+            padding-top: 60px;
+            padding-bottom: 56px;
+          }
+
+          .solutions-heading {
+            font-size: 36px;
+          }
+
+          .solutions-grid {
+            grid-auto-rows: 300px;
+            gap: 12px;
+          }
+
+          .solution-card__image {
+            flex-basis: 125px;
+            height: 125px;
+          }
+
+          .solution-card__body {
+            padding: 19px 16px 19px;
+          }
+
+          .solution-card__title {
+            font-size: 15px;
+          }
+        }
+
+        /* Mobile */
+        @media (max-width: 620px) {
+          .solutions-container {
+            width: calc(100% - 36px);
+            padding-top: 43px;
+            padding-bottom: 42px;
+          }
+
+          .solutions-header {
+            align-items: flex-start;
+            margin-bottom: 27px;
+          }
+
+          .solutions-eyebrow {
+            margin-bottom: 16px;
+            font-size: 9px;
+          }
+
+          .solutions-heading {
+            font-size: clamp(31px, 7.5vw, 39px);
+            line-height: 1.18;
+            letter-spacing: -1px;
+          }
+
+          .solutions-view-all {
+            display: none;
+          }
+
+          .solutions-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-auto-rows: 290px;
+            gap: 12px;
+          }
+
+          .solution-card__image {
+            flex-basis: 105px;
+            height: 105px;
+          }
+
+          .solution-card__body {
+            padding: 15px 12px 15px;
+          }
+
+          .solution-card__meta {
+            margin-bottom: 15px;
+          }
+
+          .solution-card__title {
+            font-size: 14px;
+            line-height: 1.4;
+          }
+
+          .solution-card__description {
+            margin-top: 8px;
+            font-size: 11px;
+          }
+
+          .solution-card__link {
+            font-size: 10px;
+          }
+        }
+
+        @media (max-width: 420px) {
+          .solutions-grid {
+            grid-template-columns: 1fr;
+            grid-auto-rows: 285px;
+          }
+
+          .solution-card__image {
+            flex-basis: 130px;
+            height: 130px;
+          }
+
+          .solution-card__body {
+            padding: 17px 17px 18px;
+          }
+
+          .solution-card__title {
+            font-size: 15px;
+          }
+
+          .solution-card__description {
+            font-size: 12px;
+          }
+
+          .solution-card__link {
+            font-size: 11px;
+          }
+
+          .solutions-mobile-link {
+            display: flex;
+            margin-top: 22px;
+          }
+
+          .solutions-mobile-link .solutions-view-all {
+            display: inline-flex;
+          }
+        }
+      `}</style>
+
+      <div className="solutions-container">
+        <motion.header
+          initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.55 }}
-          className="mb-7 flex items-end justify-between gap-6 sm:mb-8 lg:mb-9"
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.4 }}
+          className="solutions-header"
         >
           <div>
-            <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-[#617D17]">
-              Our solutions
-            </p>
+            <p className="solutions-eyebrow">Our solutions</p>
 
-            <h2 className="max-w-[550px] text-[36px] font-bold leading-[1.1] tracking-[-1.3px] text-[#15334E] sm:text-[48px] lg:text-[54px]">
+            <h2 className="solutions-heading">
               Protection with a
-              <br />
-              <span className="text-[#7C9D18]">
-                clear path to action.
-              </span>
+              <span>clear path to action.</span>
             </h2>
           </div>
 
-          <Link
-            to="/solutions"
-            className="group mb-1 hidden shrink-0 items-center gap-1 border-b border-[#C9D9AD] pb-1 text-[11px] font-medium text-[#648A13] transition-colors hover:border-[#648A13] hover:text-[#45637F] sm:inline-flex"
-          >
+          <Link to="/solutions" className="solutions-view-all">
             View all solutions
-            <ArrowUpRight
-              size={14}
-              className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-            />
+            <ArrowUpRight size={13} />
           </Link>
-        </motion.div>
+        </motion.header>
 
-        {/* Solutions grid */}
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
-          {solutions.map((solution, index) => {
-            const Icon = solution.icon;
-
-            return (
-              <motion.article
-                key={solution.number}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.12 }}
-                transition={{
-                  duration: 0.45,
-                  delay: (index % 3) * 0.07,
-                }}
-                className="group relative flex min-h-[218px] flex-col overflow-hidden rounded-[4px] border border-[#DCE6D3] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#A8C96B] hover:shadow-[0_12px_30px_rgba(21,51,78,0.07)] sm:min-h-[230px] lg:min-h-[245px]"
-              >
-                {/* Optional image */}
-                {solution.image && (
-                  <div className="relative h-[116px] shrink-0 overflow-hidden bg-[#F5F8F2] sm:h-[106px] lg:h-[105px]">
-                    <img
-                      src={solution.image}
-                      alt={solution.title}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.045]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#15334E]/15 to-transparent" />
-                  </div>
-                )}
-
-                {/* Corner accent */}
-                <span className="pointer-events-none absolute right-2 top-2 h-3 w-3 border-r border-t border-[#8BB630]" />
-
-                {/* Card content */}
-                <div className="flex flex-1 flex-col p-4 sm:p-[17px]">
-                  <div className="mb-4 flex items-center justify-between">
-                    <Icon
-                      size={17}
-                      strokeWidth={1.6}
-                      className="text-[#648A13] transition-transform duration-300 group-hover:scale-110"
-                    />
-
-                    <span className="font-mono text-[10px] text-[#617D17]">
-                      {solution.number}
-                    </span>
-                  </div>
-
-                  <h3 className="text-[14px] font-medium leading-[1.4] text-[#15334E] sm:text-[15px]">
-                    {solution.title}
-                  </h3>
-
-                  <p className="mt-2 text-[12px] leading-[1.7] text-[#45637F]">
-                    {solution.description}
-                  </p>
-
-                  <div className="mt-auto pt-4">
-                    <Link
-                      to={solution.link}
-                      className="group/link inline-flex items-center gap-1 border-b border-[#C9D9AD] pb-1 text-[11px] font-medium text-[#648A13] transition-all hover:border-[#648A13]"
-                    >
-                      Explore solution
-                      <ArrowUpRight
-                        size={12}
-                        className="transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
-                      />
-                    </Link>
-                  </div>
-                </div>
-              </motion.article>
-            );
-          })}
+        <div className="solutions-grid">
+          {solutions.map((solution, index) => (
+            <SolutionCard
+              key={solution.number}
+              solution={solution}
+              index={index}
+            />
+          ))}
         </div>
 
-        {/* Mobile view-all link */}
-        <div className="mt-6 sm:hidden">
-          <Link
-            to="/solutions"
-            className="inline-flex items-center gap-2 border-b border-[#C9D9AD] pb-1 text-[12px] font-medium text-[#648A13]"
-          >
-            View all solutions <ArrowUpRight size={14} />
+        <div className="solutions-mobile-link">
+          <Link to="/solutions" className="solutions-view-all">
+            View all solutions
+            <ArrowUpRight size={13} />
           </Link>
         </div>
       </div>

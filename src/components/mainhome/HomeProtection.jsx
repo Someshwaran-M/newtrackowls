@@ -81,10 +81,10 @@ const stages = [
 
 const pins = [
   [
-    { left: "24%", top: "34%" },
-    { left: "48%", top: "25%" },
-    { left: "69%", top: "43%" },
-    { left: "81%", top: "63%" },
+    { left: "24%", top: "40%" },
+    { left: "49%", top: "29%" },
+    { left: "69%", top: "51%" },
+    { left: "79%", top: "72%" },
   ],
   [
     { left: "18%", top: "54%" },
@@ -112,28 +112,21 @@ const pins = [
   ],
 ];
 
-function Icon({ name, className = "h-5 w-5" }) {
-  const common = {
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 1.7,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-  };
-
-  const icons = {
+function Icon({ name, className = "h-4 w-4" }) {
+  const paths = {
     monitor: (
       <>
-        <circle cx="12" cy="12" r="9" />
-        <circle cx="12" cy="12" r="5" />
-        <circle cx="12" cy="12" r="1" />
-        <path d="m12 12 6-6" />
+        <path d="M4 7V5a2 2 0 0 1 2-2h2" />
+        <path d="M16 3h2a2 2 0 0 1 2 2v2" />
+        <path d="M20 17v2a2 2 0 0 1-2 2h-2" />
+        <path d="M8 21H6a2 2 0 0 1-2-2v-2" />
+        <circle cx="12" cy="12" r="3" />
       </>
     ),
     detect: (
       <>
-        <path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3" />
-        <circle cx="12" cy="12" r="3" />
+        <circle cx="10.5" cy="10.5" r="6.5" />
+        <path d="m16 16 4 4" />
       </>
     ),
     verify: (
@@ -145,11 +138,15 @@ function Icon({ name, className = "h-5 w-5" }) {
     enforce: (
       <>
         <circle cx="12" cy="12" r="9" />
-        <circle cx="12" cy="12" r="5" />
-        <circle cx="12" cy="12" r="1" />
+        <path d="m8 12 3 3 5-6" />
       </>
     ),
-    report: <path d="M4 19V5M4 19h16M7 14l4-4 3 2 5-6" />,
+    report: (
+      <>
+        <path d="M4 19V5M4 19h16" />
+        <path d="m7 14 4-4 3 2 5-6" />
+      </>
+    ),
     play: <path d="m8 5 12 7-12 7z" />,
     reset: (
       <>
@@ -168,57 +165,56 @@ function Icon({ name, className = "h-5 w-5" }) {
   return (
     <svg
       viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className={className}
       aria-hidden="true"
-      {...common}
     >
-      {icons[name]}
+      {paths[name]}
     </svg>
   );
 }
 
 function WorldMap({ activeStage }) {
-  const currentPins = pins[activeStage] || pins[0];
-
   return (
-    <div className="group/map relative min-h-[260px] overflow-hidden bg-[#15334E] sm:min-h-[320px] lg:min-h-[360px]">
+    <div className="hp-map group relative min-h-[300px] overflow-hidden sm:min-h-[350px] lg:min-h-0">
       <img
         src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1600&q=85"
         alt="Illustrative world map showing sample monitoring locations"
-        className="absolute inset-0 h-full w-full object-cover opacity-75 grayscale transition-transform duration-700 group-hover/map:scale-[1.02]"
+        className="absolute inset-0 h-full w-full object-cover opacity-65 grayscale"
       />
 
-      <div className="absolute inset-0 bg-[#15334E]/45" />
+      <div className="absolute inset-0 bg-[#092b3a]/65" />
 
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-40"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(139,182,48,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(139,182,48,.35) 1px,transparent 1px)",
-          backgroundSize: "21px 21px",
+            "linear-gradient(rgba(115,177,190,.25) 1px,transparent 1px),linear-gradient(90deg,rgba(115,177,190,.25) 1px,transparent 1px)",
+          backgroundSize: "30px 30px",
         }}
       />
 
-      {currentPins.map((pin, index) => (
+      {pins[activeStage].map((pin, index) => (
         <div
           key={`${activeStage}-${index}`}
           className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
           style={{ left: pin.left, top: pin.top }}
         >
-          <span className="absolute inset-0 animate-ping rounded-full bg-[#8BB630]/30" />
-          <span className="relative flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-[#8BB630] text-[10px] font-bold text-[#15334E] shadow-[0_0_0_5px_rgba(139,182,48,.2)] sm:h-8 sm:w-8">
+          <span className="absolute -inset-2 rounded-full border border-[#ef8a67]/50" />
+          <span className="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-[#e77d58] text-sm font-bold text-white shadow-lg sm:h-9 sm:w-9">
             {index + 1}
           </span>
         </div>
       ))}
 
-      <div className="absolute inset-x-0 bottom-0 flex items-center gap-2 border-t border-white/10 bg-[#15334E]/95 px-4 py-3 text-[10px] text-white sm:px-5">
+      <div className="absolute inset-x-0 bottom-0 flex min-h-[56px] items-center gap-2 border-t border-white/10 bg-[#102e43]/95 px-4 py-3 text-[12px] text-[#dbeaf2] sm:px-5">
         <Icon name="monitor" className="h-4 w-4 shrink-0 text-[#8BB630]" />
         <span>TrackOwls · Discovery to enforcement</span>
-        <span className="ml-auto text-[9px] text-white/60">
-          ILLUSTRATIVE
-        </span>
       </div>
     </div>
   );
@@ -238,15 +234,14 @@ export default function HomeProtection() {
     const timer = window.setInterval(() => {
       setElapsed((previous) => {
         const next = Math.min(previous + 1, 120);
-        const nextStage = Math.min(
-          Math.floor((next / 120) * stages.length),
-          stages.length - 1
+        setActiveStage(
+          Math.min(
+            Math.floor((next / 120) * stages.length),
+            stages.length - 1
+          )
         );
 
-        setActiveStage(nextStage);
-
         if (next >= 120) setIsPlaying(false);
-
         return next;
       });
     }, 1000);
@@ -282,43 +277,430 @@ export default function HomeProtection() {
   return (
     <section
       id="home-protection"
-      className="relative w-full overflow-hidden bg-[#FFFFFF] font-['Roboto',Arial,sans-serif] text-[#15334E]"
+      className="hp-section w-full overflow-hidden bg-[#EDF5FC] font-['Roboto',Arial,sans-serif] text-[#172D48]"
     >
-      <div className="mx-auto max-w-[1380px] px-5 py-10 sm:px-7 sm:py-12 lg:px-10 lg:py-12 xl:px-12">
-        {/* Header */}
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1fr_330px] lg:items-end lg:gap-10">
-          <div>
-            <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-[#617D17]">
-              Explore the protection workflow
-            </p>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800&display=swap');
 
-            <h2 className="m-0 max-w-[760px] text-[36px] font-bold leading-[1.08] tracking-[-1.2px] text-[#15334E] sm:text-[48px] lg:text-[54px]">
+        .hp-section, .hp-section * { box-sizing: border-box; }
+
+        .hp-container {
+          width: min(1196px, calc(100% - 64px));
+          margin-inline: auto;
+          padding-top: 91px;
+          padding-bottom: 60px;
+        }
+
+        .hp-eyebrow {
+          margin: 0 0 22px;
+          color: #547F17;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 1.8px;
+          line-height: 1.3;
+          text-transform: uppercase;
+        }
+
+        .hp-heading {
+          margin: 0;
+          color: #172D48;
+          font-size: 48px;
+          font-weight: 700;
+          letter-spacing: -1.6px;
+          line-height: 1.14;
+        }
+
+        .hp-intro {
+          max-width: 370px;
+          margin: 0;
+          color: #586F89;
+          font-size: 16px;
+          line-height: 1.58;
+        }
+
+        .hp-controls {
+          margin-top: 45px;
+          margin-bottom: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 18px;
+        }
+
+        .hp-simulation {
+          display: inline-flex;
+          align-items: center;
+          min-height: 38px;
+          padding: 0 12px;
+          border: 1px solid #cbdde9;
+          border-radius: 5px;
+          background: white;
+          color: #4d6680;
+          font-size: 13px;
+          white-space: nowrap;
+        }
+
+        .hp-button {
+          display: inline-flex;
+          min-height: 47px;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          padding: 0 20px;
+          border: 1px solid #cadbe8;
+          border-radius: 5px;
+          background: white;
+          color: #172D48;
+          font-size: 13px;
+          font-weight: 600;
+          white-space: nowrap;
+          transition: background .2s, border-color .2s;
+        }
+
+        .hp-button-primary {
+          border-color: #648c12;
+          background: #648c12;
+          color: white;
+        }
+
+        .hp-button-primary:hover {
+          background: #52750c;
+        }
+
+        .hp-button:disabled {
+          cursor: not-allowed;
+          opacity: .65;
+        }
+
+        .hp-time {
+          color: #4d6680;
+          font-size: 13px;
+          font-variant-numeric: tabular-nums;
+          white-space: nowrap;
+        }
+
+        .hp-case {
+          display: grid;
+          grid-template-columns: 1.82fr 1fr;
+          overflow: hidden;
+          min-height: 409px;
+          border: 1px solid #cbdde9;
+          border-radius: 12px;
+          background: white;
+        }
+
+        .hp-case-details {
+          display: flex;
+          min-width: 0;
+          flex-direction: column;
+          padding: 31px 30px;
+        }
+
+        .hp-case-eyebrow {
+          margin: 0 0 20px;
+          color: #547F17;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 1.8px;
+        }
+
+        .hp-case-title {
+          margin: 0;
+          color: #172D48;
+          font-size: 23px;
+          font-weight: 700;
+          letter-spacing: -.5px;
+          line-height: 1.3;
+        }
+
+        .hp-metadata {
+          margin-top: 22px;
+          border-bottom: 1px solid #e2ebf2;
+        }
+
+        .hp-metadata-row {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 15px;
+          padding: 12px 0;
+          border-bottom: 1px solid #e2ebf2;
+          font-size: 13px;
+          line-height: 1.4;
+        }
+
+        .hp-metadata-row:last-child { border-bottom: 0; }
+
+        .hp-metadata-label { color: #617992; }
+        .hp-metadata-value { color: #294761; text-align: right; }
+
+        .hp-case-description {
+          margin: 20px 0 0;
+          color: #586F89;
+          font-size: 14px;
+          line-height: 1.7;
+        }
+
+        .hp-stage-status {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-top: auto;
+          padding-top: 25px;
+          color: #267c96;
+          font-size: 13px;
+          font-weight: 600;
+        }
+
+        .hp-disclaimer {
+          margin: 21px 0 0;
+          color: #71879c;
+          font-size: 11px;
+          line-height: 1.65;
+        }
+
+        .hp-tabs {
+          display: grid;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          gap: 7px;
+          margin-top: 20px;
+        }
+
+        .hp-tab {
+          display: flex;
+          min-height: 51px;
+          align-items: center;
+          gap: 10px;
+          padding: 0 12px;
+          border: 1px solid #cbdde9;
+          border-radius: 5px;
+          background: white;
+          color: #586F89;
+          text-align: left;
+          transition: background .2s, color .2s, border-color .2s;
+        }
+
+        .hp-tab:hover {
+          border-color: #8bb630;
+          background: #f6f9f2;
+        }
+
+        .hp-tab.active {
+          border-color: #102e43;
+          background: #102e43;
+          color: white;
+        }
+
+        .hp-tab-number {
+          color: #71879c;
+          font-size: 12px;
+        }
+
+        .hp-tab.active .hp-tab-number { color: #a8dce8; }
+
+        .hp-tab-name {
+          font-size: 13px;
+          font-weight: 500;
+        }
+
+        .hp-bottom {
+          display: grid;
+          grid-template-columns: 1.65fr 1fr;
+          gap: 38px;
+          margin-top: 15px;
+          padding-top: 31px;
+          border-top: 3px solid #d6e5ef;
+        }
+
+        .hp-bottom-title {
+          margin: 0;
+          color: #172D48;
+          font-size: 24px;
+          font-weight: 700;
+          letter-spacing: -.5px;
+          line-height: 1.3;
+        }
+
+        .hp-bottom-description {
+          max-width: 720px;
+          margin: 14px 0 0;
+          color: #586F89;
+          font-size: 15px;
+          line-height: 1.8;
+        }
+
+        .hp-record {
+          padding-left: 33px;
+          border-left: 1px solid #d4e3ed;
+        }
+
+        .hp-record-label {
+          margin: 2px 0 18px;
+          color: #547F17;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 1.8px;
+          text-transform: uppercase;
+        }
+
+        .hp-record-text {
+          margin: 0;
+          color: #586F89;
+          font-size: 15px;
+          line-height: 1.7;
+        }
+
+        .hp-record-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          margin-top: 27px;
+          padding-bottom: 7px;
+          border-bottom: 1px solid #c6d8a7;
+          color: #638b15;
+          font-size: 13px;
+          text-decoration: none;
+        }
+
+        .hp-record-link:hover {
+          border-color: #638b15;
+          color: #45650b;
+        }
+
+        @media (max-width: 1000px) {
+          .hp-container {
+            width: calc(100% - 48px);
+            padding-top: 65px;
+          }
+
+          .hp-heading { font-size: 42px; }
+
+          .hp-case { grid-template-columns: 1.25fr 1fr; }
+
+          .hp-case-details { padding: 24px 22px; }
+
+          .hp-tabs { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+          .hp-tab { gap: 7px; padding: 0 8px; }
+
+          .hp-tab-name { font-size: 12px; }
+
+          .hp-bottom { gap: 25px; }
+        }
+
+        @media (max-width: 720px) {
+          .hp-container {
+            width: calc(100% - 36px);
+            padding-top: 48px;
+            padding-bottom: 42px;
+          }
+
+          .hp-header { gap: 22px; }
+
+          .hp-eyebrow {
+            margin-bottom: 17px;
+            font-size: 10px;
+            letter-spacing: 1.4px;
+          }
+
+          .hp-heading {
+            font-size: clamp(34px, 8vw, 44px);
+            letter-spacing: -1.1px;
+          }
+
+          .hp-intro {
+            max-width: 100%;
+            font-size: 15px;
+          }
+
+          .hp-controls {
+            align-items: flex-start;
+            flex-direction: column;
+            margin-top: 28px;
+            gap: 12px;
+          }
+
+          .hp-control-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+          }
+
+          .hp-button {
+            min-height: 42px;
+            padding: 0 12px;
+            font-size: 12px;
+          }
+
+          .hp-case { grid-template-columns: 1fr; }
+
+          .hp-map { min-height: 280px; }
+
+          .hp-case-details { padding: 23px 20px; }
+
+          .hp-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+          .hp-tab:last-child { grid-column: 1 / -1; }
+
+          .hp-bottom {
+            grid-template-columns: 1fr;
+            gap: 26px;
+            padding-top: 24px;
+          }
+
+          .hp-bottom-title { font-size: 22px; }
+
+          .hp-bottom-description,
+          .hp-record-text { font-size: 14px; }
+
+          .hp-record {
+            padding: 22px 0 0;
+            border-top: 1px solid #d4e3ed;
+            border-left: 0;
+          }
+        }
+
+        @media (max-width: 390px) {
+          .hp-time { width: 100%; }
+
+          .hp-tab { min-height: 46px; }
+
+          .hp-tab-name { font-size: 11px; }
+
+          .hp-map { min-height: 240px; }
+        }
+      `}</style>
+
+      <div className="hp-container">
+        {/* Heading and introduction */}
+        <div className="hp-header grid grid-cols-1 gap-5 lg:grid-cols-[1fr_370px] lg:items-end lg:gap-10">
+          <div>
+            <p className="hp-eyebrow">Explore the protection workflow</p>
+            <h2 className="hp-heading">
               Follow a finding.
-              <span className="block text-[#7C9D18]">
-                See the path to action.
-              </span>
+              <span className="block">See the path to action.</span>
             </h2>
           </div>
 
-          <p className="m-0 max-w-[330px] text-[13px] leading-[1.9] text-[#45637F] lg:justify-self-end">
+          <p className="hp-intro">
             A two-minute guided demonstration. Select a highlight to explore a
             sample case, or move through the stages at your own pace.
           </p>
         </div>
 
         {/* Controls */}
-        <div className="mb-4 mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <span className="inline-flex w-fit items-center gap-2 border border-[#DCE6D3] bg-white px-3 py-2 text-[10px] text-[#45637F]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#8BB630]" />
+        <div className="hp-controls">
+          <span className="hp-simulation">
             Illustrative simulation · No live detections
           </span>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="hp-control-actions flex flex-wrap items-center gap-2">
             <button
               type="button"
               onClick={startWalkthrough}
               disabled={isPlaying}
-              className="inline-flex min-h-10 items-center justify-center gap-2 bg-[#648A13] px-4 py-2 text-[11px] font-bold text-white transition-colors hover:bg-[#4F7010] disabled:cursor-not-allowed disabled:opacity-60"
+              className="hp-button hp-button-primary"
             >
               <Icon name="play" className="h-3 w-3" />
               {isPlaying ? "Walkthrough running" : "Start 2-minute walkthrough"}
@@ -327,156 +709,90 @@ export default function HomeProtection() {
             <button
               type="button"
               onClick={resetWalkthrough}
-              className="inline-flex min-h-10 items-center justify-center gap-2 border border-[#D3E0E8] bg-white px-4 py-2 text-[11px] font-medium text-[#15334E] transition-colors hover:border-[#8BB630] hover:bg-[#F5F8F2]"
+              className="hp-button"
             >
-              <Icon name="reset" className="h-3 w-3" />
               Reset
             </button>
 
-            <span
-              aria-live="off"
-              className="pl-1 text-[11px] tabular-nums text-[#45637F]"
-            >
+            <span className="hp-time" aria-live="off">
               {formatTime(elapsed)} / 02:00
             </span>
           </div>
         </div>
 
-        {/* Main case panel */}
-        <div className="grid overflow-hidden border border-[#DCE6D3] bg-white lg:grid-cols-[1.8fr_1fr]">
+        {/* Main map and case panel */}
+        <div className="hp-case">
           <WorldMap activeStage={activeStage} />
 
-          <div className="flex min-w-0 flex-col p-5 sm:p-6 lg:p-7">
-            <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.18em] text-[#617D17]">
-              {currentStage.eyebrow}
-            </p>
+          <div className="hp-case-details">
+            <p className="hp-case-eyebrow">{currentStage.eyebrow}</p>
 
-            <h3
-              key={currentStage.number}
-              className="m-0 text-[23px] font-bold leading-tight tracking-[-0.5px] text-[#15334E] sm:text-[26px]"
-            >
-              {currentStage.title}
-            </h3>
+            <h3 className="hp-case-title">{currentStage.title}</h3>
 
-            <div className="mt-5 divide-y divide-[#E4EAE0] border-y border-[#E4EAE0]">
-              <div className="flex items-start justify-between gap-4 py-3">
-                <span className="text-[12px] text-[#687F91]">Asset</span>
-                <span className="text-right text-[12px] font-medium text-[#15334E]">
-                  {currentStage.asset}
-                </span>
+            <div className="hp-metadata">
+              <div className="hp-metadata-row">
+                <span className="hp-metadata-label">Asset</span>
+                <span className="hp-metadata-value">{currentStage.asset}</span>
               </div>
 
-              <div className="flex items-start justify-between gap-4 py-3">
-                <span className="text-[12px] text-[#687F91]">Channel</span>
-                <span className="text-right text-[12px] font-medium text-[#15334E]">
+              <div className="hp-metadata-row">
+                <span className="hp-metadata-label">Channel</span>
+                <span className="hp-metadata-value">
                   {currentStage.channel}
                 </span>
               </div>
             </div>
 
-            <p className="mb-5 mt-4 text-[13px] leading-[1.85] text-[#45637F]">
-              {currentStage.description}
-            </p>
+            <p className="hp-case-description">{currentStage.description}</p>
 
-            <div className="mt-auto flex items-center gap-2 border-t border-[#E4EAE0] pt-4 text-[#648A13]">
+            <div className="hp-stage-status">
               <Icon name={stageIcons[activeStage]} className="h-4 w-4" />
-              <span className="text-[12px] font-medium">
-                {currentStage.name}
-              </span>
-              <span className="ml-auto text-[10px] uppercase tracking-[0.12em] text-[#687F91]">
-                Stage {currentStage.number}
-              </span>
+              <span>{currentStage.name}</span>
             </div>
 
-            <p className="mb-0 mt-3 text-[10px] leading-[1.7] text-[#687F91]">
+            <p className="hp-disclaimer">
               Map positions are illustrative and do not identify actual
               infringers or their locations.
             </p>
           </div>
         </div>
 
-        {/* Workflow stages */}
-        <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-5">
+        {/* Five workflow tabs */}
+        <div className="hp-tabs">
           {stages.map((stage, index) => {
-            const isActive = activeStage === index;
+            const active = activeStage === index;
 
             return (
               <button
                 key={stage.number}
                 type="button"
                 onClick={() => selectStage(index)}
-                aria-pressed={isActive}
-                className={`group flex min-h-[48px] items-center gap-3 border px-3 py-3 text-left transition duration-200 ${
-                  isActive
-                    ? "border-[#15334E] bg-[#15334E] text-white"
-                    : "border-[#DCE6D3] bg-white text-[#45637F] hover:border-[#8BB630] hover:bg-[#F5F8F2]"
-                }`}
+                aria-pressed={active}
+                className={`hp-tab ${active ? "active" : ""}`}
               >
-                <span
-                  className={`text-[11px] font-bold ${
-                    isActive ? "text-[#B9D96C]" : "text-[#648A13]"
-                  }`}
-                >
-                  {stage.number}
-                </span>
-
-                <span className="text-[12px] font-medium">{stage.name}</span>
-
-                <span className="ml-auto">
-                  <Icon
-                    name={stageIcons[index]}
-                    className={`h-4 w-4 ${
-                      isActive
-                        ? "text-[#B9D96C]"
-                        : "text-[#7C9D18] opacity-80"
-                    }`}
-                  />
-                </span>
+                <span className="hp-tab-number">{stage.number}</span>
+                <span className="hp-tab-name">{stage.name}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Bottom stage details */}
-        <div className="mt-3 grid gap-6 border-t border-[#DCE6D3] pt-5 sm:pt-6 lg:grid-cols-[1.65fr_1fr] lg:gap-10">
+        {/* Bottom workflow information */}
+        <div className="hp-bottom">
           <div>
-            <div className="mb-3 flex items-center gap-3">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F0F5E6] text-[11px] font-bold text-[#648A13]">
-                {currentStage.number}
-              </span>
-
-              <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#617D17]">
-                Workflow overview
-              </span>
-            </div>
-
-            <h3 className="m-0 text-[22px] font-bold tracking-[-0.4px] text-[#15334E] sm:text-[24px]">
-              {currentStage.bottomTitle}
-            </h3>
-
-            <p className="mb-0 mt-3 max-w-[720px] text-[13px] leading-[1.9] text-[#45637F]">
+            <h3 className="hp-bottom-title">{currentStage.bottomTitle}</h3>
+            <p className="hp-bottom-description">
               {currentStage.bottomDescription}
             </p>
           </div>
 
-          <div className="border-t border-[#DCE6D3] pt-4 sm:pt-5 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
-            <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.18em] text-[#617D17]">
-              Case record
-            </p>
+          <div className="hp-record">
+            <p className="hp-record-label">Case record</p>
+            <p className="hp-record-text">{currentStage.record}</p>
 
-            <p className="m-0 text-[13px] leading-[1.9] text-[#45637F]">
-              {currentStage.record}
-            </p>
-
-            <a
-              href="#solutions"
-              className="group mt-4 inline-flex items-center gap-2 border-b border-[#A9C46E] pb-1.5 text-[12px] font-medium text-[#648A13] transition-colors hover:border-[#45637F] hover:text-[#45637F]"
-            >
+            <a href="#solutions" className="hp-record-link">
               {currentStage.action}
-              <Icon
-                name="arrow"
-                className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
-              />
+              <Icon name="arrow" className="h-3.5 w-3.5" />
             </a>
           </div>
         </div>
@@ -484,3 +800,5 @@ export default function HomeProtection() {
     </section>
   );
 }
+
+const stageIcons = ["monitor", "detect", "verify", "enforce", "report"];

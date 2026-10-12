@@ -5,95 +5,64 @@ export default function HomePiracyBrochure() {
   return (
     <section
       id="piracy-brochure"
-      className="relative w-full overflow-hidden bg-[#FFFFFF] py-10 font-['Roboto',sans-serif] text-[#15334E] sm:py-12 lg:py-12"
+      className="w-full overflow-hidden bg-[#EEF2ED] font-['Roboto',Arial,sans-serif] text-[#172D47]"
     >
-      <div className="mx-auto max-w-[1420px] px-6 sm:px-10 lg:px-[60px]">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-[7%]">
-          {/* Left: Editorial content */}
-          <div className="flex flex-col items-start">
-            <p className="mb-7 text-[11px] font-bold uppercase tracking-[0.2em] text-[#617D17] sm:text-xs">
+      <div className="mx-auto max-w-[1576px] px-6 py-[72px] sm:px-10 sm:py-[88px] lg:px-0 lg:py-[118px]">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-[76px]">
+          {/* LEFT CONTENT */}
+          <div className="flex min-w-0 flex-col items-start">
+            <p className="mb-[29px] text-[11px] font-bold uppercase leading-[1.4] tracking-[2.2px] text-[#568018] sm:text-[12px]">
               TrackOwls insights / Industry report
             </p>
 
-            <h2 className="max-w-[650px] text-[36px] font-bold leading-[1.08] tracking-[-0.045em] text-[#15334E] sm:text-[48px] lg:text-[54px]">
+            <h2 className="m-0 text-[42px] font-bold leading-[1.12] tracking-[-1.7px] text-[#172D47] sm:text-[54px] lg:text-[64px]">
               Digital piracy.
-              <br />
-              <span className="text-[#7C9D18]">
-                Real consequences.
-              </span>
+              <span className="block">Real consequences.</span>
             </h2>
 
-            <p className="mt-6 max-w-[660px] text-[15px] leading-[1.9] text-[#45637F] sm:text-[17px]">
+            <p className="mt-[24px] max-w-[730px] text-[16px] font-normal leading-[1.72] text-[#58708A] sm:text-[18px]">
               Explore our 12-page report on piracy exposure, commercial
               impact and protection priorities for production, OTT and
               live events. With sourced research, a measurement framework
               and a practical roadmap.
             </p>
 
-            {/* Action buttons */}
-            <div className="mt-8 flex w-full flex-wrap items-center gap-3.5">
+            {/* ACTION BUTTONS */}
+            <div className="mt-[36px] flex flex-wrap items-center gap-4">
               <a
                 href="/brochure"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[56px] items-center justify-center gap-3 rounded-md bg-[#8BB630] px-7 py-4 text-sm font-bold text-[#15334E] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#7C9D18] sm:px-8"
+                className="inline-flex min-h-[61px] items-center justify-center rounded-[6px] bg-[#648B13] px-[30px] py-[18px] text-[15px] font-bold text-white transition-colors duration-200 hover:bg-[#52740E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#648B13]"
               >
                 Read the industry report
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="h-4 w-4"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M5 12h14m-6-6 6 6-6 6"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
               </a>
 
               <a
                 href="/documents/trackowls-piracy-impact-brochure.pdf"
                 download
-                className="inline-flex min-h-[56px] items-center justify-center gap-3 rounded-md border border-[#DCE6ED] bg-[#FFFFFF] px-7 py-4 text-sm font-bold text-[#15334E] transition-all duration-300 hover:border-[#648A13] hover:bg-[#F5F8F2] hover:text-[#648A13] sm:px-8"
+                className="inline-flex min-h-[61px] items-center justify-center rounded-[6px] border border-[#C5D3DE] bg-transparent px-[29px] py-[18px] text-[15px] font-bold text-[#172D47] transition-colors duration-200 hover:border-[#648B13] hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#648B13]"
               >
                 Download PDF
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="h-4 w-4"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M12 3v12m-5-5 5 5 5-5M5 17v4h14v-4"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
               </a>
             </div>
           </div>
 
-          {/* Right: Editorial feature panel */}
-          <div className="relative w-full lg:pl-0">
-            <div className="relative isolate min-h-[370px] overflow-hidden rounded-[11px] border-b-[8px] border-[#8BB630] bg-[#15334E] px-7 py-10 text-white sm:min-h-[435px] sm:px-11 sm:py-[50px] lg:min-h-[435px]">
-              {/* Decorative circular outline */}
+          {/* RIGHT FEATURE PANEL */}
+          <div className="relative min-w-0">
+            <div className="relative isolate min-h-[430px] overflow-hidden rounded-[13px] border-b-[10px] border-[#D0F20A] bg-[#102B43] px-7 py-10 text-white sm:min-h-[475px] sm:px-[49px] sm:py-[57px] lg:min-h-[494px]">
+              {/* Cropped decorative circle */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute -right-[76px] -top-[105px] -z-0 h-[265px] w-[265px] rounded-full border-[36px] border-[#8BB630]/25 sm:-right-[75px] sm:-top-[105px] sm:h-[310px] sm:w-[310px]"
+                className="pointer-events-none absolute -right-[83px] -top-[119px] -z-0 h-[285px] w-[285px] rounded-full border-[39px] border-[#65802D]/30 sm:-right-[77px] sm:-top-[120px] sm:h-[325px] sm:w-[325px]"
               />
 
-              <div className="relative z-10 flex h-full min-h-[310px] flex-col items-start sm:min-h-[325px]">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8BB630] sm:text-xs">
+              <div className="relative z-10 flex min-h-[345px] flex-col items-start sm:min-h-[350px]">
+                <p className="m-0 text-[11px] font-bold uppercase leading-[1.5] tracking-[1.8px] text-[#D0F20A] sm:text-[13px]">
                   TrackOwls insights / 2026
                 </p>
 
-                <h3 className="mt-11 max-w-[530px] text-[29px] font-bold leading-[1.2] tracking-[-0.035em] text-white sm:text-[36px] lg:text-[43px]">
+                <h3 className="mt-[52px] m-0 text-[32px] font-bold leading-[1.19] tracking-[-0.7px] text-white sm:text-[43px] lg:text-[47px]">
                   Every release.
                   <br />
                   Every stream.
@@ -101,24 +70,75 @@ export default function HomePiracyBrochure() {
                   Every live moment.
                 </h3>
 
-                <p className="mt-10 text-[11px] font-medium uppercase tracking-[0.04em] text-[#E5EDF5] sm:text-sm">
+                <p className="mt-[46px] text-[12px] font-normal uppercase leading-[1.6] tracking-[0.7px] text-[#E2E9F0] sm:text-[15px]">
                   Film &amp; production
-                  <span className="mx-2 text-[#8BB630]">·</span>
+                  <span className="mx-[7px]">·</span>
                   OTT
-                  <span className="mx-2 text-[#8BB630]">·</span>
+                  <span className="mx-[7px]">·</span>
                   Live sports
                 </p>
 
-                <div className="mt-auto pt-9">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.19em] text-[#8BB630] sm:text-xs">
-                    Scan / Detect / Remove / Protect
-                  </p>
-                </div>
+                <p className="mt-auto pt-8 text-[11px] font-bold uppercase leading-[1.5] tracking-[1.8px] text-[#D0F20A] sm:text-[13px]">
+                  Scan / Detect / Remove / Protect
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* RESPONSIVE ADJUSTMENTS */}
+      <style>{`
+        #piracy-brochure,
+        #piracy-brochure * {
+          box-sizing: border-box;
+        }
+
+        @media (min-width: 1024px) {
+          #piracy-brochure > div {
+            width: calc(100% - 80px);
+          }
+        }
+
+        @media (min-width: 1600px) {
+          #piracy-brochure > div {
+            width: calc(100% - 314px);
+          }
+        }
+
+        @media (max-width: 1023px) {
+          #piracy-brochure > div {
+            padding-top: 64px;
+            padding-bottom: 64px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          #piracy-brochure > div {
+            padding-top: 44px;
+            padding-bottom: 44px;
+          }
+
+          #piracy-brochure h2 {
+            font-size: clamp(36px, 9vw, 46px);
+            letter-spacing: -1.2px;
+          }
+
+          #piracy-brochure h3 {
+            font-size: clamp(30px, 8vw, 38px);
+          }
+
+          #piracy-brochure .brochure-actions {
+            width: 100%;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          #piracy-brochure * {
+            transition-duration: 0.01ms !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
