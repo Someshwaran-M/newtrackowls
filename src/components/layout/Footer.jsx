@@ -32,7 +32,7 @@ const informationLinks = [
   { name: "Privacy", href: "/privacy" },
   { name: "Terms", href: "/terms" },
   { name: "Cookies", href: "/cookies" },
-  { name: "Copyright reporting", href: "/copyright-reporting" },
+  { name: "Copyright", href: "/copyrights" },
   { name: "Content editor", href: "/content-editor" },
 ];
 

@@ -27,6 +27,11 @@ import UnderstandingEnforcementReports from "./components/maininsights/Understan
 import ReleaseWindowMonitoring from "./components/maininsights/ReleaseWindowMonitoring";
 import BrandReferenceChecklist from "./components/maininsights/BrandReferenceChecklist";
 import RepeatSourceInvestigation from "./components/maininsights/RepeatSourceInvestigation";
+import InformationTerms from "./components/information/InformationTerms";
+import CopyRight from "./components/information/CopyRights";
+import InformationCookies from "./components/information/InformationCookies";
+import ContentEditor from "./components/information/ContentEditor";
+import Career from "./components/information/Career";
 
 function App() {
   return (
@@ -48,6 +53,11 @@ function App() {
 
           {/* Information */}
           <Route path="/privacy" element={<InformationPrivacy />} />
+          <Route path="/terms" element={<InformationTerms />} />
+          <Route path="/cookies" element={<InformationCookies />} />
+          <Route path="/copyrights" element={<CopyRight />} />
+          <Route path="/content-editor" element={<ContentEditor />} />
+          <Route path="/careers" element={<Career />} />
 
           {/* Insights Articles */}
           <Route
