@@ -1,7 +1,6 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import HomeAnime from "./HomeAnime";
 
 const categories = [
   "Video & film",
@@ -12,14 +11,7 @@ const categories = [
   "Brand assets",
 ];
 
-const backgroundSlides = [
-  "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=90",
-  "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2000&q=90",
-  "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=90",
-  "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2000&q=90",
-];
-
-const Icon = ({ children, className = "h-5 w-5" }) => (
+const Icon = ({ children, className = "h-4 w-4" }) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -36,15 +28,7 @@ const Icon = ({ children, className = "h-5 w-5" }) => (
 
 function HomeMain() {
   const navigate = useNavigate();
-  const [backgroundIndex, setBackgroundIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setBackgroundIndex((current) => (current + 1) % backgroundSlides.length);
-    }, 5000);
-
-    return () => window.clearInterval(timer);
-  }, []);
+  const [animationPaused, setAnimationPaused] = useState(false);
 
   const handleContact = () => {
     const contact = document.getElementById("contact");
@@ -62,13 +46,393 @@ function HomeMain() {
   return (
     <main
       id="home"
-      className="relative isolate min-h-[calc(100svh-90px)] overflow-hidden  font-['Roboto',sans-serif] text-white"
+      className={`track-hero relative isolate overflow-hidden bg-[#081e32] font-['Roboto',sans-serif] text-white ${
+        animationPaused ? "track-no-animation" : ""
+      }`}
     >
       <style>{`
-        @keyframes homeContentReveal {
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&display=swap');
+
+        .track-hero {
+          --lime: #c9f20b;
+          --navy: #092036;
+          --border: rgba(171, 198, 215, .45);
+          background:
+            radial-gradient(
+              ellipse at 76% 48%,
+              rgba(33, 91, 89, .34),
+              transparent 46%
+            ),
+            linear-gradient(
+              110deg,
+              #071b30 0%,
+              #0b2337 54%,
+              #102a34 100%
+            );
+        }
+
+        .track-world-map {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          pointer-events: none;
+          overflow: hidden;
+          opacity: .25;
+          background-image:
+            linear-gradient(
+              90deg,
+              rgba(5, 24, 42, .78),
+              rgba(5, 24, 42, .05) 75%
+            ),
+            url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2200&q=85');
+          background-position: center center;
+          background-size: cover;
+          filter: saturate(.6);
+        }
+
+        .track-map-overlay {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          pointer-events: none;
+          background:
+            linear-gradient(
+              90deg,
+              rgba(5, 24, 43, .52) 0%,
+              rgba(5, 24, 43, .30) 48%,
+              rgba(7, 28, 42, .16) 100%
+            ),
+            linear-gradient(
+              0deg,
+              rgba(5, 24, 43, .30),
+              transparent 38%,
+              rgba(5, 24, 43, .12)
+            );
+        }
+
+        /* Main layout: extra space below the navbar */
+        .track-content {
+          width: min(1570px, calc(100% - 130px));
+          min-height: 906px;
+          margin: 0 auto;
+          padding-top: 116px;
+          padding-bottom: 70px;
+          display: grid;
+          grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+          column-gap: 70px;
+          align-items: start;
+          position: relative;
+          z-index: 1;
+        }
+
+        .track-left {
+          min-width: 0;
+          animation: trackReveal .7s ease both;
+        }
+
+        .track-eyebrow {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          margin-bottom: 25px;
+          color: var(--lime);
+          font-size: 13px;
+          font-weight: 800;
+          letter-spacing: 2px;
+          line-height: 1.2;
+          white-space: nowrap;
+        }
+
+        .track-eyebrow-line {
+          display: block;
+          width: 31px;
+          height: 1px;
+          flex-shrink: 0;
+          background: #8bb630;
+        }
+
+        .track-heading {
+          max-width: 650px;
+          margin: 0;
+          color: #f8fafc;
+          font-size: clamp(58px, 4.5vw, 78px);
+          font-weight: 800;
+          letter-spacing: -3.5px;
+          line-height: 1.065;
+        }
+
+        .track-heading-accent {
+          display: block;
+          color: var(--lime);
+          white-space: nowrap;
+        }
+
+        .track-description {
+          max-width: 640px;
+          margin: 27px 0 0;
+          color: #d3dfeb;
+          font-size: 19px;
+          font-weight: 400;
+          line-height: 1.68;
+          letter-spacing: -.35px;
+        }
+
+        .track-process {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-top: 29px;
+          color: #e3eaf2;
+          font-size: 13px;
+          font-weight: 800;
+          letter-spacing: 1.2px;
+          line-height: 1;
+        }
+
+        .track-process-divider {
+          height: 15px;
+          width: 2px;
+          background: var(--lime);
+        }
+
+        .track-actions {
+          display: flex;
+          align-items: center;
+          gap: 13px;
+          margin-top: 36px;
+        }
+
+        .track-primary-button,
+        .track-secondary-button {
+          display: inline-flex;
+          min-height: 51px;
+          align-items: center;
+          justify-content: center;
+          border-radius: 6px;
+          padding: 0 24px;
+          white-space: nowrap;
+          font-size: 14px;
+          font-weight: 700;
+          transition:
+            background .2s,
+            border-color .2s,
+            transform .2s;
+        }
+
+        .track-primary-button {
+          min-width: 209px;
+          border: 1px solid var(--lime);
+          background: var(--lime);
+          color: #14200b;
+        }
+
+        .track-primary-button:hover {
+          background: #d9ff30;
+          transform: translateY(-1px);
+        }
+
+        .track-secondary-button {
+          min-width: 199px;
+          border: 1px solid #668096;
+          background: rgba(16, 39, 60, .78);
+          color: #f7fafc;
+        }
+
+        .track-secondary-button:hover {
+          border-color: var(--lime);
+          background: rgba(25, 52, 72, .96);
+        }
+
+        /* Category chips wrap into four on the first row and two on the next */
+        .track-categories {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: flex-start;
+          gap: 9px 8px;
+          width: 520px;
+          max-width: 100%;
+          margin-top: 28px;
+        }
+
+        .track-category {
+          display: inline-flex;
+          height: 39px;
+          flex: 0 0 auto;
+          align-items: center;
+          justify-content: center;
+          padding: 0 11px;
+          border: 1px solid rgba(120, 155, 181, .62);
+          border-radius: 5px;
+          background: rgba(15, 39, 60, .82);
+          color: #e0eaf4;
+          font-size: 14px;
+          font-weight: 500;
+          letter-spacing: -.3px;
+          white-space: nowrap;
+        }
+
+        .track-category:hover {
+          border-color: var(--lime);
+          color: white;
+        }
+
+        .track-proof {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-top: 39px;
+          color: #cfdeeb;
+          font-size: 14px;
+          line-height: 1.5;
+        }
+
+        .track-proof-icon {
+          flex-shrink: 0;
+          color: #8bb630;
+        }
+
+        .track-pause {
+          display: block;
+          margin-top: 24px;
+          padding: 0 0 8px;
+          border: 0;
+          border-bottom: 1px solid rgba(189, 209, 223, .8);
+          background: transparent;
+          color: #62798e;
+          cursor: pointer;
+          font-size: 12px;
+          line-height: 1;
+        }
+
+        .track-pause:hover {
+          color: #dce7f0;
+        }
+
+        /* Image sits lower than the left-side eyebrow */
+        .track-right {
+          width: 100%;
+          min-width: 0;
+          padding-top: 124px;
+          animation: trackReveal .8s .1s ease both;
+        }
+
+        .track-image-frame {
+          position: relative;
+          width: 100%;
+          height: 406px;
+          overflow: hidden;
+          border: 1px solid rgba(189, 211, 227, .72);
+          border-radius: 15px;
+          background: #111c26;
+          box-shadow: 0 20px 50px rgba(0, 0, 0, .24);
+        }
+
+        .track-image {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+
+        .track-image-caption {
+          position: absolute;
+          inset: auto 0 0;
+          padding: 23px 19px 17px;
+          background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, .83),
+            rgba(0, 0, 0, .2),
+            transparent
+          );
+          color: #e8edf2;
+          font-size: 12px;
+          line-height: 1.3;
+        }
+
+        .track-walkthrough {
+          position: relative;
+          display: flex;
+          width: 359px;
+          max-width: calc(100% - 20px);
+          height: 51px;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          margin: 18px auto 0;
+          border: 1px solid rgba(117, 151, 175, .65);
+          border-left: 3px solid var(--lime);
+          border-radius: 7px;
+          background: rgba(11, 34, 54, .94);
+          color: #f0f5fa;
+          font-size: 14px;
+          font-weight: 500;
+          white-space: nowrap;
+          transition: background .2s;
+        }
+
+        .track-walkthrough:hover {
+          background: #173c53;
+        }
+
+        .track-walkthrough-icon {
+          flex-shrink: 0;
+          color: #8bb630;
+        }
+
+        .track-image-meta {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          margin-top: 21px;
+          color: #d3e0e9;
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: .65px;
+          line-height: 1.4;
+          white-space: nowrap;
+        }
+
+        /* Footer */
+        .track-footer {
+          position: relative;
+          z-index: 2;
+          min-height: 70px;
+          border-top: 1px solid rgba(144, 172, 192, .19);
+          background: #102c43;
+        }
+
+        .track-footer-inner {
+          display: grid;
+          width: min(1570px, calc(100% - 130px));
+          min-height: 70px;
+          grid-template-columns: 1.1fr repeat(6, 1fr);
+          align-items: center;
+          gap: 25px;
+          margin: 0 auto;
+        }
+
+        .track-footer-item {
+          color: #d7e4ef;
+          font-size: 13px;
+          font-weight: 500;
+          letter-spacing: .1px;
+          line-height: 1.4;
+        }
+
+        .track-footer-label {
+          display: block;
+          color: #b7cbd9;
+          font-size: 11px;
+          font-weight: 400;
+          line-height: 1.5;
+        }
+
+        @keyframes trackReveal {
           from {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(10px);
           }
           to {
             opacity: 1;
@@ -76,159 +440,374 @@ function HomeMain() {
           }
         }
 
-        @keyframes homeBackgroundReveal {
-          from {
-            opacity: 0;
-            transform: scale(1.04);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        .home-content-enter {
-          animation: homeContentReveal .8s cubic-bezier(.2,.7,.2,1) both;
-        }
-
-        .home-background-enter {
-          animation: homeBackgroundReveal 1.2s ease both;
+        .track-no-animation .track-left,
+        .track-no-animation .track-right {
+          animation: none !important;
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .home-content-enter,
-          .home-background-enter {
-            animation: none !important;
+          .track-left,
+          .track-right {
+            animation: none;
+          }
+        }
+
+        /* Laptop */
+        @media (max-width: 1350px) {
+          .track-content {
+            width: calc(100% - 80px);
+            grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+            column-gap: 42px;
+          }
+
+          .track-heading {
+            font-size: clamp(50px, 4.6vw, 66px);
+            letter-spacing: -2.8px;
+          }
+
+          .track-description {
+            font-size: 17px;
+          }
+
+          .track-category {
+            font-size: 13px;
+            padding: 0 9px;
+          }
+
+          .track-image-frame {
+            height: clamp(320px, 30vw, 406px);
+          }
+
+          .track-footer-inner {
+            width: calc(100% - 80px);
+            gap: 16px;
+          }
+        }
+
+        /* Tablet */
+        @media (max-width: 1023px) {
+          .track-content {
+            width: min(760px, calc(100% - 48px));
+            min-height: unset;
+            grid-template-columns: minmax(0, 1fr);
+            row-gap: 30px;
+            padding-top: 76px;
+            padding-bottom: 65px;
+          }
+
+          .track-heading {
+            max-width: 650px;
+            font-size: clamp(52px, 8vw, 68px);
+          }
+
+          .track-description {
+            max-width: 570px;
+          }
+
+          .track-categories {
+            width: 520px;
+          }
+
+          .track-right {
+            padding-top: 10px;
+          }
+
+          .track-image-frame {
+            height: auto;
+            aspect-ratio: 1.64 / 1;
+          }
+
+          .track-walkthrough {
+            margin-left: 0;
+          }
+
+          .track-footer-inner {
+            width: min(760px, calc(100% - 48px));
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            padding: 20px 0;
+          }
+
+          .track-footer {
+            min-height: unset;
+          }
+        }
+
+        /* Mobile */
+        @media (max-width: 560px) {
+          .track-content {
+            width: calc(100% - 36px);
+            row-gap: 27px;
+            padding-top: 54px;
+            padding-bottom: 45px;
+          }
+
+          .track-eyebrow {
+            gap: 8px;
+            margin-bottom: 23px;
+            font-size: 9px;
+            letter-spacing: 1.25px;
+            white-space: normal;
+          }
+
+          .track-eyebrow-line {
+            width: 18px;
+          }
+
+          .track-heading {
+            font-size: clamp(40px, 10.5vw, 55px);
+            letter-spacing: -1.9px;
+            line-height: 1.09;
+          }
+
+          .track-heading-accent {
+            font-size: .88em;
+            letter-spacing: -1.6px;
+            white-space: normal;
+          }
+
+          .track-description {
+            margin-top: 20px;
+            font-size: 15px;
+            line-height: 1.75;
+          }
+
+          .track-process {
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 23px;
+            font-size: 10px;
+            letter-spacing: 1px;
+          }
+
+          .track-process-divider {
+            height: 12px;
+          }
+
+          .track-actions {
+            align-items: stretch;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 26px;
+          }
+
+          .track-primary-button,
+          .track-secondary-button {
+            width: 100%;
+            min-height: 49px;
+          }
+
+          .track-categories {
+            width: 100%;
+            gap: 8px;
+            margin-top: 22px;
+          }
+
+          .track-category {
+            height: 36px;
+            padding: 0 10px;
+            font-size: 12px;
+          }
+
+          .track-proof {
+            margin-top: 29px;
+            font-size: 12px;
+          }
+
+          .track-pause {
+            margin-top: 19px;
+          }
+
+          .track-right {
+            padding-top: 0;
+          }
+
+          .track-image-frame {
+            aspect-ratio: 1.35 / 1;
+            border-radius: 10px;
+          }
+
+          .track-image-caption {
+            padding: 18px 12px 12px;
+            font-size: 10px;
+          }
+
+          .track-walkthrough {
+            width: 100%;
+            max-width: 100%;
+            height: 47px;
+            gap: 8px;
+            margin-top: 13px;
+            padding: 0 8px;
+            font-size: 11px;
+          }
+
+          .track-image-meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 7px;
+            margin-top: 15px;
+            font-size: 10px;
+            white-space: normal;
+          }
+
+          .track-footer-inner {
+            width: calc(100% - 36px);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px 15px;
+            padding: 22px 0;
+          }
+
+          .track-footer-item {
+            font-size: 12px;
           }
         }
       `}</style>
 
-      {/* Full hero background: image, overlays and grid */}
-      <div
-        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
-        aria-hidden="true"
-      >
-        {/* Animated background images */}
-        {backgroundSlides.map((image, index) => (
-          <img
-            key={image}
-            src={image}
-            alt=""
-            draggable="false"
-            className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-[1200ms] ${
-              backgroundIndex === index ? "opacity-100" : "opacity-0"
-            } ${backgroundIndex === index ? "home-background-enter" : ""}`}
-          />
-        ))}
+      {/* Background */}
+      <div className="track-world-map" aria-hidden="true" />
+      <div className="track-map-overlay" aria-hidden="true" />
 
-        {/* Darken the background while keeping the image visible */}
-        <div className="absolute inset-0 bg-[#080d09]/45" />
-
-        {/* Left side remains darker for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#080d09]/90 via-[#080d09]/65 to-[#080d09]/25" />
-
-        {/* Bottom and top shading */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080d09]/80 via-transparent to-[#080d09]/30" />
-
-        {/* Grid overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.12]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,.16) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.16) 1px, transparent 1px)",
-            backgroundSize: "90px 90px",
-            maskImage: "linear-gradient(to right, black, transparent 85%)",
-            WebkitMaskImage:
-              "linear-gradient(to right, black, transparent 85%)",
-          }}
-        />
-
-        {/* Lime-green atmosphere */}
-        <div className="absolute -right-24 top-[15%] h-[450px] w-[450px] rounded-full bg-[#8BB630]/15 blur-[120px]" />
-      </div>
-
-      {/* Hero content and right-side animation */}
-      <section className="relative z-10 mx-auto grid min-h-[100svh] max-w-[1400px] grid-cols-1 items-center gap-8 px-5 pb-24 pt-28 sm:px-8 sm:pt-32 lg:grid-cols-[0.98fr_1.02fr] lg:gap-10 lg:px-10 lg:pb-24 lg:pt-32 xl:px-14 2xl:px-16">
-        {/* LEFT: original homepage content */}
-        <div className="home-content-enter relative z-10 flex min-w-0 flex-col items-start">
-      <div>
-            <div className="mb-6 inline-flex items-center gap-3">
-              <span className="h-[2px] w-8 bg-[#8EAF20]" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#617D17]">
-                DIGITAL ANTI-PIRACY & CONTENT PROTECTION
-              </span>
-            </div>
-
-            <h2 className="m-0 max-w-[850px] text-[36px] font-bold leading-[1.06] tracking-[-0.055em] sm:text-[48px] lg:text-[64px]">
-              Protect your content.
-              <span className="block text-[#7C9D18]">
-              Stop digital piracy.
-              </span>
-            </h2>
+      {/* Hero content */}
+      <section className="track-content">
+        {/* Left column */}
+        <div className="track-left">
+          <div className="track-eyebrow">
+            <span className="track-eyebrow-line" />
+            <span>
+              DIGITAL ANTI-PIRACY &amp; CONTENT PROTECTION
+            </span>
           </div>
-          <p className="mt-6 max-w-[510px] text-[13px] leading-[1.9] text-white/75 sm:text-[15px]">
-           Technology, intelligence and enforcement to help rights holders detect online infringement and protect digital content and brands.
+
+          <h1 className="track-heading">
+            Protect your
+            <br />
+            content.
+            <span className="track-heading-accent">
+              Stop digital piracy.
+            </span>
+          </h1>
+
+          <p className="track-description">
+            Technology, intelligence and enforcement to help rights
+            holders detect online infringement and protect digital content
+            and brands.
           </p>
 
-          <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] font-bold uppercase tracking-[0.12em] text-white/90 sm:text-[11px]">
-            <span>Scan</span>
-            <span className="h-4 w-px bg-[#8BB630]" />
-            <span>Detect</span>
-            <span className="h-4 w-px bg-[#8BB630]" />
-            <span>Remove</span>
-            <span className="h-4 w-px bg-[#8BB630]" />
-            <span>Protect</span>
+          <div className="track-process">
+            <span>SCAN</span>
+            <span className="track-process-divider" />
+            <span>DETECT</span>
+            <span className="track-process-divider" />
+            <span>REMOVE</span>
+            <span className="track-process-divider" />
+            <span>PROTECT</span>
           </div>
 
-          <div className="mt-7 flex w-full flex-wrap gap-3">
+          <div className="track-actions">
             <button
               type="button"
               onClick={handleContact}
-              className="group inline-flex min-h-[48px] items-center justify-center gap-3 rounded-[7px] border border-[#8BB630] bg-[#8BB630] px-5 py-3 text-[12px] font-black text-[#11170c] transition-all duration-300 hover:-translate-y-1 hover:bg-[#a4ce49] hover:shadow-[0_12px_32px_rgba(139,182,48,.25)] sm:px-6 sm:text-[13px]"
+              className="track-primary-button"
             >
               Request a consultation
-              <span className="text-lg transition-transform group-hover:translate-x-1">
-                ↗
-              </span>
             </button>
 
             <button
               type="button"
               onClick={() => navigate("/solutions")}
-              className="inline-flex min-h-[48px] items-center justify-center gap-3 rounded-[7px] border border-white/30 bg-white/[0.04] px-5 py-3 text-[12px] font-bold text-white backdrop-blur-md transition-all duration-300 hover:border-[#8BB630] hover:bg-[#8BB630]/10 sm:px-6 sm:text-[13px]"
+              className="track-secondary-button"
             >
               Explore our solutions
-              <span className="text-lg text-[#a8d650]">↗</span>
             </button>
           </div>
 
-          <div className="mt-6 flex max-w-[570px] flex-wrap gap-2">
-            {categories.map((category, index) => (
-              <span
-                key={category}
-                className="inline-flex min-h-[32px] items-center gap-2 rounded-[7px] border border-white/15 bg-black/20 px-3 py-2 text-[10px] font-medium text-white/90 backdrop-blur-md transition-colors duration-300 hover:border-[#8BB630]/70 hover:bg-[#8BB630]/10 sm:text-[11px]"
-              >
-                <span className="text-[#a8d650]">
-                  {["▣", "◉", "♫", "▤", "⌘", "◇"][index]}
-                </span>
+          <div className="track-categories">
+            {categories.map((category) => (
+              <span className="track-category" key={category}>
                 {category}
               </span>
             ))}
           </div>
 
-          <div className="mt-7 flex items-center gap-3 text-[11px] text-white/80 sm:text-[12px]">
-            <Icon className="h-5 w-5 shrink-0 text-[#a8d650]">
-              <path d="M12 3 19 6v5c0 4.5-2.8 7.8-7 10-4.2-2.2-7-5.5-7-10V6l7-3Z" />
+          <div className="track-proof">
+            <Icon className="track-proof-icon h-4 w-4">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               <path d="m9 12 2 2 4-4" />
             </Icon>
             <span>Evidence-led action. Clear case visibility.</span>
           </div>
+
+          <button
+            type="button"
+            className="track-pause"
+            onClick={() => setAnimationPaused((previous) => !previous)}
+          >
+            {animationPaused
+              ? "Resume background animation"
+              : "Pause background animation"}
+          </button>
         </div>
 
-        {/* RIGHT: separate animated gallery */}
-        <HomeAnime />
+        {/* Right column */}
+        <div className="track-right">
+          <div className="track-image-frame">
+            <img
+              src="/images/home/home 2.jpeg"
+              alt="Digital infrastructure server racks"
+              draggable="false"
+              className="track-image"
+            />
 
+            <div className="track-image-caption">
+              Digital infrastructure · Illustrative photography
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => navigate("/walkthrough")}
+            className="track-walkthrough"
+          >
+            <Icon className="track-walkthrough-icon h-4 w-4">
+              <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+              <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+              <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+              <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+              <circle cx="12" cy="12" r="2.5" />
+            </Icon>
+
+            <span>
+              Explore the animated monitoring walkthrough
+            </span>
+          </button>
+
+          <div className="track-image-meta">
+            <span>01 / DISCOVERY TO ENFORCEMENT</span>
+            <span>HUMAN INTELLIGENCE + TECHNOLOGY</span>
+          </div>
+        </div>
       </section>
+
+      {/* Footer strip */}
+      <footer className="track-footer">
+        <div className="track-footer-inner">
+          <div className="track-footer-item">
+            <span className="track-footer-label">
+              BUILT FOR RIGHTS
+            </span>
+            <span className="track-footer-label">
+              HOLDERS
+            </span>
+          </div>
+
+          <div className="track-footer-item">OTT &amp; VOD</div>
+          <div className="track-footer-item">LIVE SPORTS</div>
+          <div className="track-footer-item">FILM</div>
+          <div className="track-footer-item">BROADCAST</div>
+          <div className="track-footer-item">MUSIC</div>
+          <div className="track-footer-item">BRANDS</div>
+        </div>
+      </footer>
     </main>
   );
 }

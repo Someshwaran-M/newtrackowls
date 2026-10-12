@@ -6,73 +6,118 @@ export default function HomeAbout() {
   return (
     <section
       id="about"
-      className="relative w-full overflow-hidden bg-white font-['Roboto',Arial,sans-serif] text-[#15334E]"
+      className="relative w-full overflow-hidden bg-[#F3F7FC] font-['Roboto',Arial,sans-serif] text-[#172D48]"
     >
-      <div className="mx-auto grid max-w-[1420px] grid-cols-1 gap-7 px-6 py-10 sm:px-8 sm:py-12 md:grid-cols-2 md:items-center md:gap-10 lg:px-12 lg:py-12 xl:px-16">
-        {/* LEFT: Heading */}
+      <div
+        className="
+          mx-auto grid w-full max-w-[1580px]
+          grid-cols-1 gap-8
+          px-6 py-[76px]
+          sm:px-10 sm:py-[90px]
+          md:grid-cols-2 md:items-start md:gap-12
+          lg:px-[5.5%] lg:py-[119px]
+          xl:gap-[100px]
+        "
+      >
+        {/* LEFT COLUMN */}
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.55, ease: "easeOut" }}
           className="min-w-0"
         >
-          
-          <div>
-            <div className="mb-6 inline-flex items-center gap-3">
-              <span className="h-[2px] w-8 bg-[#8EAF20]" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#617D17]">
-                 Content. Identity. Digital trust.
-              </span>
-            </div>
-
-            <h2 className="m-0 max-w-[850px] text-[36px] font-bold leading-[1.06] tracking-[-0.055em] sm:text-[48px] lg:text-[64px]">
-              Protect what makes
-              <span className="block text-[#7C9D18]">
-              your business
-              </span>
-              <span className="block text-[#7C9D18]">
-              valuable.
-              </span>
-            </h2>
+          {/* Eyebrow */}
+          <div className="mb-[32px] flex items-center">
+            <span className="text-[12px] font-bold uppercase tracking-[0.17em] text-[#547F17]">
+              Content. Identity. Digital trust.
+            </span>
           </div>
+
+          {/* Main heading */}
+          <h2
+            className="
+              m-0 max-w-[700px]
+              text-[34px] font-bold
+              leading-[1.12] tracking-[-1.6px]
+              text-[#172D48]
+              sm:text-[52px]
+              lg:text-[64px]
+              lg:leading-[1.12]
+              lg:tracking-[-2px]
+            "
+          >
+            Protect what makes
+            <br />
+            your business
+            <br />
+            valuable.
+          </h2>
         </motion.div>
 
-        
-
-        {/* RIGHT: Description and link */}
+        {/* RIGHT COLUMN */}
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.55, delay: 0.1, ease: "easeOut" }}
-          className="min-w-0 md:pl-1 lg:pl-3"
+          transition={{
+            duration: 0.55,
+            delay: 0.1,
+            ease: "easeOut",
+          }}
+          className="min-w-0 md:pt-0"
         >
-          <div className="space-y-6">
-  <p className="m-0 text-justify text-[14px] leading-[1.9] text-[#45637F] [text-justify:inter-word] sm:text-[14px] lg:text-[15px]">
-    Your content and brand can appear far beyond the channels you
-    authorize. TrackOwls brings those findings into a structured review:
-    what was found, which rights apply, what evidence supports it and
-    what action follows.
-  </p>
+          {/* First paragraph */}
+          <p
+            className="
+              m-0 max-w-[800px]
+              text-[12px] font-normal
+              leading-[1.65] tracking-[-0.15px]
+              text-[#586F89]
+              sm:text-[18px]
+              lg:text-[20px]
+              lg:leading-[1.65]
+            "
+          >
+            Your content and brand can appear far beyond the channels you
+            authorize. TrackOwls brings those findings into a structured
+            review: what was found, which rights apply, what evidence
+            supports it and what action follows.
+          </p>
 
-  <p className="mt-5 text-justify text-[14px] leading-[1.9] text-[#45637F] [text-justify:inter-word] sm:text-[14px] lg:text-[15px]">
-    Start with a release, a live event, a catalogue or a brand
-    portfolio. Build the monitoring scope around your priorities, then
-    use case records and reporting to follow the work.
-  </p>
-</div>
+          {/* Second paragraph */}
+          <p
+            className="
+              mt-[32px] mb-0 max-w-[800px]
+              text-[12px] font-normal
+              leading-[1.65] tracking-[-0.15px]
+              text-[#586F89]
+              sm:text-[18px]
+              lg:text-[20px]
+              lg:leading-[1.65]
+            "
+          >
+            Start with a release, a live event, a catalogue or a brand
+            portfolio. Build the monitoring scope around your priorities,
+            then use case records and reporting to follow the work.
+          </p>
+
+          {/* About link */}
           <a
             href="/about"
-            className="group mt-4 inline-flex items-center gap-2 border-b border-[#B8CE87] pb-1 text-[12px] font-medium text-[#648A13] transition-colors duration-200 hover:border-[#648A13] hover:text-[#45650B] sm:text-[14px]"
+            className="
+              mt-[37px] inline-flex
+              border-b border-[#B7CC8B]
+              pb-[9px]
+              text-[12px] font-normal
+              tracking-[-0.2px]
+              text-[#638B15]
+              transition-colors duration-200
+              hover:border-[#638B15]
+              hover:text-[#45650B]
+            "
           >
             Meet TrackOwls
-            <span
-              aria-hidden="true"
-              className="inline-block transition-transform duration-200 group-hover:translate-x-1"
-            >
-              →
-            </span>
           </a>
         </motion.div>
       </div>

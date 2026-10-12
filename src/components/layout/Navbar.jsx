@@ -1,42 +1,20 @@
-
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const navItems = [
-  { name: "Home", path: "/" },
-  { name: "How it works", path: "/how-it-works" },
-  { name: "About", path: "/about" },
   { name: "Solutions", path: "/solutions" },
   { name: "Industries", path: "/industries" },
   { name: "Platform", path: "/platform" },
+  { name: "How it works", path: "/how-it-works" },
+  { name: "About", path: "/about" },
   { name: "Insights", path: "/insights" },
-  { name: "Piracy Impact Brochure", path: "/piracy" },
+  { name: "Piracy impact report", path: "/piracy" },
 ];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
   const location = useLocation();
   const navigate = useNavigate();
-
-  const isHome = location.pathname === "/";
-  const transparent = isHome && !scrolled && !menuOpen;
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 35);
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [location.pathname]);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -54,7 +32,6 @@ export default function Navbar() {
   }, [location.pathname, location.hash]);
 
   const closeMenu = () => setMenuOpen(false);
-
   const isActive = (path) => location.pathname === path;
 
   const handleConsultation = () => {
@@ -78,52 +55,34 @@ export default function Navbar() {
   };
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 w-full transition-all duration-300 ${
-        transparent
-          ? "border-b border-transparent bg-transparent shadow-none"
-          : "border-b border-[#e6eae2] bg-white shadow-[0_4px_18px_rgba(20,32,20,0.06)]"
-      }`}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 w-full bg-[#f8fafc] border-b border-[#e2e8f0]">
       <nav
         aria-label="Main navigation"
-        className="relative mx-auto flex min-h-[76px] w-full max-w-[1420px] items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:gap-5 lg:px-8"
+        className="relative mx-auto flex h-20 w-full max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-12"
       >
-        {/* Brand logos */}
-        
-{/* Brand logos */}
-<Link
-  to="/"
-  onClick={closeMenu}
-  aria-label="TrackOwls home"
-  className="flex shrink-0 items-center gap-2 sm:gap-3"
->
-  <img
-    src={
-      transparent
-        ? "/images/logo/Trackowls_Owl_Logo_Banner-remove-owl-bg-light.png"
-        : "/images/logo/Trackowls_Owl_Logo_Banner-remove-owl-bg.png"
-    }
-    alt=""
-    draggable="false"
-    className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14 lg:h-16 lg:w-16"
-  />
+        {/* Brand logo & text image matching the reference */}
+        <Link
+          to="/"
+          onClick={closeMenu}
+          aria-label="TrackOwls home"
+          className="flex shrink-0 items-center gap-3"
+        >
+          <img
+            src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owl-bg.png"
+            alt="TrackOwls Owl"
+            draggable="false"
+            className="h-12 w-12 object-contain"
+          />
+          <img
+            src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owltext-bg.png"
+            alt="TRACKOWLS"
+            draggable="false"
+            className="h-6 w-auto object-contain"
+          />
+        </Link>
 
-  <img
-    src={
-      transparent
-        ? "/images/logo/Trackowls_Owl_Logo_Banner-remove-bg-light.png"
-        : "/images/logo/Trackowls_Owl_Logo_Banner-remove-owltext-bg.png"
-    }
-    alt="TrackOwls"
-    draggable="false"
-    className="h-auto w-[105px] object-contain sm:w-[135px] lg:w-[155px]"
-  />
-</Link>
-
-
-        {/* Desktop navigation */}
-        <div className="hidden min-w-0 flex-1 items-center justify-center gap-3 xl:flex 2xl:gap-5">
+        {/* Desktop navigation matching reference layout */}
+        <div className="hidden items-center gap-8 xl:flex">
           {navItems.map((item) => {
             const active = isActive(item.path);
 
@@ -133,105 +92,59 @@ export default function Navbar() {
                 to={item.path}
                 onClick={closeMenu}
                 aria-current={active ? "page" : undefined}
-                className={`relative whitespace-nowrap px-1.5 py-3 text-[14px] font-bold tracking-normal transition-colors duration-200 2xl:text-[13px] ${
-                  transparent
-                    ? "text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.65)] hover:text-[#ADD132]"
-                    : active
-                      ? "text-[#151a12]"
-                      : "text-[#303630] hover:text-[#719b0c]"
+                className={`whitespace-nowrap text-[15px] font-medium tracking-normal transition-colors duration-200 ${
+                  active
+                    ? "text-[#1e293b]"
+                    : "text-[#334155] hover:text-[#1e293b]"
                 }`}
               >
-                {active && (
-                  <>
-                    <span className="absolute left-0 top-0 h-3 w-3 border-l-2 border-t-2 border-[#ADD132]" />
-                    <span className="absolute right-0 top-0 h-3 w-3 border-r-2 border-t-2 border-[#ADD132]" />
-                    <span className="absolute bottom-0 left-0 h-3 w-3 border-b-2 border-l-2 border-[#ADD132]" />
-                    <span className="absolute bottom-0 right-0 h-3 w-3 border-b-2 border-r-2 border-[#ADD132]" />
-                  </>
-                )}
-
                 {item.name}
               </Link>
             );
           })}
         </div>
 
-        {/* Desktop consultation button */}
-        <div
-          className={`hidden shrink-0 items-center border-l pl-4 xl:flex 2xl:pl-5 ${
-            transparent ? "border-white/35" : "border-[#ADD132]"
-          }`}
-        >
+        {/* Desktop consultation button matching reference green pill shape & tone */}
+        <div className="hidden shrink-0 items-center xl:flex">
           <button
             type="button"
             onClick={handleConsultation}
-            className="inline-flex items-center gap-2 bg-[#ADD132] px-4 py-3.5 text-[12px] font-black uppercase tracking-wide text-[#151a0d] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#baf53b] hover:shadow-[0_8px_22px_rgba(169,237,22,0.2)] 2xl:px-5 2xl:text-[13px]"
+            className="inline-flex items-center justify-center rounded-[8px] bg-[#5a8c12] px-6 py-3 text-[15px] font-semibold text-white shadow-sm transition-all duration-300 hover:bg-[#689d14]"
           >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              className="h-4 w-4 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4 4v-4h-.5A2.5 2.5 0 0 1 4 13.5z" />
-              <path d="M8 8h8M8 11h5" />
-            </svg>
             Request a consultation
           </button>
         </div>
 
-        {/* Mobile / tablet menu toggle */}
+        {/* Mobile menu toggle */}
         <button
           type="button"
           onClick={() => setMenuOpen((open) => !open)}
-          aria-label={
-            menuOpen ? "Close navigation menu" : "Open navigation menu"
-          }
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={menuOpen}
           aria-controls="trackowls-mobile-menu"
-          className={`flex h-10 w-10 shrink-0 items-center justify-center border transition xl:hidden ${
-            transparent
-              ? "border-white/50 text-white hover:border-[#ADD132] hover:bg-white/10"
-              : "border-[#e4e8df] text-[#182018] hover:border-[#ADD132] hover:bg-[#f6fbe9]"
-          }`}
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded border border-[#cbd5e1] text-[#1e293b] transition hover:bg-[#f1f5f9] xl:hidden"
         >
           {menuOpen ? (
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              className="h-5 w-5"
-              aria-hidden="true"
-            >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
               <path d="m6 6 12 12M18 6 6 18" />
             </svg>
           ) : (
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              className="h-5 w-5"
-              aria-hidden="true"
-            >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
               <path d="M4 7h16M4 12h16M4 17h16" />
             </svg>
           )}
         </button>
 
-        {/* Mobile / tablet menu */}
+        {/* Mobile dropdown menu */}
         <div
           id="trackowls-mobile-menu"
-          className={`absolute left-0 right-0 top-full z-50 border-t border-[#e8ece4] bg-white px-5 pb-5 shadow-[0_18px_35px_rgba(20,30,15,0.12)] transition-all duration-300 xl:hidden ${
+          className={`absolute left-0 right-0 top-full z-50 border-t border-[#e2e8f0] bg-white px-6 pb-6 shadow-xl transition-all duration-300 xl:hidden ${
             menuOpen
               ? "visible translate-y-0 opacity-100"
               : "invisible pointer-events-none -translate-y-2 opacity-0"
           }`}
         >
-          <div className="flex max-h-[65vh] flex-col overflow-y-auto">
+          <div className="flex max-h-[65vh] flex-col overflow-y-auto pt-2">
             {navItems.map((item) => {
               const active = isActive(item.path);
 
@@ -241,10 +154,8 @@ export default function Navbar() {
                   to={item.path}
                   onClick={closeMenu}
                   aria-current={active ? "page" : undefined}
-                  className={`border-b border-[#edf0e9] px-3 py-4 text-[13px] font-bold tracking-wide transition-colors hover:bg-[#f7fce9] ${
-                    active
-                      ? "border-l-2 border-l-[#a9ed16] text-[#719b0c]"
-                      : "text-[#29302b]"
+                  className={`border-b border-[#f1f5f9] py-3 text-[15px] font-medium transition-colors ${
+                    active ? "text-[#5a8c12]" : "text-[#334155]"
                   }`}
                 >
                   {item.name}
@@ -256,10 +167,9 @@ export default function Navbar() {
           <button
             type="button"
             onClick={handleConsultation}
-            className="mt-4 flex w-full items-center justify-center gap-2 bg-[#ADD132] px-5 py-4 text-[13px] font-black uppercase tracking-wide text-[#151a0d] transition hover:bg-[#baf53b]"
+            className="mt-5 flex w-full items-center justify-center rounded-[8px] bg-[#5a8c12] px-5 py-3 text-[15px] font-semibold text-white transition hover:bg-[#689d14]"
           >
             Request a consultation
-            
           </button>
         </div>
       </nav>
