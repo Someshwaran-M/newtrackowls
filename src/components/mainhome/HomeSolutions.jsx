@@ -232,7 +232,7 @@ export default function HomeSolutions() {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
           grid-auto-rows: 350px;
-          gap: 12px;
+          gap: 22px;
           align-items: stretch;
         }
 
