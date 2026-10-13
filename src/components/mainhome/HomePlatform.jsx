@@ -82,11 +82,11 @@ export default function HomePlatform() {
       <div className="mx-auto grid max-w-[1380px] items-center gap-9 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
         {/* LEFT CONTENT */}
         <div className="max-w-[500px]">
-          <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.19em] text-[#617D17] sm:mb-6">
+          <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.19em] text-[#617D17] sm:mb-6 sm:text-[10px]">
             TrackOwls platform · Concept preview
           </p>
 
-          <h2 className="max-w-[490px] text-[36px] font-bold leading-[1.08] tracking-[-1.5px] sm:text-[48px] lg:text-[54px]">
+          <h2 className="max-w-[490px] text-[30px] font-bold leading-[1.08] tracking-[-0.8px] sm:text-[48px] sm:tracking-[-1.5px] lg:text-[54px]">
             One workspace.
             <br />
             Complete case
@@ -94,7 +94,7 @@ export default function HomePlatform() {
             <span>visibility.</span>
           </h2>
 
-          <p className="mt-5 max-w-[430px] text-[13px] leading-[1.85] text-[#45637F] sm:text-[14px]">
+          <p className="mt-5 max-w-[430px] text-[14px] leading-[1.85] text-[#45637F] sm:text-[14px]">
             A planned case management platform connecting assets, evidence,
             analyst workflows and enforcement reporting.
           </p>
@@ -115,11 +115,11 @@ export default function HomePlatform() {
                   />
 
                   <div>
-                    <h3 className="text-[12px] font-bold text-[#15334E]">
+                    <h3 className="text-[14px] font-bold text-[#15334E] sm:text-[12px]">
                       {feature.title}
                     </h3>
 
-                    <p className="mt-1 text-[11px] leading-[1.7] text-[#45637F]">
+                    <p className="mt-1 text-[13px] leading-[1.7] text-[#45637F] sm:text-[11px]">
                       {feature.description}
                     </p>
                   </div>
@@ -131,7 +131,7 @@ export default function HomePlatform() {
           <button
             type="button"
             onClick={() => navigate("/request-demo")}
-            className="group mt-7 inline-flex min-h-[43px] items-center gap-4 border border-[#D5E0CE] bg-white px-4 py-3 text-[11px] font-bold text-[#15334E] transition duration-300 hover:border-[#648A13] hover:bg-[#F5F8F2]"
+            className="group mt-7 inline-flex min-h-[43px] items-center gap-4 border border-[#D5E0CE] bg-white px-4 py-3 text-[12px] font-bold text-[#15334E] transition duration-300 hover:border-[#648A13] hover:bg-[#F5F8F2] sm:text-[11px]"
           >
             Explore the platform concept
             <ArrowUpRight
@@ -154,12 +154,12 @@ export default function HomePlatform() {
                   TRACKOWLS
                 </span>
 
-                <span className="ml-1 text-[8px] font-semibold text-[#45637F]">
+                <span className="ml-1 text-[9px] font-semibold text-[#45637F] sm:text-[8px]">
                   WORKSPACE
                 </span>
               </div>
 
-              <span className="border border-[#D5E0CE] px-2 py-1 text-[8px] text-[#617D17]">
+              <span className="border border-[#D5E0CE] px-2 py-1 text-[9px] text-[#617D17] sm:text-[8px]">
                 Concept preview
               </span>
             </div>
@@ -196,11 +196,11 @@ export default function HomePlatform() {
               <div className="min-w-0 p-3.5 sm:p-5">
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <p className="text-[9px] uppercase tracking-[0.09em] text-[#45637F]">
+                    <p className="text-[10px] uppercase tracking-[0.09em] text-[#45637F] sm:text-[9px]">
                       Enforcement overview
                     </p>
 
-                    <h3 className="mt-1 text-[13px] font-bold text-[#15334E]">
+                    <h3 className="mt-1 text-[15px] font-bold text-[#15334E] sm:text-[13px]">
                       A clear view of every case.
                     </h3>
                   </div>
@@ -218,7 +218,7 @@ export default function HomePlatform() {
                       key={tab}
                       type="button"
                       onClick={() => setActiveTab(tab)}
-                      className={`relative px-3 py-2 text-[10px] transition ${
+                      className={`relative px-3 py-2 text-[11px] transition sm:text-[10px] ${
                         activeTab === tab
                           ? "bg-[#F5F8F2] font-bold text-[#648A13]"
                           : "text-[#45637F] hover:bg-[#F5F8F2]"
@@ -244,7 +244,7 @@ export default function HomePlatform() {
                       key={metric.label}
                       className="min-w-0 rounded-[2px] border border-[#D8E2D2] bg-[#F5F8F2] px-2 py-3 sm:px-3"
                     >
-                      <p className="text-[8px] leading-4 text-[#45637F]">
+                      <p className="text-[10px] leading-4 text-[#45637F] sm:text-[8px]">
                         {metric.label}
                       </p>
 
@@ -257,7 +257,7 @@ export default function HomePlatform() {
 
                 {/* Case register */}
                 <div className="mt-5">
-                  <div className="grid grid-cols-[1.35fr_.65fr_.65fr] gap-2 border-b border-[#15334E] px-1.5 py-2 text-[8px] text-[#45637F]">
+                  <div className="grid grid-cols-[1.35fr_.65fr_.65fr] gap-2 border-b border-[#15334E] px-1.5 py-2 text-[10px] text-[#45637F] sm:text-[8px]">
                     <span>Case / asset</span>
                     <span>Channel</span>
                     <span>Status</span>
@@ -279,22 +279,22 @@ export default function HomePlatform() {
                       }`}
                     >
                       <span className="min-w-0">
-                        <span className="block truncate text-[9px] font-medium text-[#15334E]">
+                        <span className="block truncate text-[10px] font-medium text-[#15334E] sm:text-[9px]">
                           {item.id}
                         </span>
 
-                        <span className="mt-1 block truncate text-[8px] text-[#45637F]">
+                        <span className="mt-1 block truncate text-[9px] text-[#45637F] sm:text-[8px]">
                           {item.name}
                         </span>
                       </span>
 
-                      <span className="truncate text-[8px] text-[#45637F]">
+                      <span className="truncate text-[9px] text-[#45637F] sm:text-[8px]">
                         {item.channel}
                       </span>
 
                       <span>
                         <span
-                          className={`inline-flex max-w-full truncate border px-1.5 py-1 text-[8px] ${
+                          className={`inline-flex max-w-full truncate border px-1.5 py-1 text-[9px] sm:text-[8px] ${
                             item.color === "green"
                               ? "border-[#C8DDB1] bg-[#F5F8F2] text-[#527B2C]"
                               : item.color === "amber"
@@ -311,11 +311,11 @@ export default function HomePlatform() {
 
                 {selectedCase && (
                   <div className="mt-3 border border-[#D8E2D2] bg-[#F5F8F2] p-2.5">
-                    <p className="text-[9px] font-bold text-[#648A13]">
+                    <p className="text-[10px] font-bold text-[#648A13] sm:text-[9px]">
                       {selectedCase} selected
                     </p>
 
-                    <p className="mt-1 text-[9px] text-[#45637F]">
+                    <p className="mt-1 text-[10px] text-[#45637F] sm:text-[9px]">
                       Illustrative case information for the platform concept.
                     </p>
                   </div>
@@ -323,12 +323,12 @@ export default function HomePlatform() {
 
                 {/* Dashboard footer */}
                 <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
-                  <span className="flex items-center gap-1.5 text-[8px] text-[#648A13]">
+                  <span className="flex items-center gap-1.5 text-[9px] text-[#648A13] sm:text-[8px]">
                     <Check size={11} />
                     Evidence recorded
                   </span>
 
-                  <span className="text-[8px] text-[#45637F]">
+                  <span className="text-[9px] text-[#45637F] sm:text-[8px]">
                     Illustrative data only
                   </span>
                 </div>
@@ -358,21 +358,21 @@ export default function HomePlatform() {
               <div className="mb-3 flex items-center gap-2 text-[#B7D96F]">
                 <Globe2 size={14} />
 
-                <span className="text-[8px] font-bold uppercase tracking-[0.18em]">
+                <span className="text-[9px] font-bold uppercase tracking-[0.18em] sm:text-[8px]">
                   Global monitoring
                 </span>
               </div>
 
-              <h3 className="text-[17px] font-bold tracking-tight text-white sm:text-[20px]">
+              <h3 className="text-[18px] font-bold tracking-tight text-white sm:text-[20px]">
                 A connected view of digital threats.
               </h3>
 
-              <p className="mt-2 max-w-[440px] text-[10px] leading-[1.8] text-[#D0DDE3]">
+              <p className="mt-2 max-w-[440px] text-[12px] leading-[1.8] text-[#D0DDE3] sm:text-[10px]">
                 Monitor agreed channels, connect findings to your assets, and
                 follow each verified case through enforcement.
               </p>
 
-              <div className="mt-3 flex items-center gap-2 text-[8px] tracking-wider text-[#B7D96F]">
+              <div className="mt-3 flex items-center gap-2 text-[9px] tracking-wider text-[#B7D96F] sm:text-[8px]">
                 <Activity size={11} />
                 SCAN / DETECT / REVIEW / PROTECT
               </div>
@@ -381,7 +381,7 @@ export default function HomePlatform() {
             <div className="absolute bottom-0 left-0 h-[4px] w-full bg-[#8BB630]" />
           </div>
 
-          <p className="mt-3 text-right text-[9px] text-[#45637F]">
+          <p className="mt-3 text-right text-[10px] text-[#45637F] sm:text-[9px]">
             TrackOwls platform concept · Illustrative interface
           </p>
         </div>
