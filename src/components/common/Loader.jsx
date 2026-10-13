@@ -108,16 +108,7 @@ export default function Loader({ onComplete, duration = 8000 }) {
           />
         </div>
 
-        {/* Brand tagline */}
-        <div className="loader-tagline">
-          <span>SCAN</span>
-          <i />
-          <span>DETECT</span>
-          <i />
-          <span>REMOVE</span>
-          <i />
-          <span>PROTECT</span>
-        </div>
+        
 
         {/* Rotating protection information */}
         <div className="loader-protection-text">
@@ -540,164 +531,191 @@ export default function Loader({ onComplete, duration = 8000 }) {
           to { opacity: 1; }
         }
 
-        /* Mobile: match the portrait reference */
-        @media (max-width: 640px) {
-          .loader-map {
-            inset: -1%;
-            background-size: auto 100%;
-            background-position: center center;
-          }
+       
+/* MOBILE: LARGER LOGO AND READABLE TEXT */
+@media (max-width: 640px) {
+  .loader-map {
+    inset: -1%;
+    background-size: auto 100%;
+    background-position: center center;
+  }
 
-          .loader-background-glow {
-            background:
-              radial-gradient(
-                ellipse at 50% 46%,
-                rgba(255, 255, 255, .94) 0%,
-                rgba(246, 250, 251, .88) 30%,
-                rgba(227, 237, 240, .55) 58%,
-                rgba(13, 42, 52, .60) 100%
-              );
-          }
+  .loader-background-glow {
+    background:
+      radial-gradient(
+        ellipse at 50% 46%,
+        rgba(255, 255, 255, 0.94) 0%,
+        rgba(246, 250, 251, 0.88) 30%,
+        rgba(227, 237, 240, 0.55) 58%,
+        rgba(13, 42, 52, 0.60) 100%
+      );
+  }
 
-          .loader-center {
-            top: 47%;
-            width: 96%;
-          }
+  .loader-center {
+    top: 46%;
+    width: 96%;
+  }
 
-          .loader-owl-ring {
-            width: 128px;
-            height: 128px;
-            margin-bottom: 25px;
-          }
+  /* Larger owl logo */
+  .loader-owl-ring {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 24px;
+  }
 
-          .loader-owl-image {
-            width: 73%;
-            height: 84%;
-          }
+  .loader-owl-image {
+    width: 76%;
+    height: 86%;
+    object-fit: contain;
+  }
 
-          .loader-wordmark > img {
-            width: min(84vw, 310px);
-            max-height: 75px;
-          }
+  /* Larger TrackOwls wordmark */
+  .loader-wordmark > img {
+    width: min(90vw, 340px);
+    max-width: 94%;
+    max-height: 85px;
+    height: auto;
+    object-fit: contain;
+  }
 
-          .loader-tagline {
-            gap: 7px;
-            margin-top: 11px;
-            font-size: 10px;
-            letter-spacing: .25px;
-          }
+  /* Readable tagline */
+  .loader-tagline {
+    gap: 8px;
+    margin-top: 13px;
+    font-size: 11px;
+    letter-spacing: 0.35px;
+    line-height: 1.6;
+  }
 
-          .loader-tagline i {
-            width: 1.5px;
-            height: 10px;
-          }
+  .loader-tagline i {
+    width: 2px;
+    height: 11px;
+  }
 
-          .loader-protection-text {
-            margin-top: 30px;
-            padding: 0 8px;
-          }
+  /* Protection information */
+  .loader-protection-text {
+    margin-top: 30px;
+    padding: 0 8px;
+  }
 
-          .loader-protecting {
-            font-size: 12px;
-            letter-spacing: 2.5px;
-          }
+  .loader-protecting {
+    font-size: 13px;
+    letter-spacing: 2.5px;
+  }
 
-          .loader-service-copy {
-            min-height: 55px;
-            margin-top: 22px;
-          }
+  .loader-service-copy {
+    min-height: 58px;
+    margin-top: 20px;
+  }
 
-          .loader-service-copy h2 {
-            font-size: 16px;
-            line-height: 1.5;
-          }
+  .loader-service-copy h2 {
+    font-size: 19px;
+    line-height: 1.45;
+  }
 
-          .loader-service-copy h3 {
-            font-size: 15px;
-            line-height: 1.5;
-          }
+  .loader-service-copy h3 {
+    font-size: 17px;
+    line-height: 1.5;
+  }
 
-          .loader-scan-caption {
-            margin-top: 14px;
-            font-size: 12px;
-          }
+  .loader-scan-caption {
+    margin-top: 14px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
 
-          /* Keep the same uncluttered mobile composition */
-          .loader-enter-button {
-            bottom: 3%;
-            min-width: 142px;
-            min-height: 46px;
-            padding: 10px 20px;
-            font-size: 14px;
-          }
-        }
+  .loader-status-dot {
+    width: 7px;
+    height: 7px;
+    flex-basis: 7px;
+  }
 
-        @media (max-width: 380px) {
-          .loader-center {
-            top: 46%;
-            width: 98%;
-          }
+  /* Enter website button */
+  .loader-enter-button {
+    bottom: 3%;
+    min-width: 150px;
+    min-height: 48px;
+    padding: 11px 22px;
+    font-size: 15px;
+  }
+}
 
-          .loader-owl-ring {
-            width: 122px;
-            height: 122px;
-            margin-bottom: 24px;
-          }
+/* SMALL MOBILE SCREENS */
+@media (max-width: 380px) {
+  .loader-center {
+    top: 45%;
+    width: 98%;
+  }
 
-          .loader-wordmark > img {
-            width: 84vw;
-            max-width: 300px;
-          }
+  .loader-owl-ring {
+    width: 135px;
+    height: 135px;
+    margin-bottom: 22px;
+  }
 
-          .loader-tagline {
-            gap: 6px;
-            font-size: 9px;
-            letter-spacing: .15px;
-          }
+  .loader-wordmark > img {
+    width: 88vw;
+    max-width: 320px;
+  }
 
-          .loader-protection-text {
-            margin-top: 28px;
-          }
+  .loader-tagline {
+    gap: 6px;
+    font-size: 10px;
+    letter-spacing: 0.2px;
+  }
 
-          .loader-service-copy {
-            margin-top: 20px;
-          }
+  .loader-protection-text {
+    margin-top: 25px;
+  }
 
-          .loader-service-copy h2 {
-            font-size: 15px;
-          }
+  .loader-service-copy {
+    margin-top: 18px;
+  }
 
-          .loader-service-copy h3 {
-            font-size: 14px;
-          }
+  .loader-service-copy h2 {
+    font-size: 17px;
+  }
 
-          .loader-scan-caption {
-            margin-top: 13px;
-            font-size: 11px;
-          }
-        }
+  .loader-service-copy h3 {
+    font-size: 15px;
+  }
 
-        /* Short screens */
-        @media (max-height: 650px) {
-          .loader-center {
-            top: 45%;
-            transform: translate(-50%, -50%) scale(.82);
-          }
+  .loader-scan-caption {
+    margin-top: 12px;
+    font-size: 11px;
+  }
 
-          .loader-enter-button {
-            bottom: 2%;
-          }
-        }
+  .loader-enter-button {
+    bottom: 2%;
+    min-width: 140px;
+    min-height: 45px;
+    font-size: 14px;
+  }
+}
 
-        @media (prefers-reduced-motion: reduce) {
-          .trackowls-loader-screen *,
-          .trackowls-loader-screen *::before,
-          .trackowls-loader-screen *::after {
-            animation-duration: .01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: .01ms !important;
-          }
-        }
+/* SHORT MOBILE SCREENS */
+@media (max-height: 650px) {
+  .loader-center {
+    top: 44%;
+    transform: translate(-50%, -50%) scale(0.82);
+  }
+
+  .loader-enter-button {
+    bottom: 2%;
+  }
+}
+
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+  .trackowls-loader-screen *,
+  .trackowls-loader-screen *::before,
+  .trackowls-loader-screen *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
       `}</style>
     </section>
   );
