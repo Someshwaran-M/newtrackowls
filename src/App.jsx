@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 
+import React, { useState, useCallback } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Loader from "./components/common/Loader";
@@ -21,6 +21,11 @@ import Contact from "./components/pages/Contact";
 
 // Information
 import InformationPrivacy from "./components/information/InformationPrivacy";
+import InformationTerms from "./components/information/InformationTerms";
+import CopyRight from "./components/information/CopyRights";
+import InformationCookies from "./components/information/InformationCookies";
+import ContentEditor from "./components/information/ContentEditor";
+import Career from "./components/information/Career";
 
 // Insights Articles
 import LiveEventProtectionChecklist from "./components/maininsights/LiveEventProtectionChecklist";
@@ -28,21 +33,24 @@ import UnderstandingEnforcementReports from "./components/maininsights/Understan
 import ReleaseWindowMonitoring from "./components/maininsights/ReleaseWindowMonitoring";
 import BrandReferenceChecklist from "./components/maininsights/BrandReferenceChecklist";
 import RepeatSourceInvestigation from "./components/maininsights/RepeatSourceInvestigation";
-import InformationTerms from "./components/information/InformationTerms";
-import CopyRight from "./components/information/CopyRights";
-import InformationCookies from "./components/information/InformationCookies";
-import ContentEditor from "./components/information/ContentEditor";
-import Career from "./components/information/Career";
 
 function App() {
-
   const [loading, setLoading] = useState(true);
+
+  const handleLoaderComplete = useCallback(() => {
+    setLoading(false);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white text-[#152019] dark:bg-[#070A07] dark:text-white">
+      {/* Render the loader only from the root App component */}
       {loading && (
-        <Loader onComplete={() => setLoading(false)} />
+        <Loader
+          duration={8000}
+          onComplete={handleLoaderComplete}
+        />
       )}
+
       <Navbar />
 
       <main>

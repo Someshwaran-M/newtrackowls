@@ -1,5 +1,6 @@
 
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function HomePiracyBrochure() {
   return (
@@ -28,14 +29,15 @@ export default function HomePiracyBrochure() {
             </p>
 
             <div className="brochure-actions mt-[36px] flex flex-wrap items-center gap-4">
-              <a
-                href="/piracy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[61px] items-center justify-center rounded-[6px] bg-[#648B13] px-[30px] py-[18px] text-[15px] font-bold text-white transition-colors duration-200 hover:bg-[#52740E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#648B13]"
-              >
-                Read the industry report
-              </a>
+              
+
+<Link
+  to="/piracy"
+  className="inline-flex min-h-[61px] items-center justify-center rounded-[6px] bg-[#648B13] px-[30px] py-[18px] text-[15px] font-bold text-white transition-colors duration-200 hover:bg-[#52740E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#648B13]"
+>
+  Read the industry report
+</Link>
+
 
               <a
                 href="/reports/digital-piracy-report.pdf"
