@@ -27,8 +27,7 @@ const solutions = [
     number: "02",
     title: "OTT & VOD Protection",
     description: "Protect every release window.",
-    image:
-      "/ott.png",
+    image: "/solutions/videoott.jpeg",
     icon: Play,
     link: "/industries",
   },
@@ -36,8 +35,7 @@ const solutions = [
     number: "03",
     title: "Website & App Monitoring",
     description: "See where your content travels.",
-    image:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=85",
+    image: "/solutions/websitemonitoring.jpeg",
     icon: Globe,
     link: "/platform",
   },
@@ -62,8 +60,7 @@ const solutions = [
     number: "06",
     title: "Piracy Intelligence",
     description: "Understand the patterns behind piracy.",
-    image:
-      "/piracyintelligence.png",
+    image: "/solutions/piracyintelligence.jpeg",
     icon: ScanSearch,
     link: "/platform",
   },
@@ -472,17 +469,17 @@ export default function HomeSolutions() {
           }
 
           .solution-title {
-            font-size: 12px;
+            font-size: 14px;
           }
 
           .solution-description {
             margin-top: 7px;
-            font-size: 10px;
+            font-size: 12px;
             line-height: 1.55;
           }
 
           .solution-link {
-            font-size: 9px;
+            font-size: 12px;
           }
 
           .mobile-view-all {
@@ -519,11 +516,11 @@ export default function HomeSolutions() {
           }
 
           .solution-description {
-            font-size: 11px;
+            font-size: 13px;
           }
 
           .solution-link {
-            font-size: 10px;
+            font-size: 11px;
           }
         }
 
@@ -662,7 +659,7 @@ export default function HomeSolutions() {
   }
 
   .solution-title {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.45;
     letter-spacing: 0;
     overflow-wrap: anywhere;
@@ -671,7 +668,7 @@ export default function HomeSolutions() {
 
   .solution-description {
     margin-top: 6px;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.55;
     overflow-wrap: anywhere;
   }
@@ -683,7 +680,7 @@ export default function HomeSolutions() {
 
   .solution-link {
     gap: 3px;
-    font-size: 9px;
+    font-size: 12px;
     line-height: 1.45;
   }
 

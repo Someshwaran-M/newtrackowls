@@ -6,25 +6,28 @@ const industries = [
     number: "01",
     title: "Film & Entertainment",
     description: "Theatrical releases, films and production assets.",
-    image: "/industries/film.png",
+    image: "/industries/film.jpeg",
     link: "/industries",
   },
   {
     number: "02",
     title: "OTT & Streaming",
     description: "Series, premium video and on-demand catalogues.",
+    image: "/industries/ott.jpeg",
     link: "/industries",
   },
   {
     number: "03",
     title: "Live Sports",
     description: "Time-sensitive events and broadcast rights.",
+    image: "/industries/livesport.jpeg",
     link: "/industries",
   },
   {
     number: "04",
     title: "Television & Broadcasting",
     description: "Channels, programmes and unauthorized redistribution.",
+    image: "/industries/tv.jpeg",
     link: "/industries",
   },
   {
@@ -32,13 +35,14 @@ const industries = [
     title: "Music",
     description: "Recordings, releases and protected audio assets.",
     link: "/industries",
-    image: "/images/home/music-recording.png",
+    image: "/industries/music.jpeg",
     imageAlt: "Professional music recording studio",
   },
   {
     number: "06",
     title: "Brands & IP Owners",
     description: "Trademarks, creative assets and brand identity.",
+    image: "/industries/brand.jpeg",
     link: "/industries",
   },
   {
@@ -46,12 +50,14 @@ const industries = [
     title: "Sportswear & Apparel Brands",
     description:
       "Brand identity, product imagery and suspicious online listings.",
+    image: "/industries/sportswear.jpeg",
     link: "/industries",
   },
   {
     number: "08",
     title: "Publishers & Digital Creators",
     description: "Books, courses, software and original digital publications.",
+    image: "/industries/public.jpeg",
     link: "/industries",
   },
 ];
