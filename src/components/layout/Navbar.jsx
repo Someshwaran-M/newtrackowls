@@ -61,25 +61,30 @@ export default function Navbar() {
         className="relative mx-auto flex h-20 w-full max-w-[1500px] items-center justify-between px-4 sm:px-6 lg:px-12"
       >
         {/* Brand logo & text image matching the reference */}
-        <Link
-          to="/"
-          onClick={closeMenu}
-          aria-label="TrackOwls home"
-          className="flex shrink-0 items-center gap-3"
-        >
-          <img
-            src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owl-bg.png"
-            alt="TrackOwls Owl"
-            draggable="false"
-            className="h-16 w-16 object-contain"
-          />
-          <img
-            src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owltext-bg.png"
-            alt="TRACKOWLS"
-            draggable="false"
-            className="h-14 w-auto object-contain"
-          />
-        </Link>
+        
+<Link
+  to="/"
+  onClick={closeMenu}
+  aria-label="TrackOwls home"
+  className="flex shrink-0 items-center gap-1.5 sm:gap-3"
+>
+  {/* Owl logo */}
+  <img
+    src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owl-bg.png"
+    alt="TrackOwls Owl"
+    draggable="false"
+    className="h-12 w-9 object-contain sm:h-16 sm:w-12 lg:h-16 lg:w-16"
+  />
+
+  {/* TrackOwls wordmark */}
+  <img
+    src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owltext-bg.png"
+    alt="TrackOwls"
+    draggable="false"
+    className="h-10 w-auto max-w-[145px] object-contain sm:h-14 sm:max-w-none lg:h-14"
+  />
+</Link>
+
 
         {/* Desktop navigation matching reference layout */}
         <div className="hidden items-center gap-8 xl:flex">
