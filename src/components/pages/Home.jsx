@@ -21,6 +21,7 @@ function Home(){
 
   return<>
   <HomeMain />
+  <HomeDown />
   <HomeAbout />
   <HomeAssests />
   <HomeProtection />

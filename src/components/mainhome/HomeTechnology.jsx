@@ -45,7 +45,7 @@ export default function HomeTechnology() {
           <h2 className="m-0 max-w-[700px] text-[30px] font-bold leading-[1.13] tracking-[-0.045em] text-[#15334E] sm:text-[48px] lg:text-[54px]">
             The right evidence.
             <br />
-            <span className="text-[#7C9D18]">
+            <span>
               The right action.
             </span>
           </h2>

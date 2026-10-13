@@ -826,25 +826,7 @@ function HomeMain() {
       </section>
 
       {/* Footer strip */}
-      <footer className="track-footer">
-        <div className="track-footer-inner">
-          <div className="track-footer-item">
-            <span className="track-footer-label">
-              BUILT FOR RIGHTS
-            </span>
-            <span className="track-footer-label">
-              HOLDERS
-            </span>
-          </div>
-
-          <div className="track-footer-item">OTT &amp; VOD</div>
-          <div className="track-footer-item">LIVE SPORTS</div>
-          <div className="track-footer-item">FILM</div>
-          <div className="track-footer-item">BROADCAST</div>
-          <div className="track-footer-item">MUSIC</div>
-          <div className="track-footer-item">BRANDS</div>
-        </div>
-      </footer>
+      
     </main>
   );
 }

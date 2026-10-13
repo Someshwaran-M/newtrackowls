@@ -91,7 +91,7 @@ export default function HomePlatform() {
             <br />
             Complete case
             <br />
-            <span className="text-[#7C9D18]">visibility.</span>
+            <span>visibility.</span>
           </h2>
 
           <p className="mt-5 max-w-[430px] text-[13px] leading-[1.85] text-[#45637F] sm:text-[14px]">

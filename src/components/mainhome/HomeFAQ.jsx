@@ -100,7 +100,7 @@ export default function HomeFAQ() {
 
             <h2 className="m-0 text-[36px] font-bold leading-[1.1] tracking-[-0.045em] text-[#15334E] sm:text-[48px] lg:text-[54px]">
               Know what to{" "}
-              <span className="text-[#7C9D18]">expect.</span>
+              <span >expect.</span>
             </h2>
           </div>
 
