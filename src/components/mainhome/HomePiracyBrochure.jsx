@@ -29,7 +29,7 @@ export default function HomePiracyBrochure() {
 
             <div className="brochure-actions mt-[36px] flex flex-wrap items-center gap-4">
               <a
-                href="/brochure"
+                href="/piracy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-[61px] items-center justify-center rounded-[6px] bg-[#648B13] px-[30px] py-[18px] text-[15px] font-bold text-white transition-colors duration-200 hover:bg-[#52740E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#648B13]"
@@ -38,7 +38,7 @@ export default function HomePiracyBrochure() {
               </a>
 
               <a
-                href="/documents/trackowls-piracy-impact-brochure.pdf"
+                href="/reports/digital-piracy-report.pdf"
                 download
                 className="inline-flex min-h-[61px] items-center justify-center rounded-[6px] border border-[#C5D3DE] bg-transparent px-[29px] py-[18px] text-[15px] font-bold text-[#172D47] transition-colors duration-200 hover:border-[#648B13] hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#648B13]"
               >
