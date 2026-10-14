@@ -137,7 +137,7 @@ export default function Loader({ onComplete }) {
         aria-label="Enter website and skip the introduction"
       >
         Enter Website
-        <span aria-hidden="true">↗</span>
+        
       </button>
 
       <style>{`
