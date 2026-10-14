@@ -249,7 +249,7 @@ export default function Loader({ onComplete }) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 60%;
   opacity: 0;
   filter: blur(4px);
   transform: translateY(16px);
@@ -259,10 +259,10 @@ export default function Loader({ onComplete }) {
 .loader-brand::before {
   content: "";
   position: absolute;
-  top: -14px;
+  top: 70px;
   left: 50%;
-  width: 300px;
-  height: 290px;
+  width: 200px;
+  height: 200px;
   border: 3px solid rgba(120, 157, 32, 0.55);
   border-radius: 50%;
   transform: translateX(-50%);
@@ -271,16 +271,17 @@ export default function Loader({ onComplete }) {
 }
 
         .loader-logo {
-          display: block;
-          width: 220px;
-          max-width: 54vw;
-          height: 155px;
-          object-fit: contain;
-          object-position: center;
-          margin: 0 auto 10px;
-          user-select: none;
-          
-        }
+  display: block;
+  position: relative;
+  top: 40px;
+  width: 170px;
+  max-width: 9vw;
+  height: 105px;
+  object-fit: contain;
+  object-position: center;
+  margin: 0 auto 2px;
+  user-select: none;
+}
 
         .loader-wordmark {
           color: #142D3C;
@@ -587,17 +588,20 @@ export default function Loader({ onComplete }) {
           }
 
           .loader-brand::before {
-    width: 250px;
-    height: 250px;
+    width: 133px;
+    height: 133px;
+    top: 1px;
   }
 
 
           .loader-logo {
-            width: 290px;
-            max-width: 105vw;
-            height: 235px;
-            margin-bottom: 8px;
-          }
+    position: relative;
+    top: 8px;
+    width: 190px;
+    max-width: 45vw;
+    height: 125px;
+    margin: 0 auto 2px;
+  }
 
           .loader-wordmark {
             font-size: clamp(63px, 20vw, 72px);
