@@ -299,12 +299,14 @@ export default function Loader({ onComplete, duration = 8000 }) {
         }
 
         .loader-owl-image {
-          display: block;
-          width: 69%;
-          height: 82%;
-          object-fit: contain;
-          filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.08));
-        }
+  display: block;
+  width: 69%;
+  height: 82%;
+  object-fit: contain;
+  background: transparent;
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.08));
+}
 
         /* Wordmark */
         .loader-wordmark {
