@@ -281,24 +281,22 @@ export default function Loader({ onComplete, duration = 8000 }) {
           transform: translate(-50%, -50%);
           animation: loaderContentEnter 0.9s cubic-bezier(.2, .7, .2, 1) both;
         }
+.loader-owl-ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: clamp(140px, 10.5vw, 190px);
+  height: clamp(140px, 10.5vw, 190px);
+  margin-bottom: 25px;
+  border: 1px solid rgba(109, 144, 11, 0.2);
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  animation: loaderRingEnter 1s ease both;
+}
 
-        /* Owl emblem */
-        .loader-owl-ring {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          width: clamp(140px, 10.5vw, 190px);
-          height: clamp(140px, 10.5vw, 190px);
-          margin-bottom: 25px;
-          border: 1px solid rgba(109, 144, 11, 0.15);
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.26);
-          box-shadow: 0 5px 25px rgba(21, 53, 20, 0.025);
-          animation: loaderRingEnter 1s ease both;
-        }
-
-        .loader-owl-image {
+.loader-owl-image {
   display: block;
   width: 69%;
   height: 82%;
@@ -307,7 +305,6 @@ export default function Loader({ onComplete, duration = 8000 }) {
   mix-blend-mode: multiply;
   filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.08));
 }
-
         /* Wordmark */
         .loader-wordmark {
           display: flex;
