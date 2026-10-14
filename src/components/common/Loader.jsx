@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 
 const protectionServices = [
@@ -110,16 +109,6 @@ export default function Loader({ onComplete, duration = 8000 }) {
           />
         </div>
 
-        <p className="loader-tagline">
-          <span>SCAN</span>
-          <i />
-          <span>DETECT</span>
-          <i />
-          <span>REMOVE</span>
-          <i />
-          <span>PROTECT</span>
-        </p>
-
         {/* Rotating protection information */}
         <div className="loader-protection-text">
           <p className="loader-protecting">PROTECTING</p>
@@ -200,15 +189,14 @@ export default function Loader({ onComplete, duration = 8000 }) {
           inset: 0;
           z-index: -3;
           pointer-events: none;
-          background:
-            radial-gradient(
-              ellipse at 50% 43%,
-              rgba(255, 255, 255, 0.76) 0%,
-              rgba(255, 255, 250, 0.60) 25%,
-              rgba(248, 251, 226, 0.38) 48%,
-              rgba(220, 239, 151, 0.30) 72%,
-              rgba(173, 209, 50, 0.30) 100%
-            );
+          background: radial-gradient(
+            ellipse at 50% 43%,
+            rgba(255, 255, 255, 0.88) 0%,
+            rgba(255, 255, 250, 0.78) 25%,
+            rgba(248, 251, 226, 0.58) 48%,
+            rgba(220, 239, 151, 0.40) 72%,
+            rgba(173, 209, 50, 0.24) 100%
+          );
         }
 
         /* Light digital grid */
@@ -421,7 +409,7 @@ export default function Loader({ onComplete, duration = 8000 }) {
           animation: loaderStatusPulse 1.2s ease-in-out infinite alternate;
         }
 
-        /* Enter website button: reference screenshot colors */
+        /* Enter website button */
         .loader-enter-button {
           position: absolute;
           z-index: 3;
@@ -556,15 +544,14 @@ export default function Loader({ onComplete, duration = 8000 }) {
           }
 
           .loader-background-glow {
-            background:
-              radial-gradient(
-                ellipse at 50% 45%,
-                rgba(255, 255, 255, 0.76) 0%,
-                rgba(255, 255, 250, 0.60) 25%,
-                rgba(248, 251, 226, 0.38) 48%,
-                rgba(220, 239, 151, 0.30) 72%,
-                rgba(173, 209, 50, 0.30) 100%
-              );
+            background: radial-gradient(
+              ellipse at 50% 45%,
+              rgba(255, 255, 255, 0.88) 0%,
+              rgba(255, 255, 250, 0.78) 25%,
+              rgba(248, 251, 226, 0.58) 48%,
+              rgba(220, 239, 151, 0.40) 72%,
+              rgba(173, 209, 50, 0.24) 100%
+            );
           }
 
           .loader-center {
