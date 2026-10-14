@@ -1,112 +1,110 @@
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+const DURATION = 8000;
 
 const INDUSTRIES = [
   ["Film & Entertainment", "OTT & Streaming"],
   ["Live Sports", "Television & Broadcasting"],
-  ["Music & Audio", "Digital Content Distribution"],
-  ["Brands & Marketplaces", "Websites & Applications"],
+  ["Music", "Brands & IP Owners"],
   ["Sportswear & Apparel Brands", "Publishers & Digital Creators"],
 ];
 
-export default function Loader({ onComplete, duration = 8000 }) {
+export default function Loader({ onComplete }) {
+  const [visible, setVisible] = useState(true);
+  const [leaving, setLeaving] = useState(false);
   const [industryIndex, setIndustryIndex] = useState(0);
-  const [closing, setClosing] = useState(false);
-  const [hidden, setHidden] = useState(false);
+  const [scanProgress, setScanProgress] = useState(0);
 
   const completedRef = useRef(false);
-  const onCompleteRef = useRef(onComplete);
   const exitTimerRef = useRef(null);
 
-  useEffect(() => {
-    onCompleteRef.current = onComplete;
-  }, [onComplete]);
-
-  const finish = useCallback(() => {
+  const finishLoader = useCallback(() => {
     if (completedRef.current) return;
 
     completedRef.current = true;
-    setClosing(true);
+    setLeaving(true);
 
     exitTimerRef.current = window.setTimeout(() => {
-      setHidden(true);
-      onCompleteRef.current?.();
-    }, 350);
-  }, []);
+      setVisible(false);
+      onComplete?.();
+    }, 450);
+  }, [onComplete]);
 
   useEffect(() => {
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const timer = window.setTimeout(finishLoader, DURATION);
 
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") finish();
+      if (event.key === "Escape") finishLoader();
     };
 
     window.addEventListener("keydown", handleKeyDown);
 
-    const industryTimer = reducedMotion
-      ? null
-      : window.setInterval(() => {
-          setIndustryIndex((previous) => (previous + 1) % INDUSTRIES.length);
-        }, 1600);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("keydown", handleKeyDown);
 
-    const autoFinishTimer = window.setTimeout(
-      finish,
-      reducedMotion ? 1500 : duration
-    );
+      if (exitTimerRef.current !== null) {
+        window.clearTimeout(exitTimerRef.current);
+      }
+    };
+  }, [finishLoader]);
+
+  useEffect(() => {
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return undefined;
+    }
+
+    const industryTimer = window.setInterval(() => {
+      setIndustryIndex((current) => (current + 1) % INDUSTRIES.length);
+    }, 1500);
+
+    const scanTimer = window.setInterval(() => {
+      setScanProgress((current) => (current >= 100 ? 0 : current + 1));
+    }, 65);
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.clearTimeout(autoFinishTimer);
-
-      if (industryTimer) window.clearInterval(industryTimer);
-      if (exitTimerRef.current) window.clearTimeout(exitTimerRef.current);
+      window.clearInterval(industryTimer);
+      window.clearInterval(scanTimer);
     };
-  }, [duration, finish]);
+  }, []);
 
-  if (hidden) return null;
+  if (!visible) return null;
 
   return (
     <div
-      className={`trackowls-intro fixed inset-0 z-[99999] h-[100dvh] w-full overflow-hidden ${
-        closing ? "trackowls-intro-exit" : ""
-      }`}
+      className={`trackowls-loader ${leaving ? "loader-exit" : ""}`}
       role="dialog"
-      aria-modal="true"
       aria-label="TrackOwls introduction"
+      aria-modal="true"
     >
-      {/* World map background */}
-      <div className="intro-background" aria-hidden="true" />
+      {/* Background image */}
+      <div className="loader-background-image" aria-hidden="true" />
 
-      {/* Off-white and lime-yellow lighting */}
-      <div className="intro-overlay" aria-hidden="true" />
+      {/* Light white overlay */}
+      <div className="loader-central-glow" aria-hidden="true" />
+      <div className="loader-vignette" aria-hidden="true" />
 
-      <div className="intro-glow intro-glow-left" aria-hidden="true" />
-      <div className="intro-glow intro-glow-right" aria-hidden="true" />
+      {/* Animated background scan */}
+      <div className="loader-scan" aria-hidden="true" />
 
-      {/* Main content */}
-      <main className="intro-main flex w-full flex-col items-center px-4 text-center">
-        {/* Owl logo */}
-        <div className="intro-owl">
-          <div className="intro-owl-ring" aria-hidden="true" />
-
+      <main className="loader-content">
+        <div className="loader-brand">
           <img
+            className="loader-logo"
             src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owl-bg.png"
             alt="TrackOwls owl logo"
-            className="intro-owl-image"
             draggable="false"
           />
+
+          <div className="loader-wordmark" aria-label="TrackOwls">
+            Track<span>Owls</span>
+          </div>
         </div>
 
-        {/* Brand name */}
-        <h1 className="intro-wordmark">
-          <span className="intro-track">Track</span>
-          <span className="intro-owls">Owls</span>
-        </h1>
-
-        {/* Slogan */}
-        <div className="intro-tagline">
+        <p className="loader-tagline">
           <span>SCAN</span>
           <i>|</i>
           <span>DETECT</span>
@@ -114,462 +112,621 @@ export default function Loader({ onComplete, duration = 8000 }) {
           <span>REMOVE</span>
           <i>|</i>
           <span>PROTECT</span>
-        </div>
+        </p>
 
-        <div className="intro-divider" />
+        <section className="loader-industries" aria-live="polite">
+          <h1>PROTECTING</h1>
 
-        {/* Rotating industry text */}
-        <section className="intro-protecting" aria-live="polite">
-          <h2>PROTECTING</h2>
-
-          <div className="intro-industries">
-            {INDUSTRIES[industryIndex].map((industry, index) => (
-              <p
-                key={`${industryIndex}-${industry}`}
-                className="intro-industry-line"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                {industry}
-              </p>
-            ))}
+          <div className="industry-pair" key={industryIndex}>
+            <p>{INDUSTRIES[industryIndex][0]}</p>
+            <p>{INDUSTRIES[industryIndex][1]}</p>
           </div>
-
-          <p className="intro-caption">Illustrative scan animation</p>
         </section>
+
+        {/* Illustrative scan caption and lime progress */}
+        <div className="loader-scan-status">
+          <p>Illustrative scan animation</p>
+        </div>
       </main>
 
-      {/* Bottom button */}
-      <div className="intro-bottom">
-        <button
-          type="button"
-          onClick={finish}
-          className="intro-enter-button"
-        >
-          Enter website
-          <span aria-hidden="true">→</span>
-        </button>
-      </div>
+      {/* Dark navy button */}
+      <button
+        className="loader-enter"
+        type="button"
+        onClick={finishLoader}
+        aria-label="Enter website and skip the introduction"
+      >
+        Enter Website
+        <span aria-hidden="true">↗</span>
+      </button>
 
       <style>{`
-        .trackowls-intro {
+        .trackowls-loader {
+          --lime: #ADD132;
+          --lime-light: #D6ED8C;
+          --lime-dark: #789D20;
+          --navy: #152B43;
+          --ink: #172F3B;
+
+          position: fixed;
+          inset: 0;
+          z-index: 99999;
+          width: 100%;
+          height: 100vh;
+          height: 100dvh;
+          overflow: hidden;
           isolation: isolate;
-          background: #f9fbf2;
-          color: #15243b;
-          font-family: Roboto, Arial, sans-serif;
-          overscroll-behavior: none;
+          background: #F7F9F6;
+          color: var(--ink);
+          font-family: Roboto, Arial, Helvetica, sans-serif;
+          animation: loader-fade-in .7s ease-out both;
         }
 
-        /* World map image */
-        .intro-background {
+        .trackowls-loader *,
+        .trackowls-loader *::before,
+        .trackowls-loader *::after {
+          box-sizing: border-box;
+        }
+
+        .loader-background-image,
+        .loader-central-glow,
+        .loader-vignette {
           position: absolute;
-          z-index: -3;
           inset: 0;
+          pointer-events: none;
+        }
+
+        /* World map stays visible behind the white overlay */
+        .loader-background-image {
+          z-index: 0;
           background-image: url("/world-map.png");
-          background-position: center center;
-          background-repeat: no-repeat;
           background-size: cover;
-          opacity: 0.95;
-          pointer-events: none;
-        }
-
-        /* Bright center and visible lime-yellow edges */
-        .intro-overlay {
-          position: absolute;
-          z-index: -2;
-          inset: 0;
-          background:
-            radial-gradient(
-              ellipse 65% 55% at 50% 42%,
-              rgba(255, 255, 255, 0.78) 0%,
-              rgba(255, 255, 255, 0.52) 40%,
-              rgba(247, 251, 225, 0.25) 70%,
-              rgba(218, 239, 157, 0.30) 100%
-            ),
-            linear-gradient(
-              135deg,
-              rgba(221, 239, 164, 0.30) 0%,
-              rgba(255, 255, 255, 0.18) 45%,
-              rgba(207, 232, 123, 0.28) 100%
-            );
-          pointer-events: none;
-        }
-
-        .intro-glow {
-          position: absolute;
-          z-index: -1;
-          width: 280px;
-          height: 280px;
-          border-radius: 50%;
-          background: rgba(198, 229, 103, 0.30);
-          filter: blur(75px);
-          pointer-events: none;
-        }
-
-        .intro-glow-left {
-          top: 8%;
-          left: -150px;
-        }
-
-        .intro-glow-right {
-          right: -130px;
-          bottom: 8%;
-          background: rgba(210, 235, 132, 0.34);
-        }
-
-        .intro-main {
-          position: relative;
-          z-index: 2;
-          height: 100%;
-          justify-content: flex-start;
-          padding-top: clamp(55px, 14vh, 130px);
-          padding-bottom: 95px;
-        }
-
-        .intro-owl {
-          position: relative;
-          display: flex;
-          width: clamp(112px, 12vw, 150px);
-          height: clamp(120px, 14vw, 165px);
-          flex-shrink: 0;
-          align-items: center;
-          justify-content: center;
+          background-position: center;
+          background-repeat: no-repeat;
+          transform: scale(1.02);
           opacity: 0;
-          transform: translateY(10px);
-          animation: introOwlReveal 0.8s ease-out 0.1s forwards;
+          animation: map-reveal 1.2s ease-out .1s forwards;
         }
 
-        .intro-owl-ring {
-          position: absolute;
-          width: 96%;
-          aspect-ratio: 1;
-          border: 1px solid rgba(139, 182, 48, 0.4);
-          border-radius: 50%;
-          animation: introRingPulse 4s ease-in-out infinite;
-        }
-
-        .intro-owl-image {
-          position: relative;
+        /* White center with a subtle lime-yellow tint */
+        .loader-central-glow {
           z-index: 1;
+          background: radial-gradient(
+            ellipse 95% 78% at 50% 43%,
+            rgba(255, 255, 255, .68) 0%,
+            rgba(255, 255, 255, .57) 28%,
+            rgba(250, 252, 246, .40) 52%,
+            rgba(238, 244, 220, .24) 75%,
+            rgba(173, 209, 50, .10) 100%
+          );
+        }
+
+        .loader-vignette {
+          z-index: 2;
+          background: linear-gradient(
+            180deg,
+            rgba(21, 43, 53, .09) 0%,
+            transparent 25%,
+            transparent 76%,
+            rgba(21, 43, 53, .12) 100%
+          );
+        }
+
+        /* Scanning beam */
+        .loader-scan {
+          position: absolute;
+          z-index: 3;
+          top: -25%;
+          left: 0;
+          width: 100%;
+          height: 22%;
+          pointer-events: none;
+          background: linear-gradient(
+            180deg,
+            transparent,
+            rgba(173, 209, 50, .20),
+            rgba(255, 255, 255, .25),
+            transparent
+          );
+          animation: scan-move 5s linear 1s infinite;
+        }
+
+        .loader-content {
+          position: absolute;
+          z-index: 4;
+          top: 43%;
+          left: 50%;
+          width: min(96vw, 800px);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          transform: translate(-50%, -50%);
+        }
+
+        .loader-brand {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  opacity: 0;
+  filter: blur(4px);
+  transform: translateY(16px);
+  animation: brand-reveal .85s cubic-bezier(.16, 1, .3, 1) .3s forwards;
+}
+
+.loader-brand::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  width: 300px;
+  height: 290px;
+  border: 3px solid rgba(120, 157, 32, 0.55);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+        .loader-logo {
           display: block;
-          width: 82%;
-          height: 86%;
+          width: 220px;
+          max-width: 54vw;
+          height: 155px;
           object-fit: contain;
           object-position: center;
+          margin: 0 auto 10px;
+          user-select: none;
+          
         }
 
-        .intro-wordmark {
-          display: flex;
-          align-items: baseline;
-          justify-content: center;
-          margin: 7px 0 0;
-          white-space: nowrap;
-          font-size: clamp(45px, 6.4vw, 86px);
+        .loader-wordmark {
+          color: #142D3C;
+          font-size: clamp(48px, 7vw, 64px);
           font-weight: 900;
-          line-height: 1.08;
-          letter-spacing: -0.025em;
+          line-height: 1.12;
+          letter-spacing: -.045em;
+          white-space: nowrap;
+        }
+
+        .loader-wordmark span {
+          color: #648609;
+        }
+
+        .loader-tagline {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-wrap: nowrap;
+          gap: clamp(5px, 1.3vw, 12px);
+          margin: 15px 0 0;
+          color: #203942;
+          font-size: clamp(10px, 1.6vw, 14px);
+          font-weight: 500;
+          letter-spacing: .025em;
+          line-height: 1.7;
+          white-space: nowrap;
           opacity: 0;
           transform: translateY(8px);
-          animation: introTextReveal 0.6s ease-out 0.55s forwards;
+          animation: text-reveal .55s ease-out .8s forwards;
         }
 
-        .intro-track {
-          color: #101a2d;
-        }
-
-        .intro-owls {
-          color: #608400;
-        }
-
-        .intro-tagline {
-          display: flex;
-          flex-wrap: nowrap;
-          align-items: center;
-          justify-content: center;
-          gap: clamp(6px, 1vw, 13px);
-          margin-top: 14px;
-          color: #233b50;
-          font-size: clamp(9px, 1vw, 14px);
-          font-weight: 700;
-          letter-spacing: 0.045em;
-          opacity: 0;
-          animation: introFadeIn 0.6s ease-out 0.9s forwards;
-        }
-
-        .intro-tagline i {
-          color: #8bb630;
-          font-size: 12px;
+        .loader-tagline i {
+          color: #789D20;
+          font-size: 14px;
           font-style: normal;
-        }
-
-        .intro-divider {
-          width: 42px;
-          height: 3px;
-          margin-top: 21px;
-          border-radius: 3px;
-          background: #b5d653;
-          opacity: 0;
-          animation: introFadeIn 0.5s ease-out 1.1s forwards;
-        }
-
-        .intro-protecting {
-          display: flex;
-          width: 100%;
-          flex-direction: column;
-          align-items: center;
-          margin-top: 16px;
-          opacity: 0;
-          animation: introFadeIn 0.6s ease-out 1.3s forwards;
-        }
-
-        .intro-protecting h2 {
-          margin: 0;
-          color: #547448;
-          font-size: clamp(12px, 1.1vw, 14px);
-          font-weight: 800;
-          letter-spacing: 0.25em;
-        }
-
-        .intro-industries {
-          display: flex;
-          min-height: 64px;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 5px;
-          margin-top: 14px;
-          padding: 0 8px;
-        }
-
-        .intro-industry-line {
-          margin: 0;
-          color: #183047;
-          font-size: clamp(15px, 1.4vw, 20px);
           font-weight: 700;
-          line-height: 1.4;
-          letter-spacing: -0.01em;
-          animation: introIndustryReveal 0.35s ease-out both;
         }
 
-        .intro-caption {
-          margin: 16px 0 0;
-          color: #637d8d;
-          font-size: 12px;
+        .loader-industries {
+          width: 100%;
+          min-height: 115px;
+          margin-top: 27px;
+          opacity: 0;
+          transform: translateY(8px);
+          animation: text-reveal .6s ease-out 1.1s forwards;
+        }
+
+        .loader-industries h1 {
+          margin: 0 0 15px;
+          color: #426B83;
+          font-size: 14px;
+          font-weight: 800;
+          letter-spacing: .24em;
+          line-height: 1.5;
+        }
+
+        .industry-pair {
+          min-height: 58px;
+          animation: industry-reveal .38s ease-out both;
+        }
+
+        .industry-pair p {
+          margin: 4px 0;
+          padding: 0 5px;
+          color: #172F3B;
+          font-size: clamp(16px, 2.5vw, 19px);
+          font-weight: 650;
+          line-height: 1.5;
+        }
+
+        /* Progress caption and animated lime line */
+        .loader-scan-status {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          margin-top: 9px;
+          opacity: 0;
+          transform: translateY(7px);
+          animation: text-reveal .6s ease-out 1.5s forwards;
+        }
+
+        .loader-scan-status p {
+          margin: 0;
+          color: #71889A;
+          font-size: 13px;
           font-weight: 400;
-          letter-spacing: 0.01em;
+          letter-spacing: .01em;
+          line-height: 1.6;
         }
 
-        .intro-bottom {
+        .scan-progress-track {
+          width: 130px;
+          max-width: 38vw;
+          height: 2px;
+          margin-top: 10px;
+          overflow: hidden;
+          border-radius: 20px;
+          background: rgba(77, 103, 110, .15);
+        }
+
+        .scan-progress-fill {
+          height: 100%;
+          border-radius: inherit;
+          background: linear-gradient(
+            90deg,
+            #D6ED8C,
+            #ADD132,
+            #789D20
+          );
+          box-shadow: 0 0 8px rgba(173, 209, 50, .32);
+          transition: width 100ms linear;
+        }
+
+        /* Navy button with lime accent */
+        .loader-enter {
           position: absolute;
           z-index: 5;
-          right: 0;
-          bottom: max(22px, env(safe-area-inset-bottom));
-          left: 0;
-          display: flex;
-          justify-content: center;
-          padding: 0 16px;
-          opacity: 0;
-          animation: introFadeIn 0.5s ease-out 1.6s forwards;
-        }
-
-        .intro-enter-button {
+          left: 50%;
+          bottom: max(5%, calc(env(safe-area-inset-bottom) + 20px));
+          transform: translateX(-50%);
           display: inline-flex;
-          min-width: 150px;
-          min-height: 49px;
           align-items: center;
           justify-content: center;
-          gap: 13px;
-          border: 1px solid #8399a7;
+          gap: 12px;
+          min-height: 48px;
+          padding: 0 25px;
+          border: 1px solid #1e3349;
           border-radius: 5px;
-          background: #102a43;
-          padding: 12px 24px;
-          color: #fff;
-          font-family: Roboto, Arial, sans-serif;
-          font-size: 14px;
+          background: #152B43;
+          color: #FFFFFF;
+          font-family: inherit;
+          font-size: 15px;
           font-weight: 600;
           cursor: pointer;
-          transition:
-            background 0.2s ease,
-            border-color 0.2s ease,
-            color 0.2s ease;
+          box-shadow: 0 5px 20px rgba(21, 43, 53, .15);
+          transition: background .2s ease, border-color .2s ease;
+          animation: button-reveal .6s ease-out .3s both;
         }
 
-        .intro-enter-button:hover {
-          border-color: #b5d653;
-          background: #e4efc2;
-          color: #15243b;
+        .loader-enter span {
+          color: #D6ED8C;
+          font-size: 19px;
+          transition: transform .2s ease;
         }
 
-        .intro-enter-button:focus-visible {
-          outline: 2px solid #8bb630;
+        .loader-enter:hover {
+          background: #203A50;
+          border-color: #C7E65A;
+        }
+
+        .loader-enter:hover span {
+          transform: translate(2px, -2px);
+        }
+
+        .loader-enter:focus-visible {
+          outline: 3px solid #ADD132;
           outline-offset: 4px;
         }
 
-        .trackowls-intro-exit {
-          animation: introFadeOut 0.35s ease-in forwards;
+        .loader-exit {
           pointer-events: none;
+          animation: loader-exit .45s ease-in forwards;
         }
 
-        @keyframes introOwlReveal {
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes introTextReveal {
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes introFadeIn {
+        @keyframes loader-fade-in {
+          from { opacity: 0; }
           to { opacity: 1; }
         }
 
-        @keyframes introRingPulse {
-          0%, 100% { opacity: 0.4; transform: scale(0.97); }
-          50% { opacity: 0.9; transform: scale(1.03); }
+        @keyframes map-reveal {
+          from {
+            opacity: 0;
+            transform: scale(1.02);
+            filter: blur(3px);
+          }
+          to {
+            opacity: .82;
+            transform: scale(1);
+            filter: blur(0);
+          }
         }
 
-        @keyframes introIndustryReveal {
-          from { opacity: 0; transform: translateY(5px); }
-          to { opacity: 1; transform: translateY(0); }
+        @keyframes brand-reveal {
+          to {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+          }
         }
 
-        @keyframes introFadeOut {
-          to { opacity: 0; visibility: hidden; }
+        @keyframes text-reveal {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
-/* Bigger mobile layout */
-@media (max-width: 640px) {
-  .intro-main {
-    justify-content: center;
-    padding: 12px 10px 82px;
+        @keyframes button-reveal {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
+        @keyframes industry-reveal {
+          from {
+            opacity: 0;
+            filter: blur(3px);
+            transform: translateY(5px);
+          }
+          to {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes scan-move {
+          from { transform: translateY(0); }
+          to { transform: translateY(650%); }
+        }
+
+        @keyframes loader-exit {
+          to {
+            opacity: 0;
+            visibility: hidden;
+          }
+        }
+
+        /* Desktop */
+        @media (min-width: 1440px) {
+          .loader-logo {
+            width: 335px;
+            height: 265px;
+          }
+
+          .loader-wordmark {
+            font-size: 68px;
+          }
+
+          .loader-tagline {
+            font-size: 16px;
+            gap: 14px;
+          }
+
+          .loader-industries h1 {
+            font-size: 16px;
+          }
+
+          .industry-pair p {
+            font-size: 21px;
+          }
+        }
+
+        /* Tablet */
+        @media (min-width: 601px) and (max-width: 1024px) {
+          .loader-logo {
+            width: 200px;
+            height: 140px;
+          }
+
+          .loader-wordmark {
+            font-size: 56px;
+          }
+
+          .loader-tagline {
+            gap: 8px;
+            font-size: 12px;
+          }
+
+          .loader-industries {
+            margin-top: 25px;
+          }
+
+          .loader-industries h1 {
+            font-size: 14px;
+          }
+
+          .industry-pair p {
+            font-size: 18px;
+          }
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+          .loader-background-image {
+            background-position: center center;
+          }
+
+          .loader-central-glow {
+            background: radial-gradient(
+              ellipse 112% 72% at 50% 43%,
+              rgba(255, 255, 255, .70) 0%,
+              rgba(255, 255, 255, .57) 31%,
+              rgba(249, 251, 249, .40) 55%,
+              rgba(236, 242, 237, .27) 79%,
+              rgba(220, 231, 229, .15) 100%
+            );
+          }
+
+          .loader-content {
+            top: 42%;
+            width: 97vw;
+          }
+
+          .loader-brand::before {
+    width: 250px;
+    height: 250px;
   }
 
-  /* Bigger owl logo */
-  .intro-owl {
-    width: clamp(145px, 40vw, 175px);
-    height: clamp(150px, 42vw, 185px);
-  }
 
-  .intro-owl-image {
-    width: 86%;
-    height: 88%;
-  }
+          .loader-logo {
+            width: 290px;
+            max-width: 105vw;
+            height: 235px;
+            margin-bottom: 8px;
+          }
 
-  /* Bigger TrackOwls text */
-  .intro-wordmark {
-    margin-top: 10px;
-    font-size: clamp(74px, 20vw, 94px);
-    letter-spacing: -0.020em;
-    line-height: 1.08;
-  }
+          .loader-wordmark {
+            font-size: clamp(63px, 20vw, 72px);
+            line-height: 1.15;
+            letter-spacing: -0.04em;
+          }
 
-  /* Bigger slogan */
-  .intro-tagline {
-    gap: clamp(8px, 6vw, 12px);
-    margin-top: 17px;
-    font-size: clamp(10px, 3vw, 14px);
-    letter-spacing: 0.015em;
-  }
+          .loader-tagline {
+            gap: clamp(4px, 10vw, 12px);
+            margin-top: 13px;
+            font-size: clamp(9px, 2.8vw, 14px);
+            letter-spacing: 0;
+          }
 
-  .intro-tagline i {
-    font-size: 16px;
-  }
+          .loader-tagline i {
+            font-size: 12px;
+          }
 
-  .intro-divider {
-    width: 48px;
-    height: 3px;
-    margin-top: 24px;
-  }
+          .loader-industries {
+            margin-top: 25px;
+            min-height: 100px;
+          }
 
-  /* Bigger PROTECTING heading */
-  .intro-protecting {
-    margin-top: 18px;
-  }
+          .loader-industries h1 {
+            font-size: 14px;
+            letter-spacing: .24em;
+            margin-bottom: 14px;
+          }
 
-  .intro-protecting h2 {
-    font-size: 18px;
-    letter-spacing: 0.25em;
-  }
+          .industry-pair {
+            min-height: 56px;
+          }
 
-  /* Bigger industry text */
-  .intro-industries {
-    min-height: 76px;
-    margin-top: 16px;
-    gap: 6px;
-  }
+          .industry-pair p {
+            font-size: clamp(15px, 4.2vw, 17px);
+            line-height: 1.5;
+          }
 
-  .intro-industry-line {
-    max-width: 96vw;
-    font-size: clamp(17px, 6vw, 22px);
-    line-height: 1.45;
-    font-weight: 700;
-  }
+          .loader-scan-status p {
+            font-size: 13px;
+          }
 
-  .intro-caption {
-    margin-top: 18px;
-    font-size: 16px;
-  }
+          .scan-progress-track {
+            width: 110px;
+          }
 
-  /* Bigger Enter website button */
-  .intro-bottom {
-    bottom: max(18px, env(safe-area-inset-bottom));
-  }
+          .loader-enter {
+            min-height: 43px;
+            padding: 0 19px;
+            bottom: max(5%, calc(env(safe-area-inset-bottom) + 18px));
+            font-size: 13px;
+          }
+        }
 
-  .intro-enter-button {
-    min-width: 170px;
-    min-height: 52px;
-    padding: 13px 26px;
-    font-size: 16px;
-  }
-}
+        @media (max-width: 380px) {
+          .loader-content {
+            top: 41%;
+            width: 98vw;
+          }
 
-/* Keep larger content fitted on shorter phones */
-@media (max-width: 640px) and (max-height: 700px) {
-  .intro-main {
-    padding-top: 5px;
-    padding-bottom: 70px;
-  }
+          .loader-logo {
+            width: 170px;
+            height: 120px;
+          }
 
-  .intro-owl {
-    width: 112px;
-    height: 118px;
-  }
+          .loader-wordmark {
+            font-size: clamp(39px, 11.5vw, 44px);
+          }
 
-  .intro-wordmark {
-    font-size: clamp(44px, 11vw, 58px);
-    margin-top: 4px;
-  }
+          .loader-tagline {
+            gap: 3px;
+            font-size: 8.5px;
+          }
 
-  .intro-tagline {
-    margin-top: 10px;
-  }
+          .loader-tagline i {
+            font-size: 10px;
+          }
 
-  .intro-divider {
-    margin-top: 14px;
-  }
+          .loader-industries {
+            margin-top: 22px;
+          }
 
-  .intro-protecting {
-    margin-top: 10px;
-  }
+          .loader-industries h1 {
+            font-size: 12px;
+          }
 
-  .intro-industries {
-    min-height: 52px;
-    margin-top: 8px;
-  }
+          .industry-pair p {
+            font-size: 14px;
+          }
+        }
 
-  .intro-industry-line {
-    font-size: clamp(15px, 4vw, 18px);
-  }
+        @media (max-height: 600px) {
+          .loader-content {
+            top: 42%;
+            transform: translate(-50%, -50%) scale(.82);
+          }
 
-  .intro-caption {
-    margin-top: 10px;
-  }
+          .loader-logo {
+            height: 100px;
+          }
 
-  .intro-enter-button {
-    min-height: 46px;
-    min-width: 155px;
-    font-size: 15px;
-  }
-}
+          .loader-industries {
+            margin-top: 15px;
+            min-height: 80px;
+          }
 
+          .loader-industries h1 {
+            margin-bottom: 8px;
+          }
+
+          .loader-scan-status {
+            margin-top: 4px;
+          }
+
+          .loader-enter {
+            bottom: max(3%, env(safe-area-inset-bottom));
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .trackowls-loader *,
+          .trackowls-loader *::before,
+          .trackowls-loader *::after {
+            animation-duration: .01ms !important;
+            animation-delay: 0ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: .01ms !important;
+          }
+        }
       `}</style>
     </div>
   );
