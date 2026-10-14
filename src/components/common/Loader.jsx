@@ -26,7 +26,9 @@ const mapPoints = [
 export default function Loader({ onComplete, duration = 8000 }) {
   const [activeService, setActiveService] = useState(0);
   const [exiting, setExiting] = useState(false);
+
   const completedRef = useRef(false);
+  const exitTimerRef = useRef(null);
 
   const finishLoader = () => {
     if (completedRef.current) return;
@@ -34,25 +36,27 @@ export default function Loader({ onComplete, duration = 8000 }) {
     completedRef.current = true;
     setExiting(true);
 
-    window.setTimeout(() => {
+    exitTimerRef.current = window.setTimeout(() => {
       onComplete?.();
     }, 500);
   };
 
   useEffect(() => {
     const serviceTimer = window.setInterval(() => {
-      setActiveService((previous) => (
-        previous + 1
-      ) % protectionServices.length);
+      setActiveService(
+        (previous) => (previous + 1) % protectionServices.length
+      );
     }, 1800);
 
-    const finishTimer = window.setTimeout(() => {
-      finishLoader();
-    }, duration);
+    const finishTimer = window.setTimeout(finishLoader, duration);
 
     return () => {
       window.clearInterval(serviceTimer);
       window.clearTimeout(finishTimer);
+
+      if (exitTimerRef.current) {
+        window.clearTimeout(exitTimerRef.current);
+      }
     };
   }, [duration]);
 
@@ -67,15 +71,15 @@ export default function Loader({ onComplete, duration = 8000 }) {
       aria-label="TrackOwls loading screen"
       aria-busy={!exiting}
     >
-      {/* World map background */}
+      {/* Background layers */}
+      <div className="loader-background-base" aria-hidden="true" />
       <div className="loader-map" aria-hidden="true" />
       <div className="loader-background-glow" aria-hidden="true" />
       <div className="loader-grid" aria-hidden="true" />
 
-      {/* Animated scanning line */}
+      {/* Scanning effects */}
       <div className="loader-scan-line" aria-hidden="true" />
 
-      {/* Animated global scan points */}
       <div className="loader-map-points" aria-hidden="true">
         {mapPoints.map(([left, top], index) => (
           <span
@@ -89,9 +93,8 @@ export default function Loader({ onComplete, duration = 8000 }) {
         ))}
       </div>
 
-      {/* Main brand content */}
+      {/* Main branding */}
       <div className="loader-center">
-        {/* Owl emblem */}
         <div className="loader-owl-ring">
           <img
             src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owl-bg.png"
@@ -100,7 +103,6 @@ export default function Loader({ onComplete, duration = 8000 }) {
           />
         </div>
 
-        {/* TrackOwls wordmark */}
         <div className="loader-wordmark">
           <img
             src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owltext-bg.png"
@@ -108,7 +110,15 @@ export default function Loader({ onComplete, duration = 8000 }) {
           />
         </div>
 
-        
+        <p className="loader-tagline">
+          <span>SCAN</span>
+          <i />
+          <span>DETECT</span>
+          <i />
+          <span>REMOVE</span>
+          <i />
+          <span>PROTECT</span>
+        </p>
 
         {/* Rotating protection information */}
         <div className="loader-protection-text">
@@ -156,86 +166,89 @@ export default function Loader({ onComplete, duration = 8000 }) {
           min-height: 0;
           overflow: hidden;
           isolation: isolate;
-          background: #dce7e9;
-          color: #102b43;
+          background: #F8FBEF;
+          color: #152019;
           font-family: Roboto, Arial, sans-serif;
-          animation: loaderFadeIn .55s ease both;
+          animation: loaderFadeIn 0.55s ease both;
         }
 
-        /* Full-screen world map */
+        /* Base background */
+        .loader-background-base {
+          position: absolute;
+          inset: 0;
+          z-index: -5;
+          background: #F8FBEF;
+        }
+
+        /* Visible world map */
         .loader-map {
           position: absolute;
-          inset: -1%;
-          z-index: -5;
+          inset: 0;
+          z-index: -4;
           background-image: url("/world-map.png");
           background-position: center center;
           background-repeat: no-repeat;
           background-size: 100% 100%;
-          opacity: .65;
-          filter: saturate(.72) brightness(1.02);
+          opacity: 0.58;
+          filter: saturate(0.85) contrast(0.94);
           animation: loaderMapReveal 1.3s ease both;
         }
 
-        /* Bright central glow and dark outer edges */
+        /* White center and lime-yellow outer glow */
         .loader-background-glow {
-          position: absolute;
-          inset: 0;
-          z-index: -4;
-          pointer-events: none;
-          background:
-            radial-gradient(
-              ellipse at 50% 43%,
-              rgba(255, 255, 255, .94) 0%,
-              rgba(246, 250, 251, .88) 25%,
-              rgba(227, 237, 240, .60) 48%,
-              rgba(25, 57, 65, .24) 76%,
-              rgba(10, 37, 48, .91) 100%
-            ),
-            linear-gradient(
-              180deg,
-              rgba(12, 39, 47, .20) 0%,
-              transparent 28%,
-              transparent 72%,
-              rgba(9, 35, 45, .30) 100%
-            );
-        }
-
-        /* Fine scanning grid */
-        .loader-grid {
           position: absolute;
           inset: 0;
           z-index: -3;
           pointer-events: none;
+          background:
+            radial-gradient(
+              ellipse at 50% 43%,
+              rgba(255, 255, 255, 0.76) 0%,
+              rgba(255, 255, 250, 0.60) 25%,
+              rgba(248, 251, 226, 0.38) 48%,
+              rgba(220, 239, 151, 0.30) 72%,
+              rgba(173, 209, 50, 0.30) 100%
+            );
+        }
+
+        /* Light digital grid */
+        .loader-grid {
+          position: absolute;
+          inset: 0;
+          z-index: -2;
+          pointer-events: none;
           background-image:
             linear-gradient(
-              rgba(139, 182, 48, .10) 1px,
+              rgba(109, 144, 11, 0.09) 1px,
               transparent 1px
             ),
             linear-gradient(
               90deg,
-              rgba(139, 182, 48, .10) 1px,
+              rgba(109, 144, 11, 0.09) 1px,
               transparent 1px
             );
           background-size: 41.5% 18.2%;
-          opacity: .45;
+          opacity: 0.45;
         }
 
+        /* Moving scan line */
         .loader-scan-line {
           position: absolute;
-          z-index: -1;
+          z-index: 0;
           top: 0;
           bottom: 0;
           left: 0;
           width: 1px;
           pointer-events: none;
-          background: rgba(139, 182, 48, .42);
-          box-shadow: 0 0 15px rgba(139, 182, 48, .22);
+          background: rgba(139, 182, 48, 0.48);
+          box-shadow: 0 0 16px rgba(139, 182, 48, 0.30);
           animation: loaderScanMove 8s ease-in-out infinite alternate;
         }
 
-        /* Glowing points */
+        /* Glowing map points */
         .loader-map-points {
           position: absolute;
+          z-index: 0;
           inset: 0;
           overflow: hidden;
           pointer-events: none;
@@ -243,32 +256,33 @@ export default function Loader({ onComplete, duration = 8000 }) {
 
         .loader-map-point {
           position: absolute;
-          width: clamp(5px, .7vw, 9px);
-          height: clamp(5px, .7vw, 9px);
+          width: clamp(5px, 0.7vw, 9px);
+          height: clamp(5px, 0.7vw, 9px);
           border-radius: 50%;
-          background: #f4bc62;
+          background: #ADD132;
           box-shadow:
-            0 0 7px 3px rgba(255, 188, 85, .65),
-            0 0 22px 9px rgba(255, 174, 66, .35),
-            0 0 40px 14px rgba(255, 174, 66, .12);
+            0 0 7px 3px rgba(173, 209, 50, 0.55),
+            0 0 22px 9px rgba(173, 209, 50, 0.30),
+            0 0 40px 14px rgba(173, 209, 50, 0.15);
           animation: loaderPointPulse 2.2s ease-in-out infinite alternate;
         }
 
-        .point-2  { animation-delay: .6s; }
-        .point-3  { animation-delay: 1.2s; }
-        .point-4  { animation-delay: .3s; }
-        .point-5  { animation-delay: 1.5s; }
-        .point-6  { animation-delay: .9s; }
-        .point-7  { animation-delay: .4s; }
-        .point-8  { animation-delay: 1.3s; }
-        .point-9  { animation-delay: .7s; }
+        .point-2 { animation-delay: 0.6s; }
+        .point-3 { animation-delay: 1.2s; }
+        .point-4 { animation-delay: 0.3s; }
+        .point-5 { animation-delay: 1.5s; }
+        .point-6 { animation-delay: 0.9s; }
+        .point-7 { animation-delay: 0.4s; }
+        .point-8 { animation-delay: 1.3s; }
+        .point-9 { animation-delay: 0.7s; }
         .point-10 { animation-delay: 1.6s; }
-        .point-11 { animation-delay: .5s; }
+        .point-11 { animation-delay: 0.5s; }
         .point-12 { animation-delay: 1.1s; }
 
-        /* Main content positioning */
+        /* Central content */
         .loader-center {
           position: absolute;
+          z-index: 2;
           top: 49%;
           left: 50%;
           display: flex;
@@ -277,10 +291,10 @@ export default function Loader({ onComplete, duration = 8000 }) {
           width: min(92%, 680px);
           text-align: center;
           transform: translate(-50%, -50%);
-          animation: loaderContentEnter .9s cubic-bezier(.2, .7, .2, 1) both;
+          animation: loaderContentEnter 0.9s cubic-bezier(.2, .7, .2, 1) both;
         }
 
-        /* Large circular owl emblem */
+        /* Owl emblem */
         .loader-owl-ring {
           display: flex;
           align-items: center;
@@ -289,10 +303,10 @@ export default function Loader({ onComplete, duration = 8000 }) {
           width: clamp(140px, 10.5vw, 190px);
           height: clamp(140px, 10.5vw, 190px);
           margin-bottom: 25px;
-          border: 1px solid rgba(33, 68, 88, .10);
+          border: 1px solid rgba(109, 144, 11, 0.15);
           border-radius: 50%;
-          background: rgba(255, 255, 255, .07);
-          box-shadow: 0 5px 25px rgba(21, 53, 73, .025);
+          background: rgba(255, 255, 255, 0.26);
+          box-shadow: 0 5px 25px rgba(21, 53, 20, 0.025);
           animation: loaderRingEnter 1s ease both;
         }
 
@@ -301,10 +315,10 @@ export default function Loader({ onComplete, duration = 8000 }) {
           width: 69%;
           height: 82%;
           object-fit: contain;
-          filter: drop-shadow(0 3px 4px rgba(0, 0, 0, .10));
+          filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.08));
         }
 
-        /* Large wordmark */
+        /* Wordmark */
         .loader-wordmark {
           display: flex;
           align-items: center;
@@ -322,7 +336,7 @@ export default function Loader({ onComplete, duration = 8000 }) {
           object-fit: contain;
         }
 
-        /* SCAN | DETECT | REMOVE | PROTECT */
+        /* Tagline */
         .loader-tagline {
           display: flex;
           align-items: center;
@@ -330,10 +344,10 @@ export default function Loader({ onComplete, duration = 8000 }) {
           flex-wrap: nowrap;
           gap: 11px;
           margin: 13px 0 0;
-          color: #18364d;
-          font-size: clamp(10px, .82vw, 14px);
+          color: #18364D;
+          font-size: clamp(10px, 0.82vw, 14px);
           font-weight: 500;
-          letter-spacing: .65px;
+          letter-spacing: 0.65px;
           line-height: 1.5;
           white-space: nowrap;
         }
@@ -343,10 +357,10 @@ export default function Loader({ onComplete, duration = 8000 }) {
           flex-shrink: 0;
           width: 2px;
           height: 12px;
-          background: #8bb630;
+          background: #8BB630;
         }
 
-        /* Protection service information */
+        /* Protection information */
         .loader-protection-text {
           display: flex;
           flex-direction: column;
@@ -354,13 +368,12 @@ export default function Loader({ onComplete, duration = 8000 }) {
           width: 100%;
           margin-top: 33px;
           padding: 0 12px;
-          text-shadow: 0 1px 1px rgba(255, 255, 255, .45);
         }
 
         .loader-protecting {
           margin: 0;
-          color: #496c82;
-          font-size: clamp(11px, .85vw, 14px);
+          color: #49652C;
+          font-size: clamp(11px, 0.85vw, 14px);
           font-weight: 900;
           letter-spacing: 2.8px;
         }
@@ -368,12 +381,12 @@ export default function Loader({ onComplete, duration = 8000 }) {
         .loader-service-copy {
           min-height: 58px;
           margin-top: 22px;
-          animation: loaderServiceChange .45s ease both;
+          animation: loaderServiceChange 0.45s ease both;
         }
 
         .loader-service-copy h2 {
           margin: 0;
-          color: #102b43;
+          color: #152019;
           font-size: clamp(17px, 1.2vw, 22px);
           font-weight: 800;
           line-height: 1.45;
@@ -381,7 +394,7 @@ export default function Loader({ onComplete, duration = 8000 }) {
 
         .loader-service-copy h3 {
           margin: 3px 0 0;
-          color: #18384f;
+          color: #34452B;
           font-size: clamp(15px, 1.05vw, 19px);
           font-weight: 700;
           line-height: 1.5;
@@ -393,8 +406,8 @@ export default function Loader({ onComplete, duration = 8000 }) {
           justify-content: center;
           gap: 8px;
           margin: 16px 0 0;
-          color: #6b8798;
-          font-size: clamp(11px, .8vw, 14px);
+          color: #617451;
+          font-size: clamp(11px, 0.8vw, 14px);
           line-height: 1.5;
         }
 
@@ -403,14 +416,15 @@ export default function Loader({ onComplete, duration = 8000 }) {
           width: 6px;
           height: 6px;
           border-radius: 50%;
-          background: #8bb630;
-          box-shadow: 0 0 8px rgba(139, 182, 48, .45);
+          background: #8BB630;
+          box-shadow: 0 0 8px rgba(139, 182, 48, 0.4);
           animation: loaderStatusPulse 1.2s ease-in-out infinite alternate;
         }
 
-        /* Enter website button */
+        /* Enter website button: reference screenshot colors */
         .loader-enter-button {
           position: absolute;
+          z-index: 3;
           bottom: 4%;
           left: 50%;
           display: inline-flex;
@@ -419,29 +433,31 @@ export default function Loader({ onComplete, duration = 8000 }) {
           min-width: 157px;
           min-height: 53px;
           padding: 13px 24px;
-          border: 1px solid #738fa3;
+          border: 1px solid #6B8398;
           border-radius: 5px;
-          background: #102e47;
-          color: #fff;
+          background: #102B45;
+          color: #F4F7FA;
           font-family: inherit;
           font-size: 15px;
           font-weight: 600;
           cursor: pointer;
           transform: translateX(-50%);
-          box-shadow: 0 7px 22px rgba(12, 40, 59, .12);
+          box-shadow: 0 3px 12px rgba(7, 27, 50, 0.10);
           transition:
-            background .25s ease,
-            border-color .25s ease,
-            opacity .25s ease;
+            background 0.25s ease,
+            border-color 0.25s ease,
+            box-shadow 0.25s ease;
         }
 
         .loader-enter-button:hover:not(:disabled) {
-          background: #1d435d;
-          border-color: #8bb630;
+          background: #183B59;
+          color: #FFFFFF;
+          border-color: #8CA2B5;
+          box-shadow: 0 8px 24px rgba(7, 27, 50, 0.2);
         }
 
         .loader-enter-button:focus-visible {
-          outline: 3px solid #8bb630;
+          outline: 3px solid #8BB630;
           outline-offset: 4px;
         }
 
@@ -451,7 +467,7 @@ export default function Loader({ onComplete, duration = 8000 }) {
 
         .loader-exiting {
           pointer-events: none;
-          animation: loaderFadeOut .5s ease forwards;
+          animation: loaderFadeOut 0.5s ease forwards;
         }
 
         @keyframes loaderFadeIn {
@@ -472,7 +488,7 @@ export default function Loader({ onComplete, duration = 8000 }) {
             transform: scale(1.035);
           }
           to {
-            opacity: .65;
+            opacity: 0.58;
             transform: scale(1);
           }
         }
@@ -484,8 +500,8 @@ export default function Loader({ onComplete, duration = 8000 }) {
 
         @keyframes loaderPointPulse {
           from {
-            opacity: .35;
-            transform: scale(.75);
+            opacity: 0.35;
+            transform: scale(0.75);
           }
           to {
             opacity: 1;
@@ -496,7 +512,7 @@ export default function Loader({ onComplete, duration = 8000 }) {
         @keyframes loaderRingEnter {
           from {
             opacity: 0;
-            transform: scale(.85);
+            transform: scale(0.85);
           }
           to {
             opacity: 1;
@@ -527,195 +543,186 @@ export default function Loader({ onComplete, duration = 8000 }) {
         }
 
         @keyframes loaderStatusPulse {
-          from { opacity: .45; }
+          from { opacity: 0.45; }
           to { opacity: 1; }
         }
 
-       
-/* MOBILE: LARGER LOGO AND READABLE TEXT */
-@media (max-width: 640px) {
-  .loader-map {
-    inset: -1%;
-    background-size: auto 100%;
-    background-position: center center;
-  }
+        /* Mobile */
+        @media (max-width: 640px) {
+          .loader-map {
+            background-size: auto 100%;
+            background-position: center center;
+            opacity: 0.58;
+          }
 
-  .loader-background-glow {
-    background:
-      radial-gradient(
-        ellipse at 50% 46%,
-        rgba(255, 255, 255, 0.94) 0%,
-        rgba(246, 250, 251, 0.88) 30%,
-        rgba(227, 237, 240, 0.55) 58%,
-        rgba(13, 42, 52, 0.60) 100%
-      );
-  }
+          .loader-background-glow {
+            background:
+              radial-gradient(
+                ellipse at 50% 45%,
+                rgba(255, 255, 255, 0.76) 0%,
+                rgba(255, 255, 250, 0.60) 25%,
+                rgba(248, 251, 226, 0.38) 48%,
+                rgba(220, 239, 151, 0.30) 72%,
+                rgba(173, 209, 50, 0.30) 100%
+              );
+          }
 
-  .loader-center {
-    top: 46%;
-    width: 96%;
-  }
+          .loader-center {
+            top: 46%;
+            width: 96%;
+          }
 
-  /* Larger owl logo */
-  .loader-owl-ring {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 24px;
-  }
+          .loader-owl-ring {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 24px;
+          }
 
-  .loader-owl-image {
-    width: 76%;
-    height: 86%;
-    object-fit: contain;
-  }
+          .loader-owl-image {
+            width: 76%;
+            height: 86%;
+          }
 
-  /* Larger TrackOwls wordmark */
-  .loader-wordmark > img {
-    width: min(90vw, 340px);
-    max-width: 94%;
-    max-height: 85px;
-    height: auto;
-    object-fit: contain;
-  }
+          .loader-wordmark > img {
+            width: min(90vw, 340px);
+            max-width: 94%;
+            max-height: 85px;
+          }
 
-  /* Readable tagline */
-  .loader-tagline {
-    gap: 8px;
-    margin-top: 13px;
-    font-size: 11px;
-    letter-spacing: 0.35px;
-    line-height: 1.6;
-  }
+          .loader-tagline {
+            gap: 8px;
+            margin-top: 13px;
+            font-size: 11px;
+            letter-spacing: 0.35px;
+            line-height: 1.6;
+          }
 
-  .loader-tagline i {
-    width: 2px;
-    height: 11px;
-  }
+          .loader-tagline i {
+            width: 2px;
+            height: 11px;
+          }
 
-  /* Protection information */
-  .loader-protection-text {
-    margin-top: 30px;
-    padding: 0 8px;
-  }
+          .loader-protection-text {
+            margin-top: 30px;
+            padding: 0 8px;
+          }
 
-  .loader-protecting {
-    font-size: 13px;
-    letter-spacing: 2.5px;
-  }
+          .loader-protecting {
+            font-size: 13px;
+            letter-spacing: 2.5px;
+          }
 
-  .loader-service-copy {
-    min-height: 58px;
-    margin-top: 20px;
-  }
+          .loader-service-copy {
+            min-height: 58px;
+            margin-top: 20px;
+          }
 
-  .loader-service-copy h2 {
-    font-size: 19px;
-    line-height: 1.45;
-  }
+          .loader-service-copy h2 {
+            font-size: 19px;
+            line-height: 1.45;
+          }
 
-  .loader-service-copy h3 {
-    font-size: 17px;
-    line-height: 1.5;
-  }
+          .loader-service-copy h3 {
+            font-size: 17px;
+            line-height: 1.5;
+          }
 
-  .loader-scan-caption {
-    margin-top: 14px;
-    font-size: 12px;
-    line-height: 1.5;
-  }
+          .loader-scan-caption {
+            margin-top: 14px;
+            font-size: 12px;
+            line-height: 1.5;
+          }
 
-  .loader-status-dot {
-    width: 7px;
-    height: 7px;
-    flex-basis: 7px;
-  }
+          .loader-status-dot {
+            width: 7px;
+            height: 7px;
+            flex-basis: 7px;
+          }
 
-  /* Enter website button */
-  .loader-enter-button {
-    bottom: 3%;
-    min-width: 150px;
-    min-height: 48px;
-    padding: 11px 22px;
-    font-size: 15px;
-  }
-}
+          .loader-enter-button {
+            bottom: 3%;
+            min-width: 150px;
+            min-height: 48px;
+            padding: 11px 22px;
+            font-size: 15px;
+          }
+        }
 
-/* SMALL MOBILE SCREENS */
-@media (max-width: 380px) {
-  .loader-center {
-    top: 45%;
-    width: 98%;
-  }
+        /* Small mobile screens */
+        @media (max-width: 380px) {
+          .loader-center {
+            top: 45%;
+            width: 98%;
+          }
 
-  .loader-owl-ring {
-    width: 135px;
-    height: 135px;
-    margin-bottom: 22px;
-  }
+          .loader-owl-ring {
+            width: 135px;
+            height: 135px;
+            margin-bottom: 22px;
+          }
 
-  .loader-wordmark > img {
-    width: 88vw;
-    max-width: 320px;
-  }
+          .loader-wordmark > img {
+            width: 88vw;
+            max-width: 320px;
+          }
 
-  .loader-tagline {
-    gap: 6px;
-    font-size: 10px;
-    letter-spacing: 0.2px;
-  }
+          .loader-tagline {
+            gap: 6px;
+            font-size: 10px;
+            letter-spacing: 0.2px;
+          }
 
-  .loader-protection-text {
-    margin-top: 25px;
-  }
+          .loader-protection-text {
+            margin-top: 25px;
+          }
 
-  .loader-service-copy {
-    margin-top: 18px;
-  }
+          .loader-service-copy {
+            margin-top: 18px;
+          }
 
-  .loader-service-copy h2 {
-    font-size: 17px;
-  }
+          .loader-service-copy h2 {
+            font-size: 17px;
+          }
 
-  .loader-service-copy h3 {
-    font-size: 15px;
-  }
+          .loader-service-copy h3 {
+            font-size: 15px;
+          }
 
-  .loader-scan-caption {
-    margin-top: 12px;
-    font-size: 11px;
-  }
+          .loader-scan-caption {
+            margin-top: 12px;
+            font-size: 11px;
+          }
 
-  .loader-enter-button {
-    bottom: 2%;
-    min-width: 140px;
-    min-height: 45px;
-    font-size: 14px;
-  }
-}
+          .loader-enter-button {
+            bottom: 2%;
+            min-width: 140px;
+            min-height: 45px;
+            font-size: 14px;
+          }
+        }
 
-/* SHORT MOBILE SCREENS */
-@media (max-height: 650px) {
-  .loader-center {
-    top: 44%;
-    transform: translate(-50%, -50%) scale(0.82);
-  }
+        /* Short screens */
+        @media (max-height: 650px) {
+          .loader-center {
+            top: 44%;
+            transform: translate(-50%, -50%) scale(0.82);
+          }
 
-  .loader-enter-button {
-    bottom: 2%;
-  }
-}
+          .loader-enter-button {
+            bottom: 2%;
+          }
+        }
 
-/* ACCESSIBILITY */
-@media (prefers-reduced-motion: reduce) {
-  .trackowls-loader-screen *,
-  .trackowls-loader-screen *::before,
-  .trackowls-loader-screen *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+          .trackowls-loader-screen *,
+          .trackowls-loader-screen *::before,
+          .trackowls-loader-screen *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
+        }
       `}</style>
     </section>
   );
