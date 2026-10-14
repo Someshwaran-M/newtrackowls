@@ -266,7 +266,7 @@ export default function Loader({ onComplete, duration = 8000 }) {
           font-size: clamp(45px, 6.4vw, 86px);
           font-weight: 900;
           line-height: 1.08;
-          letter-spacing: -0.075em;
+          letter-spacing: -0.025em;
           opacity: 0;
           transform: translateY(8px);
           animation: introTextReveal 0.6s ease-out 0.55s forwards;
