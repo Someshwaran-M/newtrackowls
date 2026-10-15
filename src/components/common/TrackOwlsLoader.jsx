@@ -88,15 +88,9 @@ export default function TrackOwlsLoader({ onEnter }) {
           <span className="track-loader__brand-green">Owls</span>
         </div>
 
-        <p className="track-loader__tagline">
-          <span>SCAN</span>
-          <i />
-          <span>DETECT</span>
-          <i />
-          <span>REMOVE</span>
-          <i />
-          <span>PROTECT</span>
-        </p>
+       <div className="track-loader__tagline">
+  Scan <i>|</i> Detect <i>|</i> Remove <i>|</i> Protect
+</div>
 
         <div className="track-loader__industry">
           <p className="track-loader__eyebrow">PROTECTING</p>
