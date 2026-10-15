@@ -631,20 +631,54 @@
 /* MOBILE */
 
 @media (max-width: 480px) {
+  .track-loader {
+    background-color: #f5f8ed;
+  }
+
   .track-loader__background {
-    background-position: center center;
+    background-color: #f5f8ed;
+    background-image:
+      linear-gradient(
+        135deg,
+        rgba(173, 209, 50, 0.12),
+        rgba(255, 255, 255, 0.16) 50%,
+        rgba(200, 225, 130, 0.12)
+      ),
+      url("/world-map.png"),
+      radial-gradient(
+        ellipse at center,
+        #ffffff 0%,
+        #f7f9ed 50%,
+        #e7efcf 100%
+      );
+    background-position: center;
     background-size: cover;
+    background-repeat: no-repeat;
   }
 
   .track-loader__center-glow {
-    width: 145vw;
-    height: 65vh;
-    top: 43%;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0.94) 0%,
+      rgba(248, 251, 235, 0.75) 48%,
+      rgba(220, 238, 175, 0.18) 78%,
+      transparent 100%
+    );
   }
 
+  .track-loader__vignette {
+    background: radial-gradient(
+      ellipse at center,
+      transparent 45%,
+      rgba(173, 209, 50, 0.04) 100%
+    );
+    box-shadow: none;
+  }
+}
+
   .track-loader__owl-wrap {
-    width: 105px;
-    height: 120px;
+    width: 125px;
+    height: 140px;
     margin-bottom: 13px;
   }
 
@@ -654,14 +688,14 @@
   }
 
   .track-loader__brand {
-    font-size: clamp(41px, 11.5vw, 54px);
+    font-size: clamp(44px, 20vw, 57px);
     letter-spacing: -0.065em;
   }
 
   .track-loader__tagline {
     gap: 6px;
     margin-top: 11px;
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 0.035em;
   }
 
@@ -710,10 +744,7 @@
     height: 6px;
   }
 
-  .track-loader__vignette {
-    box-shadow: inset 0 0 50px rgba(5, 25, 33, 0.25);
-  }
-}
+  
 
 /* SHORT MOBILE SCREENS */
 
@@ -725,7 +756,7 @@
   }
 
   .track-loader__brand {
-    font-size: clamp(36px, 5vw, 55px);
+    font-size: clamp(36px, 6vw, 55px);
   }
 
   .track-loader__tagline {
