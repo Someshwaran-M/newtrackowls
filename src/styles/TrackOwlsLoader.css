@@ -281,8 +281,8 @@
   display: block;
   position: relative;
   z-index: 2;
-  width: 85%;
-  height: 94%;
+  width: 82%;
+  height: 91%;
   object-fit: contain;
   object-position: center;
   filter: brightness(0.7) contrast(1.22);
@@ -300,7 +300,7 @@
   white-space: nowrap;
   line-height: 0.98;
   letter-spacing: -0.065em;
-  font-size: clamp(48px, 4vw, 98px);
+  font-size: clamp(44px, 6vw, 94px);
   font-weight: 800;
   animation: trackTextReveal 1s 0.2s ease both;
 }
@@ -371,7 +371,7 @@
   max-width: 90vw;
   color: #1b334b;
   font-size: clamp(14px, 1.45vw, 21px);
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1.4;
   animation: trackIndustryChange 0.55s ease both;
 }
@@ -380,7 +380,7 @@
   margin: clamp(18px, 3vh, 30px) 0 0;
   color: #6f8b9b;
   font-size: clamp(11px, 1.05vw, 15px);
-  font-weight: 800;
+  font-weight: 400;
   letter-spacing: 0.01em;
 }
 
@@ -704,7 +704,7 @@
 
   /* Main content positioning */
   .track-loader__content {
-    top: 47%;
+    top: 50%;
     left: 50%;
     width: 96%;
     transform: translate(-50%, -50%);
@@ -718,8 +718,8 @@
   }
 
   .track-loader__owl {
-    width: 145px;
-    height: 160px;
+    width: 155px;
+    height: 170px;
     object-fit: contain;
     object-position: center;
     filter: none;
@@ -731,11 +731,12 @@
 
   /* Wordmark: dark navy and olive */
   .track-loader__brand {
+    top: 20px;
     font-family: Roboto, Arial, sans-serif;
-    font-size: 59px;
-    font-weight: 800;
+    font-size: 68px;
+    font-weight: 900;
     line-height: 1.08;
-    letter-spacing: -3px;
+    letter-spacing: -2px;
     white-space: nowrap;
   }
 
@@ -757,7 +758,7 @@
     margin-top: 14px;
     color: #263a47;
     font-family: Roboto, Arial, sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     letter-spacing: 0;
     white-space: nowrap;

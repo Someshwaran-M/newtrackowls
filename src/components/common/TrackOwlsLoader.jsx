@@ -89,7 +89,7 @@ export default function TrackOwlsLoader({ onEnter }) {
         </div>
 
        <div className="track-loader__tagline">
-  Scan <i>|</i> Detect <i>|</i> Remove <i>|</i> Protect
+  SCAN <i>|</i> DETECT <i>|</i> REMOVE <i>|</i> PROTECT
 </div>
 
         <div className="track-loader__industry">
