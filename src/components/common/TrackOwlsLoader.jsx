@@ -142,7 +142,7 @@ export default function TrackOwlsLoader({
         onClick={enterWebsite}
         disabled={leaving}
       >
-        {leaving ? "Entering website..." : "Enter website"}
+        {leaving ? "Enter website" : "Enter website"}
       </button>
     </main>
   );
