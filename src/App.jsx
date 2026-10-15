@@ -2,7 +2,8 @@
 import React, { useState, useCallback } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Loader from "./components/common/Loader";
+// Loader
+import TrackOwlsLoader from "./components/common/TrackOwlsLoader";
 
 // Layout
 import Navbar from "./components/layout/Navbar";
@@ -43,62 +44,68 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white text-[#152019] dark:bg-[#070A07] dark:text-white">
-      {/* Render the loader only from the root App component */}
+      {/* TrackOwls intro loader */}
       {loading && (
-        <Loader
+        <TrackOwlsLoader
           duration={8000}
           onComplete={handleLoaderComplete}
         />
       )}
 
-      <Navbar />
+      {/* Existing website */}
+      <div
+        className={loading ? "invisible" : "visible"}
+        aria-hidden={loading}
+      >
+        <Navbar />
 
-      <main>
-        <Routes>
-          {/* Main Pages */}
-          <Route path="/" element={<Home />} />
-          <Route path="/how-it-works" element={<HowItWorks />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/solutions" element={<Solutions />} />
-          <Route path="/industries" element={<Industries />} />
-          <Route path="/platform" element={<Platform />} />
-          <Route path="/insights" element={<Insights />} />
-          <Route path="/piracy" element={<Piracy />} />
-          <Route path="/contact" element={<Contact />} />
+        <main>
+          <Routes>
+            {/* Main Pages */}
+            <Route path="/" element={<Home />} />
+            <Route path="/how-it-works" element={<HowItWorks />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/solutions" element={<Solutions />} />
+            <Route path="/industries" element={<Industries />} />
+            <Route path="/platform" element={<Platform />} />
+            <Route path="/insights" element={<Insights />} />
+            <Route path="/piracy" element={<Piracy />} />
+            <Route path="/contact" element={<Contact />} />
 
-          {/* Information */}
-          <Route path="/privacy" element={<InformationPrivacy />} />
-          <Route path="/terms" element={<InformationTerms />} />
-          <Route path="/cookies" element={<InformationCookies />} />
-          <Route path="/copyrights" element={<CopyRight />} />
-          <Route path="/content-editor" element={<ContentEditor />} />
-          <Route path="/careers" element={<Career />} />
+            {/* Information */}
+            <Route path="/privacy" element={<InformationPrivacy />} />
+            <Route path="/terms" element={<InformationTerms />} />
+            <Route path="/cookies" element={<InformationCookies />} />
+            <Route path="/copyrights" element={<CopyRight />} />
+            <Route path="/content-editor" element={<ContentEditor />} />
+            <Route path="/careers" element={<Career />} />
 
-          {/* Insights Articles */}
-          <Route
-            path="/live-event-protection"
-            element={<LiveEventProtectionChecklist />}
-          />
-          <Route
-            path="/enforcement-reports"
-            element={<UnderstandingEnforcementReports />}
-          />
-          <Route
-            path="/release-window"
-            element={<ReleaseWindowMonitoring />}
-          />
-          <Route
-            path="/brand-investigation"
-            element={<BrandReferenceChecklist />}
-          />
-          <Route
-            path="/repeat-sources"
-            element={<RepeatSourceInvestigation />}
-          />
-        </Routes>
-      </main>
+            {/* Insights Articles */}
+            <Route
+              path="/live-event-protection"
+              element={<LiveEventProtectionChecklist />}
+            />
+            <Route
+              path="/enforcement-reports"
+              element={<UnderstandingEnforcementReports />}
+            />
+            <Route
+              path="/release-window"
+              element={<ReleaseWindowMonitoring />}
+            />
+            <Route
+              path="/brand-investigation"
+              element={<BrandReferenceChecklist />}
+            />
+            <Route
+              path="/repeat-sources"
+              element={<RepeatSourceInvestigation />}
+            />
+          </Routes>
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </div>
   );
 }

@@ -1,0 +1,768 @@
+
+.track-loader {
+  --track-navy: #101b2d;
+  --track-green: #638900;
+  --track-gold: #f0b76b;
+  --track-white: #f5f8fa;
+
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+  background: #122b31;
+  color: var(--track-navy);
+  font-family: Roboto, Arial, sans-serif;
+  animation: trackLoaderAppear 0.9s ease both;
+}
+
+.track-loader *,
+.track-loader *::before,
+.track-loader *::after {
+  box-sizing: border-box;
+}
+
+/* WORLD MAP BACKGROUND */
+
+
+.track-loader__background {
+  position: absolute;
+  inset: -2%;
+  z-index: -5;
+
+  background-color: #ADD132;
+
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(173, 209, 50, 0.28),
+      rgba(245, 248, 242, 0.12) 45%,
+      rgba(109, 144, 11, 0.28)
+    ),
+    url("/world-map.png"),
+    radial-gradient(
+      ellipse at 50% 43%,
+      #f7fbe9 0%,
+      #e8efcf 27%,
+      #cbd99e 53%,
+      #60752d 80%,
+      #152019 100%
+    );
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  transform: scale(1.04);
+  animation: trackMapDrift 18s ease-in-out infinite alternate;
+}
+
+/* DARK NAVY EDGES */
+
+
+.track-loader__vignette {
+  position: absolute;
+  inset: 0;
+  z-index: -4;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(21, 32, 25, 0.72) 0%,
+      rgba(109, 144, 11, 0.12) 22%,
+      transparent 40%,
+      transparent 60%,
+      rgba(109, 144, 11, 0.12) 78%,
+      rgba(21, 32, 25, 0.72) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(21, 32, 25, 0.38) 0%,
+      transparent 25%,
+      transparent 70%,
+      rgba(21, 32, 25, 0.78) 100%
+    );
+
+  box-shadow: inset 0 0 110px rgba(21, 32, 25, 0.22);
+}
+
+
+/* BRIGHT CENTER GLOW */
+
+.track-loader__center-glow {
+  position: absolute;
+  z-index: -3;
+  width: min(1000px, 110vw);
+  height: min(700px, 85vh);
+  left: 50%;
+  top: 43%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(246, 249, 250, 0.87) 29%,
+    rgba(228, 237, 237, 0.52) 55%,
+    rgba(213, 229, 224, 0.06) 76%,
+    transparent 100%
+  );
+
+  filter: blur(9px);
+  animation: trackGlowPulse 5s ease-in-out infinite alternate;
+}
+
+/* MOVING SCAN LIGHT */
+
+.track-loader__scan-beam {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: -45%;
+  width: 38%;
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.21),
+    transparent
+  );
+
+  transform: skewX(-15deg);
+  animation: trackBeamSweep 8s ease-in-out infinite;
+}
+
+/* WORLD SCANNING NETWORK */
+
+.track-loader__network {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.track-loader__scan-point {
+  position: absolute;
+  display: block;
+  width: clamp(6px, 1vw, 13px);
+  height: clamp(6px, 1vw, 13px);
+  border-radius: 50%;
+
+  background: #ffe3ac;
+  border: 1px solid rgba(255, 246, 219, 0.95);
+
+  box-shadow:
+    0 0 7px 3px rgba(255, 186, 91, 0.85),
+    0 0 24px 8px rgba(244, 165, 65, 0.55),
+    0 0 48px 14px rgba(244, 165, 65, 0.15);
+
+  animation: trackPointPulse 2.6s ease-in-out infinite;
+}
+
+.track-loader__connection {
+  position: absolute;
+  display: block;
+  height: 1px;
+  transform-origin: left center;
+  background: linear-gradient(
+    90deg,
+    rgba(248, 193, 112, 0.55),
+    rgba(255, 231, 180, 0.2),
+    transparent
+  );
+  opacity: 0.65;
+  animation: trackConnectionPulse 4s ease-in-out infinite alternate;
+}
+
+.connection-one {
+  left: 12%;
+  top: 27%;
+  width: 28%;
+  transform: rotate(19deg);
+}
+
+.connection-two {
+  left: 24%;
+  top: 43%;
+  width: 29%;
+  transform: rotate(-30deg);
+  animation-delay: 0.6s;
+}
+
+.connection-three {
+  left: 48%;
+  top: 25%;
+  width: 26%;
+  transform: rotate(14deg);
+  animation-delay: 1.2s;
+}
+
+.connection-four {
+  left: 52%;
+  top: 55%;
+  width: 28%;
+  transform: rotate(-32deg);
+  animation-delay: 0.9s;
+}
+
+.connection-five {
+  left: 61%;
+  top: 14%;
+  width: 23%;
+  transform: rotate(27deg);
+  animation-delay: 1.5s;
+}
+
+/* CENTER CONTENT */
+
+.track-loader__content {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: min(92%, 850px);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+
+  transform: translate(-50%, -50%);
+  animation: trackContentReveal 1.3s ease both;
+}
+
+/* OWL LOGO */
+
+.track-loader__owl-wrap {
+  position: relative;
+  width: clamp(100px, 12vw, 190px);
+  height: clamp(115px, 15vw, 205px);
+  display: grid;
+  place-items: center;
+  margin-bottom: clamp(8px, 1.8vh, 24px);
+}
+
+.track-loader__owl-ring {
+  position: absolute;
+  inset: 5%;
+  border: 1px solid rgba(99, 137, 0, 0.12);
+  border-radius: 50%;
+  animation: trackRingPulse 5s ease-in-out infinite;
+}
+
+.track-loader__owl-scan {
+  position: absolute;
+  z-index: 1;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  top: 18%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(99, 137, 0, 0.8),
+    transparent
+  );
+
+  box-shadow: 0 0 12px rgba(99, 137, 0, 0.4);
+  animation: trackOwlScan 3.8s ease-in-out infinite;
+}
+
+.track-loader__owl {
+  display: block;
+  position: relative;
+  z-index: 2;
+  width: 82%;
+  height: 91%;
+  object-fit: contain;
+  object-position: center;
+  filter: brightness(0.7) contrast(1.22);
+  user-select: none;
+  -webkit-user-drag: none;
+  animation: trackOwlReveal 1.3s ease both;
+}
+
+/* TRACKOWLS WORDMARK */
+
+.track-loader__brand {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  white-space: nowrap;
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+  font-size: clamp(44px, 6vw, 94px);
+  font-weight: 800;
+  animation: trackTextReveal 1s 0.2s ease both;
+}
+
+.track-loader__brand-dark {
+  color: #10192a;
+}
+
+.track-loader__brand-green {
+  color: var(--track-green);
+}
+
+/* SCAN DETECT REMOVE PROTECT */
+
+.track-loader__tagline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(7px, 0.8vw, 13px);
+  margin: clamp(10px, 1.5vh, 18px) 0 0;
+  color: #24384d;
+  font-size: clamp(10px, 1.05vw, 16px);
+  font-weight: 400;
+  letter-spacing: 0.065em;
+  animation: trackTextReveal 1s 0.35s ease both;
+}
+
+.track-loader__tagline i {
+  width: 1px;
+  height: 13px;
+  display: block;
+  background: var(--track-green);
+}
+
+/* INDUSTRY TEXT */
+
+.track-loader__industry {
+  margin-top: clamp(24px, 4vh, 44px);
+  animation: trackTextReveal 1s 0.5s ease both;
+}
+
+.track-loader__eyebrow {
+  margin: 0 0 clamp(16px, 2.4vh, 25px);
+  color: #4c7088;
+  font-size: clamp(11px, 1.1vw, 16px);
+  font-weight: 800;
+  letter-spacing: 0.23em;
+}
+
+.track-loader__industry-text {
+  min-height: 2.9em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.track-loader__industry-text strong {
+  display: block;
+  max-width: 90vw;
+  color: #1b334b;
+  font-size: clamp(14px, 1.45vw, 21px);
+  font-weight: 700;
+  line-height: 1.4;
+  animation: trackIndustryChange 0.55s ease both;
+}
+
+.track-loader__caption {
+  margin: clamp(18px, 3vh, 30px) 0 0;
+  color: #6f8b9b;
+  font-size: clamp(11px, 1.05vw, 15px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* HORIZONTAL DIVIDER */
+
+.track-loader__bottom-line {
+  position: absolute;
+  z-index: 3;
+  bottom: 16.5%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(192, 198, 124, 0.65) 20%,
+    rgba(192, 198, 124, 0.45) 80%,
+    transparent
+  );
+}
+
+/* ENTER WEBSITE BUTTON */
+
+.track-loader__enter {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: clamp(20px, 3.7vh, 36px);
+  transform: translateX(-50%);
+
+  min-width: 156px;
+  min-height: 54px;
+  padding: 14px 23px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  border: 1px solid rgba(202, 220, 229, 0.75);
+  border-radius: 5px;
+  background: #102d48;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+
+  cursor: pointer;
+  box-shadow: 0 5px 24px rgba(5, 24, 37, 0.18);
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.track-loader__enter:hover {
+  background: #193d58;
+  border-color: #dce9b3;
+  box-shadow: 0 0 24px rgba(173, 209, 50, 0.2);
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.track-loader__enter:focus-visible {
+  outline: 2px solid #add132;
+  outline-offset: 4px;
+}
+
+.track-loader__button-arrow {
+  display: inline-block;
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: all 0.25s ease;
+}
+
+.track-loader__enter:hover .track-loader__button-arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* EXIT TRANSITION */
+
+.track-loader--leaving {
+  pointer-events: none;
+  animation: trackLoaderExit 0.65s ease forwards;
+}
+
+/* ANIMATIONS */
+
+@keyframes trackLoaderAppear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes trackContentReveal {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -47%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes trackTextReveal {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes trackOwlReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.86);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(0.7) contrast(1.22) blur(0);
+  }
+}
+
+@keyframes trackIndustryChange {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes trackMapDrift {
+  from { transform: scale(1.04) translateX(-0.4%); }
+  to { transform: scale(1.1) translateX(0.4%); }
+}
+
+@keyframes trackGlowPulse {
+  from { opacity: 0.78; }
+  to { opacity: 1; }
+}
+
+@keyframes trackBeamSweep {
+  0%, 12% { left: -45%; opacity: 0; }
+  20% { opacity: 0.65; }
+  62% { opacity: 0.45; }
+  80%, 100% { left: 115%; opacity: 0; }
+}
+
+@keyframes trackPointPulse {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes trackConnectionPulse {
+  from { opacity: 0.22; }
+  to { opacity: 0.75; }
+}
+
+@keyframes trackRingPulse {
+  0%, 100% {
+    transform: scale(0.96);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+@keyframes trackOwlScan {
+  0%, 100% { top: 12%; opacity: 0; }
+  15% { opacity: 0.9; }
+  85% { opacity: 0.7; }
+  95% { top: 86%; opacity: 0; }
+}
+
+@keyframes trackLoaderExit {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.025);
+  }
+}
+
+/* TABLET */
+
+@media (max-width: 768px) {
+  .track-loader__background {
+    background-position: center;
+  }
+
+  .track-loader__vignette {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(8, 27, 35, 0.45),
+        transparent 25%,
+        transparent 72%,
+        rgba(8, 27, 35, 0.82)
+      ),
+      linear-gradient(
+        90deg,
+        rgba(9, 34, 41, 0.25),
+        transparent 24%,
+        transparent 76%,
+        rgba(9, 34, 41, 0.25)
+      );
+  }
+
+  .track-loader__content {
+    width: 94%;
+  }
+
+  .track-loader__owl-wrap {
+    width: 125px;
+    height: 145px;
+    margin-bottom: 12px;
+  }
+
+  .track-loader__brand {
+    font-size: clamp(46px, 9.5vw, 70px);
+  }
+
+  .track-loader__industry {
+    margin-top: 26px;
+  }
+
+  .track-loader__bottom-line {
+    bottom: 16.5%;
+  }
+
+  .track-loader__enter {
+    bottom: 22px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+  .track-loader__background {
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .track-loader__center-glow {
+    width: 145vw;
+    height: 65vh;
+    top: 43%;
+  }
+
+  .track-loader__owl-wrap {
+    width: 105px;
+    height: 120px;
+    margin-bottom: 13px;
+  }
+
+  .track-loader__owl {
+    width: 84%;
+    height: 90%;
+  }
+
+  .track-loader__brand {
+    font-size: clamp(41px, 11.5vw, 54px);
+    letter-spacing: -0.065em;
+  }
+
+  .track-loader__tagline {
+    gap: 6px;
+    margin-top: 11px;
+    font-size: 9px;
+    letter-spacing: 0.035em;
+  }
+
+  .track-loader__tagline i {
+    height: 10px;
+  }
+
+  .track-loader__industry {
+    margin-top: 25px;
+  }
+
+  .track-loader__eyebrow {
+    margin-bottom: 16px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+  }
+
+  .track-loader__industry-text strong {
+    font-size: 14px;
+  }
+
+  .track-loader__caption {
+    margin-top: 18px;
+    font-size: 11px;
+  }
+
+  .track-loader__bottom-line {
+    bottom: 16.8%;
+  }
+
+  .track-loader__enter {
+    min-width: 122px;
+    min-height: 43px;
+    padding: 10px 17px;
+    bottom: 19px;
+    font-size: 13px;
+    gap: 5px;
+  }
+
+  .track-loader__button-arrow {
+    display: none;
+  }
+
+  .track-loader__scan-point {
+    width: 6px;
+    height: 6px;
+  }
+
+  .track-loader__vignette {
+    box-shadow: inset 0 0 50px rgba(5, 25, 33, 0.25);
+  }
+}
+
+/* SHORT MOBILE SCREENS */
+
+@media (max-height: 620px) {
+  .track-loader__owl-wrap {
+    width: 78px;
+    height: 86px;
+    margin-bottom: 5px;
+  }
+
+  .track-loader__brand {
+    font-size: clamp(36px, 5vw, 55px);
+  }
+
+  .track-loader__tagline {
+    margin-top: 7px;
+  }
+
+  .track-loader__industry {
+    margin-top: 13px;
+  }
+
+  .track-loader__eyebrow {
+    margin-bottom: 8px;
+  }
+
+  .track-loader__caption {
+    margin-top: 8px;
+  }
+
+  .track-loader__bottom-line {
+    bottom: 13%;
+  }
+
+  .track-loader__enter {
+    bottom: 10px;
+    min-height: 38px;
+    padding: 8px 15px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .track-loader *,
+  .track-loader *::before,
+  .track-loader *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
