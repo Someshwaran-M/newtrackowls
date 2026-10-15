@@ -465,10 +465,7 @@
 
 /* EXIT TRANSITION */
 
-.track-loader--leaving {
-  pointer-events: none;
-  animation: trackLoaderExit 0.65s ease forwards;
-}
+
 
 /* ANIMATIONS */
 
@@ -913,4 +910,14 @@
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Loader: full-screen overlay */
+.track-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  overflow: hidden;
+  background-color: #152019;
+  will-change: transform, opacity;
 }

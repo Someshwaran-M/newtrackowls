@@ -46,11 +46,12 @@ function App() {
     <div className="min-h-screen bg-white text-[#152019] dark:bg-[#070A07] dark:text-white">
       {/* TrackOwls intro loader */}
       {loading && (
-        <TrackOwlsLoader
-          duration={8000}
-          onComplete={handleLoaderComplete}
-        />
-      )}
+  <TrackOwlsLoader
+    duration={8000}
+    autoEnter={true}
+    onEnter={handleLoaderComplete}
+  />
+)}
 
       {/* Existing website */}
       <div
