@@ -113,7 +113,7 @@
     transparent 100%
   );
 
-  filter: blur(9px);
+  filter: blur(70px);
   animation: trackGlowPulse 5s ease-in-out infinite alternate;
 }
 
@@ -330,10 +330,16 @@
 }
 
 .track-loader__tagline i {
-  width: 1px;
-  height: 13px;
-  display: block;
-  background: var(--track-green);
+  display: inline-block;
+  visibility: visible;
+  opacity: 1;
+  color: #729127;
+  -webkit-text-fill-color: #729127;
+  background: transparent;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 0.7;
 }
 
 /* INDUSTRY TEXT */
