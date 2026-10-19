@@ -50,7 +50,7 @@ function SolutionsFAQ() {
   return (
     <section
       id="solutions-faq"
-      className="w-full bg-white px-4 py-10 font-['Roboto',sans-serif] sm:px-6 sm:py-12 lg:px-28 lg:py-14"
+      className="w-full bg-[#EAF3F9] px-4 py-10 font-['Roboto',sans-serif] sm:px-6 sm:py-12 lg:px-28 lg:py-14"
     >
       <div className="mx-auto w-full max-w-[1320px]">
         {/* Heading and description */}

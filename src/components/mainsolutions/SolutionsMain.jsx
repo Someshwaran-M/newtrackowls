@@ -1,69 +1,61 @@
-
 import React from "react";
 
 function SolutionsMain() {
   return (
+
     <section
       id="solutions-main"
-      className="w-full bg-white mt-25 px-4 py-4 font-['Roboto',sans-serif] sm:px-6 sm:py-5 lg:px-[38px]"
+      className="w-full bg-[#EAF3F9] px-3 pt-26 pb-7 font-['Roboto',sans-serif] sm:px-5 sm:pt-25 sm:pb-9 lg:px-8 lg:pt-25 lg:pb-8"
     >
-      <div className="relative isolate mx-auto flex min-h-[300px] w-full max-w-[1290px] items-center overflow-hidden rounded-[12px] border border-[#8BB630]/25 bg-[#071D32] sm:min-h-[330px] lg:min-h-[360px]">
-        {/* Digital world map background */}
-        <div
-          className="pointer-events-none absolute inset-0 -z-10 bg-cover bg-center"
-          style={{
-            backgroundImage: `
-              linear-gradient(
-                90deg,
-                rgba(5, 25, 45, 0.98) 0%,
-                rgba(5, 25, 45, 0.91) 38%,
-                rgba(5, 25, 45, 0.58) 70%,
-                rgba(5, 25, 45, 0.70) 100%
-              ),
-              url('/map.png')
-            `,
-          }}
-        />
+      <div className="mx-auto w-full max-w-[1350px]">
+        <div className="relative isolate flex min-h-[300px] w-full items-center overflow-hidden rounded-[14px] border border-[#8BB630]/30 bg-[#D5DDDA] sm:min-h-[400px] sm:rounded-[17px] lg:min-h-[410px] xl:min-h-[440px]">
 
-        {/* Subtle network grid */}
-        <div
-          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.09]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(139,182,48,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(139,182,48,0.25) 1px, transparent 1px)",
-            backgroundSize: "42px 42px",
-            maskImage:
-              "linear-gradient(90deg, transparent, black 45%, black)",
-          }}
-        />
+    
+       {/* Background image */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 z-[-2] bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('/globe.png')",
+            }}
+          />
 
-        {/* Warm digital network glow */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 -z-10 w-[58%] bg-[radial-gradient(ellipse_at_65%_35%,rgba(180,140,75,0.22),transparent_68%)]" />
+          {/* Light blue overlay */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-[-1] bg-gradient-to-r from-[#DCEAF4]/95 via-[#DCEAF4]/85 to-[#DCEAF4]/45"
+          />
 
-        {/* Banner content */}
-        <div className="w-full px-6 py-10 sm:px-9 sm:py-12 lg:px-[47px] lg:py-[52px]">
-          <div className="max-w-[850px]">
-            <span className="mb-5 inline-flex items-center gap-2.5 text-[11px] font-extrabold uppercase tracking-[1.8px] text-[#C3E600] sm:mb-6 sm:text-xs">
-              <span className="h-[2px] w-5 bg-[#C3E600]" />
-              Our solutions
-            </span>
+          {/* Soft blue atmospheric glow */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-20 top-1/2 z-[-1] h-64 w-64 -translate-y-1/2 rounded-full bg-[#8BBCE0]/30 blur-3xl sm:h-80 sm:w-80 lg:h-[450px] lg:w-[450px]"
+          />
 
-            
-          <h1 className="m-0 max-w-[850px] text-[40px] font-bold leading-[1.15] tracking-[-0.04em] text-white sm:text-[40px] sm:leading-[1.12] lg:text-[62px] lg:leading-[1.1]">
-  Protect.
-  <span className="block text-[#7C9D18]">
-    Investigate. Act.
-  </span>
-</h1>
-            <p className="mt-5 max-w-[650px] text-[14px] font-normal leading-[1.75] text-[#C8D6E4] sm:mt-6 sm:text-base lg:text-[17px] lg:leading-[1.8]">
-              Digital anti-piracy and brand protection services organized
-              around the assets and channels that matter to your business.
-            </p>
+          {/* Hero content */}
+          <div className="flex min-h-[340px] items-center px-5 py-10 min-[400px]:min-h-[360px] sm:min-h-[400px] sm:px-9 sm:py-12 lg:min-h-[450px] lg:px-[60px] lg:py-[65px] xl:min-h-[490px]">
+            <div className="relative z-10 w-full max-w-[1050px]">
+              <span className="mb-5 inline-flex items-center text-[10px] font-extrabold uppercase tracking-[1.7px] text-[#8bb630] min-[400px]:text-[11px] sm:mb-6 sm:text-[12px] sm:tracking-[2px] lg:text-[13px]">
+                OUR SOLUTIONS
+              </span>
+
+              <h1 className="max-w-[950px] text-[34px] font-bold leading-[1.12] tracking-[-1.1px] text-[#173149] min-[400px]:text-[38px] min-[400px]:tracking-[-1.4px] sm:text-[46px] sm:leading-[1.1] sm:tracking-[-1.8px] lg:text-[62px] lg:leading-[1.08] lg:tracking-[-2.3px] xl:text-[68px]">
+                Protect. Investigate. Act.
+              </h1>
+
+              <p className="mt-5 max-w-[760px] text-[13px] leading-[1.8] text-[#526B7D] min-[400px]:text-[14px] sm:mt-6 sm:text-[16px] sm:leading-[1.85] lg:text-[18px] xl:text-[19px]">
+                Digital anti-piracy and brand protection services organized around the assets and channels that matter to your business.
+              </p>
+            </div>
           </div>
         </div>
+
+       
       </div>
     </section>
-  );
-}
+
+          )}
+  
+
 
 export default SolutionsMain;

@@ -6,43 +6,59 @@ const industries = [
     number: "01",
     title: "Film & Entertainment",
     description: "Theatrical releases, films and production assets.",
+    image: "/industries/film.jpeg",
+    link: "/industries",
   },
   {
     number: "02",
     title: "OTT & Streaming",
     description: "Series, premium video and on-demand catalogues.",
+    image: "/industries/ott.jpeg",
+    link: "/industries",
   },
   {
     number: "03",
     title: "Live Sports",
     description: "Time-sensitive events and broadcast rights.",
+    image: "/industries/livesport.jpeg",
+    link: "/industries",
   },
   {
     number: "04",
     title: "Television & Broadcasting",
     description: "Channels, programmes and unauthorized redistribution.",
+    image: "/industries/tv.jpeg",
+    link: "/industries",
   },
   {
     number: "05",
     title: "Music",
     description: "Recordings, releases and protected audio assets.",
-    image: "/images/industries/music-studio.jpg",
+    link: "/industries",
+    image: "/industries/music.jpeg",
     imageAlt: "Professional music recording studio",
   },
   {
     number: "06",
     title: "Brands & IP Owners",
     description: "Trademarks, creative assets and brand identity.",
+    image: "/industries/brand.jpeg",
+    link: "/industries",
   },
   {
     number: "07",
     title: "Sportswear & Apparel Brands",
-    description: "Brand identity, product imagery and suspicious online listings.",
+    description:
+      "Brand identity, product imagery and suspicious online listings.",
+    image: "/industries/sportswear.jpeg",
+    link: "/industries",
   },
   {
     number: "08",
     title: "Publishers & Digital Creators",
     description: "Books, courses, software and original digital publications.",
+    image: "/industries/public.jpeg",
+    link: "/industries",
   },
 ];
 
@@ -50,9 +66,9 @@ function IndustriesGrid() {
   return (
     <section
       id="industries-grid"
-      className="w-full bg-white px-4 py-6 font-['Roboto',sans-serif] sm:px-6 lg:px-5 lg:py-3"
+      className="w-full bg-[#EAF3F9] px-4 py-6 font-['Roboto',sans-serif] sm:px-6 lg:px-5 lg:py-3"
     >
-      <div className="mx-auto max-w-[1290px]">
+      <div className="mx-auto max-w-[1350px]">
         <div className="grid grid-cols-1 border-l border-t border-[#D3E0ED] sm:grid-cols-2 lg:grid-cols-3">
           {industries.map((industry) => (
             <article

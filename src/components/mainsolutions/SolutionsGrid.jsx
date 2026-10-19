@@ -1,229 +1,646 @@
+
 import React from "react";
+import { motion } from "framer-motion";
+import {
+  Radio,
+  Play,
+  Globe,
+  FileCheck2,
+  ShieldCheck,
+  ScanSearch,
+  Search,
+  Eye,
+  ArrowUpRight,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 const solutions = [
   {
     number: "01",
     title: "Live Streaming Protection",
     description: "Act while the event still matters.",
-    image: "/images/solutions/live-streaming.jpg",
-    icon: "stream",
+    image:
+      "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=85",
+    icon: Radio,
+    link: "/services",
   },
   {
     number: "02",
     title: "OTT & VOD Protection",
     description: "Protect every release window.",
-    image: "/images/solutions/ott-vod.jpg",
-    icon: "play",
+    image: "/solutions/videoott.jpeg",
+    icon: Play,
+    link: "/industries",
   },
   {
     number: "03",
     title: "Website & App Monitoring",
     description: "See where your content travels.",
-    image: "/images/solutions/website-monitoring.jpg",
-    icon: "globe",
+    image: "/solutions/websitemonitoring.jpeg",
+    icon: Globe,
+    link: "/platform",
   },
   {
     number: "04",
     title: "Copyright Enforcement",
     description: "Turn evidence into action.",
-    image: "/images/solutions/copyright-enforcement.jpg",
-    icon: "file",
+    image:
+      "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=900&q=85",
+    icon: FileCheck2,
+    link: "/services",
   },
   {
     number: "05",
     title: "Brand Protection",
     description: "Defend the identity you built.",
-    image: null,
-    icon: "shield",
+    image: "/brand.png",
+    icon: ShieldCheck,
+    link: "/services",
   },
   {
     number: "06",
     title: "Piracy Intelligence",
     description: "Understand the patterns behind piracy.",
-    image: "/images/solutions/piracy-intelligence.jpg",
-    icon: "scan",
+    image: "/solutions/piracyintelligence.jpeg",
+    icon: ScanSearch,
+    link: "/platform",
   },
   {
     number: "07",
     title: "Marketplace & Counterfeit Monitoring",
     description: "Investigate listings that misuse your brand.",
-    image: null,
-    icon: "search",
+    image: "/marketplacecounterfeitmonitoring.png",
+    icon: Search,
+    link: "/industries",
   },
   {
     number: "08",
     title: "Domain & Impersonation Monitoring",
     description: "Protect the identity behind your digital presence.",
-    image: null,
-    icon: "globe",
+    image: "/impersonationmonitoring.png",
+    icon: Globe,
+    link: "/services",
   },
   {
     number: "09",
     title: "Social Media & Video Protection",
     description: "Follow infringement across public social channels.",
-    image: null,
-    icon: "eye",
+    image: "/social.png",
+    icon: Eye,
+    link: "/platform",
   },
 ];
 
-function SolutionIcon({ type }) {
-  const common = {
-    width: 20,
-    height: 20,
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 1.6,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    "aria-hidden": true,
-  };
+function SolutionCard({ solution, index }) {
+  const Icon = solution.icon;
 
-  switch (type) {
-    case "stream":
-      return (
-        <svg {...common}>
-          <path d="M5 9a5 5 0 0 0 0 6" />
-          <path d="M8 11a2 2 0 0 0 0 2" />
-          <path d="M19 9a5 5 0 0 1 0 6" />
-          <path d="M16 11a2 2 0 0 1 0 2" />
-          <circle cx="12" cy="12" r="1" />
-        </svg>
-      );
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 8 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.08 }}
+      transition={{ duration: 0.3, delay: (index % 3) * 0.04 }}
+      className={`solution-card ${
+        solution.image ? "has-image" : "no-image"
+      }`}
+    >
+      {solution.image && (
+        <div className="solution-image">
+          <img
+            src={solution.image}
+            alt={solution.title}
+            loading="lazy"
+          />
+        </div>
+      )}
 
-    case "play":
-      return (
-        <svg {...common}>
-          <path d="m8 5 11 7-11 7z" />
-        </svg>
-      );
+      <span className="solution-corner" aria-hidden="true" />
 
-    case "globe":
-      return (
-        <svg {...common}>
-          <circle cx="12" cy="12" r="9" />
-          <path d="M3 12h18M12 3c4 4 4 14 0 18M12 3c-4 4-4 14 0 18" />
-        </svg>
-      );
+      <div className="solution-content">
+        <div className="solution-meta">
+          <Icon
+            size={17}
+            strokeWidth={1.6}
+            className="solution-icon"
+            aria-hidden="true"
+          />
 
-    case "file":
-      return (
-        <svg {...common}>
-          <path d="M7 3h7l4 4v14H7z" />
-          <path d="M14 3v5h4M10 14h5M10 17h5" />
-        </svg>
-      );
+          <span className="solution-number">
+            {solution.number}
+          </span>
+        </div>
 
-    case "shield":
-      return (
-        <svg {...common}>
-          <path d="M12 3 20 6v6c0 5-4 8-8 10-4-2-8-5-8-10V6z" />
-          <path d="m9 12 2 2 4-4" />
-        </svg>
-      );
+        <h3 className="solution-title">{solution.title}</h3>
 
-    case "scan":
-      return (
-        <svg {...common}>
-          <path d="M4 9V5h4M16 5h4v4M20 15v4h-4M8 19H4v-4" />
-          <path d="M8 12h8M12 8v8" />
-        </svg>
-      );
+        <p className="solution-description">
+          {solution.description}
+        </p>
 
-    case "search":
-      return (
-        <svg {...common}>
-          <circle cx="10.5" cy="10.5" r="6.5" />
-          <path d="m16 16 4 4" />
-        </svg>
-      );
-
-    case "eye":
-      return (
-        <svg {...common}>
-          <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" />
-          <circle cx="12" cy="12" r="2.5" />
-        </svg>
-      );
-
-    default:
-      return null;
-  }
+        <div className="solution-footer">
+          <Link to={solution.link} className="solution-link">
+            Explore solution
+            <ArrowUpRight size={11} strokeWidth={1.6} />
+          </Link>
+        </div>
+      </div>
+    </motion.article>
+  );
 }
 
-function SolutionsGrid() {
+export default function HomeSolutions() {
   return (
-    <section
-      id="solutions-grid"
-      className="w-full bg-white px-4 py-8 font-['Roboto',sans-serif] sm:px-6 sm:py-20 lg:px-28 lg:py-20"
-    >
-      <div className="mx-auto grid w-full max-w-[1320px] grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-        {solutions.map((solution) => (
-          <article
-            key={solution.number}
-            className="group relative flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-[#C9DDED] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#8BB630] hover:shadow-[0_12px_30px_rgba(25,51,78,0.08)]"
-          >
-            {/* Image area */}
-            {solution.image ? (
-              <div className="h-[150px] shrink-0 overflow-hidden bg-[#E5EDF4] sm:h-[160px]">
-                <img
-                  src={solution.image}
-                  alt={solution.title}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                />
-              </div>
-            ) : (
-              <div
-                aria-hidden="true"
-                className="h-[150px] shrink-0 bg-gradient-to-br from-[#F5F8F2] via-white to-[#EAF1E7] sm:h-[160px]"
-              />
-            )}
+    <section id="home-solutions" className="solutions-section">
+      <style>{`
+        .solutions-section,
+        .solutions-section * {
+          box-sizing: border-box;
+        }
 
-            {/* Small corner accent */}
-            <span className="pointer-events-none absolute right-3 top-3 h-3 w-3 border-r border-t border-[#55B4D4]" />
+        .solutions-section {
+          width: 100%;
+          overflow: hidden;
+          background: #EAF3F9 ;
+          color: #172E49;
+        
+          font-family: Roboto, Arial, sans-serif;
+        }
 
-            {/* Card content */}
-            <div className="flex flex-1 flex-col p-5 sm:p-6">
-              {/* Icon and number */}
-              <div className="mb-5 flex items-center justify-between">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#F0F6E8] text-[#648A13] transition-colors duration-300 group-hover:bg-[#E5F0D5]">
-                  <SolutionIcon type={solution.icon} />
-                </span>
+        .solutions-container {
+          width: calc(100% - 64px);
+          max-width: 1350px;
+          margin: 0 auto;
+          padding: 58px 0 48px;
+        }
 
-                <span className="text-[11px] font-medium tracking-[1.5px] text-[#7D94A9]">
-                  {solution.number}
-                </span>
-              </div>
+        .solutions-header {
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          gap: 24px;
+          margin-bottom: 26px;
+        }
 
-              {/* Card content */}
-              <h3 className="text-[17px] font-bold leading-[1.4] tracking-[-0.3px] text-[#19334E] transition-colors duration-200 group-hover:text-[#648A13] sm:text-[18px]">
-                {solution.title}
-              </h3>
+        .solutions-eyebrow {
+          margin: 0 0 17px;
+          color: #5A8117;
+          font-size: 12px;
+          font-weight: 700;
+          line-height: 1.3;
+          letter-spacing: 1.8px;
+          text-transform: uppercase;
+        }
 
-              <p className="mt-3 text-[13px] leading-[1.75] text-[#526B86] sm:text-[14px]">
-                {solution.description}
-              </p>
+        .solutions-heading {
+          margin: 0;
+          color: #172E49;
+          font-size: 38px;
+          font-weight: 700;
+          line-height: 1.19;
+          letter-spacing: -1.25px;
+        }
 
-              {/* Explore link */}
-              <a
-                href="#contact"
-                className="mt-auto inline-flex w-fit items-center gap-2 pt-6 text-[12px] font-semibold text-[#648A13] transition-colors duration-200 hover:text-[#19334E]"
-              >
-                Explore solution
-                <span
-                  aria-hidden="true"
-                  className="transition-transform duration-200 group-hover:translate-x-1"
-                >
-                  ↗
-                </span>
-              </a>
-            </div>
-          </article>
-        ))}
+        .solutions-heading span {
+          display: block;
+        }
+
+        .solutions-view-all {
+          display: inline-flex;
+          align-items: center;
+          gap: 3px;
+          flex-shrink: 0;
+          margin-bottom: 4px;
+          padding-bottom: 5px;
+          border-bottom: 1px solid #CBDCB3;
+          color: #5D8615;
+          font-size: 12px;
+          text-decoration: none;
+        }
+
+        .solutions-view-all:hover {
+          border-color: #638B15;
+          color: #405F0B;
+        }
+
+        .solutions-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-auto-rows: 380px;
+          gap: 24px;
+          align-items: stretch;
+        }
+
+        .solution-card {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          min-width: 0;
+          height: 380px;
+          overflow: hidden;
+          border: 1px solid #D5E3F0;
+          border-radius: 5px;
+          background: #FFFFFF;
+          transition: border-color 180ms ease;
+        }
+
+        .solution-card:hover {
+          border-color: #BDD3B0;
+        }
+
+        .solution-image {
+          flex: 0 0 206px;
+          width: calc(100% - 45px);
+          height: 586px;
+          margin: 0;
+          overflow: hidden;
+          background: #E5EDF3;
+          border-radius: 0 0 3px 0;
+        }
+
+        .solution-image img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center 45%;
+          transition: transform 350ms ease;
+        }
+
+        .solution-card:hover .solution-image img {
+          transform: scale(1.025);
+        }
+
+        .solution-content {
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          min-height: 0;
+          padding: 15px 17px 13px;
+        }
+
+        .solution-meta {
+          display: flex;
+          flex-shrink: 0;
+          align-items: center;
+          justify-content: space-between;
+          min-height: 17px;
+          margin-bottom: 16px;
+        }
+
+        .solution-icon {
+          flex-shrink: 0;
+          color: #638B15;
+        }
+
+        .solution-number {
+          color: #68839D;
+          font-size: 12px;
+          line-height: 1;
+        }
+
+        .solution-title {
+          margin: 0;
+          color: #172E49;
+          font-size: 22px;
+          font-weight: 600;
+          line-height: 1.3;
+          letter-spacing: -0.3px;
+          overflow-wrap: anywhere;
+        }
+
+        .solution-description {
+          margin: 7px 0 0;
+          color: #506985;
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 1.65;
+        }
+
+        .solution-footer {
+          margin-top: auto;
+          padding-top: 10px;
+        }
+
+        .solution-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 3px;
+          width: fit-content;
+          max-width: 100%;
+          padding-bottom: 4px;
+          border-bottom: 1px solid #D5E3C6;
+          color: #5D8615;
+          font-size: 12px;
+          line-height: 1.4;
+          text-decoration: none;
+          transition: color 180ms ease, border-color 180ms ease;
+        }
+
+        .solution-link:hover {
+          color: #405F0B;
+          border-color: #638B15;
+        }
+
+        .solution-link svg {
+          flex-shrink: 0;
+          transition: transform 180ms ease;
+        }
+
+        .solution-link:hover svg {
+          transform: translate(2px, -2px);
+        }
+
+        .solution-corner {
+          position: absolute;
+          z-index: 2;
+          top: 9px;
+          right: 9px;
+          width: 12px;
+          height: 12px;
+          border-top: 1px solid #B6E1EE;
+          border-right: 1px solid #B6E1EE;
+          pointer-events: none;
+        }
+
+        .no-image .solution-content {
+          padding-top: 15px;
+        }
+
+        .mobile-view-all {
+          display: none;
+        }
+
+        /* Tablet */
+        @media (max-width: 900px) {
+          .solutions-container {
+            width: calc(100% - 48px);
+            padding-top: 48px;
+            padding-bottom: 42px;
+          }
+
+          .solutions-heading {
+            font-size: 36px;
+          }
+
+          .solutions-grid {
+            grid-auto-rows: 245px;
+            gap: 12px;
+          }
+
+          .solution-image {
+            flex-basis: 100px;
+            height: 100px;
+            width: calc(100% - 28px);
+          }
+
+          .solution-content {
+            padding: 14px 13px 12px;
+          }
+
+          .solution-meta {
+            margin-bottom: 13px;
+          }
+
+          .solution-title {
+            font-size: 20px;
+          }
+
+          .solution-description {
+            font-size: 14px;
+          }
+
+          .solution-link {
+            font-size: 12px;
+          }
+        }
+
+        /* Mobile */
+        @media (max-width: 620px) {
+          .solutions-container {
+            width: calc(100% - 42px);
+            padding-top: 36px;
+            padding-bottom: 32px;
+          }
+
+          .solutions-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 22px;
+          }
+
+          .solutions-eyebrow {
+            margin-bottom: 12px;
+            font-size: 11px;
+            letter-spacing: 1.4px;
+          }
+
+          .solutions-heading {
+            font-size: 30px;
+            line-height: 1.18;
+            letter-spacing: -0.8px;
+          }
+
+          .solutions-header > .solutions-view-all {
+            display: none;
+          }
+
+          .solutions-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-auto-rows: auto;
+            gap: 14px;
+            align-items: stretch;
+          }
+
+          .solution-card {
+            height: auto;
+            min-height: 0;
+            align-self: stretch;
+          }
+
+          .solution-image {
+            flex: 0 0 auto;
+            width: calc(100% - 16px);
+            height: auto;
+            aspect-ratio: 1.5 / 1;
+            margin: 0;
+          }
+
+          .solution-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+
+          .solution-content {
+            flex: 1;
+            min-height: 0;
+            padding: 11px 10px 12px;
+          }
+
+          .solution-meta {
+            min-height: 17px;
+            margin-bottom: 10px;
+          }
+
+          .solution-icon {
+            width: 15px;
+            height: 15px;
+          }
+
+          .solution-number {
+            font-size: 11px;
+          }
+
+          .solution-title {
+            font-size: 18px;
+            line-height: 1.35;
+            letter-spacing: 0;
+            overflow-wrap: anywhere;
+            hyphens: auto;
+          }
+
+          .solution-description {
+            margin-top: 6px;
+            font-size: 13px;
+            line-height: 1.55;
+            overflow-wrap: anywhere;
+          }
+
+          .solution-footer {
+            margin-top: auto;
+            padding-top: 12px;
+          }
+
+          .solution-link {
+            gap: 3px;
+            font-size: 11px;
+            line-height: 1.45;
+          }
+
+          .solution-link svg {
+            width: 11px;
+            height: 11px;
+          }
+
+          .mobile-view-all {
+            display: flex;
+            justify-content: center;
+            margin-top: 22px;
+          }
+
+          .mobile-view-all .solutions-view-all {
+            font-size: 12px;
+          }
+        }
+
+        /* Narrow phones */
+        @media (max-width: 420px) {
+          .solutions-container {
+            width: calc(100% - 28px);
+            padding-top: 32px;
+            padding-bottom: 30px;
+          }
+
+          .solutions-heading {
+            font-size: 28px;
+            letter-spacing: -0.7px;
+          }
+
+          .solutions-grid {
+            grid-template-columns: minmax(0, 1fr);
+            grid-auto-rows: auto;
+            gap: 16px;
+          }
+
+          .solution-card {
+            width: 100%;
+            height: auto;
+            min-height: 0;
+          }
+
+          .solution-image {
+            flex: 0 0 auto;
+            width: calc(100% - 32px);
+            aspect-ratio: 1.9 / 1;
+            height: auto;
+          }
+
+          .solution-content {
+            padding: 13px 14px 14px;
+          }
+
+          .solution-meta {
+            margin-bottom: 11px;
+          }
+
+          .solution-title {
+            font-size: 18px;
+            line-height: 1.4;
+          }
+
+          .solution-description {
+            font-size: 13px;
+            line-height: 1.65;
+          }
+
+          .solution-link {
+            font-size: 12px;
+          }
+        }
+
+        /* Very small phones */
+        @media (max-width: 350px) {
+          .solutions-container {
+            width: calc(100% - 24px);
+          }
+
+          .solutions-grid {
+            gap: 13px;
+          }
+
+          .solution-content {
+            padding: 11px 10px 12px;
+          }
+
+          .solution-title {
+            font-size: 16px;
+          }
+
+          .solution-description {
+            font-size: 12px;
+          }
+
+          .solution-link {
+            font-size: 11px;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .solution-card,
+          .solution-image img,
+          .solution-link {
+            transition: none;
+          }
+        }
+      `}</style>
+
+      <div className="solutions-container">
+        
+
+        <div className="solutions-grid">
+          {solutions.map((solution, index) => (
+            <SolutionCard
+              key={solution.number}
+              solution={solution}
+              index={index}
+            />
+          ))}
+        </div>
+
+        
       </div>
     </section>
   );
 }
-
-export default SolutionsGrid;
