@@ -25,7 +25,7 @@ const termsSections = [
 
 function InformationTerms() {
   return (
-    <main className="mx-auto mt-24 min-h-screen w-full max-w-[1330px] bg-white px-0 pb-12 font-['Roboto',Arial,sans-serif] text-[#18324B] sm:mt-28 sm:pb-14">
+    <main className="mx-auto mt-24 min-h-screen w-full max-w-[1350px] bg-[#EAF3F9] px-0 pb-12 font-['Roboto',Arial,sans-serif] text-[#18324B] sm:mt-28 sm:pb-14">
       {/* Hero banner */}
       <section className="relative mx-[10px] mt-[10px] flex min-h-[210px] items-center overflow-hidden rounded-[7px] border border-[#B7C6CB] bg-[#071C30] sm:mx-[18px] sm:min-h-[230px] lg:min-h-[245px]">
         {/* World map background */}

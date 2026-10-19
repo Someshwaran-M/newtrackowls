@@ -2,8 +2,8 @@ import React from "react";
 
 function Career() {
   return (
-    <main className="min-h-screen w-full bg-white mt-25 px-3 pb-12 pt-3 font-['Roboto',Arial,sans-serif] text-[#18324B] sm:px-5 sm:pb-16 sm:pt-4">
-      <div className="mx-auto w-full max-w-[1290px]">
+    <main className="min-h-screen w-full bg-[#EAF3F9] mt-25 px-3 pb-12 pt-3 font-['Roboto',Arial,sans-serif] text-[#18324B] sm:px-5 sm:pb-16 sm:pt-4">
+      <div className="mx-auto w-full max-w-[1350px]">
         {/* Careers Hero Banner */}
         <section className="relative flex min-h-[245px] items-center overflow-hidden rounded-[7px] border border-[#B7C6CB] bg-[#071C30] sm:min-h-[260px] lg:min-h-[270px]">
           {/* World map background */}

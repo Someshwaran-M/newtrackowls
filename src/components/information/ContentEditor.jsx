@@ -25,9 +25,9 @@ const editorSections = [
 
 function ContentEditor() {
   return (
-    <main className="mx-auto mt-20 w-full max-w-[1330px] bg-white px-3 pb-12 font-['Roboto',Arial,sans-serif] text-[#18324B] sm:mt-24 sm:px-5 sm:pb-16 lg:px-6">
+    <main className="mx-auto w-full bg-[#EAF3F9] px-3 pt-5 pb-12 font-['Roboto',Arial,sans-serif] text-[#18324B] sm:mt-24 sm:px-5 sm:pb-16 lg:px-6">
       {/* Hero banner */}
-      <section className="relative mt-2 flex min-h-[190px] items-center overflow-hidden rounded-lg border border-[#314B50] bg-[#071C30] sm:min-h-[205px] lg:min-h-[215px]">
+      <section className="relative  flex min-h-[190px] items-center overflow-hidden rounded-lg border border-[#314B50] bg-[#071C30] sm:min-h-[205px] lg:min-h-[215px]">
         {/* World map background */}
         <div
           aria-hidden="true"

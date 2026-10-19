@@ -26,7 +26,7 @@ const privacySections = [
 
 function InformationPrivacy() {
   return (
-    <main className="mx-auto mt-30 min-h-screen w-full max-w-[1330px] bg-white px-3 font-['Roboto',sans-serif] text-[#18324B] sm:px-5 lg:mt-26">
+    <main className="mx-auto mt-30 min-h-screen w-full max-w-[1350px] bg-[#EAF3F9] px-3 font-['Roboto',sans-serif] text-[#18324B] sm:px-5 lg:mt-26">
       {/* Privacy hero banner */}
       <section
         className="relative flex min-h-[203px] w-full items-center overflow-hidden rounded-lg border border-[#CAD5DC] bg-[#0A2035] bg-cover bg-center bg-no-repeat"
