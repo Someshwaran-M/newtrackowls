@@ -11,7 +11,7 @@ const paragraphs = [
 
 function LiveEventProtectionChecklist() {
   return (
-    <main className="mt-25 min-h-screen bg-white px-4 pb-16 pt-5 font-['Roboto',sans-serif] text-[#45637F] sm:px-6 lg:px-[110px]">
+    <main className="mt-20 min-h-screen bg-[#EAF3F9] px-4 pb-16 pt-5 font-['Roboto',sans-serif] text-[#45637F] sm:px-6 lg:px-[110px]">
       {/* Hero banner */}
       <section
         aria-labelledby="live-event-title"

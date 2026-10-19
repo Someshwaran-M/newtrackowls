@@ -10,7 +10,7 @@ const brandReferenceParagraphs = [
 
 function BrandReferenceChecklist() {
   return (
-    <main className="mx-auto mt-28 min-h-screen w-full max-w-[1450px] bg-white px-4 pb-16 font-['Roboto',sans-serif] text-[#18324B] sm:px-6 lg:px-10">
+    <main className="mx-auto mt-20 min-h-screen w-full max-w-[1350px] bg-[#EAF3F9] px-4 pt-5 pb-16 font-['Roboto',sans-serif] text-[#18324B] sm:px-6 lg:px-10">
       {/* Hero banner */}
       <section
         aria-labelledby="brand-reference-title"

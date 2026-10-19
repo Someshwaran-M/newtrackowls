@@ -10,32 +10,16 @@ const reportItems = [
 ];
 
 function HowItWorksReport() {
+
   const handleDownload = () => {
-    const reportContent = [
-      "TRACKOWLS — SAMPLE CONTENT PROTECTION REPORT",
-      "",
-      "Reporting includes:",
-      ...reportItems.map((item, index) => `${index + 1}. ${item}`),
-      "",
-      "Note: This is a sample report template.",
-      "Actual results and case statuses depend on the engagement.",
-    ].join("\n");
-
-    const blob = new Blob([reportContent], {
-      type: "text/plain;charset=utf-8",
-    });
-
-    const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
-
-    link.href = url;
-    link.download = "TrackOwls-Sample-Report.txt";
+    link.href = "/reports/digital-piracy-report.pdf";
+    link.download = "TrackOwls-Digital-Piracy-Report.pdf";
     document.body.appendChild(link);
     link.click();
     link.remove();
-
-    URL.revokeObjectURL(url);
   };
+  
 
   return (
     <section
