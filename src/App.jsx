@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from "react";
 import { Routes, Route } from "react-router-dom";
 
@@ -36,22 +35,37 @@ import BrandReferenceChecklist from "./components/maininsights/BrandReferenceChe
 import RepeatSourceInvestigation from "./components/maininsights/RepeatSourceInvestigation";
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  // Show the loader on each full page load or browser refresh.
+  // Internal React Router navigation does not reload this component.
+  const [loading, setLoading] = useState(() => {
+    try {
+      return sessionStorage.getItem("trackowls-loader-shown") !== "true";
+    } catch {
+      return true;
+    }
+  });
 
   const handleLoaderComplete = useCallback(() => {
+    try {
+      sessionStorage.setItem("trackowls-loader-shown", "true");
+    } catch {
+      // Continue normally if sessionStorage is unavailable.
+    }
+
     setLoading(false);
   }, []);
 
   return (
     <div className="min-h-screen bg-white text-[#152019] dark:bg-[#070A07] dark:text-white">
-      {/* TrackOwls intro loader */}
+      {/* TrackOwls loader: shown once per full page load */}
       {loading && (
-  <TrackOwlsLoader
-    duration={8000}
-    autoEnter={true}
-    onEnter={handleLoaderComplete}
-  />
-)}
+        <TrackOwlsLoader
+          duration={8000}
+          autoEnter={true}
+          onEnter={handleLoaderComplete}
+          onComplete={handleLoaderComplete}
+        />
+      )}
 
       {/* Existing website */}
       <div

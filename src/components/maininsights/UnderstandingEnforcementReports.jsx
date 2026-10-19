@@ -10,7 +10,7 @@ const reportParagraphs = [
 
 function UnderstandingEnforcementReports() {
   return (
-    <main className="mx-auto mt-20 pt-5 min-h-screen w-full max-w-[1350px] bg-[#EAF3F9] px-4 pb-16 font-['Roboto',sans-serif] text-[#18324B] sm:px-6 sm:py-16 lg:px-10">
+    <main className="mx-auto mt-20 pt-5 min-h-screen w-full bg-[#EAF3F9] px-4 pb-16 font-['Roboto',sans-serif] text-[#18324B] sm:px-6 sm:py-16 lg:px-10">
       {/* Hero banner */}
       <section
         aria-labelledby="enforcement-title"
