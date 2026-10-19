@@ -1,65 +1,116 @@
+
 import React from "react";
 
 function AboutMain() {
   return (
     <section
       id="about-main"
-      className="w-full bg-white mt-14 px-4 py-4 font-['Roboto',sans-serif] sm:px-6 sm:py-5 lg:px-[38px]"
+      className="w-full bg-[#EAF3F9] px-3 py-10 font-['Roboto',sans-serif] sm:px-5 sm:py-26 lg:px-8 lg:py-26"
     >
-      <div className="relative isolate mx-auto mt-8 flex min-h-[340px] w-full max-w-[1290px] items-center overflow-hidden rounded-[12px] border border-[#8BB630]/25 bg-[#071D32] sm:mt-10 sm:min-h-[370px] lg:mt-10 lg:min-h-[400px]">
-        {/* Globe background */}
-        <div
-          className="pointer-events-none absolute inset-0 -z-10 bg-cover bg-center"
-          style={{
-            backgroundImage: `
-              linear-gradient(
-                90deg,
-                rgba(5, 25, 45, 0.98) 0%,
-                rgba(5, 25, 45, 0.90) 38%,
-                rgba(5, 25, 45, 0.52) 72%,
-                rgba(5, 25, 45, 0.62) 100%
-              ),
-              url('/globe.png')
-            `,
-          }}
-        />
+      <div className="mx-auto w-full max-w-[1350px]">
+        <div className="relative isolate flex min-h-[200px] w-full items-center overflow-hidden rounded-[16px] border border-[#C4D9E8] bg-[#DFECF5] sm:min-h-[460px] sm:rounded-[18px] lg:min-h-[615px]">
+          
+          {/* Light blue background and globe image */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -z-20"
+            style={{
+              backgroundImage: "url('/globe.png')",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "right 3% center",
+              backgroundSize: "auto 112%",
+            }}
+          />
 
-        {/* Digital grid overlay */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.08]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(139,182,48,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(139,182,48,0.3) 1px, transparent 1px)",
-            backgroundSize: "42px 42px",
-            maskImage:
-              "linear-gradient(90deg, transparent, black 45%, black)",
-          }}
-        />
+          {/* Soft blue overlay to match the reference */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -z-10"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(223,236,245,0.99) 0%, rgba(223,236,245,0.96) 38%, rgba(223,236,245,0.72) 57%, rgba(223,236,245,0.30) 100%)",
+            }}
+          />
 
-        {/* Green atmospheric glow */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 -z-10 w-[55%] bg-[radial-gradient(ellipse_at_70%_45%,rgba(139,182,48,0.16),transparent_70%)]" />
+          {/* Main content */}
+          <div className="relative z-10 w-full px-6 py-12 sm:px-9 sm:py-14 md:px-12 lg:px-[75px] lg:py-[76px]">
+            <div className="max-w-[1050px]">
+              <span className="mb-6 inline-flex items-center gap-2.5 text-[11px] font-extrabold uppercase tracking-[2px] text-[#8BB630] sm:mb-7 sm:text-[12px] lg:mb-[34px] lg:text-[13px]">
+                <span className="h-[2px] w-5 bg-[#8BB630]" />
+                About TrackOwls
+              </span>
 
-        {/* Content */}
-        <div className="w-full px-6 py-10 sm:px-9 sm:py-12 lg:px-[47px] lg:py-[52px]">
-          <div className="max-w-[820px]">
-            <span className="mb-5 inline-flex items-center gap-2.5 text-[11px] font-extrabold tracking-[1.8px] text-[#C3E600] sm:mb-6 sm:text-xs">
-              <span className="h-[2px] w-5 bg-[#C3E600]" />
-              ABOUT TRACKOWLS
-            </span>
+              <h1 className="max-w-[1000px] text-[38px] font-bold leading-[1.08] tracking-[-1.6px] text-[#19334E] min-[400px]:text-[42px] sm:text-[52px] sm:tracking-[-2px] md:text-[62px] lg:text-[76px] lg:leading-[1.08] lg:tracking-[-2.8px] xl:text-[84px]">
+                Vigilance for valuable
+                <br className="hidden lg:block" />{" "}
+                <span className="lg:inline">
+                  intellectual property.
+                </span>
+              </h1>
 
-            <h1 className="max-w-[760px] text-[32px] font-extrabold leading-[1.15] tracking-[-1px] text-white sm:text-[40px] sm:leading-[1.12] sm:tracking-[-1.4px] lg:text-[52px] lg:leading-[1.1] lg:tracking-[-1.8px]">
-              Vigilance for valuable
-              <br className="hidden sm:block" /> intellectual property.
-            </h1>
-
-            <p className="mt-5 max-w-[650px] text-[14px] font-normal leading-[1.8] text-[#C8D6E4] sm:mt-6 sm:text-base lg:text-[17px] lg:leading-[1.85]">
-              TrackOwls is focused on helping content owners and brands
-              identify, investigate and respond to online infringement.
-            </p>
+              <p className="mt-6 max-w-[760px] text-[15px] font-normal leading-[1.8] text-[#526B86] sm:mt-7 sm:text-[17px] sm:leading-[1.85] lg:mt-[32px] lg:text-[20px] lg:leading-[1.9]">
+                TrackOwls is focused on helping content owners and brands
+                identify, investigate and respond to online infringement.
+              </p>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Responsive styling */}
+      <style>{`
+        @media (max-width: 1023px) {
+          #about-main > div > div > div:first-child {
+            background-position: right center !important;
+            background-size: auto 100% !important;
+          }
+        }
+
+        @media (max-width: 767px) {
+          #about-main > div > div {
+            min-height: 0;
+          }
+
+          #about-main > div > div > div:first-child {
+            background-position: 68% center !important;
+            background-size: auto 100% !important;
+          }
+
+          #about-main h1 {
+            max-width: 580px;
+            font-size: clamp(36px, 8.5vw, 50px);
+            line-height: 1.12;
+            letter-spacing: -1.5px;
+          }
+
+          #about-main h1 br {
+            display: none;
+          }
+
+          #about-main p {
+            max-width: 480px;
+            font-size: 15px;
+            line-height: 1.8;
+          }
+        }
+
+        @media (max-width: 399px) {
+          #about-main h1 {
+            font-size: 34px;
+            letter-spacing: -1.2px;
+          }
+
+          #about-main p {
+            font-size: 14px;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          #about-main * {
+            scroll-behavior: auto;
+          }
+        }
+      `}</style>
     </section>
   );
 }

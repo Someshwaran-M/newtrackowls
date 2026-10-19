@@ -38,7 +38,7 @@ function HowItWorksMain() {
   return (
     <section
       id="how-it-works"
-      className="relative w-full overflow-hidden bg-[#EAF3F9] px-4 py-8 font-['Roboto',sans-serif] sm:px-6 sm:py-10 lg:px-8 lg:py-12"
+      className="relative w-full overflow-hidden bg-[#EAF3F9] px-4 py-8 font-['Roboto',sans-serif] sm:px-6 sm:py-10 lg:px-8 lg:py-26"
     >
       <div className="mx-auto w-full max-w-[1350px]">
         {/* HERO BANNER */}
