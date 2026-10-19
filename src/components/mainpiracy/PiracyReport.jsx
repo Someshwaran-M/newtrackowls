@@ -202,13 +202,11 @@ function PiracyReport() {
             className="flex w-full items-center justify-between border border-[#D5E1ED] border-t-2 border-t-[#8BB630] bg-[#EEF3E9] px-4 py-4 text-left text-sm font-bold"
           >
             <span>IN THIS REPORT</span>
-            <span className="text-[#648A13]">
-              {menuOpen ? "− Close" : "+ Contents"}
-            </span>
+            
           </button>
 
           {menuOpen && (
-            <nav className="border border-t-0 border-[#D5E1ED] bg-white p-3">
+            <nav className="border border-t-0 border-[#D5E1ED] bg-[#E2E9E5] p-3">
               {reportSections.map((section) => (
                 <button
                   key={section.id}
