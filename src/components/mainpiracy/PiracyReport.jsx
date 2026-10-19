@@ -190,9 +190,9 @@ function PiracyReport() {
   return (
     <main
       id="piracy-report-content"
-      className="min-h-screen bg-white font-['Roboto',sans-serif] text-[#15334E]"
+      className="min-h-screen bg-[#EAF3F9] font-['Roboto',sans-serif] text-[#15334E]"
     >
-      <div className="mx-auto max-w-[1360px] mt-20 px-4 py-26 sm:px-6 sm:py-28 lg:px-8">
+      <div className="mx-auto max-w-[1350px] mt-20 px-4 py-26 sm:px-6 sm:py-28 lg:px-8">
         {/* Mobile table of contents */}
         <div className="mb-6 lg:hidden">
           <button

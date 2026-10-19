@@ -80,41 +80,81 @@ function PlatformDesign() {
   return (
     <section
       id="platform-design"
-      className="w-full bg-white px-5 py-12 font-['Roboto',sans-serif] sm:px-8 sm:py-14 lg:px-10 lg:py-14"
+      className="relative isolate w-full overflow-hidden bg-[#EAF3F9] px-2 py-3 font-['Roboto',sans-serif] sm:px-4 sm:py-5 lg:px-8 lg:py-5"
     >
-      <div className="mx-auto max-w-[1280px]">
-        {/* Heading */}
-        <div className="mb-8 grid grid-cols-1 items-center gap-5 md:grid-cols-[1.4fr_0.6fr] md:gap-10">
-          <h2 className="text-[36px] font-bold leading-[1.15] tracking-[-1.2px] text-[#15334E] sm:text-[42px] lg:text-[44px]">
-            Designed around operations.
-          </h2>
+      {/* Subtle lime particle background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-0 opacity-70"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle, #8BB630 1px, transparent 1.5px),
+            radial-gradient(circle, rgba(213,245,31,0.7) 0.8px, transparent 1.4px),
+            radial-gradient(circle, rgba(255,255,255,0.22) 0.7px, transparent 1.2px)
+          `,
+          backgroundSize: "79px 83px, 113px 107px, 47px 53px",
+          backgroundPosition: "15px 20px, 45px 61px, 22px 28px",
+          maskImage:
+            "radial-gradient(ellipse at 50% 50%, transparent 20%, black 100%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse at 50% 50%, transparent 20%, black 100%)",
+        }}
+      />
 
-          <p className="max-w-[330px] text-[13px] leading-[1.7] text-[#45637F] md:justify-self-end">
-            Planned capabilities for a traceable workflow from discovery
-            through reporting.
-          </p>
-        </div>
+      {/* Main light panel */}
+      <div className="relative z-10 mx-auto w-full max-w-[1350px] overflow-hidden rounded-[15px] border border-[#C8D5D0] bg-[#D5DEDA] px-5 py-7 sm:rounded-[18px] sm:px-7 sm:py-9 md:px-9 md:py-10 lg:px-[45px] lg:py-[48px]">
+        {/* Soft texture */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-40"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(255,255,255,0.8) 0.7px, transparent 1.2px)",
+            backgroundSize: "7px 7px",
+            maskImage:
+              "radial-gradient(ellipse at 75% 55%, black, transparent 75%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse at 75% 55%, black, transparent 75%)",
+          }}
+        />
 
-        {/* Feature grid */}
-        <div className="grid grid-cols-1 gap-[13px] sm:grid-cols-2 lg:grid-cols-4">
-          {features.map((feature) => (
-            <article
-              key={feature.number}
-              className="group min-h-[164px] rounded-[4px] border border-[#D3E1EF] bg-transparent px-[19px] py-[21px] transition-all duration-300 hover:border-[#8BB630] hover:bg-white/70"
-            >
-              <span className="text-[9px] font-normal tracking-[0.2px] text-[#45637F]">
-                {feature.number}
-              </span>
+        <div className="relative z-10">
+          {/* Heading */}
+          <div className="mb-6 grid grid-cols-1 gap-4 sm:mb-8 sm:gap-5 md:grid-cols-[1.4fr_0.8fr] md:items-start md:gap-8 lg:mb-[42px] lg:gap-10">
+            <h2 className="max-w-[700px] text-[30px] font-bold leading-[1.16] tracking-[-1.1px] text-[#19334E] min-[400px]:text-[32px] sm:text-[36px] md:text-[36px] lg:text-[46px] lg:leading-[1.12] lg:tracking-[-1.6px]">
+              Designed around operations.
+            </h2>
 
-              <h3 className="mt-[19px] text-[14px] font-bold leading-[1.4] tracking-[-0.2px] text-[#15334E] transition-colors duration-300 group-hover:text-[#648A13]">
-                {feature.title}
-              </h3>
+            <p className="max-w-[390px] text-[13px] leading-[1.75] text-[#526B86] sm:text-[14px] md:justify-self-end md:pt-1 lg:text-[15px]">
+              Planned capabilities for a traceable workflow from discovery
+              through reporting.
+            </p>
+          </div>
 
-              <p className="mt-[10px] text-[12px] leading-[1.65] text-[#45637F]">
-                {feature.description}
-              </p>
-            </article>
-          ))}
+          {/* Feature cards: 2 columns on mobile, 4 on desktop */}
+          <div className="grid grid-cols-2 items-stretch gap-2.5 sm:gap-3 md:gap-3.5 lg:grid-cols-4 lg:gap-4">
+            {features.map((feature) => (
+              <article
+                key={feature.number}
+                className="group flex min-w-0 flex-col rounded-[13px] border border-[#C8D5D0] bg-[#E2E9E5] px-3.5 py-4 transition-colors duration-300 hover:border-[#A6C47A] hover:bg-[#EAF0EC] min-[400px]:px-4 sm:rounded-[15px] sm:px-5 sm:py-5 lg:min-h-[178px] lg:px-[26px] lg:py-[24px]"
+              >
+                {/* Number */}
+                <span className="text-[10px] font-normal leading-4 text-[#607D96] sm:text-[11px]">
+                  {feature.number}
+                </span>
+
+                {/* Title */}
+                <h3 className="mt-5 text-[13px] font-bold leading-[1.25] tracking-[-0.2px] text-[#19334E] min-[400px]:text-[14px] sm:mt-6 sm:text-[15px] sm:leading-[1.35] lg:mt-[21px] lg:text-[16px]">
+                  {feature.title}
+                </h3>
+
+                {/* Description */}
+                <p className="mt-3 text-[12px] font-normal leading-[1.75] text-[#526B86] min-[400px]:text-[12px] sm:mt-3.5 sm:text-[13px] sm:leading-[1.75] lg:text-[13px]">
+                  {feature.description}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

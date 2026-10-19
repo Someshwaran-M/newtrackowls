@@ -73,10 +73,7 @@ function HowItWorksClient() {
             </p>
           </div>
 
-          {/* Mobile table hint */}
-          <p className="mb-2 text-[12px] font-medium text-[#536D85] sm:hidden">
-            Swipe table left or right to view all columns →
-          </p>
+          
 
           {/* Responsive reporting table */}
           <div
@@ -168,7 +165,7 @@ function HowItWorksClient() {
 
         @media (max-width: 639px) {
           .reporting-table-scroll table {
-            min-width: 700px;
+            min-width: 520px;
           }
         }
       `}</style>

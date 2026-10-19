@@ -5,7 +5,7 @@ function PiracyMain() {
   return (
     <section
       id="piracy-main"
-      className="mt-20 w-full bg-white px-4 py-3 font-['Roboto',sans-serif] sm:mt-24 sm:px-6 lg:mt-28 lg:px-4"
+      className="mt-20 w-full bg-[#EAF3F9] px-4 py-3 font-['Roboto',sans-serif] sm:mt-24 sm:px-6 lg:mt-2 lg:px-4"
     >
       <div
       className="relative mx-auto flex min-h-[420px] max-w-[1300px] items-center overflow-hidden rounded-[10px] border border-[#8BB630]/40 bg-[#071E35] px-6 py-10 sm:min-h-[460px] sm:px-9 sm:py-12 lg:min-h-[580px] lg:px-10 lg:py-12"

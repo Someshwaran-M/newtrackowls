@@ -38,38 +38,62 @@ function InsightsFieldNotes() {
   return (
     <section
       id="insights-field-notes"
-      className="w-full bg-white px-4 py-6 font-['Roboto',sans-serif] sm:px-6 lg:px-28"
+      className="relative isolate w-full overflow-hidden bg-[#EAF3F9] px-3 py-5 font-['Roboto',sans-serif] sm:px-5 sm:py-7 lg:px-8 lg:py-10"
     >
-      <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {fieldNotes.map((note, index) => (
-          <article
-            key={note.title}
-            className="group flex min-h-[245px] flex-col rounded-[5px] border border-[#D2E0EE] bg-white px-6 py-7 transition-all duration-300 hover:border-[#8BB630] hover:shadow-[0_8px_24px_rgba(21,51,78,0.06)] sm:min-h-[245px] lg:min-h-[245px]"
-          >
-            <span className="mb-4 text-[10px] font-bold uppercase tracking-[2px] text-[#617D17]">
-              Field notes
-            </span>
+      {/* Subtle lime digital particles */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-70"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(173,209,50,0.8) 0.7px, transparent 1px), radial-gradient(circle, rgba(173,209,50,0.4) 0.6px, transparent 1px)",
+          backgroundSize: "29px 31px, 47px 43px",
+          backgroundPosition: "0 0, 15px 19px",
+          maskImage:
+            "radial-gradient(ellipse at 95% 50%, black, transparent 55%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse at 95% 50%, black, transparent 55%)",
+        }}
+      />
 
-            <h2 className="max-w-[340px] text-[21px] font-bold leading-[1.3] tracking-[-0.65px] text-[#15334E] transition-colors duration-300 group-hover:text-[#648A13]">
-              {note.title}
-            </h2>
-
-            <p className="mt-4 text-[13px] leading-[1.65] text-[#45637F]">
-              {note.description}
-            </p>
-
-            <a
-              href={note.link}
-              className="mt-auto inline-flex w-fit items-center gap-2 border-b border-[#8BB630]/50 pb-1 pt-5 text-[12px] font-medium text-[#648A13] transition-all duration-300 hover:border-[#648A13] hover:text-[#456D0B]"
-              aria-label={`Read more: ${note.title}`}
+      {/* Main light panel */}
+      <div className="mx-auto w-full max-w-[1350px] rounded-[15px] border border-[#D0DAD6] bg-[#D3DCD8] px-5 py-6 sm:rounded-[18px] sm:px-8 sm:py-8 lg:px-[46px] lg:py-[46px]">
+        {/* Field notes grid */}
+        <div className="grid grid-cols-1 gap-[22px] sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-[22px] lg:gap-y-[22px]">
+          {fieldNotes.map((note) => (
+            <article
+              key={note.title}
+              className="group flex min-h-[290px] flex-col rounded-[15px] border border-[#C8D5D0] bg-[#E2E9E5] px-6 py-7 transition-all duration-300 hover:border-[#9EAF91] hover:bg-[#EBF0ED] sm:min-h-[300px] sm:px-8 sm:py-8 lg:min-h-[300px] lg:rounded-[15px]"
             >
-              Read more
-              <span className="translate-x-0 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">
-                →
+              {/* Eyebrow */}
+              <span className="text-[10px] font-bold uppercase tracking-[2px] text-[#5E8517]">
+                Field notes
               </span>
-            </a>
-          </article>
-        ))}
+
+              {/* Title */}
+              <h2 className="mt-5 text-[23px] font-bold leading-[1.38] tracking-[-0.65px] text-[#17324B] transition-colors duration-300 group-hover:text-[#527A13] sm:text-[23px] lg:text-[24px]">
+                {note.title}
+              </h2>
+
+              {/* Description */}
+              <p className="mt-4 text-[14px] font-normal leading-[1.7] text-[#536A79]">
+                {note.description}
+              </p>
+
+              {/* Read more link */}
+              <a
+                href={note.link}
+                aria-label={`Read more: ${note.title}`}
+                className="mt-auto inline-flex w-fit items-center gap-2 border-b border-[#8BB630]/45 pb-[5px] pt-7 text-[13px] font-medium text-[#628A13] transition-all duration-300 hover:border-[#628A13] hover:text-[#456B0B]"
+              >
+                Read more
+                <span className="translate-x-0 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">
+                  →
+                </span>
+              </a>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

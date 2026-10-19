@@ -38,12 +38,13 @@ function HowItWorksMain() {
   return (
     <section
       id="how-it-works"
-      className="relative w-full overflow-hidden bg-[#EAF3F9] px-4 py-8 font-['Roboto',sans-serif] sm:px-6 sm:py-10 lg:px-8 lg:py-26"
+      className="w-full bg-[#EAF3F9] px-3 pt-26 pb-7 font-['Roboto',sans-serif] sm:px-5 sm:pt-25 sm:pb-9 lg:px-8 lg:pt-25 lg:pb-8"
     >
       <div className="mx-auto w-full max-w-[1350px]">
-        {/* HERO BANNER */}
-        <div className="relative isolate overflow-hidden rounded-[15px] border border-[#C0D4E2] bg-[#DCEAF4]">
-          {/* Background image */}
+        <div className="relative isolate flex min-h-[300px] w-full items-center overflow-hidden rounded-[14px] border border-[#8BB630]/30 bg-[#D5DDDA] sm:min-h-[400px] sm:rounded-[17px] lg:min-h-[410px] xl:min-h-[440px]">
+
+    
+       {/* Background image */}
           <div
             aria-hidden="true"
             className="absolute inset-0 z-[-2] bg-cover bg-center bg-no-repeat"

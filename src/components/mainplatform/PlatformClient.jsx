@@ -5,40 +5,79 @@ function PlatformClient() {
   return (
     <section
       id="platform-client"
-      className="w-full bg-white px-5 py-12 font-['Roboto',sans-serif] sm:px-8 sm:py-14 lg:px-10 lg:py-16"
+      className="relative isolate w-full overflow-hidden bg-[#EAF3F9] px-3 py-5 font-['Roboto',sans-serif] sm:px-5 sm:py-7 lg:px-12 lg:py-5"
     >
-      <div className="mx-auto grid max-w-[1290px] grid-cols-1 items-center gap-8 md:grid-cols-[1.1fr_1fr] md:gap-12">
-        {/* Left content */}
-        <div className="max-w-[570px]">
-          <h2 className="text-[36px] font-bold leading-[1.15] tracking-[-1.2px] text-[#15334E] sm:text-[42px] lg:text-[44px]">
-            Client visibility.
-            <br />
-            Evidence you can follow.
-          </h2>
+      {/* Subtle lime particle background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-70"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle, rgba(139,182,48,0.85) 1px, transparent 1.5px),
+            radial-gradient(circle, rgba(139,182,48,0.55) 1px, transparent 1.5px),
+            radial-gradient(circle, rgba(255,255,255,0.22) 0.7px, transparent 1.2px)
+          `,
+          backgroundSize: "83px 79px, 127px 113px, 47px 53px",
+          backgroundPosition: "10px 15px, 42px 61px, 20px 28px",
+          maskImage:
+            "radial-gradient(ellipse at 72% 50%, black 0%, transparent 76%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse at 72% 50%, black 0%, transparent 76%)",
+        }}
+      />
 
-          <p className="mt-3 max-w-[510px] text-[13px] leading-[1.75] text-[#45637F]">
-            The planned client experience brings active cases, status history,
-            pending actions and reporting into one view.
-          </p>
-        </div>
+      {/* Main panel */}
+      <div className="relative mx-auto w-full max-w-[1350px] overflow-hidden rounded-[13px] border border-[#D1DAD5] bg-[#D5DEDA] px-5 py-7 sm:px-8 sm:py-9 md:px-9 md:py-10 lg:px-[45px] lg:py-[50px]">
+        {/* Soft texture inside the panel */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-40"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(255,255,255,0.65) 0.8px, transparent 1.2px)",
+            backgroundSize: "7px 7px",
+            maskImage:
+              "radial-gradient(ellipse at 72% 48%, black, transparent 65%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse at 72% 48%, black, transparent 65%)",
+          }}
+        />
 
-        {/* Right product status panel */}
-        <div className="rounded-[5px] border border-[#D3E1EF] bg-white px-6 py-6 sm:px-7 sm:py-7">
-          <h3 className="text-[17px] font-bold tracking-[-0.3px] text-[#15334E]">
-            Product status
-          </h3>
+        {/* Content grid */}
+        <div className="relative z-10 grid grid-cols-1 items-center gap-7 sm:gap-8 md:grid-cols-[1.08fr_1fr] md:gap-9 lg:grid-cols-[1.08fr_1fr] lg:gap-[55px]">
+          {/* Left content */}
+          <div className="min-w-0">
+            <h2 className="max-w-[500px] text-[30px] font-bold leading-[1.18] tracking-[-1.1px] text-[#19334E] min-[400px]:text-[32px] sm:text-[36px] sm:leading-[1.15] md:text-[34px] lg:text-[44px] lg:tracking-[-1.5px]">
+              Client visibility.
+              <br />
+              Evidence you can follow.
+            </h2>
 
-          <p className="mt-3 text-[13px] leading-[1.75] text-[#45637F]">
-            The interface shown here is a concept. Availability, integrations
-            and client access will be confirmed directly during a consultation.
-          </p>
+            <p className="mt-4 max-w-[510px] text-[13px] leading-[1.75] text-[#526B86] sm:text-[14px] md:mt-4 lg:text-[15px] lg:leading-[1.7]">
+              The planned client experience brings active cases, status
+              history, pending actions and reporting into one view.
+            </p>
+          </div>
 
-          <a
-            href="/contact"
-            className="mt-5 inline-flex min-h-[40px] items-center justify-center rounded-[4px] border border-[#B8CFE4] bg-white px-5 py-2 text-[12px] font-bold text-[#15334E] transition-all duration-300 hover:border-[#8BB630] hover:bg-[#F5F9ED] hover:text-[#648A13]"
-          >
-            Discuss the platform
-          </a>
+          {/* Right product status card */}
+          <div className="min-w-0 rounded-[15px] border border-[#C8D5D0] bg-[#E2E9E5] px-5 py-5 sm:px-6 sm:py-6 lg:rounded-[16px] lg:px-[30px] lg:py-[27px]">
+            <h3 className="text-[17px] font-bold leading-tight tracking-[-0.3px] text-[#19334E] sm:text-[18px] lg:text-[20px]">
+              Product status
+            </h3>
+
+            <p className="mt-3 text-[13px] leading-[1.75] text-[#526B86] sm:text-[14px] lg:leading-[1.8]">
+              The interface shown here is a concept. Availability,
+              integrations and client access will be confirmed directly
+              during a consultation.
+            </p>
+
+            <a
+              href="/contact"
+              className="mt-5 inline-flex min-h-[44px] items-center justify-center rounded-[4px] border border-[#C2D2DE] bg-transparent px-5 py-3 text-center text-[12px] font-bold text-[#19334E] transition-colors duration-300 hover:border-[#8BB630] hover:bg-[#F0F5E8] hover:text-[#648A13] sm:mt-6"
+            >
+              Discuss the platform
+            </a>
+          </div>
         </div>
       </div>
     </section>
