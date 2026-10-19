@@ -5,10 +5,10 @@ function PiracyMain() {
   return (
     <section
       id="piracy-main"
-      className="mt-20 w-full bg-[#EAF3F9] px-4 py-3 font-['Roboto',sans-serif] sm:mt-24 sm:px-6 lg:mt-2 lg:px-4"
+      className="w-full bg-[#EAF3F9] px-3 pt-26 pb-7 font-['Roboto',sans-serif] sm:px-5 sm:pt-25 sm:pb-9 lg:px-8 lg:pt-25 lg:pb-8"
     >
       <div
-      className="relative mx-auto flex min-h-[420px] max-w-[1300px] items-center overflow-hidden rounded-[10px] border border-[#8BB630]/40 bg-[#071E35] px-6 py-10 sm:min-h-[460px] sm:px-9 sm:py-12 lg:min-h-[580px] lg:px-10 lg:py-12"
+      className="relative mx-auto flex min-h-[420px] max-w-[1350px] items-center overflow-hidden rounded-[10px] border border-[#8BB630]/40 bg-[#071E35] px-6 py-10 sm:min-h-[460px] sm:px-9 sm:py-12 lg:min-h-[580px] lg:px-10 lg:py-12"
         style={{
           backgroundImage: `
             linear-gradient(
