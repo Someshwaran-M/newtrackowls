@@ -3,74 +3,62 @@ import React from "react";
 
 function ContactMain() {
   return (
-    <section
-  id="contact-main"
-  className="relative isolate mt-30 mx-auto w-[95%] max-w-[1290px] overflow-hidden rounded-xl border border-[#29445A] bg-white font-['Roboto',sans-serif]"
->
-      {/* Background image */}
-      <div
-        className="absolute inset-0 z-[-2]  bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `
-            linear-gradient(
-              90deg,
-              rgba(5, 25, 45, 0.97) 0%,
-              rgba(5, 25, 45, 0.91) 38%,
-              rgba(5, 25, 45, 0.72) 70%,
-              rgba(5, 25, 45, 0.65) 100%
-            ),
-            url('/globe.png')
-          `,
-        }}
-      />
+   <section
+       id="contact-main"
+      className="w-full bg-[#EAF3F9] px-3 pt-26 pb-7 font-['Roboto',sans-serif] sm:px-5 sm:pt-25 sm:pb-9 lg:px-8 lg:pt-25 lg:pb-8"
+    >
+      <div className="mx-auto w-full max-w-[1350px]">
+        <div className="relative isolate flex min-h-[300px] w-full items-center overflow-hidden rounded-[14px] border border-[#8BB630]/30 bg-[#D5DDDA] sm:min-h-[400px] sm:rounded-[17px] lg:min-h-[410px] xl:min-h-[440px]">
 
-      {/* Premium navy and lime overlays */}
-      <div className="pointer-events-none absolute inset-0 z-[-1]">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#061727]/95 via-[#071D32]/75 to-[#0A2635]/50" />
+    
+       {/* Background image */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 z-[-2] bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('/globe.png')",
+            }}
+          />
 
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_78%_45%,rgba(139,182,48,0.18),transparent_45%)]" />
+          {/* Light blue overlay */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-[-1] bg-gradient-to-r from-[#DCEAF4]/95 via-[#DCEAF4]/85 to-[#DCEAF4]/45"
+          />
 
-        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(5,19,32,0.45),transparent_65%)]" />
+          {/* Soft blue atmospheric glow */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-20 top-1/2 z-[-1] h-64 w-64 -translate-y-1/2 rounded-full bg-[#8BBCE0]/30 blur-3xl sm:h-80 sm:w-80 lg:h-[450px] lg:w-[450px]"
+          />
 
-        {/* Subtle digital grid */}
-        
+          {/* Hero content */}
+          <div className="flex min-h-[340px] items-center px-5 py-10 min-[400px]:min-h-[360px] sm:min-h-[400px] sm:px-9 sm:py-12 lg:min-h-[450px] lg:px-[60px] lg:py-[65px] xl:min-h-[490px]">
+            <div className="relative z-10 w-full max-w-[1050px]">
+              <span className="mb-5 inline-flex items-center text-[10px] font-extrabold uppercase tracking-[1.7px] text-[#8bb630] min-[400px]:text-[11px] sm:mb-6 sm:text-[12px] sm:tracking-[2px] lg:text-[13px]">
+                TALK TO TRACKOWLS
 
-        
+              </span>
 
-      </div>
+              <h1 className="max-w-[950px] text-[34px] font-bold leading-[1.12] tracking-[-1.1px] text-[#173149] min-[400px]:text-[38px] min-[400px]:tracking-[-1.4px] sm:text-[46px] sm:leading-[1.1] sm:tracking-[-1.8px] lg:text-[62px] lg:leading-[1.08] lg:tracking-[-2.3px] xl:text-[68px]">
+                Let’s protect what you’ve 
 
-      {/* Main content */}
-      <div className="relative z-10 flex min-h-[300px] items-center px-6 py-12 sm:min-h-[320px] sm:px-10 sm:py-14 md:min-h-[340px] lg:min-h-[360px] lg:px-14">
-        <div className="max-w-[650px]">
-          {/* Eyebrow */}
-          <div className="mb-5 flex items-center gap-3">
-            <span className="h-[2px] w-8 bg-[#8BB630]" />
+                <span className="block">
+                  built.
+                </span>
+              </h1>
 
-            <p className="text-[10px] font-bold uppercase tracking-[2.5px] text-[#B8DD6A] sm:text-[11px]">
-              Talk to TrackOwls
-            </p>
+              <p className="mt-5 max-w-[760px] text-[13px] leading-[1.8] text-[#526B7D] min-[400px]:text-[14px] sm:mt-6 sm:text-[16px] sm:leading-[1.85] lg:text-[18px] xl:text-[19px]">
+                Tell us what you need to protect. Start with a consultation or an initial discussion of your piracy exposure.
+
+
+              </p>
+            </div>
           </div>
-
-          {/* Heading */}
-          <h1 className="max-w-[620px] text-[36px] font-bold leading-[1.12] tracking-[-1.4px] text-white sm:text-[44px] sm:tracking-[-1.8px] md:text-[50px] lg:text-[56px] lg:tracking-[-2.2px]">
-            Let’s protect what you’ve
-            <br className="hidden sm:block" />{" "}
-            <span className="text-[#A8D34B]">built.</span>
-          </h1>
-
-          {/* Description */}
-          <p className="mt-5 max-w-[510px] text-[14px] leading-[1.85] text-[#D0DCE6] sm:text-[15px]">
-            Tell us what you need to protect. Start with a consultation or an
-            initial discussion of your piracy exposure.
-          </p>
-
-          {/* CTA */}
-          
         </div>
-      </div>
 
-      {/* Bottom accent */}
-      <div className="absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-[#8BB630] to-transparent opacity-80" />
+        
+      </div>
     </section>
   );
 }

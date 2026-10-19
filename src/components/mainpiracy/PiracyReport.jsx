@@ -192,7 +192,7 @@ function PiracyReport() {
       id="piracy-report-content"
       className="min-h-screen bg-[#EAF3F9] font-['Roboto',sans-serif] text-[#15334E]"
     >
-      <div className="mx-auto max-w-[1400px]  px-4 py-26 sm:px-6 sm:py-28 lg:px-8">
+      <div className="mx-auto max-w-[1400px]  px-4 py-16 sm:px-6 sm:py-12 lg:px-8">
         {/* Mobile table of contents */}
         <div className="mb-6 lg:hidden">
           <button

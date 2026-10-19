@@ -121,7 +121,7 @@ Please contact me to discuss the assessment and next steps.`);
   return (
     <section
       id="contact-request"
-      className="w-full bg-white px-4 py-12 font-['Roboto',sans-serif] sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+      className="w-full bg-[#EAF3F9] px-4 py-12 font-['Roboto',sans-serif] sm:px-6 sm:py-16 lg:px-8 lg:py-20"
     >
       <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 items-start gap-8 md:gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
         {/* LEFT: Contact information */}
