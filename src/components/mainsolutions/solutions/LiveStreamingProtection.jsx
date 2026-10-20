@@ -148,7 +148,7 @@ function ServiceCard() {
           and operational needs.
         </p>
 
-        <a className="lsp-button" href="#lsp-contact">
+        <a className="lsp-button" href="/contact">
           Discuss your requirements
           <ArrowRight size={16} />
         </a>

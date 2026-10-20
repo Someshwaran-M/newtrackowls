@@ -137,17 +137,17 @@ function ServiceCard() {
     <section className="lsp-service">
       <div className="lsp-service-intro">
         <div className="lsp-service-icon">
-          <Radio size={30} strokeWidth={1.8} />
+          <ScanSearch size={30} strokeWidth={1.8} />
         </div>
 
-        <h2>Act while the event still matters.</h2>
+        <h2>Understand the patterns behind piracy.</h2>
 
         <p>
           Agree the scope around your rights, assets, priority channels
           and operational needs.
         </p>
 
-        <a className="lsp-button" href="#lsp-contact">
+        <a className="lsp-button" href="/contact">
           Discuss your requirements
           <ArrowRight size={16} />
         </a>
