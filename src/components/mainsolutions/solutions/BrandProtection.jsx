@@ -107,14 +107,13 @@ const enforcementSteps = [
       "Verify outcomes and report pending actions, removals and repeat cases.",
   },
 ];
-
 const serviceCoverage = [
-  "Event-specific monitoring scope",
-  "Unauthorized stream and URL discovery",
-  "Analyst verification and timestamped evidence",
-  "Priority complaint submission",
-  "Escalation and repeat-stream tracking",
-  "Post-event enforcement reporting",
+  "Trademark and logo misuse review",
+  "Domain and impersonation research",
+  "Marketplace listing monitoring",
+  "Suspected counterfeit identification",
+  "Unauthorized creative asset review",
+  "Appropriate platform reporting",
 ];
 
 const requirements = [

@@ -109,12 +109,12 @@ const enforcementSteps = [
 ];
 
 const serviceCoverage = [
-  "Event-specific monitoring scope",
-  "Unauthorized stream and URL discovery",
-  "Analyst verification and timestamped evidence",
-  "Priority complaint submission",
-  "Escalation and repeat-stream tracking",
-  "Post-event enforcement reporting",
+  "Title and asset tracking",
+  "Streaming and download website monitoring",
+  "Release-window prioritization",
+  "Evidence and case documentation",
+  "Takedown coordination",
+  "Repeat-infringement reporting",
 ];
 
 const requirements = [
