@@ -577,16 +577,14 @@ function InvestmentSection() {
             alt="Cinema camera and film production equipment"
             loading="lazy"
           />
-          <span>Illustrative film and broadcast production context</span>
+          <span>Real stock photography · Illustrative context</span>
         </div>
 
         <div className="lsp-investment-copy">
           <SectionLabel>What you protect</SectionLabel>
-          <h2>The investment behind every release.</h2>
+          <h2>Follow the distribution trail.</h2>
           <p>
-            A finished film carries the work of production teams, studios and
-            distributors. Protection planning connects the title, release
-            window and authorized channels with evidence of suspected copies.
+            Public websites, apps and linked sources can distribute protected assets through different routes. Investigation captures the source URL and context, then follows verified cases through reporting and outcome checks.
           </p>
         </div>
       </section>
@@ -594,24 +592,18 @@ function InvestmentSection() {
       <section className="lsp-challenge">
         <div className="lsp-challenge-title">
           <SectionLabel>The challenge</SectionLabel>
-          <h2>A short window to protect a valuable event.</h2>
+          <h2>Understand the source before taking action.</h2>
         </div>
 
         <div className="lsp-challenge-copy">
           <p>
-            Live-event infringement needs preparation before the broadcast
-            begins. Event references, rights territories, authorized
-            distributors and complaint routes help analysts distinguish a
-            suspected pirate stream from legitimate distribution.
+            Websites and public app listings may advertise, embed or redistribute protected content in different ways. Each finding needs source context and evidence of what is actually available.
           </p>
 
           <h3>The TrackOwls approach</h3>
 
           <p>
-            During agreed coverage hours, findings are reviewed against the
-            event reference and prioritized by the event window. Cases retain
-            discovery and verification times, source links, evidence and
-            complaint status for follow-up.
+            Review relevant URLs, public descriptions and distribution links within the agreed scope. Preserve the discovery record and distinguish the hosting source from pages that merely point to it.
           </p>
         </div>
       </section>
@@ -675,7 +667,7 @@ function EnforcementWorkflow() {
               <p>{step.description}</p>
             </article>
           ))}
-        </div>
+        </div>0
       </div>
     </section>
   );
@@ -1960,14 +1952,12 @@ export default function LivestreamingProtection() {
 
               {/* Heading */}
               <h1 className="m-0 max-w-[900px] text-[34px] font-bold leading-[1.12] tracking-[-1.3px] text-[#15334E] min-[400px]:text-[39px] sm:text-[48px] sm:leading-[1.1] sm:tracking-[-1.8px] md:text-[58px] lg:text-[68px] lg:leading-[1.06] lg:tracking-[-2.4px] xl:text-[76px]">
-                Live Streaming Protection
+Website &amp; App Monitoring
               </h1>
 
               {/* Description */}
               <p className="mt-5 max-w-[650px] text-[14px] font-normal leading-[1.75] text-[#526B86] sm:mt-6 sm:text-[15px] sm:leading-[1.8] lg:mt-7 lg:text-[17px] lg:leading-[1.8]">
-                A focused monitoring and enforcement workflow for unauthorized
-            live streams during sports, concerts and other high-value
-            broadcasts.
+                Investigate websites, applications and digital properties suspected of distributing protected content without authorization.
               </p> 
 
           </div>

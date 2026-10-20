@@ -1960,14 +1960,12 @@ export default function LivestreamingProtection() {
 
               {/* Heading */}
               <h1 className="m-0 max-w-[900px] text-[34px] font-bold leading-[1.12] tracking-[-1.3px] text-[#15334E] min-[400px]:text-[39px] sm:text-[48px] sm:leading-[1.1] sm:tracking-[-1.8px] md:text-[58px] lg:text-[68px] lg:leading-[1.06] lg:tracking-[-2.4px] xl:text-[76px]">
-                Live Streaming Protection
+                Brand Protection
               </h1>
 
               {/* Description */}
               <p className="mt-5 max-w-[650px] text-[14px] font-normal leading-[1.75] text-[#526B86] sm:mt-6 sm:text-[15px] sm:leading-[1.8] lg:mt-7 lg:text-[17px] lg:leading-[1.8]">
-                A focused monitoring and enforcement workflow for unauthorized
-            live streams during sports, concerts and other high-value
-            broadcasts.
+                Investigate digital misuse of brand assets, trademarks and creative content across relevant public channels.
               </p> 
 
           </div>
