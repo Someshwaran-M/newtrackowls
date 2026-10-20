@@ -33,6 +33,7 @@ import UnderstandingEnforcementReports from "./components/maininsights/Understan
 import ReleaseWindowMonitoring from "./components/maininsights/ReleaseWindowMonitoring";
 import BrandReferenceChecklist from "./components/maininsights/BrandReferenceChecklist";
 import RepeatSourceInvestigation from "./components/maininsights/RepeatSourceInvestigation";
+import LivestreamingProtection from "./components/mainsolutions/solutions/LiveStreamingProtection";
 
 function App() {
   // Show the loader on each full page load or browser refresh.
@@ -116,6 +117,10 @@ function App() {
               path="/repeat-sources"
               element={<RepeatSourceInvestigation />}
             />
+
+
+            <Route path="/solutions/live-streaming-protection" element={<LivestreamingProtection />} />
+
           </Routes>
         </main>
 

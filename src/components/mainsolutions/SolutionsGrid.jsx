@@ -22,7 +22,7 @@ const solutions = [
     image:
       "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=85",
     icon: Radio,
-    link: "/services",
+    link: "/solutions/live-streaming-protection",
   },
   {
     number: "02",
