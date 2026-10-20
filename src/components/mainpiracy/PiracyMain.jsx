@@ -7,65 +7,49 @@ function PiracyMain() {
       id="piracy-main"
       className="w-full bg-[#EAF3F9] px-3 pt-26 pb-7 font-['Roboto',sans-serif] sm:px-5 sm:pt-25 sm:pb-9 lg:px-8 lg:pt-25 lg:pb-8"
     >
-      <div
-      className="relative mx-auto flex min-h-[420px] max-w-[1350px] items-center overflow-hidden rounded-[10px] border border-[#8BB630]/40 bg-[#071E35] px-6 py-10 sm:min-h-[460px] sm:px-9 sm:py-12 lg:min-h-[580px] lg:px-10 lg:py-12"
-        style={{
-          backgroundImage: `
-            linear-gradient(
-              90deg,
-              rgba(5, 25, 45, 0.96) 0%,
-              rgba(5, 25, 45, 0.88) 35%,
-              rgba(5, 25, 45, 0.55) 68%,
-              rgba(5, 25, 45, 0.48) 100%
-            ),
-            url('/map.png')
-          `,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        {/* Subtle digital grid */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.10]"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(0deg, transparent 0px, transparent 39px, rgba(139,182,48,0.35) 40px), repeating-linear-gradient(90deg, transparent 0px, transparent 39px, rgba(139,182,48,0.25) 40px)",
-            maskImage:
-              "linear-gradient(90deg, transparent 0%, black 60%, black 100%)",
-          }}
-        />
+      <div className="mx-auto w-full max-w-[1350px]">
+        <div className="relative isolate flex min-h-[300px] w-full items-center overflow-hidden rounded-[14px] border border-[#8BB630]/30 bg-[#D5DDDA] sm:min-h-[400px] sm:rounded-[17px] lg:min-h-[410px] xl:min-h-[440px]">
+{/* Background image */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 z-[-2] bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('/globe.png')",
+            }}
+          />
 
-        {/* Lime-green map glow */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse at 75% 30%, rgba(139,182,48,0.18), transparent 42%)",
-          }}
-        />
+          {/* Light blue overlay */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-[-1] bg-gradient-to-r from-[#DCEAF4]/95 via-[#DCEAF4]/85 to-[#DCEAF4]/45"
+          />
 
-        {/* Hero content */}
-        <div className="relative z-10 max-w-[740px]">
-          <span className="inline-block text-[10px] font-extrabold uppercase tracking-[2px] text-[#D5F51F] sm:text-[11px]">
-            TRACKOWLS INSIGHTS / OCTOBER 2026
-          </span>
-
+          {/* Soft blue atmospheric glow */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-20 top-1/2 z-[-1] h-64 w-64 -translate-y-1/2 rounded-full bg-[#8BBCE0]/30 blur-3xl sm:h-80 sm:w-80 lg:h-[450px] lg:w-[450px]"
+          />
           
-<h1 className="mt-4 max-w-[700px] text-[36px] font-extrabold leading-[1.1] tracking-[-1.5px] text-white sm:mt-5 sm:text-[48px] sm:leading-[1.1] sm:tracking-[-2px] lg:text-[54px] lg:tracking-[-2.2px]">
-  Digital piracy.
-  <span className="block text-[#8BB630]">
-    Real consequences.
-  </span>
-</h1>
+          {/* Main content */}
+          <div className="relative z-10 w-full px-5 py-9 sm:px-8 sm:py-11 md:px-10 lg:px-[58px] lg:py-[62px] xl:px-[68px]">
+            <div className="max-w-[1000px]">
+             <span className="mb-5 inline-flex items-center gap-2.5 text-[10px] font-extrabold uppercase tracking-[1.8px] text-[#648A13] sm:mb-6 sm:text-[11px] lg:mb-7 lg:text-[12px]">
+                
+                TRACKOWLS INSIGHTS / OCTOBER 2026
+              </span>
 
+              {/* Heading */}
+              <h1 className="m-0 max-w-[900px] text-[34px] font-bold leading-[1.12] tracking-[-1.3px] text-[#15334E] min-[400px]:text-[39px] sm:text-[48px] sm:leading-[1.1] sm:tracking-[-1.8px] md:text-[58px] lg:text-[68px] lg:leading-[1.06] lg:tracking-[-2.4px] xl:text-[76px]">
+                Digital piracy. Real
+                <br className="hidden sm:block" />
+                {" "}consequences.
+              </h1>
 
-          <p className="mt-4 max-w-[650px] text-[14px] leading-[1.8] text-[#D1DEEA] sm:mt-5 sm:text-[16px]">
-            Protecting the value of film, OTT and live events. An original
-            guide to exposure, commercial impact and evidence-led protection.
-          </p>
+              {/* Description */}
+              <p className="mt-5 max-w-[650px] text-[14px] font-normal leading-[1.75] text-[#526B86] sm:mt-6 sm:text-[15px] sm:leading-[1.8] lg:mt-7 lg:text-[17px] lg:leading-[1.8]">
+                Protecting the value of film, OTT and live events. An original guide to exposure, commercial impact and evidence-led protection.
+              </p>
+
 
           {/* Report actions */}
           <div className="mt-5 flex flex-wrap items-center gap-3 sm:mt-6">
@@ -79,16 +63,18 @@ function PiracyMain() {
 
             <a
               href="#piracy-report-content"
-              className="inline-flex min-h-[40px] items-center justify-center rounded-[4px] border border-[#B9CADA] px-5 py-3 text-[11px] font-medium text-[#D1DEEA] transition-colors duration-300 hover:border-[#8BB630] hover:text-[#D5F51F]"
+              className="inline-flex min-h-[40px] items-center justify-center rounded-[4px] border border-[#648A13] px-5 py-3 text-[11px] font-medium text-[#526B86] transition-colors duration-300 hover:border-[#8BB630] hover:text-black"
             >
               Read online
             </a>
           </div>
 
-          <p className="mt-5 text-[10px] font-medium leading-relaxed text-[#D1DEEA]">
+          <p className="mt-5 text-[10px] font-medium leading-relaxed text-[#526B86]">
             Film &amp; production / OTT / Live sports &amp; events · 15-minute
             read
           </p>
+        </div>
+        </div>
         </div>
       </div>
     </section>

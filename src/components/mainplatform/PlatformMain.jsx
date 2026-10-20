@@ -5,10 +5,10 @@ function PlatformMain() {
   return (
      <section
       id="platform-main"
-      className="w-full bg-[#EAF3F9] px-3 pt-26 pb-7 font-['Roboto',sans-serif] sm:px-5 sm:pt-25 sm:pb-9 lg:px-8 lg:pt-25 lg:pb-8"
+     className="w-full bg-[#EAF3F9] px-3 pt-26 pb-7 font-['Roboto',sans-serif] sm:px-5 sm:pt-25 sm:pb-9 lg:px-8 lg:pt-25 lg:pb-8"
     >
       <div className="mx-auto w-full max-w-[1350px]">
-        <div className="relative isolate flex min-h-[300px] w-full items-center overflow-hidden rounded-[14px] border border-[#8BB630]/30 bg-[#D5DDDA] sm:min-h-[400px] sm:rounded-[17px] lg:min-h-[310px] xl:min-h-[340px]">
+        <div className="relative isolate flex min-h-[300px] w-full items-center overflow-hidden rounded-[14px] border border-[#8BB630]/30 bg-[#D5DDDA] sm:min-h-[400px] sm:rounded-[17px] lg:min-h-[410px] xl:min-h-[440px]">
 {/* Background image */}
           <div
             aria-hidden="true"
@@ -29,27 +29,25 @@ function PlatformMain() {
             aria-hidden="true"
             className="pointer-events-none absolute -right-20 top-1/2 z-[-1] h-64 w-64 -translate-y-1/2 rounded-full bg-[#8BBCE0]/30 blur-3xl sm:h-80 sm:w-80 lg:h-[450px] lg:w-[450px]"
           />
+          
+          {/* Main content */}
+          <div className="relative z-10 w-full px-5 py-9 sm:px-8 sm:py-11 md:px-10 lg:px-[58px] lg:py-[62px] xl:px-[68px]">
+            <div className="max-w-[1000px]">       
 
-          {/* Content */}
-          <div className="relative z-10 w-full px-6 py-14 min-[400px]:px-7 sm:px-9 sm:py-16 md:px-12 lg:px-[76px] lg:py-[90px]">
-            <div className="max-w-[1120px]">
-              {/* Label */}
-              <span className="mb-7 inline-flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[1.8px] text-[#79A91C] min-[400px]:text-[11px] sm:mb-8 sm:text-[12px] sm:tracking-[2.2px] lg:mb-[42px] lg:text-[14px]">
-                <span className="h-[2px] w-5 shrink-0 bg-[#8BB630] sm:w-6" />
+                <span className="mb-5 inline-flex items-center gap-2.5 text-[10px] font-extrabold uppercase tracking-[1.8px] text-[#648A13] sm:mb-6 sm:text-[11px] lg:mb-7 lg:text-[12px]">
+                
                 Platform · In Development
               </span>
 
               {/* Heading */}
-              <h1 className="max-w-[1100px] text-[38px] font-bold leading-[1.12] tracking-[-1.7px] text-[#19334E] min-[400px]:text-[42px] sm:text-[52px] sm:leading-[1.1] sm:tracking-[-2px] md:text-[64px] lg:text-[76px] lg:leading-[1.1] lg:tracking-[-3px] xl:text-[84px]">
+              <h1 className="m-0 max-w-[900px] text-[34px] font-bold leading-[1.12] tracking-[-1.3px] text-[#15334E] min-[400px]:text-[39px] sm:text-[48px] sm:leading-[1.1] sm:tracking-[-1.8px] md:text-[58px] lg:text-[68px] lg:leading-[1.06] lg:tracking-[-2.4px] xl:text-[76px]">
                 One platform. The complete
-                <br className="hidden lg:block" />{" "}
-                <span className="block lg:inline">
-                  anti-piracy workflow.
-                </span>
+                <br className="hidden sm:block" />
+                {" "} anti-piracy workflow.
               </h1>
 
               {/* Description */}
-              <p className="mt-6 max-w-[850px] text-[14px] font-normal leading-[1.85] text-[#526D86] min-[400px]:text-[15px] sm:mt-7 sm:text-[17px] lg:mt-[30px] lg:text-[20px] lg:leading-[1.9]">
+              <p className="mt-5 max-w-[650px] text-[14px] font-normal leading-[1.75] text-[#526B86] sm:mt-6 sm:text-[15px] sm:leading-[1.8] lg:mt-7 lg:text-[17px] lg:leading-[1.8]">
                 A planned workspace to connect protected assets, cases,
                 evidence, analyst assignments and enforcement reporting.
               </p>

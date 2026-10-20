@@ -36,7 +36,7 @@ function AboutMain() {
 
               {/* Eyebrow */}
               <span className="mb-5 inline-flex items-center gap-2.5 text-[10px] font-extrabold uppercase tracking-[1.8px] text-[#648A13] sm:mb-6 sm:text-[11px] lg:mb-7 lg:text-[12px]">
-                <span className="h-[2px] w-5 bg-[#8BB630]" />
+                
                 About TrackOwls
               </span>
 

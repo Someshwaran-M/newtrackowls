@@ -38,13 +38,11 @@ function HowItWorksMain() {
   return (
     <section
       id="how-it-works"
-      className="w-full bg-[#EAF3F9] px-3 pt-26 pb-7 font-['Roboto',sans-serif] sm:px-5 sm:pt-25 sm:pb-9 lg:px-8 lg:pt-25 lg:pb-8"
+       className="w-full bg-[#EAF3F9] px-3 pt-26 pb-7 font-['Roboto',sans-serif] sm:px-5 sm:pt-25 sm:pb-9 lg:px-8 lg:pt-25 lg:pb-8"
     >
       <div className="mx-auto w-full max-w-[1350px]">
         <div className="relative isolate flex min-h-[300px] w-full items-center overflow-hidden rounded-[14px] border border-[#8BB630]/30 bg-[#D5DDDA] sm:min-h-[400px] sm:rounded-[17px] lg:min-h-[410px] xl:min-h-[440px]">
-
-    
-       {/* Background image */}
+{/* Background image */}
           <div
             aria-hidden="true"
             className="absolute inset-0 z-[-2] bg-cover bg-center bg-no-repeat"
@@ -65,10 +63,9 @@ function HowItWorksMain() {
             className="pointer-events-none absolute -right-20 top-1/2 z-[-1] h-64 w-64 -translate-y-1/2 rounded-full bg-[#8BBCE0]/30 blur-3xl sm:h-80 sm:w-80 lg:h-[450px] lg:w-[450px]"
           />
 
-          {/* Hero content */}
-          <div className="flex min-h-[340px] items-center px-5 py-10 min-[400px]:min-h-[360px] sm:min-h-[400px] sm:px-9 sm:py-12 lg:min-h-[450px] lg:px-[60px] lg:py-[65px] xl:min-h-[490px]">
-            <div className="relative z-10 w-full max-w-[1050px]">
-              <span className="mb-5 inline-flex items-center text-[10px] font-extrabold uppercase tracking-[1.7px] text-[#8bb630] min-[400px]:text-[11px] sm:mb-6 sm:text-[12px] sm:tracking-[2px] lg:text-[13px]">
+         <div className="relative z-10 w-full px-5 py-9 sm:px-8 sm:py-11 md:px-10 lg:px-[58px] lg:py-[62px] xl:px-[68px]">
+            <div className="max-w-[1000px]">
+   <span className="mb-5 inline-flex items-center text-[10px] font-extrabold uppercase tracking-[1.7px] text-[#8bb630] min-[400px]:text-[11px] sm:mb-6 sm:text-[12px] sm:tracking-[2px] lg:text-[13px]">
                 How it works
               </span>
 
