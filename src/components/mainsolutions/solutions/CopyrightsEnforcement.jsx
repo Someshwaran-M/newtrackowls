@@ -47,32 +47,30 @@ const stages = [
     activeCard: 0,
   },
 ];
-
 const workflowSteps = [
   {
     number: "01",
-    title: "Monitor",
-    description: "Continuously monitor relevant streaming sources.",
+    title: "Confirm authorization",
+    description:
+      "Check the ownership and rights needed for the complaint.",
   },
   {
     number: "02",
-    title: "Detect",
-    description: "Identify potential unauthorized live streams.",
+    title: "Prepare the evidence",
+    description:
+      "Collect source URLs, timestamps and the content match.",
   },
   {
     number: "03",
-    title: "Verify",
-    description: "Review matches and organize supporting evidence.",
+    title: "Submit the complaint",
+    description:
+      "Use the receiving platform’s appropriate reporting route.",
   },
   {
     number: "04",
-    title: "Enforce",
-    description: "Coordinate appropriate reporting and enforcement.",
-  },
-  {
-    number: "05",
-    title: "Report",
-    description: "Track actions and summarize protection activity.",
+    title: "Verify the outcome",
+    description:
+      "Keep pending reviews separate from confirmed removals.",
   },
 ];
 
@@ -534,7 +532,7 @@ function SolutionsInMotion() {
         </div>
 
         <div className="lsp-workflow-card">
-          <p className="lsp-card-kicker">Follow a live broadcast</p>
+          <p className="lsp-card-kicker">Follow an evidence-led complaint</p>
 
           <div className="lsp-workflow-list">
             {workflowSteps.map((step, index) => (

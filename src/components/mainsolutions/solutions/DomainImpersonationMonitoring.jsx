@@ -51,28 +51,27 @@ const stages = [
 const workflowSteps = [
   {
     number: "01",
-    title: "Monitor",
-    description: "Continuously monitor relevant streaming sources.",
+    title: "Confirm the official identity",
+    description:
+      "Use the brand’s authorized domains and public channels.",
   },
   {
     number: "02",
-    title: "Detect",
-    description: "Identify potential unauthorized live streams.",
+    title: "Investigate the finding",
+    description:
+      "Compare copied identity and available public context.",
   },
   {
     number: "03",
-    title: "Verify",
-    description: "Review matches and organize supporting evidence.",
+    title: "Preserve the evidence",
+    description:
+      "Keep page records and the specific suspected misuse.",
   },
   {
     number: "04",
-    title: "Enforce",
-    description: "Coordinate appropriate reporting and enforcement.",
-  },
-  {
-    number: "05",
-    title: "Report",
-    description: "Track actions and summarize protection activity.",
+    title: "Coordinate the response",
+    description:
+      "Agree reporting routes and revisit the public source.",
   },
 ];
 
@@ -118,17 +117,6 @@ const serviceCoverage = [
   "Repeat-site and case status tracking",
 ];
 
-// const requirements = [
-//   "Event schedule and reference feed details",
-//   "Licensed territories and authorized distributors",
-//   "Enforcement authorization and priority channels",
-// ];
-
-// const deliverables = [
-//   "Event case log with timestamps",
-//   "Complaint and escalation history",
-//   "Post-event outcome and repeat-stream review",
-// ];
 
 const requirements = [
   "Official domains and approved accounts",
@@ -549,7 +537,7 @@ function SolutionsInMotion() {
         </div>
 
         <div className="lsp-workflow-card">
-          <p className="lsp-card-kicker">Follow a live broadcast</p>
+          <p className="lsp-card-kicker">Follow an identity investigation</p>
 
           <div className="lsp-workflow-list">
             {workflowSteps.map((step, index) => (

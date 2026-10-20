@@ -46,32 +46,30 @@ const stages = [
     activeCard: 0,
   },
 ];
-
 const workflowSteps = [
   {
     number: "01",
-    title: "Monitor",
-    description: "Continuously monitor relevant streaming sources.",
+    title: "Track the release",
+    description:
+      "Start with the title, episodes, territories and release dates.",
   },
   {
     number: "02",
-    title: "Detect",
-    description: "Identify potential unauthorized live streams.",
+    title: "Match the content",
+    description:
+      "Review a suspected copy against the protected asset.",
   },
   {
     number: "03",
-    title: "Verify",
-    description: "Review matches and organize supporting evidence.",
+    title: "Document the case",
+    description:
+      "Preserve the source URL, content match and rights evidence.",
   },
   {
     number: "04",
-    title: "Enforce",
-    description: "Coordinate appropriate reporting and enforcement.",
-  },
-  {
-    number: "05",
-    title: "Report",
-    description: "Track actions and summarize protection activity.",
+    title: "Follow the response",
+    description:
+      "Track complaint status and check for repeat distribution.",
   },
 ];
 
