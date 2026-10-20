@@ -280,7 +280,7 @@ function BroadcastIllustration({
   return (
     <div className="relative w-full overflow-hidden rounded-xl border border-[#35566B] bg-[#0D2538] font-sans text-slate-100 shadow-xl">
       {/* Dashboard header */}
-      <div className="flex min-h-[126px] items-center justify-between border-b border-[#35566B] bg-[#102C42] px-3 py-3 sm:px-4">
+      <div className="flex min-h-[16px] items-center justify-between border-b border-[#35566B] bg-[#102C42] px-3 py-3 sm:px-4">
         <div className="flex items-center gap-2 text-[9px] font-semibold sm:text-[10px]">
           <Radio size={13} className="text-[#C1D2DC]" />
           <span>Live Streaming Protection</span>
@@ -292,7 +292,7 @@ function BroadcastIllustration({
       </div>
 
       {/* Animated monitoring canvas */}
-      <div className="relative isolate h-[285px] overflow-hidden bg-[radial-gradient(ellipse_at_50%_45%,#1C3E4D_0%,#123346_48%,#0B2335_100%)] sm:h-[320px] md:h-[296px]">
+      <div className="relative isolate h-[285px] overflow-hidden bg-[radial-gradient(ellipse_at_50%_45%,#1C3E4D_0%,#123346_48%,#0B2335_100%)] sm:h-[320px] md:h-[396px]">
         {/* Dotted world map */}
         <svg
           viewBox="0 0 600 300"
@@ -1352,7 +1352,7 @@ export default function LivestreamingProtection() {
         .lsp-investment-image img {
           display: block;
           width: 100%;
-          height: clamp(220px, 26vw, 310px);
+          height: clamp(320px, 36vw, 410px);
           object-fit: cover;
         }
 

@@ -118,15 +118,15 @@ const serviceCoverage = [
 ];
 
 const requirements = [
-  "Event schedule and reference feed details",
-  "Licensed territories and authorized distributors",
-  "Enforcement authorization and priority channels",
+  "Title, episode and artwork references",
+  "Release calendar and distribution rights",
+  "Priority sources and language variations",
 ];
 
 const deliverables = [
-  "Event case log with timestamps",
-  "Complaint and escalation history",
-  "Post-event outcome and repeat-stream review",
+  "Title-level verified case records",
+  "Enforcement status by channel",
+  "Release-window and catalogue reporting",
 ];
 
 function SectionLabel({ children }) {
@@ -280,10 +280,10 @@ function BroadcastIllustration({
   return (
     <div className="relative w-full overflow-hidden rounded-xl border border-[#35566B] bg-[#0D2538] font-sans text-slate-100 shadow-xl">
       {/* Dashboard header */}
-      <div className="flex min-h-[126px] items-center justify-between border-b border-[#35566B] bg-[#102C42] px-3 py-3 sm:px-4">
+      <div className="flex min-h-[16px] items-center justify-between border-b border-[#35566B] bg-[#102C42] px-3 py-3 sm:px-4">
         <div className="flex items-center gap-2 text-[9px] font-semibold sm:text-[10px]">
           <Radio size={13} className="text-[#C1D2DC]" />
-          <span>Live Streaming Protection</span>
+          <span>OTT & VOD Protection</span>
         </div>
 
         <span className="text-[7px] font-black tracking-[1px] text-[#D5F51F] sm:text-[8px]">
@@ -292,7 +292,7 @@ function BroadcastIllustration({
       </div>
 
       {/* Animated monitoring canvas */}
-      <div className="relative isolate h-[285px] overflow-hidden bg-[radial-gradient(ellipse_at_50%_45%,#1C3E4D_0%,#123346_48%,#0B2335_100%)] sm:h-[320px] md:h-[296px]">
+      <div className="relative isolate h-[285px] overflow-hidden bg-[radial-gradient(ellipse_at_50%_45%,#1C3E4D_0%,#123346_48%,#0B2335_100%)] sm:h-[320px] md:h-[396px]">
         {/* Dotted world map */}
         <svg
           viewBox="0 0 600 300"
@@ -531,7 +531,7 @@ function SolutionsInMotion() {
         </div>
 
         <div className="lsp-workflow-card">
-          <p className="lsp-card-kicker">Follow a live broadcast</p>
+          <p className="lsp-card-kicker">Follow a release-window review</p>
 
           <div className="lsp-workflow-list">
             {workflowSteps.map((step, index) => (
@@ -573,11 +573,11 @@ function InvestmentSection() {
       <section className="lsp-investment">
         <div className="lsp-investment-image">
           <img
-            src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=85"
+            src="/solutions/videoott.jpeg"
             alt="Cinema camera and film production equipment"
             loading="lazy"
           />
-          <span>Illustrative film and broadcast production context</span>
+          <span>Real stock photography · Illustrative context</span>
         </div>
 
         <div className="lsp-investment-copy">
@@ -594,24 +594,22 @@ function InvestmentSection() {
       <section className="lsp-challenge">
         <div className="lsp-challenge-title">
           <SectionLabel>The challenge</SectionLabel>
-          <h2>A short window to protect a valuable event.</h2>
+          <h2>Protection that follows the life of a title.</h2>
         </div>
 
         <div className="lsp-challenge-copy">
           <p>
-            Live-event infringement needs preparation before the broadcast
-            begins. Event references, rights territories, authorized
-            distributors and complaint routes help analysts distinguish a
-            suspected pirate stream from legitimate distribution.
+            A release can appear through streaming pages, download links and public social posts. 
+            TrackOwls organizes the review around title variants, episodes, release dates and the 
+            distribution rights supplied by the content owner.
           </p>
 
           <h3>The TrackOwls approach</h3>
 
           <p>
-            During agreed coverage hours, findings are reviewed against the
-            event reference and prioritized by the event window. Cases retain
-            discovery and verification times, source links, evidence and
-            complaint status for follow-up.
+            Monitoring priorities can change between launch and catalogue protection. Suspected 
+            copies are reviewed before action, while repeat appearances are linked to earlier cases 
+            to help explain persistent distribution.
           </p>
         </div>
       </section>
@@ -1352,7 +1350,7 @@ export default function LivestreamingProtection() {
         .lsp-investment-image img {
           display: block;
           width: 100%;
-          height: clamp(220px, 26vw, 310px);
+          height: clamp(320px, 36vw, 410px);
           object-fit: cover;
         }
 

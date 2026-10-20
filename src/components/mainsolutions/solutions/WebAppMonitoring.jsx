@@ -118,15 +118,15 @@ const serviceCoverage = [
   "Repeat-infringer tracking",
 ];
 const requirements = [
-  "Event schedule and reference feed details",
-  "Licensed territories and authorized distributors",
-  "Enforcement authorization and priority channels",
+  "Protected asset and brand references",
+  "Known sources or examples of concern",
+  "Agreed website and public app scope",
 ];
 
 const deliverables = [
-  "Event case log with timestamps",
-  "Complaint and escalation history",
-  "Post-event outcome and repeat-stream review",
+  "Source and URL register",
+  "Screenshots and analyst findings",
+  "Repeat-source and availability review",
 ];
 
 function SectionLabel({ children }) {
@@ -573,7 +573,7 @@ function InvestmentSection() {
       <section className="lsp-investment">
         <div className="lsp-investment-image">
           <img
-            src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=85"
+            src="/solutions/websitemonitoring.jpeg"
             alt="Cinema camera and film production equipment"
             loading="lazy"
           />
@@ -1344,7 +1344,7 @@ export default function LivestreamingProtection() {
         .lsp-investment-image img {
           display: block;
           width: 100%;
-          height: clamp(220px, 26vw, 310px);
+          height: clamp(320px, 36vw, 410px);
           object-fit: cover;
         }
 

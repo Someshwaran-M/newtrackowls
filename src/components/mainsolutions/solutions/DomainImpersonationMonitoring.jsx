@@ -586,20 +586,18 @@ function InvestmentSection() {
       <section className="lsp-investment">
         <div className="lsp-investment-image">
           <img
-            src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=85"
+            src="/impersonationmonitoring.png"
             alt="Cinema camera and film production equipment"
             loading="lazy"
           />
-          <span>Illustrative film and broadcast production context</span>
+          <span>Real stock photography · Illustrative context</span>
         </div>
 
         <div className="lsp-investment-copy">
           <SectionLabel>What you protect</SectionLabel>
-          <h2>The investment behind every release.</h2>
+          <h2>Follow the distribution trail.</h2>
           <p>
-            A finished film carries the work of production teams, studios and
-            distributors. Protection planning connects the title, release
-            window and authorized channels with evidence of suspected copies.
+            Public websites, apps and linked sources can distribute protected assets through different routes. Investigation captures the source URL and context, then follows verified cases through reporting and outcome checks.
           </p>
         </div>
       </section>
@@ -607,24 +605,18 @@ function InvestmentSection() {
       <section className="lsp-challenge">
         <div className="lsp-challenge-title">
           <SectionLabel>The challenge</SectionLabel>
-          <h2>A short window to protect a valuable event.</h2>
+          <h2>Identify digital identities that need investigation.</h2>
         </div>
 
         <div className="lsp-challenge-copy">
           <p>
-            Live-event infringement needs preparation before the broadcast
-            begins. Event references, rights territories, authorized
-            distributors and complaint routes help analysts distinguish a
-            suspected pirate stream from legitimate distribution.
+            Similar domain names and copied pages may imitate a brand, but naming similarity alone does not prove abuse. The review combines public website content, official brand references and available domain context.
           </p>
 
           <h3>The TrackOwls approach</h3>
 
           <p>
-            During agreed coverage hours, findings are reviewed against the
-            event reference and prioritized by the event window. Cases retain
-            discovery and verification times, source links, evidence and
-            complaint status for follow-up.
+            Document the identity being imitated, capture source evidence and assess appropriate reporting channels with the client. Security incidents requiring access to internal systems or emergency response are scoped with the client’s security team.
           </p>
         </div>
       </section>
@@ -1365,7 +1357,7 @@ export default function LivestreamingProtection() {
         .lsp-investment-image img {
           display: block;
           width: 100%;
-          height: clamp(220px, 26vw, 310px);
+          height: clamp(320px, 36vw, 410px);
           object-fit: cover;
         }
 

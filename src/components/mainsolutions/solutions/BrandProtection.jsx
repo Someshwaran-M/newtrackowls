@@ -115,17 +115,16 @@ const serviceCoverage = [
   "Unauthorized creative asset review",
   "Appropriate platform reporting",
 ];
-
 const requirements = [
-  "Event schedule and reference feed details",
-  "Licensed territories and authorized distributors",
-  "Enforcement authorization and priority channels",
+  "Trademark, logo and creative references",
+  "Official domains and social accounts",
+  "Authorized seller or distributor information",
 ];
 
 const deliverables = [
-  "Event case log with timestamps",
-  "Complaint and escalation history",
-  "Post-event outcome and repeat-stream review",
+  "Brand misuse case register",
+  "Evidence by account, listing or domain",
+  "Submission status and repeat-source analysis",
 ];
 
 function SectionLabel({ children }) {
@@ -572,20 +571,18 @@ function InvestmentSection() {
       <section className="lsp-investment">
         <div className="lsp-investment-image">
           <img
-            src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=85"
+            src="/brand.png"
             alt="Cinema camera and film production equipment"
             loading="lazy"
           />
-          <span>Illustrative film and broadcast production context</span>
+          <span>Illustrative brand production context</span>
         </div>
 
         <div className="lsp-investment-copy">
           <SectionLabel>What you protect</SectionLabel>
-          <h2>The investment behind every release.</h2>
+          <h2>The investment behind every brand.</h2>
           <p>
-            A finished film carries the work of production teams, studios and
-            distributors. Protection planning connects the title, release
-            window and authorized channels with evidence of suspected copies.
+            A trusted brand reflects years of work, customer relationships and creative investment. Impersonation, counterfeit listings and unauthorized use of brand assets can put that trust at risk.
           </p>
         </div>
       </section>
@@ -593,24 +590,18 @@ function InvestmentSection() {
       <section className="lsp-challenge">
         <div className="lsp-challenge-title">
           <SectionLabel>The challenge</SectionLabel>
-          <h2>A short window to protect a valuable event.</h2>
+          <h2>Keep brand identity consistent across digital channels.</h2>
         </div>
 
         <div className="lsp-challenge-copy">
           <p>
-            Live-event infringement needs preparation before the broadcast
-            begins. Event references, rights territories, authorized
-            distributors and complaint routes help analysts distinguish a
-            suspected pirate stream from legitimate distribution.
+           A copied logo, reused product photograph or misleading account can create confusion about who operates a page or sells a product. Investigation starts with a reliable reference for the legitimate brand.
           </p>
 
           <h3>The TrackOwls approach</h3>
 
           <p>
-            During agreed coverage hours, findings are reviewed against the
-            event reference and prioritized by the event window. Cases retain
-            discovery and verification times, source links, evidence and
-            complaint status for follow-up.
+            Review public findings against official assets and authorized channels. Record the type of misuse and supporting evidence so each case can follow an appropriate platform reporting route.
           </p>
         </div>
       </section>
@@ -1351,7 +1342,7 @@ export default function LivestreamingProtection() {
         .lsp-investment-image img {
           display: block;
           width: 100%;
-          height: clamp(220px, 26vw, 310px);
+          height: clamp(320px, 36vw, 410px);
           object-fit: cover;
         }
 

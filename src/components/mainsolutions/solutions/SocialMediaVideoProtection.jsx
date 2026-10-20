@@ -574,45 +574,38 @@ function InvestmentSection() {
       <section className="lsp-investment">
         <div className="lsp-investment-image">
           <img
-            src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=85"
+            src="/social.png"
             alt="Cinema camera and film production equipment"
             loading="lazy"
           />
-          <span>Illustrative film and broadcast production context</span>
+          <span>Real stock photography · Illustrative context</span>
         </div>
 
         <div className="lsp-investment-copy">
           <SectionLabel>What you protect</SectionLabel>
           <h2>The investment behind every release.</h2>
           <p>
-            A finished film carries the work of production teams, studios and
-            distributors. Protection planning connects the title, release
-            window and authorized channels with evidence of suspected copies.
+            A finished film carries the work of production teams, studios and distributors. Protection planning connects the title, release window and authorized channels with evidence of suspected copies.
+      
           </p>
         </div>
-      </section>
+        </section>
 
       <section className="lsp-challenge">
         <div className="lsp-challenge-title">
           <SectionLabel>The challenge</SectionLabel>
-          <h2>A short window to protect a valuable event.</h2>
+          <h2>Connect public posts with the content they distribute.</h2>
         </div>
 
         <div className="lsp-challenge-copy">
           <p>
-            Live-event infringement needs preparation before the broadcast
-            begins. Event references, rights territories, authorized
-            distributors and complaint routes help analysts distinguish a
-            suspected pirate stream from legitimate distribution.
+           Infringing uploads and misleading profiles can reappear under different links or accounts. A case should distinguish a suspected content upload from a promotional post or an account impersonation finding.
           </p>
 
           <h3>The TrackOwls approach</h3>
 
           <p>
-            During agreed coverage hours, findings are reviewed against the
-            event reference and prioritized by the event window. Cases retain
-            discovery and verification times, source links, evidence and
-            complaint status for follow-up.
+           Review public posts within the agreed scope, verify the asset or identity against supplied references and preserve links and timestamps. Repeat appearances remain linked to the review and enforcement history.
           </p>
         </div>
       </section>
@@ -1353,7 +1346,7 @@ export default function LivestreamingProtection() {
         .lsp-investment-image img {
           display: block;
           width: 100%;
-          height: clamp(220px, 26vw, 310px);
+          height: clamp(320px, 36vw, 410px);
           object-fit: cover;
         }
 
