@@ -30,7 +30,7 @@ const solutions = [
     description: "Protect every release window.",
     image: "/solutions/videoott.jpeg",
     icon: Play,
-    link: "/industries",
+    link: "/solutions/ott-vod-protection",
   },
   {
     number: "03",
@@ -38,7 +38,7 @@ const solutions = [
     description: "See where your content travels.",
     image: "/solutions/websitemonitoring.jpeg",
     icon: Globe,
-    link: "/platform",
+    link: "/solutions/web-app-monitoring",
   },
   {
     number: "04",
@@ -47,7 +47,7 @@ const solutions = [
     image:
       "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=900&q=85",
     icon: FileCheck2,
-    link: "/services",
+    link: "/solutions/copyright-enforcement",
   },
   {
     number: "05",
@@ -55,7 +55,7 @@ const solutions = [
     description: "Defend the identity you built.",
     image: "/brand.png",
     icon: ShieldCheck,
-    link: "/services",
+    link: "/solutions/brand-protection",
   },
   {
     number: "06",
@@ -63,7 +63,7 @@ const solutions = [
     description: "Understand the patterns behind piracy.",
     image: "/solutions/piracyintelligence.jpeg",
     icon: ScanSearch,
-    link: "/platform",
+    link: "/solutions/piracy-intelligence",
   },
   {
     number: "07",
@@ -71,7 +71,7 @@ const solutions = [
     description: "Investigate listings that misuse your brand.",
     image: "/marketplacecounterfeitmonitoring.png",
     icon: Search,
-    link: "/industries",
+    link: "/solutions/marketplace-counterfeit-monitoring",
   },
   {
     number: "08",
@@ -79,7 +79,7 @@ const solutions = [
     description: "Protect the identity behind your digital presence.",
     image: "/impersonationmonitoring.png",
     icon: Globe,
-    link: "/services",
+    link: "/solutions/domain-impersonation-monitoring",
   },
   {
     number: "09",
@@ -87,7 +87,7 @@ const solutions = [
     description: "Follow infringement across public social channels.",
     image: "/social.png",
     icon: Eye,
-    link: "/platform",
+    link: "/solutions/social-media-video-protection",
   },
 ];
 

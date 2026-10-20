@@ -1,5 +1,6 @@
-
 import React from "react";
+import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 
 const industries = [
   {
@@ -7,34 +8,34 @@ const industries = [
     title: "Film & Entertainment",
     description: "Theatrical releases, films and production assets.",
     image: "/industries/film.jpeg",
-    link: "/industries",
+    link: "/industries/film-entertainment",
   },
   {
     number: "02",
     title: "OTT & Streaming",
     description: "Series, premium video and on-demand catalogues.",
     image: "/industries/ott.jpeg",
-    link: "/industries",
+    link: "/industries/ott-streaming",
   },
   {
     number: "03",
     title: "Live Sports",
     description: "Time-sensitive events and broadcast rights.",
     image: "/industries/livesport.jpeg",
-    link: "/industries",
+    link: "/industries/live-sports",
   },
   {
     number: "04",
     title: "Television & Broadcasting",
     description: "Channels, programmes and unauthorized redistribution.",
     image: "/industries/tv.jpeg",
-    link: "/industries",
+    link: "/industries/television-broadcasting",
   },
   {
     number: "05",
     title: "Music",
     description: "Recordings, releases and protected audio assets.",
-    link: "/industries",
+    link: "/industries/music",
     image: "/industries/music.jpeg",
     imageAlt: "Professional music recording studio",
   },
@@ -43,7 +44,7 @@ const industries = [
     title: "Brands & IP Owners",
     description: "Trademarks, creative assets and brand identity.",
     image: "/industries/brand.jpeg",
-    link: "/industries",
+    link: "/industries/brand-ip-owners",
   },
   {
     number: "07",
@@ -51,14 +52,14 @@ const industries = [
     description:
       "Brand identity, product imagery and suspicious online listings.",
     image: "/industries/sportswear.jpeg",
-    link: "/industries",
+    link: "/industries/sportswear",
   },
   {
     number: "08",
     title: "Publishers & Digital Creators",
     description: "Books, courses, software and original digital publications.",
     image: "/industries/public.jpeg",
-    link: "/industries",
+    link: "/industries/publishers",
   },
 ];
 
@@ -96,13 +97,19 @@ function IndustriesGrid() {
                 {industry.description}
               </p>
 
-              <a
-                href="#contact"
-                className="mt-7 inline-flex w-fit flex-col gap-[5px] text-[10px] font-medium text-[#648A13] transition-colors duration-300 hover:text-[#15334E]"
-              >
-                Explore protection
-                <span className="h-px w-full bg-[#8BB630] transition-all duration-300 group-hover:h-[2px]" />
-              </a>
+ <Link
+  to={industry.link}
+  className="group mt-7 inline-flex w-fit flex-col gap-[5px] text-[10px] font-medium text-[#648A13] transition-colors duration-300 hover:text-[#15334E]"
+>
+  <span className="inline-flex items-center gap-1">
+    Explore protection
+    <ArrowUpRight size={11} strokeWidth={1.6} />
+  </span>
+
+  <span className="h-px w-full bg-[#8BB630] transition-all duration-300 group-hover:h-[2px]" />
+</Link>
+
+             
             </article>
           ))}
         </div>
