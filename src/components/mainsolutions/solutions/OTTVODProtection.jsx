@@ -179,16 +179,17 @@ function ServiceCard() {
 function SignalBars({ active = false, playing = true }) {
   return (
     <div className="mt-2 flex h-3 items-end gap-[3px]">
-      {Array.from({ length: 7 }, (_, index) => (
+      {Array.from({ length: 3 }, (_, index) => (
         <span
           key={index}
-          className={`block w-[3px] rounded-[1px] ${
-            active ? "bg-[#D5F51F]" : "bg-[#B6CBD5]"
+          className={`block h-[17px] w-[28px] border border-[#829AAA] ${
+            active
+              ? "bg-gradient-to-b from-[#506E7E] to-[#20394A]"
+              : "bg-gradient-to-b from-[#506E7E] to-[#20394A]"
           } ${playing ? "animate-pulse" : ""}`}
           style={{
-            height: `${4 + (index % 4) * 2}px`,
-            animationDelay: `${index * 90}ms`,
-            animationDuration: "900ms",
+            animationDelay: `${index * 150}ms`,
+            animationDuration: "1.1s",
           }}
         />
       ))}
@@ -218,7 +219,7 @@ function StatusCard({
           highlighted ? "text-[#D5F51F]" : "text-[#C1D2DC]"
         }`}
       >
-        <Radio size={12} className="shrink-0" />
+        <Play size={12} className="shrink-0" />
         <span>{title}</span>
       </div>
 
@@ -282,7 +283,7 @@ function BroadcastIllustration({
       {/* Dashboard header */}
       <div className="flex min-h-[16px] items-center justify-between border-b border-[#35566B] bg-[#102C42] px-3 py-3 sm:px-4">
         <div className="flex items-center gap-2 text-[9px] font-semibold sm:text-[10px]">
-          <Radio size={13} className="text-[#C1D2DC]" />
+          <Play size={13} className="text-[#C1D2DC]" />
           <span>OTT & VOD Protection</span>
         </div>
 
@@ -420,7 +421,7 @@ function BroadcastIllustration({
 
         {/* Event feed */}
         <StatusCard
-          title="Event feed"
+          title="Reference title"
           active={currentStage.activeCard === 0}
           playing={playing}
           className="left-[4%] top-[13%] sm:left-[6%]"
@@ -428,7 +429,7 @@ function BroadcastIllustration({
 
         {/* Suspected stream */}
         <StatusCard
-          title="Suspected stream"
+          title="Episode copy"
           active={currentStage.activeCard === 1}
           playing={playing}
           className="right-[4%] top-[13%] sm:right-[6%]"
@@ -436,7 +437,7 @@ function BroadcastIllustration({
 
         {/* Repeat broadcast */}
         <StatusCard
-          title="Repeat broadcast"
+          title="Download source"
           active={currentStage.activeCard === 2}
           playing={playing}
           className="bottom-[13%] left-1/2 -translate-x-1/2"

@@ -177,20 +177,17 @@ function ServiceCard() {
 
 function SignalBars({ active = false, playing = true }) {
   return (
-    <div className="mt-2 flex h-3 items-end gap-[3px]">
-      {Array.from({ length: 7 }, (_, index) => (
-        <span
-          key={index}
-          className={`block w-[3px] rounded-[1px] ${
-            active ? "bg-[#D5F51F]" : "bg-[#B6CBD5]"
-          } ${playing ? "animate-pulse" : ""}`}
-          style={{
-            height: `${4 + (index % 4) * 2}px`,
-            animationDelay: `${index * 90}ms`,
-            animationDuration: "900ms",
-          }}
-        />
-      ))}
+    <div className="absolute right-1 top-1/2 -translate-y-1/2">
+      <span
+        className={`block h-7 w-6 rounded-[5px] border border-[#D5F51F] ${
+          active
+            ? "bg-[#6D900B]"
+            : "bg-[#536F12]"
+        } ${playing ? "animate-pulse" : ""}`}
+        style={{
+          animationDuration: "1.25s",
+        }}
+      />
     </div>
   );
 }
@@ -206,7 +203,7 @@ function StatusCard({
 
   return (
     <div
-      className={`absolute z-20 w-[108px] rounded-md border p-2.5 transition-all duration-500 sm:w-[120px] sm:p-3 ${
+      className={`absolute z-20 w-[128px] rounded-md border p-2.5 transition-all duration-500 sm:w-[140px] sm:p-3 ${
         highlighted
           ? "border-[#D5F51F] bg-[#102D40] shadow-[0_0_18px_rgba(213,245,31,0.06)]"
           : "border-[#3A5A70] bg-[#112D43]"
@@ -217,7 +214,7 @@ function StatusCard({
           highlighted ? "text-[#D5F51F]" : "text-[#C1D2DC]"
         }`}
       >
-        <Radio size={12} className="shrink-0" />
+        <ShieldCheck size={12} className="shrink-0" />
         <span>{title}</span>
       </div>
 
@@ -279,10 +276,10 @@ function BroadcastIllustration({
   return (
     <div className="relative w-full overflow-hidden rounded-xl border border-[#35566B] bg-[#0D2538] font-sans text-slate-100 shadow-xl">
       {/* Dashboard header */}
-      <div className="flex min-h-[126px] items-center justify-between border-b border-[#35566B] bg-[#102C42] px-3 py-3 sm:px-4">
+      <div className="flex min-h-[16px] items-center justify-between border-b border-[#35566B] bg-[#102C42] px-3 py-3 sm:px-4">
         <div className="flex items-center gap-2 text-[9px] font-semibold sm:text-[10px]">
-          <Radio size={13} className="text-[#C1D2DC]" />
-          <span>Live Streaming Protection</span>
+          <Search size={13} className="text-[#C1D2DC]" />
+          <span>Marketplace & Counterfeit Monitoring</span>
         </div>
 
         <span className="text-[7px] font-black tracking-[1px] text-[#D5F51F] sm:text-[8px]">
@@ -291,7 +288,7 @@ function BroadcastIllustration({
       </div>
 
       {/* Animated monitoring canvas */}
-      <div className="relative isolate h-[285px] overflow-hidden bg-[radial-gradient(ellipse_at_50%_45%,#1C3E4D_0%,#123346_48%,#0B2335_100%)] sm:h-[320px] md:h-[296px]">
+      <div className="relative isolate h-[285px] overflow-hidden bg-[radial-gradient(ellipse_at_50%_45%,#1C3E4D_0%,#123346_48%,#0B2335_100%)] sm:h-[320px] md:h-[396px]">
         {/* Dotted world map */}
         <svg
           viewBox="0 0 600 300"
@@ -419,7 +416,7 @@ function BroadcastIllustration({
 
         {/* Event feed */}
         <StatusCard
-          title="Event feed"
+          title="Product reference"
           active={currentStage.activeCard === 0}
           playing={playing}
           className="left-[4%] top-[13%] sm:left-[6%]"
@@ -427,7 +424,7 @@ function BroadcastIllustration({
 
         {/* Suspected stream */}
         <StatusCard
-          title="Suspected stream"
+          title="Marketplace offer"
           active={currentStage.activeCard === 1}
           playing={playing}
           className="right-[4%] top-[13%] sm:right-[6%]"
@@ -435,7 +432,7 @@ function BroadcastIllustration({
 
         {/* Repeat broadcast */}
         <StatusCard
-          title="Repeat broadcast"
+          title="Seller history"
           active={currentStage.activeCard === 2}
           playing={playing}
           className="bottom-[13%] left-1/2 -translate-x-1/2"
