@@ -118,16 +118,28 @@ const serviceCoverage = [
   "Repeat-site and case status tracking",
 ];
 
+// const requirements = [
+//   "Event schedule and reference feed details",
+//   "Licensed territories and authorized distributors",
+//   "Enforcement authorization and priority channels",
+// ];
+
+// const deliverables = [
+//   "Event case log with timestamps",
+//   "Complaint and escalation history",
+//   "Post-event outcome and repeat-stream review",
+// ];
+
 const requirements = [
-  "Event schedule and reference feed details",
-  "Licensed territories and authorized distributors",
-  "Enforcement authorization and priority channels",
+  "Official domains and approved accounts",
+  "Brand names, variations and logo references",
+  "Examples of suspected impersonation",
 ];
 
 const deliverables = [
-  "Event case log with timestamps",
-  "Complaint and escalation history",
-  "Post-event outcome and repeat-stream review",
+  "Suspected domain and account register",
+  "Public evidence and review notes",
+  "Reporting and follow-up status",
 ];
 
 function SectionLabel({ children }) {

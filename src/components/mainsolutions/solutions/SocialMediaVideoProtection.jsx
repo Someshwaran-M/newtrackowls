@@ -119,15 +119,15 @@ const serviceCoverage = [
 ];
 
 const requirements = [
-  "Event schedule and reference feed details",
-  "Licensed territories and authorized distributors",
-  "Enforcement authorization and priority channels",
+  "Content and official profile references",
+  "Territories and distribution authorization",
+  "Priority platforms and known examples",
 ];
 
 const deliverables = [
-  "Event case log with timestamps",
-  "Complaint and escalation history",
-  "Post-event outcome and repeat-stream review",
+  "Post, video and account case records",
+  "Evidence and reporting references",
+  "Repost and repeat-account review",
 ];
 
 function SectionLabel({ children }) {

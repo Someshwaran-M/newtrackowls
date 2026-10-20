@@ -116,17 +116,16 @@ const serviceCoverage = [
   "Authorized marketplace complaints",
   "Relisting and repeat-seller reporting",
 ];
-
 const requirements = [
-  "Event schedule and reference feed details",
-  "Licensed territories and authorized distributors",
-  "Enforcement authorization and priority channels",
+  "Trademark and official product references",
+  "Authorized seller context where available",
+  "Target marketplaces and priority products",
 ];
 
 const deliverables = [
-  "Event case log with timestamps",
-  "Complaint and escalation history",
-  "Post-event outcome and repeat-stream review",
+  "Listing and seller evidence register",
+  "Rights-based complaint history",
+  "Relisting and repeat-storefront review",
 ];
 
 function SectionLabel({ children }) {
