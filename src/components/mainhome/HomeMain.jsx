@@ -74,7 +74,7 @@ export default function HomeMain() {
                   onClick={handleContact}
                   className="protection-primary inline-flex items-center gap-2 rounded-[6px] bg-[#d1ed14] px-6 py-3.5 text-sm font-bold text-[#02040d] transition duration-200 hover:bg-[#e2fa2e] hover:shadow-[0_0_25px_rgba(209,237,20,0.4)]"
                 >
-                  Request a consultation <span aria-hidden="true">↗</span>
+                  Request a consultation 
                 </button>
 
                 <button
@@ -114,17 +114,7 @@ export default function HomeMain() {
                 ))}
               </div>
 
-              <div className="mt-4 flex flex-wrap items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => navigate("/walkthrough")}
-                  className="inline-flex items-center gap-2 rounded-[6px] border border-[rgba(171,198,215,0.3)] border-l-4 border-l-[#d1ed14] bg-[rgba(11,34,54,0.75)] px-4 py-2 text-xs font-medium text-[#f0f5fa] backdrop-blur-md transition hover:bg-[rgba(17,60,83,0.9)]"
-                >
-                  <span>01 / DISCOVERY TO ENFORCEMENT</span>
-                  <span className="text-[#d1ed14]">·</span>
-                  <span>Explore the animated walkthrough →</span>
-                </button>
-              </div>
+              
             </div>
           </div>
 
