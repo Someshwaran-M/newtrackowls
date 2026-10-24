@@ -55,38 +55,36 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 w-full bg-[#f8fafc] border-b border-[#e2e8f0]">
+    <header className="fixed inset-x-0 top-0 z-50 w-full bg-[rgba(2,4,13,0.82)] backdrop-blur-xl border-b border-[rgba(255,255,255,0.08)]">
       <nav
         aria-label="Main navigation"
         className="relative mx-auto flex h-20 w-full max-w-[1500px] items-center justify-between px-4 sm:px-6 lg:px-12"
       >
-        {/* Brand logo & text image matching the reference */}
-        
-<Link
-  to="/"
-  onClick={closeMenu}
-  aria-label="TrackOwls home"
-  className="flex shrink-0 items-center gap-1.5 sm:gap-3"
->
-  {/* Owl logo */}
-  <img
-    src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owl-bg.png"
-    alt="TrackOwls Owl"
-    draggable="false"
-    className="h-12 w-9 object-contain sm:h-16 sm:w-12 lg:h-16 lg:w-16"
-  />
+        {/* Brand logo & text image */}
+        <Link
+          to="/"
+          onClick={closeMenu}
+          aria-label="TrackOwls home"
+          className="flex shrink-0 items-center gap-1.5 sm:gap-2.5 rounded-lg bg-white/95 px-3 py-1.5 shadow-sm backdrop-blur-sm transition-opacity hover:opacity-95"
+        >
+          {/* Owl logo */}
+          <img
+            src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owl-bg.png"
+            alt="TrackOwls Owl"
+            draggable="false"
+            className="h-10 w-8 object-contain sm:h-12 sm:w-9"
+          />
 
-  {/* TrackOwls wordmark */}
-  <img
-    src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owltext-bg.png"
-    alt="TrackOwls"
-    draggable="false"
-    className="h-10 w-auto max-w-[145px] object-contain sm:h-14 sm:max-w-none lg:h-14"
-  />
-</Link>
+          {/* TrackOwls wordmark */}
+          <img
+            src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owltext-bg.png"
+            alt="TrackOwls"
+            draggable="false"
+            className="h-9 w-auto max-w-[135px] object-contain sm:h-11 sm:max-w-none"
+          />
+        </Link>
 
-
-        {/* Desktop navigation matching reference layout */}
+        {/* Desktop navigation */}
         <div className="hidden items-center gap-8 xl:flex">
           {navItems.map((item) => {
             const active = isActive(item.path);
@@ -99,8 +97,8 @@ export default function Navbar() {
                 aria-current={active ? "page" : undefined}
                 className={`whitespace-nowrap text-[15px] font-medium tracking-normal transition-colors duration-200 ${
                   active
-                    ? "text-[#1e293b]"
-                    : "text-[#334155] hover:text-[#1e293b]"
+                    ? "text-[#d1ed14]"
+                    : "text-[#cbd5e1] hover:text-[#d1ed14]"
                 }`}
               >
                 {item.name}
@@ -109,12 +107,12 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Desktop consultation button matching reference green pill shape & tone */}
+        {/* Desktop consultation button */}
         <div className="hidden shrink-0 items-center xl:flex">
           <button
             type="button"
             onClick={handleConsultation}
-            className="inline-flex items-center justify-center rounded-[8px] bg-[#5a8c12] px-6 py-3 text-[15px] font-semibold text-white shadow-sm transition-all duration-300 hover:bg-[#689d14]"
+            className="inline-flex items-center justify-center rounded-[6px] bg-[#d1ed14] px-6 py-3 text-[14px] font-bold text-[#02040d] shadow-sm transition-all duration-300 hover:bg-[#e2fa2e] hover:shadow-[0_0_20px_rgba(209,237,20,0.35)]"
           >
             Request a consultation
           </button>
@@ -127,7 +125,7 @@ export default function Navbar() {
           aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={menuOpen}
           aria-controls="trackowls-mobile-menu"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded border border-[#cbd5e1] text-[#1e293b] transition hover:bg-[#f1f5f9] xl:hidden"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded border border-[rgba(255,255,255,0.15)] text-white transition hover:bg-white/10 xl:hidden"
         >
           {menuOpen ? (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
@@ -143,7 +141,7 @@ export default function Navbar() {
         {/* Mobile dropdown menu */}
         <div
           id="trackowls-mobile-menu"
-          className={`absolute left-0 right-0 top-full z-50 border-t border-[#e2e8f0] bg-white px-6 pb-6 shadow-xl transition-all duration-300 xl:hidden ${
+          className={`absolute left-0 right-0 top-full z-50 border-t border-[rgba(255,255,255,0.1)] bg-[rgba(2,4,13,0.96)] px-6 pb-6 shadow-2xl backdrop-blur-2xl transition-all duration-300 xl:hidden ${
             menuOpen
               ? "visible translate-y-0 opacity-100"
               : "invisible pointer-events-none -translate-y-2 opacity-0"

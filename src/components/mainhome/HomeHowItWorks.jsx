@@ -48,10 +48,10 @@ export default function HomeHowItWorks() {
         .workflow-section {
           width: 100%;
           overflow: hidden;
-          background: #f3f8fd;
-          border-top: 1px solid #d9e6f0;
-          border-bottom: 1px solid #d9e6f0;
-          color: #172d47;
+          background: transparent;
+          border-top: 1px solid rgba(171, 198, 215, 0.15);
+          border-bottom: 1px solid rgba(171, 198, 215, 0.15);
+          color: #ffffff;
           font-family: Roboto, Arial, sans-serif;
         }
 
@@ -73,7 +73,7 @@ export default function HomeHowItWorks() {
 
         .workflow-eyebrow {
           margin: 0 0 30px;
-          color: #5b811b;
+          color: #d1ed14;
           font-size: 14px;
           font-weight: 700;
           line-height: 1.3;
@@ -83,7 +83,7 @@ export default function HomeHowItWorks() {
 
         .workflow-heading {
           margin: 0;
-          color: #172d47;
+          color: #f8fafc;
           font-size: 64px;
           font-weight: 700;
           line-height: 1.12;
@@ -97,7 +97,7 @@ export default function HomeHowItWorks() {
         .workflow-intro {
           max-width: 485px;
           margin: 0 0 1px;
-          color: #58708a;
+          color: #b7cbd9;
           font-size: 20px;
           font-weight: 400;
           line-height: 1.65;
@@ -113,22 +113,22 @@ export default function HomeHowItWorks() {
 
         .workflow-stage {
           min-width: 0;
-          border-top: 1px solid #53badb;
+          border-top: 1px solid rgba(171, 198, 215, 0.25);
           padding-top: 40px;
         }
 
         .workflow-number {
           display: block;
           margin: 0 0 32px;
-          color: #648b17;
+          color: #d1ed14;
           font-size: 15px;
-          font-weight: 400;
+          font-weight: 700;
           line-height: 1.3;
         }
 
         .workflow-title {
           margin: 0 0 19px;
-          color: #172d47;
+          color: #f8fafc;
           font-size: 28px;
           font-weight: 700;
           line-height: 1.25;
@@ -137,7 +137,7 @@ export default function HomeHowItWorks() {
 
         .workflow-description {
           margin: 0;
-          color: #58708a;
+          color: #b7cbd9;
           font-size: 18px;
           font-weight: 400;
           line-height: 1.65;
@@ -152,8 +152,8 @@ export default function HomeHowItWorks() {
           display: inline-block;
           width: fit-content;
           padding-bottom: 10px;
-          border-bottom: 1px solid #c6d8b0;
-          color: #628b13;
+          border-bottom: 1px solid rgba(209, 237, 20, 0.4);
+          color: #d1ed14;
           font-size: 17px;
           font-weight: 400;
           line-height: 1.4;
@@ -162,8 +162,8 @@ export default function HomeHowItWorks() {
         }
 
         .workflow-cta:hover {
-          color: #405f0b;
-          border-color: #628b13;
+          color: #ffffff;
+          border-color: #d1ed14;
         }
 
         /* Tablet */

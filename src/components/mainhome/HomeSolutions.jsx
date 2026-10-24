@@ -159,10 +159,10 @@ export default function HomeSolutions() {
         .solutions-section {
           width: 100%;
           overflow: hidden;
-          background: #EDF5FC;
-          color: #172E49;
-          border-top: 1px solid #DBE7F1;
-          border-bottom: 1px solid #DBE7F1;
+          background: transparent;
+          color: #ffffff;
+          border-top: 1px solid rgba(171, 198, 215, 0.15);
+          border-bottom: 1px solid rgba(171, 198, 215, 0.15);
           font-family: Roboto, Arial, sans-serif;
         }
 
@@ -183,7 +183,7 @@ export default function HomeSolutions() {
 
         .solutions-eyebrow {
           margin: 0 0 17px;
-          color: #5A8117;
+          color: #d1ed14;
           font-size: 12px;
           font-weight: 700;
           line-height: 1.3;
@@ -193,7 +193,7 @@ export default function HomeSolutions() {
 
         .solutions-heading {
           margin: 0;
-          color: #172E49;
+          color: #f8fafc;
           font-size: 38px;
           font-weight: 700;
           line-height: 1.19;
@@ -211,15 +211,15 @@ export default function HomeSolutions() {
           flex-shrink: 0;
           margin-bottom: 4px;
           padding-bottom: 5px;
-          border-bottom: 1px solid #CBDCB3;
-          color: #5D8615;
+          border-bottom: 1px solid rgba(209, 237, 20, 0.4);
+          color: #d1ed14;
           font-size: 12px;
           text-decoration: none;
         }
 
         .solutions-view-all:hover {
-          border-color: #638B15;
-          color: #405F0B;
+          border-color: #d1ed14;
+          color: #ffffff;
         }
 
         .solutions-grid {
@@ -237,14 +237,18 @@ export default function HomeSolutions() {
           min-width: 0;
           height: 350px;
           overflow: hidden;
-          border: 1px solid #D5E3F0;
-          border-radius: 5px;
-          background: #FFFFFF;
-          transition: border-color 180ms ease;
+          border: 1px solid rgba(171, 198, 215, 0.2);
+          border-radius: 8px;
+          background: rgba(10, 26, 46, 0.65);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          transition: all 250ms ease;
         }
 
         .solution-card:hover {
-          border-color: #BDD3B0;
+          border-color: rgba(209, 237, 20, 0.5);
+          background: rgba(14, 34, 60, 0.85);
+          transform: translateY(-2px);
         }
 
         .solution-image {
@@ -253,7 +257,7 @@ export default function HomeSolutions() {
           height: 506px;
           margin: 0;
           overflow: hidden;
-          background: #E5EDF3;
+          background: rgba(6, 18, 32, 0.7);
           border-radius: 0 0 3px 0;
         }
 
@@ -289,18 +293,19 @@ export default function HomeSolutions() {
 
         .solution-icon {
           flex-shrink: 0;
-          color: #638B15;
+          color: #d1ed14;
         }
 
         .solution-number {
-          color: #68839D;
+          color: #d1ed14;
           font-size: 12px;
+          font-weight: 600;
           line-height: 1;
         }
 
         .solution-title {
           margin: 0;
-          color: #172E49;
+          color: #f8fafc;
           font-size: 22px;
           font-weight: 600;
           line-height: 1.3;
@@ -310,7 +315,7 @@ export default function HomeSolutions() {
 
         .solution-description {
           margin: 7px 0 0;
-          color: #506985;
+          color: #b7cbd9;
           font-size: 15px;
           font-weight: 400;
           line-height: 1.65;

@@ -75,10 +75,10 @@ export default function HomeVisibility() {
         .visibility-section {
           width: 100%;
           overflow: hidden;
-          background: #f3f8fd;
-          border-top: 1px solid #dce7f0;
-          border-bottom: 1px solid #dce7f0;
-          color: #172d47;
+          background: transparent;
+          border-top: 1px solid rgba(171, 198, 215, 0.15);
+          border-bottom: 1px solid rgba(171, 198, 215, 0.15);
+          color: #ffffff;
           font-family: Roboto, Arial, sans-serif;
         }
 
@@ -100,7 +100,7 @@ export default function HomeVisibility() {
 
         .visibility-eyebrow {
           margin: 0 0 21px;
-          color: #5b811b;
+          color: #d1ed14;
           font-size: 11px;
           font-weight: 700;
           line-height: 1.4;
@@ -110,7 +110,7 @@ export default function HomeVisibility() {
 
         .visibility-heading {
           margin: 0;
-          color: #172d47;
+          color: #f8fafc;
           font-size: 44px;
           font-weight: 700;
           line-height: 1.13;
@@ -124,7 +124,7 @@ export default function HomeVisibility() {
         .visibility-intro {
           margin: 0 0 3px;
           max-width: 340px;
-          color: #58708a;
+          color: #b7cbd9;
           font-size: 14px;
           line-height: 1.7;
         }
@@ -137,9 +137,11 @@ export default function HomeVisibility() {
           gap: 48px;
           min-height: 309px;
           padding: 40px 34px;
-          border: 1px solid #d5e3ef;
-          border-radius: 7px;
-          background: #ffffff;
+          border: 1px solid rgba(171, 198, 215, 0.22);
+          border-radius: 10px;
+          background: rgba(10, 26, 46, 0.65);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
         }
 
         .visibility-report-intro {
@@ -151,16 +153,17 @@ export default function HomeVisibility() {
           align-items: center;
           min-height: 24px;
           padding: 4px 9px;
-          border: 1px solid #d5e3ef;
+          border: 1px solid rgba(171, 198, 215, 0.25);
           border-radius: 4px;
-          color: #58708a;
+          color: #d1ed14;
           font-size: 10px;
+          font-weight: 600;
           line-height: 1.4;
         }
 
         .visibility-report-title {
           margin: 15px 0 12px;
-          color: #172d47;
+          color: #f8fafc;
           font-size: 21px;
           font-weight: 700;
           line-height: 1.35;
@@ -169,7 +172,7 @@ export default function HomeVisibility() {
 
         .visibility-report-description {
           margin: 0;
-          color: #58708a;
+          color: #b7cbd9;
           font-size: 13px;
           line-height: 1.75;
         }
@@ -181,25 +184,28 @@ export default function HomeVisibility() {
           min-height: 43px;
           margin-top: 22px;
           padding: 0 20px;
-          border: 1px solid #cbdbe9;
-          border-radius: 4px;
-          background: #ffffff;
-          color: #172d47;
+          border: 1px solid rgba(171, 198, 215, 0.25);
+          border-radius: 6px;
+          background: rgba(10, 26, 46, 0.6);
+          color: white;
           font-family: inherit;
           font-size: 12px;
           font-weight: 700;
           cursor: pointer;
+          backdrop-filter: blur(10px);
           transition: border-color 180ms ease,
-                      background 180ms ease;
+                      background 180ms ease,
+                      color 180ms ease;
         }
 
         .visibility-download:hover {
-          border-color: #91ad5b;
-          background: #f8faf5;
+          border-color: #d1ed14;
+          background: rgba(209, 237, 20, 0.15);
+          color: #d1ed14;
         }
 
         .visibility-download:focus-visible {
-          outline: 2px solid #628b13;
+          outline: 2px solid #d1ed14;
           outline-offset: 3px;
         }
 
@@ -211,7 +217,7 @@ export default function HomeVisibility() {
 
         .visibility-report-item {
           padding: 18px 0;
-          border-bottom: 1px solid #e0e9f1;
+          border-bottom: 1px solid rgba(171, 198, 215, 0.15);
         }
 
         .visibility-report-item:first-child {
@@ -224,16 +230,16 @@ export default function HomeVisibility() {
 
         .visibility-item-label {
           margin: 0;
-          color: #6b849d;
+          color: #d1ed14;
           font-size: 10px;
-          font-weight: 400;
+          font-weight: 600;
           line-height: 1.5;
           letter-spacing: 0.2px;
         }
 
         .visibility-item-description {
           margin: 9px 0 0;
-          color: #24415e;
+          color: #e2e8f0;
           font-size: 13px;
           line-height: 1.6;
         }
@@ -246,8 +252,8 @@ export default function HomeVisibility() {
         .visibility-scenarios a {
           display: inline-block;
           padding-bottom: 6px;
-          border-bottom: 1px solid #cbd9b7;
-          color: #648a13;
+          border-bottom: 1px solid rgba(209, 237, 20, 0.4);
+          color: #d1ed14;
           font-size: 12px;
           line-height: 1.5;
           text-decoration: none;
@@ -297,6 +303,7 @@ export default function HomeVisibility() {
           justify-content: center;
           gap: 12px;
           margin: 29px auto 0;
+          
         }
 
         .visibility-channel {
@@ -305,10 +312,10 @@ export default function HomeVisibility() {
           justify-content: center;
           min-height: 42px;
           padding: 0 19px;
-          border: 1px solid #d5e3ef;
+          border: 1px solid #b6f0a6;
           border-radius: 4px;
           background: transparent;
-          color: #45617c;
+          color: #f8faf7;
           font-size: 12px;
           font-weight: 400;
           line-height: 1.4;

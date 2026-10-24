@@ -88,23 +88,23 @@ export default function HomeFAQ() {
   return (
     <section
       id="home-faq"
-      className="w-full border-t border-[#E0E9F1] bg-[#F3F7FC] py-10 font-['Roboto',sans-serif] text-[#15334E] sm:py-12 lg:py-12"
+      className="w-full border-t border-[rgba(171,198,215,0.15)] bg-transparent py-10 font-['Roboto',sans-serif] text-white sm:py-12 lg:py-16"
     >
       <div className="mx-auto max-w-[1540px] px-5 sm:px-8 lg:px-12 xl:px-[4.8%]">
         {/* Heading */}
-        <div className="mb-10 flex flex-col justify-between gap-6 border-b border-[#E0E9F1] pb-10 sm:mb-0 sm:flex-row sm:items-center sm:pb-12">
+        <div className="mb-10 flex flex-col justify-between gap-6 border-b border-[rgba(171,198,215,0.15)] pb-10 sm:mb-0 sm:flex-row sm:items-center sm:pb-12">
           <div className="min-w-0">
-            <p className="mb-6 text-[11px] font-bold uppercase tracking-[0.19em] text-[#617D17] sm:text-xs">
+            <p className="mb-6 text-[11px] font-bold uppercase tracking-[0.19em] text-[#d1ed14] sm:text-xs">
               Your questions
             </p>
 
-            <h2 className="m-0 text-[36px] font-bold leading-[1.1] tracking-[-0.045em] text-[#15334E] sm:text-[48px] lg:text-[54px]">
+            <h2 className="m-0 text-[36px] font-bold leading-[1.1] tracking-[-0.045em] text-[#f8fafc] sm:text-[48px] lg:text-[54px]">
               Know what to{" "}
-              <span >expect.</span>
+              <span className="text-[#d1ed14]">expect.</span>
             </h2>
           </div>
 
-          <p className="m-0 max-w-[440px] text-[14px] leading-[1.8] text-[#45637F] sm:text-base">
+          <p className="m-0 max-w-[440px] text-[15px] leading-[1.8] text-[#b7cbd9] sm:text-base">
             Understand the scope, evidence and reporting before you start a
             protection engagement.
           </p>
@@ -118,7 +118,7 @@ export default function HomeFAQ() {
             return (
               <div
                 key={faq.question}
-                className="border-b border-[#E0E9F1]"
+                className="border-b border-[rgba(171,198,215,0.15)]"
               >
                 <button
                   type="button"
@@ -126,15 +126,15 @@ export default function HomeFAQ() {
                   aria-expanded={isOpen}
                   className="group flex w-full items-center justify-between gap-5 py-[25px] text-left sm:py-[29px]"
                 >
-                  <span className="text-[15px] font-normal leading-relaxed text-[#15334E] transition-colors duration-200 group-hover:text-[#648A13] sm:text-[18px]">
+                  <span className="text-[16px] font-medium leading-relaxed text-white transition-colors duration-200 group-hover:text-[#d1ed14] sm:text-[18px]">
                     {faq.question}
                   </span>
 
                   <span
                     className={`flex h-7 w-7 shrink-0 items-center justify-center transition-colors duration-200 ${
                       isOpen
-                        ? "text-[#648A13]"
-                        : "text-[#8BB630] group-hover:text-[#648A13]"
+                        ? "text-[#d1ed14]"
+                        : "text-[#d1ed14]/70 group-hover:text-[#d1ed14]"
                     }`}
                   >
                     <PlusIcon open={isOpen} />
@@ -150,7 +150,7 @@ export default function HomeFAQ() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="m-0 max-w-[900px] pb-6 pr-8 text-[13px] leading-[1.9] text-[#45637F] sm:text-[15px]">
+                    <p className="m-0 max-w-[900px] pb-6 pr-8 text-[14px] leading-[1.9] text-[#b7cbd9] sm:text-[15px]">
                       {faq.answer}
                     </p>
                   </div>
@@ -168,7 +168,7 @@ export default function HomeFAQ() {
               setShowAll((previous) => !previous);
               setOpenIndex(null);
             }}
-            className="group inline-flex items-center gap-2 border-b border-[#8BB630]/50 pb-2 text-[13px] font-medium text-[#648A13] transition-colors duration-300 hover:border-[#648A13] hover:text-[#15334E] sm:text-sm"
+            className="group inline-flex items-center gap-2 border-b border-[#d1ed14]/50 pb-2 text-[13px] font-medium text-[#d1ed14] transition-colors duration-300 hover:border-[#d1ed14] hover:text-white sm:text-sm"
           >
             <span>
               {showAll ? "View fewer questions" : "View all questions"}

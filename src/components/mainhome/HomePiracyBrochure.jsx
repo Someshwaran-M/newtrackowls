@@ -6,22 +6,22 @@ export default function HomePiracyBrochure() {
   return (
     <section
       id="piracy-brochure"
-      className="w-full overflow-hidden bg-[#EEF2ED] font-['Roboto',Arial,sans-serif] text-[#172D47]"
+      className="w-full overflow-hidden bg-transparent border-y border-[rgba(171,198,215,0.15)] font-['Roboto',Arial,sans-serif] text-white"
     >
-      <div className="mx-auto max-w-[1576px] px-16 py-[72px] sm:px-10 sm:py-[88px] lg:px-10px lg:py-[108px]">
+      <div className="mx-auto max-w-[1576px] px-6 py-[72px] sm:px-10 sm:py-[88px] lg:px-12 lg:py-[108px]">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-[76px]">
           {/* LEFT CONTENT */}
           <div className="flex min-w-0 flex-col items-start">
-            <p className="mb-[29px] text-[11px] font-bold uppercase leading-[1.4] tracking-[2.2px] text-[#568018] sm:text-[12px]">
+            <p className="mb-[29px] text-[11px] font-bold uppercase leading-[1.4] tracking-[2.2px] text-[#d1ed14] sm:text-[12px]">
               TrackOwls insights / Industry report
             </p>
 
-            <h2 className="m-0 text-[42px] font-bold leading-[1.12] tracking-[-1.7px] text-[#172D47] sm:text-[54px] lg:text-[64px]">
+            <h2 className="m-0 text-[42px] font-bold leading-[1.12] tracking-[-1.7px] text-[#f8fafc] sm:text-[54px] lg:text-[64px]">
               Digital piracy.
               <span className="block">Real consequences.</span>
             </h2>
 
-            <p className="mt-[24px] max-w-[730px] text-[16px] font-normal leading-[1.72] text-[#58708A] sm:text-[18px]">
+            <p className="mt-[24px] max-w-[730px] text-[16px] font-normal leading-[1.72] text-[#b7cbd9] sm:text-[18px]">
               Explore our 12-page report on piracy exposure, commercial
               impact and protection priorities for production, OTT and
               live events. With sourced research, a measurement framework
@@ -29,20 +29,17 @@ export default function HomePiracyBrochure() {
             </p>
 
             <div className="brochure-actions mt-[36px] flex flex-wrap items-center gap-4">
-              
-
-<Link
-  to="/piracy"
-  className="inline-flex min-h-[61px] items-center justify-center rounded-[6px] bg-[#648B13] px-[30px] py-[18px] text-[15px] font-bold text-white transition-colors duration-200 hover:bg-[#52740E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#648B13]"
->
-  Read the industry report
-</Link>
-
+              <Link
+                to="/piracy"
+                className="inline-flex min-h-[58px] items-center justify-center rounded-[6px] bg-[#d1ed14] px-[30px] py-[16px] text-[15px] font-bold text-[#02040d] transition-colors duration-200 hover:bg-[#e2fa2e]"
+              >
+                Read the industry report
+              </Link>
 
               <a
                 href="/reports/digital-piracy-report.pdf"
                 download
-                className="inline-flex min-h-[61px] items-center justify-center rounded-[6px] border border-[#C5D3DE] bg-transparent px-[29px] py-[18px] text-[15px] font-bold text-[#172D47] transition-colors duration-200 hover:border-[#648B13] hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#648B13]"
+                className="inline-flex min-h-[58px] items-center justify-center rounded-[6px] border border-[rgba(171,198,215,0.3)] bg-[rgba(10,26,46,0.6)] px-[29px] py-[16px] text-[15px] font-bold text-white backdrop-blur-md transition-colors duration-200 hover:border-[#d1ed14] hover:bg-[rgba(14,34,60,0.85)]"
               >
                 Download PDF
               </a>
@@ -51,7 +48,7 @@ export default function HomePiracyBrochure() {
 
           {/* RIGHT FEATURE PANEL */}
           <div className="relative min-w-0">
-            <div className="relative isolate min-h-[430px] overflow-hidden rounded-[13px] border-b-[10px] border-[#D0F20A] bg-[#102B43] px-7 py-10 text-white sm:min-h-[475px] sm:px-[49px] sm:py-[57px] lg:min-h-[494px]">
+            <div className="relative isolate min-h-[430px] overflow-hidden rounded-[13px] border border-[rgba(171,198,215,0.2)] border-b-[10px] border-b-[#d1ed14] bg-[rgba(16,43,67,0.7)] backdrop-blur-xl px-7 py-10 text-white sm:min-h-[475px] sm:px-[49px] sm:py-[57px] lg:min-h-[494px]">
               {/* Cropped decorative circle */}
               <div
                 aria-hidden="true"

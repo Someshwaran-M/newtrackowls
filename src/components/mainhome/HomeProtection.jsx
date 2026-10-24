@@ -277,7 +277,7 @@ export default function HomeProtection() {
   return (
     <section
       id="home-protection"
-      className="hp-section w-full overflow-hidden bg-[#EDF5FC] font-['Roboto',Arial,sans-serif] text-[#172D48]"
+      className="hp-section w-full overflow-hidden bg-transparent border-y border-[rgba(171,198,215,0.15)] font-['Roboto',Arial,sans-serif] text-white"
     >
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800&display=swap');
@@ -293,7 +293,7 @@ export default function HomeProtection() {
 
         .hp-eyebrow {
           margin: 0 0 22px;
-          color: #547F17;
+          color: #d1ed14;
           font-size: 12px;
           font-weight: 700;
           letter-spacing: 1.8px;
@@ -303,7 +303,7 @@ export default function HomeProtection() {
 
         .hp-heading {
           margin: 0;
-          color: #172D48;
+          color: #f8fafc;
           font-size: 48px;
           font-weight: 700;
           letter-spacing: -1.6px;
@@ -313,7 +313,7 @@ export default function HomeProtection() {
         .hp-intro {
           max-width: 370px;
           margin: 0;
-          color: #586F89;
+          color: #b7cbd9;
           font-size: 16px;
           line-height: 1.58;
         }
@@ -332,10 +332,12 @@ export default function HomeProtection() {
           align-items: center;
           min-height: 38px;
           padding: 0 12px;
-          border: 1px solid #cbdde9;
+          border: 1px solid rgba(171, 198, 215, 0.25);
           border-radius: 5px;
-          background: white;
-          color: #4d6680;
+          background: rgba(10, 26, 46, 0.65);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          color: #b7cbd9;
           font-size: 13px;
           white-space: nowrap;
         }
@@ -347,10 +349,12 @@ export default function HomeProtection() {
           justify-content: center;
           gap: 8px;
           padding: 0 20px;
-          border: 1px solid #cadbe8;
+          border: 1px solid rgba(171, 198, 215, 0.25);
           border-radius: 5px;
-          background: white;
-          color: #172D48;
+          background: rgba(10, 26, 46, 0.65);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          color: white;
           font-size: 13px;
           font-weight: 600;
           white-space: nowrap;
@@ -358,13 +362,14 @@ export default function HomeProtection() {
         }
 
         .hp-button-primary {
-          border-color: #648c12;
-          background: #648c12;
-          color: white;
+          border-color: #d1ed14;
+          background: #d1ed14;
+          color: #02040d;
+          font-weight: 700;
         }
 
         .hp-button-primary:hover {
-          background: #52750c;
+          background: #e2fa2e;
         }
 
         .hp-button:disabled {
@@ -373,7 +378,7 @@ export default function HomeProtection() {
         }
 
         .hp-time {
-          color: #4d6680;
+          color: #d1ed14;
           font-size: 13px;
           font-variant-numeric: tabular-nums;
           white-space: nowrap;
@@ -384,9 +389,11 @@ export default function HomeProtection() {
           grid-template-columns: 1.82fr 1fr;
           overflow: hidden;
           min-height: 409px;
-          border: 1px solid #cbdde9;
+          border: 1px solid rgba(171, 198, 215, 0.22);
           border-radius: 12px;
-          background: white;
+          background: rgba(10, 26, 46, 0.7);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
         }
 
         .hp-case-details {
@@ -398,7 +405,7 @@ export default function HomeProtection() {
 
         .hp-case-eyebrow {
           margin: 0 0 20px;
-          color: #547F17;
+          color: #d1ed14;
           font-size: 11px;
           font-weight: 700;
           letter-spacing: 1.8px;
@@ -406,7 +413,7 @@ export default function HomeProtection() {
 
         .hp-case-title {
           margin: 0;
-          color: #172D48;
+          color: #f8fafc;
           font-size: 23px;
           font-weight: 700;
           letter-spacing: -.5px;
@@ -415,7 +422,7 @@ export default function HomeProtection() {
 
         .hp-metadata {
           margin-top: 22px;
-          border-bottom: 1px solid #e2ebf2;
+          border-bottom: 1px solid rgba(171, 198, 215, 0.18);
         }
 
         .hp-metadata-row {
@@ -424,19 +431,19 @@ export default function HomeProtection() {
           justify-content: space-between;
           gap: 15px;
           padding: 12px 0;
-          border-bottom: 1px solid #e2ebf2;
+          border-bottom: 1px solid rgba(171, 198, 215, 0.18);
           font-size: 13px;
           line-height: 1.4;
         }
 
         .hp-metadata-row:last-child { border-bottom: 0; }
 
-        .hp-metadata-label { color: #617992; }
-        .hp-metadata-value { color: #294761; text-align: right; }
+        .hp-metadata-label { color: #94a3b8; }
+        .hp-metadata-value { color: #e2e8f0; text-align: right; }
 
         .hp-case-description {
           margin: 20px 0 0;
-          color: #586F89;
+          color: #b7cbd9;
           font-size: 14px;
           line-height: 1.7;
         }
@@ -447,14 +454,14 @@ export default function HomeProtection() {
           gap: 10px;
           margin-top: auto;
           padding-top: 25px;
-          color: #267c96;
+          color: #d1ed14;
           font-size: 13px;
           font-weight: 600;
         }
 
         .hp-disclaimer {
           margin: 21px 0 0;
-          color: #71879c;
+          color: #8497A5;
           font-size: 11px;
           line-height: 1.65;
         }
@@ -472,31 +479,34 @@ export default function HomeProtection() {
           align-items: center;
           gap: 10px;
           padding: 0 12px;
-          border: 1px solid #cbdde9;
+          border: 1px solid rgba(171, 198, 215, 0.2);
           border-radius: 5px;
-          background: white;
-          color: #586F89;
+          background: rgba(10, 26, 46, 0.6);
+          color: #b7cbd9;
           text-align: left;
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
           transition: background .2s, color .2s, border-color .2s;
         }
 
         .hp-tab:hover {
-          border-color: #8bb630;
-          background: #f6f9f2;
-        }
-
-        .hp-tab.active {
-          border-color: #102e43;
-          background: #102e43;
+          border-color: #d1ed14;
+          background: rgba(14, 34, 60, 0.85);
           color: white;
         }
 
+        .hp-tab.active {
+          border-color: #d1ed14;
+          background: rgba(209, 237, 20, 0.15);
+          color: #d1ed14;
+        }
+
         .hp-tab-number {
-          color: #71879c;
+          color: #94a3b8;
           font-size: 12px;
         }
 
-        .hp-tab.active .hp-tab-number { color: #a8dce8; }
+        .hp-tab.active .hp-tab-number { color: #d1ed14; }
 
         .hp-tab-name {
           font-size: 13px;
@@ -509,12 +519,12 @@ export default function HomeProtection() {
           gap: 38px;
           margin-top: 15px;
           padding-top: 31px;
-          border-top: 3px solid #d6e5ef;
+          border-top: 1px solid rgba(171, 198, 215, 0.2);
         }
 
         .hp-bottom-title {
           margin: 0;
-          color: #172D48;
+          color: #f8fafc;
           font-size: 24px;
           font-weight: 700;
           letter-spacing: -.5px;
@@ -524,19 +534,19 @@ export default function HomeProtection() {
         .hp-bottom-description {
           max-width: 720px;
           margin: 14px 0 0;
-          color: #586F89;
+          color: #b7cbd9;
           font-size: 15px;
           line-height: 1.8;
         }
 
         .hp-record {
           padding-left: 33px;
-          border-left: 1px solid #d4e3ed;
+          border-left: 1px solid rgba(171, 198, 215, 0.2);
         }
 
         .hp-record-label {
           margin: 2px 0 18px;
-          color: #547F17;
+          color: #d1ed14;
           font-size: 11px;
           font-weight: 700;
           letter-spacing: 1.8px;
@@ -545,7 +555,7 @@ export default function HomeProtection() {
 
         .hp-record-text {
           margin: 0;
-          color: #586F89;
+          color: #b7cbd9;
           font-size: 15px;
           line-height: 1.7;
         }

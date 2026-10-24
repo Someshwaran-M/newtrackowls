@@ -5,7 +5,7 @@ export default function HomeAbout() {
   return (
     <section
       id="about"
-      className="relative w-full overflow-hidden bg-[#F3F7FC] font-['Roboto',Arial,sans-serif] text-[#172D48]"
+      className="relative w-full overflow-hidden bg-transparent border-y border-[rgba(171,198,215,0.15)] font-['Roboto',Arial,sans-serif] text-white"
     >
       <div
         className="
@@ -28,7 +28,7 @@ export default function HomeAbout() {
         >
           {/* Eyebrow */}
           <div className="mb-5 flex items-center sm:mb-[32px]">
-            <span className="text-[10px] font-bold uppercase tracking-[0.17em] text-[#547F17] sm:text-[12px]">
+            <span className="text-[11px] font-bold uppercase tracking-[0.19em] text-[#d1ed14] sm:text-[12px]">
               Content. Identity. Digital trust.
             </span>
           </div>
@@ -39,7 +39,7 @@ export default function HomeAbout() {
               m-0 max-w-[700px]
               text-[32px] font-bold
               leading-[1.12] tracking-[-1.2px]
-              text-[#172D48]
+              text-[#f8fafc]
               sm:text-[52px]
               sm:tracking-[-1.6px]
               lg:text-[64px]
@@ -77,7 +77,7 @@ export default function HomeAbout() {
               m-0 max-w-[800px]
               text-[15px] font-normal
               leading-[1.65] tracking-[-0.15px]
-              text-[#586F89]
+              text-[#b7cbd9]
               sm:text-[18px]
               lg:text-[20px]
               lg:leading-[1.65]
@@ -95,7 +95,7 @@ export default function HomeAbout() {
               mt-6 mb-0 max-w-[800px]
               text-[15px] font-normal
               leading-[1.65] tracking-[-0.15px]
-              text-[#586F89]
+              text-[#b7cbd9]
               sm:mt-[32px]
               sm:text-[18px]
               lg:text-[20px]
@@ -112,20 +112,20 @@ export default function HomeAbout() {
             href="/about"
             className="
               mt-6 inline-flex
-              border-b border-[#B7CC8B]
+              border-b border-[#d1ed14]/50
               pb-[7px]
-              text-[13px] font-normal
+              text-[13px] font-medium
               tracking-[-0.2px]
-              text-[#638B15]
+              text-[#d1ed14]
               transition-colors duration-200
-              hover:border-[#638B15]
-              hover:text-[#45650B]
+              hover:border-[#d1ed14]
+              hover:text-white
               sm:mt-[37px]
               sm:pb-[9px]
-              sm:text-[12px]
+              sm:text-[14px]
             "
           >
-            Meet TrackOwls
+            Meet TrackOwls →
           </a>
         </motion.div>
       </div>

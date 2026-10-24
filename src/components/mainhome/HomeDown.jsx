@@ -12,7 +12,7 @@ const categories = [
 
 export default function HomeDown() {
   return (
-    <section className="w-full overflow-hidden bg-[#102F45] font-['Roboto',sans-serif] text-white">
+    <section className="w-full overflow-hidden bg-[#102b43]/45 border-y border-[rgba(171,198,215,0.15)] backdrop-blur-md font-['Roboto',sans-serif] text-white">
       <div className="mx-auto flex min-h-[76px] max-w-[1500px] items-center gap-5 px-5 sm:gap-8 sm:px-8 lg:gap-10 lg:px-12">
         {/* FIXED LEFT LABEL */}
         <div className="flex w-[105px] shrink-0 flex-col justify-center sm:w-[150px]">

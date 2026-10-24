@@ -40,7 +40,7 @@ const informationLinks = [
 function FooterColumn({ title, links, className = "" }) {
   return (
     <div className={className}>
-      <h3 className="mb-4 text-[12px] font-bold text-[#17334d]">
+      <h3 className="mb-4 text-[12px] font-bold text-[#f8fafc]">
         {title}
       </h3>
 
@@ -49,7 +49,7 @@ function FooterColumn({ title, links, className = "" }) {
           <li key={link.name}>
             <a
               href={link.href}
-              className="text-[12px] leading-5 text-[#49617c] transition-colors duration-200 hover:text-[#7ca900]"
+              className="text-[12px] leading-5 text-[#94a3b8] transition-colors duration-200 hover:text-[#d1ed14]"
             >
               {link.name}
             </a>
@@ -64,7 +64,7 @@ export default function Footer() {
   return (
     <footer
       id="footer"
-      className="w-full bg-[#EDF5FC] font-['Roboto',sans-serif] text-[#17334d]"
+      className="w-full bg-transparent font-['Roboto',sans-serif] text-white border-t border-[rgba(255,255,255,0.08)] backdrop-blur-md"
     >
       <div className="mx-auto max-w-[1420px] px-5 pt-12 sm:px-8 sm:pt-14 lg:px-10 lg:pt-16">
         {/* Main footer content */}
@@ -74,35 +74,35 @@ export default function Footer() {
             <a
               href="/"
               aria-label="TrackOwls home"
-              className="inline-flex items-center gap-2"
+              className="inline-flex items-center gap-2 rounded-lg bg-white/95 px-3 py-1.5 shadow-sm backdrop-blur-sm"
             >
               <img
                 src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owl-bg.png"
                 alt=""
                 draggable="false"
-                className="h-10 w-8 shrink-0 object-contain sm:h-11 sm:w-9"
+                className="h-9 w-7 shrink-0 object-contain sm:h-10 sm:w-8"
               />
 
               <img
                 src="/images/logo/Trackowls_Owl_Logo_Banner-remove-owltext-bg.png"
                 alt="TrackOwls"
                 draggable="false"
-                className="h-auto w-[175px] max-w-full object-contain"
+                className="h-auto w-[160px] max-w-full object-contain"
               />
             </a>
 
-            <p className="mt-5 max-w-[240px] text-[12px] leading-[1.8] text-[#49617c]">
+            <p className="mt-5 max-w-[240px] text-[12px] leading-[1.8] text-[#94a3b8]">
               Digital anti-piracy, content protection and brand enforcement.
             </p>
 
             {/* Brand tagline */}
-            <div className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-[9px] font-black uppercase tracking-[0.06em] text-[#17334d]">
+            <div className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-[9px] font-black uppercase tracking-[0.06em] text-[#cbd5e1]">
               <span>Scan</span>
-              <span className="text-[#80a900]">|</span>
+              <span className="text-[#d1ed14]">|</span>
               <span>Detect</span>
-              <span className="text-[#80a900]">|</span>
+              <span className="text-[#d1ed14]">|</span>
               <span>Remove</span>
-              <span className="text-[#80a900]">|</span>
+              <span className="text-[#d1ed14]">|</span>
               <span>Protect</span>
             </div>
           </div>
@@ -130,15 +130,15 @@ export default function Footer() {
         </div>
 
         {/* Bottom divider */}
-        <div className="h-px w-full bg-[#d7e2ec]" />
+        <div className="h-px w-full bg-[rgba(255,255,255,0.1)]" />
 
         {/* Copyright row */}
-        <div className="flex flex-col gap-3 py-5 text-[10px] text-[#526b84] sm:flex-row sm:items-center sm:justify-between sm:py-6">
+        <div className="flex flex-col gap-3 py-5 text-[10px] text-[#64748b] sm:flex-row sm:items-center sm:justify-between sm:py-6">
           <p>
             © {new Date().getFullYear()} TrackOwls. All rights reserved.
           </p>
 
-          <p className="tracking-[0.01em]">
+          <p className="tracking-[0.01em] text-[#94a3b8]">
             Scan. Detect. Remove. Protect.
           </p>
         </div>

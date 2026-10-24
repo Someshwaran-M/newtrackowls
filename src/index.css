@@ -1,1 +1,375 @@
 @import "tailwindcss";
+
+/* ─── Galaxy background CSS variables (from reference site) ─── */
+:root {
+  --voyage-background: #02040d;
+  --voyage-highlight:  #d1ed14;
+  --voyage-depth:      #f7f5e8;
+  --voyage-shade:      #02040de8;
+  --voyage-panel:      #e3e9e5ed;
+  --voyage-section:    #f0f3f0eb;
+  --voyage-navigation: #f4f8fcf5;
+  --voyage-footer:     #f4f8fcf2;
+
+  --voyage-height:          250svh;
+  --voyage-mobile-height:   230svh;
+  --voyage-screen:          100svh;
+  --voyage-minimum:         44rem;
+  --voyage-mobile-minimum:  48rem;
+  --voyage-copy-width:      42rem;
+  --voyage-copy-area:       55%;
+  --voyage-mobile-copy:     36rem;
+
+  --network-foreground:  #f7f5e8;
+  --network-copy:        rgba(247, 245, 232, 0.75);
+  --network-background:  #03142c;
+  --network-line:        rgba(247, 245, 232, 0.2);
+  --network-space-xs:    0.375rem;
+  --network-space-sm:    0.75rem;
+  --network-space-md:    1.25rem;
+  --network-space-lg:    2rem;
+  --network-space-xl:    3rem;
+  --network-space-xxl:   5rem;
+  --network-small:       0.875rem;
+  --network-caption:     0.75rem;
+  --network-tracking:    0.1em;
+  --network-display-mobile: clamp(2.5rem, 8vw, 4.5rem);
+  --network-border:      2px;
+}
+
+/* ─── Galaxy site body class ─── */
+body.galaxy-site {
+  isolation: isolate;
+  background: var(--voyage-background);
+}
+
+/* ─── Fixed full-screen canvas background ─── */
+.site-galaxy-background {
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 75% 55%, var(--network-background), var(--voyage-background));
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.galaxy-canvas {
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+/* ─── Galaxy voyage scrolling section ─── */
+.galaxy-voyage {
+  height: var(--voyage-height);
+  background: var(--voyage-background);
+  color: var(--network-foreground);
+  position: relative;
+}
+
+.galaxy-sticky {
+  height: var(--voyage-screen);
+  min-height: var(--voyage-minimum);
+  isolation: isolate;
+  background: radial-gradient(ellipse at 75% 55%, var(--network-background), var(--voyage-background));
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+}
+
+.galaxy-shade {
+  background: linear-gradient(90deg, var(--voyage-shade), transparent 80%);
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.galaxy-content {
+  height: 100%;
+  padding-block: var(--network-space-xxl);
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.galaxy-content .protection-copy {
+  max-width: var(--voyage-copy-width);
+  width: var(--voyage-copy-area);
+}
+
+.galaxy-voyage .protection-copy h1 em {
+  color: var(--voyage-highlight) !important;
+}
+
+.galaxy-voyage .protection-eyebrow,
+.galaxy-voyage .protection-slogan span {
+  color: var(--voyage-highlight);
+}
+
+.galaxy-voyage .protection-primary {
+  background: var(--voyage-highlight);
+  border-color: var(--voyage-highlight);
+}
+
+.galaxy-voyage .protection-secondary {
+  background: var(--voyage-shade);
+}
+
+.galaxy-footer {
+  bottom: var(--network-space-lg);
+  justify-content: space-between;
+  align-items: end;
+  gap: var(--network-space-md);
+  font-size: var(--network-small);
+  letter-spacing: var(--network-tracking);
+  color: var(--network-copy);
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.galaxy-footer > div {
+  gap: var(--network-space-xs);
+  display: grid;
+}
+
+.galaxy-kicker {
+  font-size: var(--network-caption);
+  color: var(--voyage-highlight);
+}
+
+.galaxy-footer a {
+  gap: var(--network-space-md);
+  color: var(--network-foreground);
+  align-items: center;
+  display: flex;
+}
+
+/* ─── When galaxy-site is active, style the site accordingly ─── */
+.galaxy-site .galaxy-voyage,
+.galaxy-site .galaxy-sticky {
+  background: transparent;
+}
+
+/* ─── Motion reveal animations (from reference site) ─── */
+.motion-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease calc(var(--reveal-delay, 0ms)), transform 0.5s ease calc(var(--reveal-delay, 0ms));
+}
+
+.motion-reveal.motion-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reveal { opacity: 1; transform: none; }
+}
+
+/* ─── Mobile adjustments ─── */
+@media (max-width: 760px) {
+  .galaxy-content .protection-copy { width: 70%; }
+  .galaxy-content h1 { font-size: var(--network-display-mobile) !important; }
+  .galaxy-voyage { height: var(--voyage-mobile-height); }
+  .galaxy-sticky { min-height: var(--voyage-mobile-minimum); }
+  .galaxy-content { padding-top: var(--network-space-xxl); align-items: flex-start; }
+  .galaxy-content .protection-copy { width: 100%; max-width: var(--voyage-mobile-copy); }
+  .galaxy-shade { background: linear-gradient(180deg, var(--voyage-shade), transparent); }
+} 
+
+/* ─── Global transparency & glass card overrides for galaxy site ─── */
+body.galaxy-site {
+  background-color: var(--voyage-background) !important;
+  color: var(--network-foreground);
+  overflow-x: hidden;
+}
+
+/* Remove all opaque white & light backgrounds across all landing screens and overall website */
+.galaxy-site main,
+.galaxy-site section,
+.galaxy-site footer,
+.galaxy-site .hp-section,
+.galaxy-site .visibility-section,
+.galaxy-site .solutions-section,
+.galaxy-site .workflow-section,
+.galaxy-site .track-hero,
+.galaxy-site .capability-strip,
+.galaxy-site div[class*="bg-[#EAF3F9]"],
+.galaxy-site section[class*="bg-[#EAF3F9]"],
+.galaxy-site main[class*="bg-[#EAF3F9]"],
+.galaxy-site div[class*="bg-[#F3F7FC]"],
+.galaxy-site section[class*="bg-[#F3F7FC]"],
+.galaxy-site div[class*="bg-[#EDF5FC]"],
+.galaxy-site section[class*="bg-[#EDF5FC]"],
+.galaxy-site footer[class*="bg-[#EDF5FC]"],
+.galaxy-site div[class*="bg-[#EEF2ED]"],
+.galaxy-site section[class*="bg-[#EEF2ED]"],
+.galaxy-site div[class*="bg-[#F2F7FC]"],
+.galaxy-site section[class*="bg-[#F2F7FC]"],
+.galaxy-site div[class*="bg-[#F8FAFC]"],
+.galaxy-site section[class*="bg-[#F8FAFC]"],
+.galaxy-site div[class*="bg-[#F9FBFC]"],
+.galaxy-site section[class*="bg-[#F9FBFC]"],
+.galaxy-site .bg-white,
+.galaxy-site [class*="bg-[#EAF3F9]"],
+.galaxy-site [class*="bg-[#F3F7FC]"],
+.galaxy-site [class*="bg-[#EDF5FC]"],
+.galaxy-site [class*="bg-[#EEF2ED]"],
+.galaxy-site [class*="bg-[#F2F7FC]"],
+.galaxy-site [class*="bg-[#F8FAFC]"],
+.galaxy-site [class*="from-[#DCEAF4]"],
+.galaxy-site [class*="via-[#DCEAF4]"],
+.galaxy-site [class*="to-[#DCEAF4]"],
+.galaxy-site [class*="bg-gradient-to-r"][class*="DCEAF4"],
+.galaxy-site [class*="bg-gradient-to-r"][class*="from-[#DCEAF4]"] {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+.galaxy-site div[style*="globe.png"] {
+  opacity: 0.25 !important;
+  mix-blend-mode: luminosity !important;
+}
+
+/* Translucent glass styling with card opacity so the 3D galaxy shows behind cards */
+.galaxy-site article,
+.galaxy-site .solution-card,
+.galaxy-site .hp-case,
+.galaxy-site .hp-simulation,
+.galaxy-site .visibility-card,
+.galaxy-site .capability-strip,
+.galaxy-site div[class*="bg-[#D5DDDA]"],
+.galaxy-site div[class*="bg-[#D3DCDA]"],
+.galaxy-site [class*="overflow-hidden"][class*="rounded"]:not(.galaxy-sticky):not(.site-galaxy-background):not(.category-marquee):not(a[href="/"]) {
+  background: rgba(10, 26, 46, 0.6) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-color: rgba(171, 198, 215, 0.2) !important;
+}
+
+/* Hover effect on glass cards */
+.galaxy-site article:hover,
+.galaxy-site .solution-card:hover {
+  background: rgba(14, 34, 60, 0.78) !important;
+  border-color: rgba(209, 237, 20, 0.45) !important;
+}
+
+/* Headings and labels readability on dark galaxy background */
+.galaxy-site h1,
+.galaxy-site h2,
+.galaxy-site h3,
+.galaxy-site h4,
+.galaxy-site h5,
+.galaxy-site h6,
+.galaxy-site .hp-heading,
+.galaxy-site .hp-case-title,
+.galaxy-site .solutions-heading,
+.galaxy-site .solution-title,
+.galaxy-site .workflow-heading,
+.galaxy-site .workflow-title,
+.galaxy-site .visibility-heading,
+.galaxy-site [class*="text-[#15334E]"],
+.galaxy-site [class*="text-[#142D47]"],
+.galaxy-site [class*="text-[#19334E]"],
+.galaxy-site [class*="text-[#18324B]"],
+.galaxy-site [class*="text-[#17334d]"],
+.galaxy-site [class*="text-[#17334E]"],
+.galaxy-site [class*="text-[#102F45]"],
+.galaxy-site [class*="text-[#132B45]"],
+.galaxy-site [class*="text-[#173550]"],
+.galaxy-site [class*="text-[#16334F]"] {
+  color: #f8fafc !important;
+}
+
+/* Body / description text */
+.galaxy-site p,
+.galaxy-site li,
+.galaxy-site .hp-intro,
+.galaxy-site .hp-case-description,
+.galaxy-site .solutions-description,
+.galaxy-site .solution-description,
+.galaxy-site .workflow-intro,
+.galaxy-site .workflow-description,
+.galaxy-site .visibility-description,
+.galaxy-site [class*="text-[#526B86]"],
+.galaxy-site [class*="text-[#536D86]"],
+.galaxy-site [class*="text-[#45637F]"],
+.galaxy-site [class*="text-[#49617c]"],
+.galaxy-site [class*="text-[#526b84]"],
+.galaxy-site [class*="text-[#47607a]"],
+.galaxy-site [class*="text-[#435e78]"] {
+  color: #b7cbd9 !important;
+}
+
+/* Eyebrows, highlights and accents in vibrant lime */
+.galaxy-site [class*="eyebrow"],
+.galaxy-site .hp-eyebrow,
+.galaxy-site .hp-case-eyebrow,
+.galaxy-site .solutions-eyebrow,
+.galaxy-site .workflow-eyebrow,
+.galaxy-site .visibility-eyebrow,
+.galaxy-site .solution-meta svg,
+.galaxy-site .solution-number,
+.galaxy-site .workflow-number,
+.galaxy-site .galaxy-kicker,
+.galaxy-site [class*="text-[#648A13]"],
+.galaxy-site [class*="text-[#56810D]"],
+.galaxy-site [class*="text-[#7ca900]"],
+.galaxy-site [class*="text-[#80a900]"],
+.galaxy-site [class*="text-[#8bb630]"],
+.galaxy-site [class*="text-[#5b8712]"] {
+  color: #d1ed14 !important;
+}
+
+/* Links and actions */
+.galaxy-site a.solution-link,
+.galaxy-site .workflow-cta,
+.galaxy-site .solutions-view-all {
+  color: #d1ed14 !important;
+  border-color: rgba(209, 237, 20, 0.4) !important;
+}
+
+/* Borders and dividers */
+.galaxy-site hr,
+.galaxy-site [class*="border-[#D8E4EF]"],
+.galaxy-site [class*="border-[#D1E0EC]"],
+.galaxy-site [class*="border-[#E0E9F1]"],
+.galaxy-site [class*="border-[#DCE7F0]"],
+.galaxy-site [class*="border-[#D9E6F0]"],
+.galaxy-site [class*="border-[#D5E3F0]"],
+.galaxy-site [class*="border-[#D8E2D2]"],
+.galaxy-site [class*="border-[#E0E8DC]"],
+.galaxy-site [class*="border-[#cbdde9]"],
+.galaxy-site [class*="border-[#cadbe8]"],
+.galaxy-site [class*="border-[#e2ebf2]"],
+.galaxy-site [class*="border-[#D7E2E5]"],
+.galaxy-site [class*="border-[#D5DEDC]"],
+.galaxy-site [class*="border-[#d7e2ec]"] {
+  border-color: rgba(171, 198, 215, 0.18) !important;
+}
+
+.galaxy-site [class*="bg-[#D4E2ED]"],
+.galaxy-site [class*="bg-[#E0E9F1]"],
+.galaxy-site [class*="bg-[#DCE7F0]"] {
+  background-color: rgba(171, 198, 215, 0.18) !important;
+}
+
+/* Translucent Frosted Glass Navbar */
+.galaxy-site header {
+  background: rgba(2, 4, 13, 0.82) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.galaxy-site header nav a:not([class*="bg-"]):not([aria-label="TrackOwls home"]) {
+  color: #e2e8f0 !important;
+}
+
+.galaxy-site header nav a:hover:not([class*="bg-"]):not([aria-label="TrackOwls home"]) {
+  color: #d1ed14 !important;
+}

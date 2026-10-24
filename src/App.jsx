@@ -1,8 +1,9 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 // Loader
 import TrackOwlsLoader from "./components/common/TrackOwlsLoader";
+import GalaxyBackground from "./components/common/GalaxyBackground";
 
 // Layout
 import Navbar from "./components/layout/Navbar";
@@ -53,8 +54,12 @@ import BrandIPOwners from "./components/mainindustries/industries/BrandIPOwners"
 import SportsWear from "./components/mainindustries/industries/SportsWear";
 import Publishers from "./components/mainindustries/industries/Publishers";
 
-
 function App() {
+  // Add galaxy-site class to body for proper CSS variable scoping
+  useEffect(() => {
+    document.body.classList.add("galaxy-site");
+    return () => document.body.classList.remove("galaxy-site");
+  }, []);
   // Show the loader on each full page load or browser refresh.
   // Internal React Router navigation does not reload this component.
   const [loading, setLoading] = useState(() => {
@@ -76,7 +81,9 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-[#152019] dark:bg-[#070A07] dark:text-white">
+    <div className="min-h-screen text-[#152019] dark:text-white">
+      {/* 3D WebGL Galaxy background — fixed layer, matches reference site */}
+      <GalaxyBackground />
       {/* TrackOwls loader: shown once per full page load */}
       {loading && (
         <TrackOwlsLoader
@@ -88,10 +95,7 @@ function App() {
       )}
 
       {/* Existing website */}
-      <div
-        className={loading ? "invisible" : "visible"}
-        aria-hidden={loading}
-      >
+      <div className={loading ? "invisible" : "visible"} aria-hidden={loading}>
         <Navbar />
 
         <main>
@@ -137,27 +141,63 @@ function App() {
               element={<RepeatSourceInvestigation />}
             />
 
+            <Route
+              path="/solutions/live-streaming-protection"
+              element={<LivestreamingProtection />}
+            />
+            <Route
+              path="/solutions/ott-vod-protection"
+              element={<OTTVODProtection />}
+            />
+            <Route
+              path="/solutions/web-app-monitoring"
+              element={<WebAppMonitoring />}
+            />
+            <Route
+              path="/solutions/copyright-enforcement"
+              element={<CopyrightEnforcement />}
+            />
+            <Route
+              path="/solutions/brand-protection"
+              element={<BrandProtection />}
+            />
+            <Route
+              path="/solutions/piracy-intelligence"
+              element={<PiracyIntelligence />}
+            />
+            <Route
+              path="/solutions/marketplace-counterfeit-monitoring"
+              element={<MarketplaceCounterfeitMonitoring />}
+            />
+            <Route
+              path="/solutions/domain-impersonation-monitoring"
+              element={<DomainImpersonationMonitoring />}
+            />
+            <Route
+              path="/solutions/social-media-video-protection"
+              element={<SocialMediaVideoProtection />}
+            />
 
-            <Route path="/solutions/live-streaming-protection" element={<LivestreamingProtection />} />
-            <Route path="/solutions/ott-vod-protection" element={<OTTVODProtection />} />
-            <Route path="/solutions/web-app-monitoring" element={<WebAppMonitoring />} />
-            <Route path="/solutions/copyright-enforcement" element={<CopyrightEnforcement />} />
-            <Route path="/solutions/brand-protection" element={<BrandProtection />} />
-            <Route path="/solutions/piracy-intelligence" element={<PiracyIntelligence />} />
-            <Route path="/solutions/marketplace-counterfeit-monitoring" element={<MarketplaceCounterfeitMonitoring />} />
-            <Route path="/solutions/domain-impersonation-monitoring" element={<DomainImpersonationMonitoring />} />
-            <Route path="/solutions/social-media-video-protection" element={<SocialMediaVideoProtection />} />
-
-
-            <Route path="/industries/film-entertainment" element={<FilmEntertainment />} />
-            <Route path="/industries/ott-streaming" element={<OTTStreaming />} />
+            <Route
+              path="/industries/film-entertainment"
+              element={<FilmEntertainment />}
+            />
+            <Route
+              path="/industries/ott-streaming"
+              element={<OTTStreaming />}
+            />
             <Route path="/industries/live-sports" element={<LiveSports />} />
-            <Route path="/industries/television-broadcasting" element={<TelevisionBroadcasting />} />
+            <Route
+              path="/industries/television-broadcasting"
+              element={<TelevisionBroadcasting />}
+            />
             <Route path="/industries/music" element={<Music />} />
-            <Route path="/industries/brand-ip-owners" element={<BrandIPOwners />} />
+            <Route
+              path="/industries/brand-ip-owners"
+              element={<BrandIPOwners />}
+            />
             <Route path="/industries/sportswear" element={<SportsWear />} />
             <Route path="/industries/publishers" element={<Publishers />} />
-            
           </Routes>
         </main>
 
