@@ -1,6 +1,5 @@
-
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import {
   Radio,
   Play,
@@ -14,6 +13,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
+// Original solution content, image paths, icons, and links are unchanged.
 const solutions = [
   {
     number: "01",
@@ -91,55 +91,71 @@ const solutions = [
   },
 ];
 
-function SolutionCard({ solution, index }) {
+function PortalSlide({ solution, index, progress, reducedMotion }) {
   const Icon = solution.icon;
+  const total = solutions.length;
+  const step = 1 / total;
+  const start = index * step;
+  const end = (index + 1) * step;
+
+  // Avoid duplicate scroll keyframes: the first slide is visible at progress 0.
+  const fadeStart = Math.max(0, start - step * 0.12);
+  const fadeInEnd = Math.min(1, start + step * 0.12);
+  const fadeOutStart = start + step * 0.82;
+
+  const opacity = useTransform(
+    progress,
+    [fadeStart, fadeInEnd, fadeOutStart, end],
+    index === 0
+      ? [1, 1, 1, 0]
+      : index === total - 1
+        ? [0, 1, 1, 1]
+        : [0, 1, 1, 0]
+  );
+
+  const imageScale = useTransform(
+    progress,
+    [start, end],
+    reducedMotion ? [1, 1] : [1, 1.7]
+  );
+
+  const imageY = useTransform(
+    progress,
+    [start, end],
+    reducedMotion ? [0, 0] : [0, index % 2 === 0 ? -3 : 3]
+  );
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 8 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.08 }}
-      transition={{ duration: 0.3, delay: (index % 3) * 0.04 }}
-      className={`solution-card ${
-        solution.image ? "has-image" : "no-image"
-      }`}
+      className="hs-portal-slide"
+      style={{ opacity, zIndex: index + 1 }}
+      aria-label={`${solution.number} ${solution.title}`}
     >
-      {solution.image && (
-        <div className="solution-image">
-          <img
-            src={solution.image}
-            alt={solution.title}
-            loading="lazy"
-          />
-        </div>
-      )}
+      <motion.img
+        className="hs-portal-image"
+        src={solution.image}
+        alt={solution.title}
+        loading="eager"
+        draggable="false"
+        style={{ scale: imageScale, y: imageY }}
+      />
 
-      <span className="solution-corner" aria-hidden="true" />
+      <div className="hs-portal-shade" aria-hidden="true" />
+      <div className="hs-portal-frame" aria-hidden="true" />
 
-      <div className="solution-content">
-        <div className="solution-meta">
-          <Icon
-            size={17}
-            strokeWidth={1.6}
-            className="solution-icon"
-            aria-hidden="true"
-          />
-
-          <span className="solution-number">
-            {solution.number}
+      <div className="hs-portal-content">
+        <div className="hs-portal-meta">
+          <span className="hs-portal-icon" aria-hidden="true">
+            <Icon size={20} strokeWidth={1.7} />
           </span>
+          <span className="hs-portal-number">{solution.number} / 09</span>
         </div>
 
-        <h3 className="solution-title">{solution.title}</h3>
-
-        <p className="solution-description">
-          {solution.description}
-        </p>
-
-        <div className="solution-footer">
-          <Link to={solution.link} className="solution-link">
-            Explore solution
-            <ArrowUpRight size={11} strokeWidth={1.6} />
+        <div className="hs-portal-copy">
+          <h3>{solution.title}</h3>
+          <p className="hs-portal-description">{solution.description}</p>
+          <Link to={solution.link} className="hs-portal-link">
+            Explore solution <ArrowUpRight size={15} aria-hidden="true" />
           </Link>
         </div>
       </div>
@@ -148,6 +164,15 @@ function SolutionCard({ solution, index }) {
 }
 
 export default function HomeSolutions() {
+  const trackRef = useRef(null);
+  const reducedMotion = useReducedMotion();
+
+  // Progress is measured on the long sticky track only, not the whole section.
+  const { scrollYProgress } = useScroll({
+    target: trackRef,
+    offset: ["start start", "end end"],
+  });
+
   return (
     <section id="home-solutions" className="solutions-section">
       <style>{`
@@ -157,527 +182,472 @@ export default function HomeSolutions() {
         }
 
         .solutions-section {
+          position: relative;
           width: 100%;
-          overflow: hidden;
-          background: transparent;
+          margin: 0;
+          padding: 0;
+          overflow: visible;
+          background: transparent !important;
+          background-color: transparent !important;
           color: #ffffff;
-          border-top: 1px solid rgba(171, 198, 215, 0.15);
-          border-bottom: 1px solid rgba(171, 198, 215, 0.15);
+          border: 0;
           font-family: Roboto, Arial, sans-serif;
         }
 
-        .solutions-container {
-          width: calc(100% - 64px);
-          max-width: 1380px;
-          margin: 0 auto;
-          padding: 58px 0 48px;
-        }
-
-        .solutions-header {
+        /* Intro is transparent so the website's existing background stays visible. */
+        /* Explicitly remove any global header/panel background behind this heading. */
+        #home-solutions .hs-intro,
+        #home-solutions header.hs-intro {
+          position: relative;
+          z-index: 1;
           display: flex;
           align-items: flex-end;
           justify-content: space-between;
           gap: 24px;
-          margin-bottom: 26px;
+          width: calc(100% - 64px);
+          max-width: 1380px;
+          margin: 0 auto;
+          padding: 38px 0 24px;
+          background: transparent !important;
+          background-color: transparent !important;
+          background-image: none !important;
+          box-shadow: none !important;
+          backdrop-filter: none !important;
+          -webkit-backdrop-filter: none !important;
+          border: 0 !important;
         }
 
-        .solutions-eyebrow {
-          margin: 0 0 17px;
+        /* Prevent generic site-wide header decorations from creating a dark bar. */
+        #home-solutions header.hs-intro::before,
+        #home-solutions header.hs-intro::after {
+          content: none !important;
+          display: none !important;
+          background: none !important;
+          box-shadow: none !important;
+        }
+
+        .hs-eyebrow {
+          margin: 0 0 12px;
           color: #d1ed14;
           font-size: 12px;
           font-weight: 700;
           line-height: 1.3;
-          letter-spacing: 1.8px;
+          letter-spacing: 1.6px;
           text-transform: uppercase;
         }
 
-        .solutions-heading {
+        .hs-heading {
+          max-width: 720px;
           margin: 0;
           color: #f8fafc;
-          font-size: 38px;
-          font-weight: 700;
-          line-height: 1.19;
-          letter-spacing: -1.25px;
+          font-size: clamp(30px, 3.4vw, 48px);
+          font-weight: 650;
+          line-height: 1.08;
+          letter-spacing: -1.5px;
+          text-wrap: balance;
         }
 
-        .solutions-heading span {
+        .hs-heading span {
           display: block;
         }
 
-        .solutions-view-all {
+        .hs-view-all {
           display: inline-flex;
           align-items: center;
-          gap: 3px;
+          gap: 5px;
           flex-shrink: 0;
           margin-bottom: 4px;
-          padding-bottom: 5px;
-          border-bottom: 1px solid rgba(209, 237, 20, 0.4);
+          padding: 0 0 6px;
+          border-bottom: 1px solid rgba(209, 237, 20, 0.55);
           color: #d1ed14;
-          font-size: 12px;
-          text-decoration: none;
-        }
-
-        .solutions-view-all:hover {
-          border-color: #d1ed14;
-          color: #ffffff;
-        }
-
-        .solutions-grid {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          grid-auto-rows: 350px;
-          gap: 22px;
-          align-items: stretch;
-        }
-
-        .solution-card {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          min-width: 0;
-          height: 350px;
-          overflow: hidden;
-          border: 1px solid rgba(171, 198, 215, 0.2);
-          border-radius: 8px;
-          background: rgba(10, 26, 46, 0.65);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          transition: all 250ms ease;
-        }
-
-        .solution-card:hover {
-          border-color: rgba(209, 237, 20, 0.5);
-          background: rgba(14, 34, 60, 0.85);
-          transform: translateY(-2px);
-        }
-
-        .solution-image {
-          flex: 0 0 206px;
-          width: calc(100% - 35px);
-          height: 506px;
-          margin: 0;
-          overflow: hidden;
-          background: rgba(6, 18, 32, 0.7);
-          border-radius: 0 0 3px 0;
-        }
-
-        .solution-image img {
-          display: block;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center 45%;
-          transition: transform 350ms ease;
-        }
-
-        .solution-card:hover .solution-image img {
-          transform: scale(1.025);
-        }
-
-        .solution-content {
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-          min-height: 0;
-          padding: 15px 17px 13px;
-        }
-
-        .solution-meta {
-          display: flex;
-          flex-shrink: 0;
-          align-items: center;
-          justify-content: space-between;
-          min-height: 17px;
-          margin-bottom: 16px;
-        }
-
-        .solution-icon {
-          flex-shrink: 0;
-          color: #d1ed14;
-        }
-
-        .solution-number {
-          color: #d1ed14;
-          font-size: 12px;
-          font-weight: 600;
-          line-height: 1;
-        }
-
-        .solution-title {
-          margin: 0;
-          color: #f8fafc;
-          font-size: 22px;
-          font-weight: 600;
-          line-height: 1.3;
-          letter-spacing: -0.3px;
-          overflow-wrap: anywhere;
-        }
-
-        .solution-description {
-          margin: 7px 0 0;
-          color: #b7cbd9;
-          font-size: 15px;
-          font-weight: 400;
-          line-height: 1.65;
-        }
-
-        .solution-footer {
-          margin-top: auto;
-          padding-top: 10px;
-        }
-
-        .solution-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 3px;
-          width: fit-content;
-          max-width: 100%;
-          padding-bottom: 4px;
-          border-bottom: 1px solid #D5E3C6;
-          color: #5D8615;
-          font-size: 12px;
+          font-size: 13px;
           line-height: 1.4;
           text-decoration: none;
           transition: color 180ms ease, border-color 180ms ease;
         }
 
-        .solution-link:hover {
-          color: #405F0B;
-          border-color: #638B15;
+        .hs-view-all:hover {
+          color: #ffffff;
+          border-color: #ffffff;
         }
 
-        .solution-link svg {
-          flex-shrink: 0;
-          transition: transform 180ms ease;
+        /* One viewport-sized image at a time; scrolling drives the transitions. */
+        .hs-scroll-track {
+          position: relative;
+          width: 100%;
+          height: 900vh;
+          margin: 0;
+          padding: 0;
+          background: transparent !important;
         }
 
-        .solution-link:hover svg {
-          transform: translate(2px, -2px);
+        .hs-sticky-stage {
+          position: sticky;
+          top: 0;
+          width: 100%;
+          height: 100vh;
+          height: 100svh;
+          min-height: 420px;
+          overflow: hidden;
+          isolation: isolate;
+          background: transparent !important;
         }
 
-        .solution-corner {
+        .hs-portal-stack {
           position: absolute;
-          z-index: 2;
-          top: 9px;
-          right: 9px;
-          width: 12px;
-          height: 12px;
-          border-top: 1px solid #B6E1EE;
-          border-right: 1px solid #B6E1EE;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          background: transparent !important;
+        }
+
+        .hs-portal-slide {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          margin: 0;
+          padding: 0;
+          background: transparent !important;
+          will-change: opacity;
+          isolation: isolate;
+        }
+
+        .hs-portal-image {
+          position: absolute;
+          inset: 0;
+          display: block;
+          width: 100%;
+          height: 100%;
+          max-width: none;
+          object-fit: cover;
+          object-position: center;
+          border: 0;
+          user-select: none;
+          will-change: transform;
+        }
+
+        /* Only a light photo gradient is used for text contrast; no dark panel. */
+        .hs-portal-shade {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background:
+            linear-gradient(90deg, rgba(2, 8, 7, 0.62) 0%, rgba(2, 8, 7, 0.24) 48%, rgba(2, 8, 7, 0.02) 100%),
+            linear-gradient(0deg, rgba(2, 8, 7, 0.46) 0%, rgba(2, 8, 7, 0.06) 48%, rgba(2, 8, 7, 0.05) 100%);
+        }
+
+        .hs-portal-frame {
+          position: absolute;
+          inset: 16px;
+          border: 1px solid rgba(255, 255, 255, 0.28);
           pointer-events: none;
         }
 
-        .no-image .solution-content {
-          padding-top: 15px;
+        .hs-portal-frame::before,
+        .hs-portal-frame::after {
+          position: absolute;
+          width: 26px;
+          height: 26px;
+          border-color: #d1ed14;
+          border-style: solid;
+          content: "";
         }
 
-        .mobile-view-all {
-          display: none;
+        .hs-portal-frame::before {
+          top: -1px;
+          left: -1px;
+          border-width: 2px 0 0 2px;
         }
 
-        /* Tablet */
-        @media (max-width: 900px) {
-          .solutions-container {
-            width: calc(100% - 48px);
-            padding-top: 48px;
-            padding-bottom: 42px;
-          }
-
-          .solutions-heading {
-            font-size: 36px;
-          }
-
-          .solutions-grid {
-            grid-auto-rows: 245px;
-            gap: 12px;
-          }
-
-          .solution-image {
-            flex-basis: 100px;
-            height: 100px;
-            width: calc(100% - 28px);
-          }
-
-          .solution-content {
-            padding: 14px 13px 12px;
-          }
-
-          .solution-meta {
-            margin-bottom: 13px;
-          }
-
-          .solution-title {
-            font-size: 20px;
-          }
-
-          .solution-description {
-            font-size: 14px;
-          }
-
-          .solution-link {
-            font-size: 12px;
-          }
+        .hs-portal-frame::after {
+          right: -1px;
+          bottom: -1px;
+          border-width: 0 2px 2px 0;
         }
 
-        /* Mobile */
-        @media (max-width: 620px) {
-          .solutions-container {
-            width: calc(100% - 32px);
-            padding-top: 36px;
-            padding-bottom: 32px;
-          }
+        .hs-portal-content {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 24px;
+          padding: clamp(28px, 5.5vw, 76px);
+          pointer-events: none;
+        }
 
-          .solutions-header {
-            display: flex;
+        .hs-portal-meta {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+        }
+
+        .hs-portal-icon {
+          display: grid;
+          place-items: center;
+          flex: 0 0 auto;
+          width: 42px;
+          height: 42px;
+          border: 1px solid rgba(209, 237, 20, 0.8);
+          border-radius: 50%;
+          color: #d1ed14;
+          background: rgba(4, 12, 8, 0.18);
+          backdrop-filter: blur(5px);
+        }
+
+        .hs-portal-number {
+          color: #d1ed14;
+          font-size: 12px;
+          font-weight: 700;
+          line-height: 1.3;
+          letter-spacing: 1.6px;
+          text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+          font-variant-numeric: tabular-nums;
+        }
+
+        .hs-portal-copy {
+          max-width: 760px;
+          padding: 0 0 8px;
+          pointer-events: auto;
+        }
+
+        .hs-portal-copy h3 {
+          max-width: 760px;
+          margin: 0;
+          color: #ffffff;
+          font-size: clamp(30px, 4.5vw, 60px);
+          font-weight: 650;
+          line-height: 1.06;
+          letter-spacing: -1.6px;
+          text-wrap: balance;
+          overflow-wrap: anywhere;
+          text-shadow: 0 2px 20px rgba(0, 0, 0, 0.24);
+        }
+
+        .hs-portal-description {
+          max-width: 540px;
+          margin: 14px 0 0;
+          color: rgba(255, 255, 255, 0.94);
+          font-size: clamp(14px, 1.35vw, 17px);
+          font-weight: 400;
+          line-height: 1.6;
+          text-shadow: 0 1px 10px rgba(0, 0, 0, 0.32);
+        }
+
+        .hs-portal-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          margin-top: 20px;
+          padding: 0 0 6px;
+          border-bottom: 1px solid #d1ed14;
+          color: #d1ed14;
+          font-size: 13px;
+          font-weight: 500;
+          line-height: 1.5;
+          text-decoration: none;
+          transition: gap 180ms ease, color 180ms ease, border-color 180ms ease;
+        }
+
+        .hs-portal-link:hover {
+          gap: 13px;
+          color: #ffffff;
+          border-color: #ffffff;
+        }
+
+        .hs-portal-link svg {
+          flex: 0 0 auto;
+        }
+
+        @media (max-width: 760px) {
+          .hs-intro {
             align-items: flex-start;
-            justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 22px;
+            flex-direction: column;
+            gap: 15px;
+            width: calc(100% - 32px);
+            padding: 30px 0 20px;
           }
 
-          .solutions-eyebrow {
-            margin-bottom: 12px;
+          .hs-eyebrow {
+            margin-bottom: 10px;
             font-size: 11px;
             letter-spacing: 1.4px;
           }
 
-          .solutions-heading {
-            font-size: 30px;
-            line-height: 1.18;
+          .hs-heading {
+            max-width: 560px;
+            font-size: clamp(28px, 7vw, 40px);
+            line-height: 1.08;
+            letter-spacing: -1px;
+          }
+
+          .hs-view-all {
+            margin-bottom: 0;
+            font-size: 12px;
+          }
+
+          .hs-scroll-track {
+            height: 900vh;
+          }
+
+          .hs-sticky-stage {
+            min-height: 420px;
+          }
+
+          .hs-portal-frame {
+            inset: 9px;
+          }
+
+          .hs-portal-frame::before,
+          .hs-portal-frame::after {
+            width: 20px;
+            height: 20px;
+          }
+
+          .hs-portal-content {
+            padding: 26px 22px max(30px, env(safe-area-inset-bottom));
+          }
+
+          .hs-portal-icon {
+            width: 36px;
+            height: 36px;
+          }
+
+          .hs-portal-icon svg {
+            width: 18px;
+            height: 18px;
+          }
+
+          .hs-portal-number {
+            font-size: 11px;
+            letter-spacing: 1.2px;
+          }
+
+          .hs-portal-copy {
+            max-width: 100%;
+            padding-bottom: 4px;
+          }
+
+          .hs-portal-copy h3 {
+            max-width: 100%;
+            font-size: clamp(28px, 7.6vw, 42px);
+            line-height: 1.1;
             letter-spacing: -0.8px;
           }
 
-          .solutions-header > .solutions-view-all {
-            display: none;
-          }
-
-          .solutions-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            grid-auto-rows: auto;
-            gap: 14px;
-            align-items: stretch;
-          }
-
-          .solution-card {
-            height: auto;
-            min-height: 0;
-            align-self: stretch;
-          }
-
-          .solution-image {
-            flex: 0 0 auto;
-            width: calc(100% - 16px);
-            height: auto;
-            aspect-ratio: 1.5 / 1;
-            margin: 0;
-          }
-
-          .solution-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-          }
-
-          .solution-content {
-            flex: 1;
-            min-height: 0;
-            padding: 11px 10px 12px;
-          }
-
-          .solution-meta {
-            min-height: 17px;
-            margin-bottom: 10px;
-          }
-
-          .solution-icon {
-            width: 15px;
-            height: 15px;
-          }
-
-          .solution-number {
-            font-size: 11px;
-          }
-
-          .solution-title {
-            font-size: 18px;
-            line-height: 1.35;
-            letter-spacing: 0;
-            overflow-wrap: anywhere;
-            hyphens: auto;
-          }
-
-          .solution-description {
-            margin-top: 6px;
-            font-size: 13px;
+          .hs-portal-description {
+            max-width: 100%;
+            margin-top: 10px;
+            font-size: 14px;
             line-height: 1.55;
-            overflow-wrap: anywhere;
           }
 
-          .solution-footer {
-            margin-top: auto;
-            padding-top: 12px;
-          }
-
-          .solution-link {
-            gap: 3px;
-            font-size: 11px;
-            line-height: 1.45;
-          }
-
-          .solution-link svg {
-            width: 11px;
-            height: 11px;
-          }
-
-          .mobile-view-all {
-            display: flex;
-            justify-content: center;
-            margin-top: 22px;
-          }
-
-          .mobile-view-all .solutions-view-all {
+          .hs-portal-link {
+            margin-top: 16px;
             font-size: 12px;
           }
         }
 
-        /* Narrow phones */
-        @media (max-width: 420px) {
-          .solutions-container {
-            width: calc(100% - 28px);
-            padding-top: 32px;
-            padding-bottom: 30px;
+        @media (max-width: 390px) {
+          .hs-intro {
+            width: calc(100% - 26px);
+            padding-top: 25px;
+            padding-bottom: 17px;
           }
 
-          .solutions-heading {
+          .hs-heading {
             font-size: 28px;
-            letter-spacing: -0.7px;
           }
 
-          .solutions-grid {
-            grid-template-columns: minmax(0, 1fr);
-            grid-auto-rows: auto;
-            gap: 16px;
+          .hs-portal-content {
+            padding: 22px 17px max(25px, env(safe-area-inset-bottom));
           }
 
-          .solution-card {
-            width: 100%;
-            height: auto;
-            min-height: 0;
+          .hs-portal-copy h3 {
+            font-size: clamp(26px, 7.7vw, 32px);
+            letter-spacing: -0.55px;
           }
 
-          .solution-image {
-            flex: 0 0 auto;
-            width: calc(100% - 22px);
-            aspect-ratio: 1.9 / 1;
-            height: auto;
-          }
-
-          .solution-content {
-            padding: 13px 14px 14px;
-          }
-
-          .solution-meta {
-            margin-bottom: 11px;
-          }
-
-          .solution-title {
-            font-size: 18px;
-            line-height: 1.4;
-          }
-
-          .solution-description {
+          .hs-portal-description {
             font-size: 13px;
-            line-height: 1.65;
           }
 
-          .solution-link {
-            font-size: 12px;
+          .hs-portal-frame {
+            inset: 7px;
           }
         }
 
-        /* Very small phones */
-        @media (max-width: 350px) {
-          .solutions-container {
-            width: calc(100% - 24px);
+        @media (max-height: 500px) and (orientation: landscape) {
+          .hs-portal-content {
+            padding: 18px 28px;
           }
 
-          .solutions-grid {
-            gap: 13px;
+          .hs-portal-icon {
+            width: 32px;
+            height: 32px;
           }
 
-          .solution-content {
-            padding: 11px 10px 12px;
+          .hs-portal-copy h3 {
+            font-size: clamp(24px, 5vh, 34px);
           }
 
-          .solution-title {
-            font-size: 16px;
-          }
-
-          .solution-description {
+          .hs-portal-description {
+            margin-top: 6px;
             font-size: 12px;
           }
 
-          .solution-link {
-            font-size: 11px;
+          .hs-portal-link {
+            margin-top: 8px;
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .solution-card,
-          .solution-image img,
-          .solution-link {
+          .hs-portal-link,
+          .hs-view-all {
             transition: none;
           }
         }
       `}</style>
 
-      <div className="solutions-container">
-        <motion.header
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.4 }}
-          className="solutions-header"
-        >
-          <div>
-            <p className="solutions-eyebrow">
-              Our solutions
-            </p>
-
-            <h2 className="solutions-heading">
-              Protection with a
-              <span>clear path to action.</span>
-            </h2>
-          </div>
-
-          <Link
-            to="/solutions"
-            className="solutions-view-all"
-          >
-            View all solutions
-            <ArrowUpRight size={13} />
-          </Link>
-        </motion.header>
-
-        <div className="solutions-grid">
-          {solutions.map((solution, index) => (
-            <SolutionCard
-              key={solution.number}
-              solution={solution}
-              index={index}
-            />
-          ))}
+      <header
+        className="hs-intro"
+        style={{
+          background: "transparent",
+          backgroundColor: "transparent",
+          backgroundImage: "none",
+          boxShadow: "none",
+          border: "0",
+        }}
+      >
+        <div>
+          <p className="hs-eyebrow">Our solutions</p>
+          <h2 className="hs-heading">
+            Protection with a <span>clear path to action.</span>
+          </h2>
         </div>
+        <Link to="/solutions" className="hs-view-all">
+          View all solutions <ArrowUpRight size={14} aria-hidden="true" />
+        </Link>
+      </header>
 
-        <div className="mobile-view-all">
-          <Link
-            to="/solutions"
-            className="solutions-view-all"
-          >
-            View all solutions
-            <ArrowUpRight size={13} />
-          </Link>
+      <div className="hs-scroll-track" ref={trackRef}>
+        <div className="hs-sticky-stage">
+          <div className="hs-portal-stack">
+            {solutions.map((solution, index) => (
+              <PortalSlide
+                key={solution.number}
+                solution={solution}
+                index={index}
+                progress={scrollYProgress}
+                reducedMotion={Boolean(reducedMotion)}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
