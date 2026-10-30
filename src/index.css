@@ -395,3 +395,12 @@ body.galaxy-site {
   background-color: transparent !important;
   box-shadow: none !important;
 }
+
+/* Remove dark navy background from Visibility heading */
+.galaxy-site .visibility-section,
+.galaxy-site .visibility-section .visibility-header,
+.galaxy-site .visibility-section .visibility-heading {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}

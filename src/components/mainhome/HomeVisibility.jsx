@@ -1,5 +1,6 @@
 
-import React from "react";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const coverageChannels = [
   "Websites",
@@ -29,6 +30,20 @@ const reportItems = [
 ];
 
 export default function HomeVisibility() {
+  const sectionRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const reportRotateX = useTransform(scrollYProgress, [0, 0.45, 1], [9, 0, -5]);
+  const reportRotateY = useTransform(scrollYProgress, [0, 0.5, 1], [-7, 0, 6]);
+  const reportZ = useTransform(scrollYProgress, [0, 0.5, 1], [-45, 0, 25]);
+  const reportScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.94, 1, 0.96]);
+  const coverageRotateX = useTransform(scrollYProgress, [0, 0.55, 1], [7, 0, -4]);
+  const coverageY = useTransform(scrollYProgress, [0, 0.55, 1], [55, 0, -25]);
+
   const downloadSampleReport = () => {
     const report = [
       "TRACKOWLS — SAMPLE ENFORCEMENT REPORT",
@@ -63,6 +78,7 @@ export default function HomeVisibility() {
 
   return (
     <section
+      ref={sectionRef}
       id="home-visibility"
       className="visibility-section"
     >
@@ -146,6 +162,31 @@ export default function HomeVisibility() {
 
         .visibility-report-intro {
           min-width: 0;
+        }
+
+        .visibility-report,
+        .visibility-coverage {
+          transform-style: preserve-3d;
+          will-change: transform;
+        }
+
+        .visibility-report-item {
+          transform-style: preserve-3d;
+        }
+
+        .visibility-channel {
+          transition: transform 280ms ease, border-color 280ms ease,
+                      background 280ms ease, box-shadow 280ms ease;
+          transform-style: preserve-3d;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+          .visibility-channel:hover {
+            transform: translateY(-5px) rotateX(8deg) scale(1.035);
+            border-color: #d1ed14;
+            background: rgba(209, 237, 20, 0.08);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+          }
         }
 
         .visibility-sample-label {
@@ -465,15 +506,27 @@ export default function HomeVisibility() {
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .visibility-section * {
+          .visibility-section *,
+          .visibility-section *::before,
+          .visibility-section *::after {
             transition-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
           }
         }
       `}</style>
 
       <div className="visibility-container">
         {/* Heading and description */}
-        <header className="visibility-header">
+        <motion.header
+          className="visibility-header"
+          initial={{ opacity: 0, y: 45, rotateX: 8 }}
+          whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+          viewport={{ once: false, amount: 0.25 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          style={{ transformPerspective: 1000, transformStyle: "preserve-3d" }}
+        >
           <div>
             <p className="visibility-eyebrow">
               Visibility that matters
@@ -489,11 +542,31 @@ export default function HomeVisibility() {
             A useful report distinguishes detections from verified
             infringements, complaints and confirmed removals.
           </p>
-        </header>
+        </motion.header>
 
         {/* Sample report */}
-        <div className="visibility-report">
-          <div className="visibility-report-intro">
+        <motion.div
+          className="visibility-report"
+          style={{
+            rotateX: reportRotateX,
+            rotateY: reportRotateY,
+            z: reportZ,
+            scale: reportScale,
+            transformPerspective: 1300,
+            transformStyle: "preserve-3d",
+          }}
+          initial={{ opacity: 0, y: 65, rotateX: 12 }}
+          whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+          viewport={{ once: false, amount: 0.18 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <motion.div
+            className="visibility-report-intro"
+            initial={{ opacity: 0, x: -35, z: -30 }}
+            whileInView={{ opacity: 1, x: 0, z: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.12 }}
+          >
             <span className="visibility-sample-label">
               Illustrative sample
             </span>
@@ -514,13 +587,23 @@ export default function HomeVisibility() {
             >
               Download sample report
             </button>
-          </div>
+          </motion.div>
 
-          <div className="visibility-report-details">
+          <motion.div
+            className="visibility-report-details"
+            initial={{ opacity: 0, x: 35, z: -30 }}
+            whileInView={{ opacity: 1, x: 0, z: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.22 }}
+          >
             {reportItems.map((item) => (
-              <div
+              <motion.div
                 key={item.label}
                 className="visibility-report-item"
+                initial={{ opacity: 0, x: 24, rotateY: -10 }}
+                whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.55, delay: 0.12 }}
               >
                 <p className="visibility-item-label">
                   {item.label}
@@ -529,22 +612,38 @@ export default function HomeVisibility() {
                 <p className="visibility-item-description">
                   {item.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Scenarios link */}
-        <div className="visibility-scenarios">
+        <motion.div
+          className="visibility-scenarios"
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.65 }}
+        >
           <a href="#digital-coverage">
             Explore illustrative protection scenarios
           </a>
-        </div>
+        </motion.div>
 
         {/* Digital coverage */}
-        <div
+        <motion.div
           id="digital-coverage"
           className="visibility-coverage"
+          style={{
+            rotateX: coverageRotateX,
+            y: coverageY,
+            transformPerspective: 1200,
+            transformStyle: "preserve-3d",
+          }}
+          initial={{ opacity: 0, y: 65, rotateX: 10 }}
+          whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+          viewport={{ once: false, amount: 0.12 }}
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="visibility-coverage-eyebrow">
             Digital coverage
@@ -557,12 +656,21 @@ export default function HomeVisibility() {
 
           <div className="visibility-channel-list">
             {coverageChannels.map((channel) => (
-              <span
+              <motion.span
                 key={channel}
                 className="visibility-channel"
+                initial={{ opacity: 0, y: 22, rotateX: -18, scale: 0.92 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{
+                  duration: 0.5,
+                  delay: (coverageChannels.indexOf(channel) % 5) * 0.07,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                whileHover={{ y: -5, rotateX: 8, scale: 1.04 }}
               >
                 {channel}
-              </span>
+              </motion.span>
             ))}
           </div>
 
@@ -571,7 +679,7 @@ export default function HomeVisibility() {
             scoping. Platform access and removal decisions depend on
             authorization and the receiving service.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
