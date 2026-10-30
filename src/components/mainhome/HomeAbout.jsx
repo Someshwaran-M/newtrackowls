@@ -1,5 +1,6 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
+import TextReveal from "../ui/TextReveal";
 
 export default function HomeAbout() {
   return (
@@ -19,22 +20,39 @@ export default function HomeAbout() {
         "
       >
         {/* LEFT COLUMN */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.55, ease: "easeOut" }}
-          className="min-w-0"
-        >
+        <div className="min-w-0">
+
           {/* Eyebrow */}
           <div className="mb-5 flex items-center sm:mb-[32px]">
-            <span className="text-[11px] font-bold uppercase tracking-[0.19em] text-[#d1ed14] sm:text-[12px]">
+            <TextReveal
+              as="span"
+              per="word"
+              preset="fade-in-blur"
+              speedReveal={1.2}
+              speedSegment={1.2}
+              delay={0.1}
+              once={false}
+              amount={0.2}
+              className="
+                text-[11px] font-bold uppercase
+                tracking-[0.19em] text-[#d1ed14]
+                sm:text-[12px]
+              "
+            >
               Content. Identity. Digital trust.
-            </span>
+            </TextReveal>
           </div>
 
-          {/* Main heading */}
-          <h2
+          {/* Main Heading */}
+          <TextReveal
+            as="h2"
+            per="word"
+            preset="fade-in-blur"
+            speedReveal={1.2}
+            speedSegment={0.8}
+            delay={0.15}
+            once={false}
+            amount={0.2}
             className="
               m-0 max-w-[700px]
               text-[32px] font-bold
@@ -47,32 +65,24 @@ export default function HomeAbout() {
               lg:tracking-[-2px]
             "
           >
-            <span className="block sm:inline">
-              Protect what makes
-            </span>{" "}
-            <span className="block sm:inline">
-              your business
-            </span>{" "}
-            <span className="block sm:inline">
-              valuable.
-            </span>
-          </h2>
-        </motion.div>
+            Protect what makes your business valuable.
+          </TextReveal>
+
+        </div>
 
         {/* RIGHT COLUMN */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{
-            duration: 0.55,
-            delay: 0.1,
-            ease: "easeOut",
-          }}
-          className="min-w-0 md:pt-0"
-        >
-          {/* First paragraph */}
-          <p
+        <div className="min-w-0 md:pt-0">
+
+          {/* First Paragraph */}
+          <TextReveal
+            as="p"
+            per="word"
+            preset="fade-in-blur"
+            speedReveal={1.4}
+            speedSegment={1}
+            delay={0.1}
+            once={false}
+            amount={0.15}
             className="
               m-0 max-w-[800px]
               text-[15px] font-normal
@@ -87,29 +97,48 @@ export default function HomeAbout() {
             authorize. TrackOwls brings those findings into a structured
             review: what was found, which rights apply, what evidence
             supports it and what action follows.
-          </p>
+          </TextReveal>
 
-          {/* Second paragraph */}
-          <p
-            className="
-              mt-6 mb-0 max-w-[800px]
-              text-[15px] font-normal
-              leading-[1.65] tracking-[-0.15px]
-              text-[#b7cbd9]
-              sm:mt-[32px]
-              sm:text-[18px]
-              lg:text-[20px]
-              lg:leading-[1.65]
-            "
-          >
-            Start with a release, a live event, a catalogue or a brand
-            portfolio. Build the monitoring scope around your priorities,
-            then use case records and reporting to follow the work.
-          </p>
+          {/* Second Paragraph */}
+          <div className="mt-6 sm:mt-[32px]">
+            <TextReveal
+              as="p"
+              per="word"
+              preset="fade-in-blur"
+              speedReveal={1.4}
+              speedSegment={1}
+              delay={0.1}
+              once={false}
+              amount={0.15}
+              className="
+                m-0 max-w-[800px]
+                text-[15px] font-normal
+                leading-[1.65] tracking-[-0.15px]
+                text-[#b7cbd9]
+                sm:text-[18px]
+                lg:text-[20px]
+                lg:leading-[1.65]
+              "
+            >
+              Start with a release, a live event, a catalogue or a brand
+              portfolio. Build the monitoring scope around your priorities,
+              then use case records and reporting to follow the work.
+            </TextReveal>
+          </div>
 
-          {/* About link */}
-          <a
+          {/* About Link */}
+          <motion.a
             href="/about"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{
+              once: false,
+              amount: 0.2,
+            }}
+            transition={{
+              duration: 0.7,
+              ease: "easeOut",
+            }}
             className="
               mt-6 inline-flex
               border-b border-[#d1ed14]/50
@@ -126,8 +155,9 @@ export default function HomeAbout() {
             "
           >
             Meet TrackOwls →
-          </a>
-        </motion.div>
+          </motion.a>
+
+        </div>
       </div>
     </section>
   );

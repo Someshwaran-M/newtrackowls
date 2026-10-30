@@ -36,39 +36,92 @@ const workflowStages = [
   },
 ];
 
+/* LETTER-BY-LETTER ANIMATION */
+
+function AnimatedText({ text, delay = 0 }) {
+  return (
+    <span className="workflow-animated-text" aria-label={text}>
+      {text.split(" ").map((word, wordIndex) => (
+        <span className="workflow-word" key={wordIndex}>
+          {Array.from(word).map((letter, index) => (
+            <motion.span
+              key={`${wordIndex}-${index}`}
+              className="workflow-letter"
+              aria-hidden="true"
+              initial={{
+                opacity: 0,
+                y: 16,
+                rotateX: -60,
+                filter: "blur(4px)",
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                rotateX: 0,
+                filter: "blur(0px)",
+              }}
+              viewport={{
+                once: false,
+                amount: 0.5,
+              }}
+              transition={{
+                duration: 0.4,
+                delay: delay + (wordIndex * 0.12) + (index * 0.025),
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              {letter}
+            </motion.span>
+          ))}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 export default function HomeHowItWorks() {
   return (
-    <section id="home-how-it-works" className="workflow-section">
+    <section
+      id="home-how-it-works"
+      className="workflow-section"
+    >
       <style>{`
-        .workflow-section,
-        .workflow-section * {
-          box-sizing: border-box;
-        }
 
-        .workflow-section {
+        /* =================================
+           SECTION
+        ================================= */
+
+        #home-how-it-works {
           width: 100%;
+          position: relative;
           overflow: hidden;
-          background: transparent;
-          border-top: 1px solid rgba(171, 198, 215, 0.15);
-          border-bottom: 1px solid rgba(171, 198, 215, 0.15);
+          background: transparent !important;
           color: #ffffff;
           font-family: Roboto, Arial, sans-serif;
+          perspective: 1400px;
+        }
+
+        #home-how-it-works * {
+          box-sizing: border-box;
         }
 
         .workflow-container {
           width: calc(100% - 80px);
           max-width: 1380px;
-          margin: 0 auto;
+          margin: auto;
           padding: 120px 0 118px;
         }
 
-        /* Header layout */
+        /* =================================
+           HEADER
+        ================================= */
+
         .workflow-header {
           display: grid;
           grid-template-columns: minmax(0, 1fr) 485px;
           align-items: end;
           column-gap: 50px;
-          margin-bottom: 54px;
+          margin-bottom: 90px;
         }
 
         .workflow-eyebrow {
@@ -76,7 +129,6 @@ export default function HomeHowItWorks() {
           color: #d1ed14;
           font-size: 14px;
           font-weight: 700;
-          line-height: 1.3;
           letter-spacing: 2.1px;
           text-transform: uppercase;
         }
@@ -90,7 +142,7 @@ export default function HomeHowItWorks() {
           letter-spacing: -2.2px;
         }
 
-        .workflow-heading span {
+        .workflow-heading > span {
           display: block;
         }
 
@@ -99,95 +151,187 @@ export default function HomeHowItWorks() {
           margin: 0 0 1px;
           color: #b7cbd9;
           font-size: 20px;
-          font-weight: 400;
           line-height: 1.65;
         }
 
-        /* Five aligned columns */
+        /* =================================
+           DESKTOP TIMELINE
+        ================================= */
+
+        .workflow-timeline {
+          position: relative;
+          width: 100%;
+          background: transparent !important;
+        }
+
         .workflow-grid {
           display: grid;
           grid-template-columns: repeat(5, minmax(0, 1fr));
           column-gap: 30px;
-          align-items: start;
+          width: 100%;
+          background: transparent !important;
         }
 
-        .workflow-stage {
+        /* =================================
+           STAGE
+        ================================= */
+
+        .galaxy-site #home-how-it-works article.workflow-stage,
+        .galaxy-site #home-how-it-works article.workflow-stage:hover,
+        #home-how-it-works article.workflow-stage,
+        #home-how-it-works article.workflow-stage:hover {
+          display: block;
+          position: relative;
           min-width: 0;
-          border-top: 1px solid rgba(171, 198, 215, 0.25);
-          padding-top: 40px;
+
+          background: transparent !important;
+          background-color: transparent !important;
+          background-image: none !important;
+
+          backdrop-filter: none !important;
+          -webkit-backdrop-filter: none !important;
+
+          border: none !important;
+          border-radius: 0 !important;
+          box-shadow: none !important;
+          outline: none !important;
+
+          padding: 0 !important;
+          margin: 0 !important;
+
+          transform-style: preserve-3d;
+          will-change: transform, opacity;
         }
+
+        #home-how-it-works article.workflow-stage::before,
+        #home-how-it-works article.workflow-stage::after {
+          display: none !important;
+          content: none !important;
+        }
+
+        /* =================================
+           DOT
+        ================================= */
+
+        .workflow-dot {
+          display: block;
+          width: 16px;
+          height: 16px;
+          flex-shrink: 0;
+
+          border-radius: 50%;
+          background: #d1ed14;
+          border: 3px solid #152019;
+
+          box-shadow:
+            0 0 0 5px rgba(209, 237, 20, 0.12),
+            0 0 18px rgba(209, 237, 20, 0.55);
+
+          margin-bottom: 22px;
+        }
+
+        /* =================================
+           NUMBER
+        ================================= */
 
         .workflow-number {
           display: block;
-          margin: 0 0 32px;
+          margin: 0 0 24px;
           color: #d1ed14;
           font-size: 15px;
           font-weight: 700;
           line-height: 1.3;
         }
 
+        /* =================================
+           TITLE
+        ================================= */
+
         .workflow-title {
-          margin: 0 0 19px;
+          margin: 0 0 17px;
           color: #f8fafc;
           font-size: 28px;
           font-weight: 700;
           line-height: 1.25;
           letter-spacing: -0.8px;
+          overflow-wrap: break-word;
         }
+
+        /* =================================
+           DESCRIPTION
+        ================================= */
 
         .workflow-description {
           margin: 0;
           color: #b7cbd9;
-          font-size: 18px;
+          font-size: 16px;
           font-weight: 400;
-          line-height: 1.65;
+          line-height: 1.7;
+          overflow-wrap: break-word;
         }
 
-        /* Simple text link */
+        /* =================================
+           LETTER ANIMATION
+        ================================= */
+
+        .workflow-animated-text {
+          display: inline;
+        }
+
+        .workflow-word {
+          display: inline-block;
+          white-space: nowrap;
+          margin-right: 0.25em;
+        }
+
+        .workflow-letter {
+          display: inline-block;
+          white-space: pre;
+          transform-origin: bottom center;
+        }
+
+        /* =================================
+           CTA
+        ================================= */
+
         .workflow-cta-wrap {
           margin-top: 76px;
         }
 
         .workflow-cta {
           display: inline-block;
-          width: fit-content;
           padding-bottom: 10px;
           border-bottom: 1px solid rgba(209, 237, 20, 0.4);
-          color: #d1ed14;
+          color: #d1ed14 !important;
           font-size: 17px;
-          font-weight: 400;
-          line-height: 1.4;
           text-decoration: none;
           transition: color 180ms ease, border-color 180ms ease;
         }
 
         .workflow-cta:hover {
-          color: #ffffff;
+          color: #ffffff !important;
           border-color: #d1ed14;
         }
 
-        /* Tablet */
-        @media (max-width: 1200px) {
+        /* =================================
+           TABLET
+        ================================= */
+
+        @media (max-width: 1100px) {
+
           .workflow-container {
             width: calc(100% - 64px);
-            padding-top: 86px;
-            padding-bottom: 82px;
+            padding: 85px 0;
           }
 
           .workflow-header {
-            grid-template-columns: minmax(0, 1fr) 360px;
-            column-gap: 32px;
-            margin-bottom: 45px;
+            grid-template-columns: minmax(0, 1fr) 350px;
+            column-gap: 30px;
+            margin-bottom: 70px;
           }
 
           .workflow-heading {
             font-size: 50px;
-            letter-spacing: -1.6px;
-          }
-
-          .workflow-eyebrow {
-            font-size: 11px;
-            margin-bottom: 23px;
           }
 
           .workflow-intro {
@@ -198,143 +342,220 @@ export default function HomeHowItWorks() {
             column-gap: 22px;
           }
 
-          .workflow-stage {
-            padding-top: 30px;
-          }
-
-          .workflow-number {
-            margin-bottom: 25px;
-            font-size: 13px;
-          }
-
           .workflow-title {
-            margin-bottom: 15px;
             font-size: 23px;
           }
 
           .workflow-description {
             font-size: 14px;
           }
-
-          .workflow-cta-wrap {
-            margin-top: 58px;
-          }
         }
 
-        /* Small tablet */
+        /* =================================
+           MOBILE VERTICAL TIMELINE
+        ================================= */
+
         @media (max-width: 760px) {
+
           .workflow-container {
-            width: calc(100% - 48px);
-            padding-top: 64px;
-            padding-bottom: 62px;
+            width: calc(100% - 40px);
+            max-width: 600px;
+            padding: 65px 0;
           }
 
           .workflow-header {
+            display: grid;
             grid-template-columns: 1fr;
-            row-gap: 24px;
-            margin-bottom: 38px;
+            row-gap: 22px;
+            margin-bottom: 60px;
           }
 
           .workflow-eyebrow {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
+            font-size: 12px;
           }
 
           .workflow-heading {
-            font-size: clamp(38px, 7vw, 48px);
-            line-height: 1.12;
+            font-size: clamp(36px, 7vw, 48px);
+            line-height: 1.15;
             letter-spacing: -1.5px;
           }
 
           .workflow-intro {
-            max-width: 480px;
+            max-width: 100%;
             font-size: 16px;
             line-height: 1.7;
           }
 
-          .workflow-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            column-gap: 26px;
-            row-gap: 30px;
+          /* CENTRE VERTICAL LINE */
+
+          .workflow-timeline {
+            position: relative;
+            padding: 0;
           }
 
-          .workflow-stage {
-            padding-top: 23px;
+          .workflow-timeline::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            transform: translateX(-50%);
+            background: rgba(209, 237, 20, 0.65);
+            z-index: 0;
           }
+
+          /* ALTERNATING TWO-COLUMN GRID */
+
+          .workflow-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            column-gap: 30px;
+            row-gap: 65px;
+            align-items: start;
+          }
+
+          .workflow-stage,
+          .workflow-stage:nth-child(odd),
+          .workflow-stage:nth-child(even) {
+            position: relative;
+            width: 100%;
+            min-width: 0;
+            min-height: 0;
+          }
+
+          /* LEFT SIDE */
+
+          .workflow-stage:nth-child(odd) {
+            grid-column: 1;
+            text-align: right;
+            padding-right: 0 !important;
+          }
+
+          /* RIGHT SIDE */
+
+          .workflow-stage:nth-child(even) {
+            grid-column: 2;
+            text-align: left;
+            padding-left: 0 !important;
+          }
+
+          /* DOT POSITION */
+
+          .workflow-dot {
+            position: absolute;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            margin: 0;
+            z-index: 2;
+          }
+
+          .workflow-stage:nth-child(odd) .workflow-dot {
+            right: -23px;
+          }
+
+          .workflow-stage:nth-child(even) .workflow-dot {
+            left: -23px;
+          }
+
+          /* STAGE TEXT */
 
           .workflow-number {
-            margin-bottom: 19px;
+            margin-bottom: 14px;
+            font-size: 13px;
           }
 
           .workflow-title {
-            margin-bottom: 12px;
-            font-size: 23px;
+            margin-bottom: 11px;
+            font-size: 22px;
+            line-height: 1.3;
           }
 
           .workflow-description {
             font-size: 14px;
             line-height: 1.75;
+            overflow-wrap: anywhere;
           }
 
           .workflow-cta-wrap {
-            margin-top: 42px;
+            margin-top: 48px;
           }
         }
 
-        /* Mobile */
+        /* =================================
+           SMALL MOBILE
+        ================================= */
+
         @media (max-width: 480px) {
+
           .workflow-container {
-            width: calc(100% - 40px);
-            padding-top: 48px;
-            padding-bottom: 48px;
+            width: calc(100% - 32px);
+            padding: 48px 0;
           }
 
           .workflow-header {
-            row-gap: 19px;
-            margin-bottom: 32px;
+            row-gap: 18px;
+            margin-bottom: 48px;
           }
 
           .workflow-eyebrow {
-            margin-bottom: 17px;
-            font-size: 10px;
+            margin-bottom: 16px;
+            font-size: 11px;
             letter-spacing: 1.7px;
           }
 
           .workflow-heading {
-            font-size: 37px;
+            font-size: clamp(32px, 8.5vw, 40px);
             line-height: 1.15;
-            letter-spacing: -1.3px;
+            letter-spacing: -1.2px;
           }
 
           .workflow-intro {
             font-size: 15px;
+            line-height: 1.7;
           }
 
           .workflow-grid {
-            grid-template-columns: 1fr;
-            row-gap: 25px;
+            column-gap: 24px;
+            row-gap: 52px;
           }
 
-          .workflow-stage {
-            padding-top: 21px;
+          .workflow-timeline::before {
+            width: 2px;
+          }
+
+          .workflow-dot {
+            width: 14px;
+            height: 14px;
+          }
+
+          .workflow-stage:nth-child(odd) .workflow-dot {
+            right: -19px;
+          }
+
+          .workflow-stage:nth-child(even) .workflow-dot {
+            left: -19px;
           }
 
           .workflow-number {
-            margin-bottom: 15px;
-            font-size: 13px;
+            font-size: 12px;
+            margin-bottom: 12px;
           }
 
           .workflow-title {
-            margin-bottom: 10px;
-            font-size: 23px;
+            font-size: 19px;
+            margin-bottom: 9px;
           }
 
           .workflow-description {
-            max-width: 360px;
-            font-size: 14px;
+            font-size: 12px;
+            line-height: 1.7;
           }
 
           .workflow-cta-wrap {
-            margin-top: 36px;
+            margin-top: 40px;
           }
 
           .workflow-cta {
@@ -342,22 +563,69 @@ export default function HomeHowItWorks() {
           }
         }
 
+        /* =================================
+           VERY SMALL MOBILE
+        ================================= */
+
+        @media (max-width: 360px) {
+
+          .workflow-container {
+            width: calc(100% - 24px);
+          }
+
+          .workflow-grid {
+            column-gap: 20px;
+            row-gap: 45px;
+          }
+
+          .workflow-stage:nth-child(odd) .workflow-dot {
+            right: -16px;
+          }
+
+          .workflow-stage:nth-child(even) .workflow-dot {
+            left: -16px;
+          }
+
+          .workflow-title {
+            font-size: 17px;
+          }
+
+          .workflow-description {
+            font-size: 11px;
+          }
+        }
+
+        /* =================================
+           REDUCED MOTION
+        ================================= */
+
         @media (prefers-reduced-motion: reduce) {
-          .workflow-section *,
-          .workflow-section *::before,
-          .workflow-section *::after {
+
+          #home-how-it-works *,
+          #home-how-it-works *::before,
+          #home-how-it-works *::after {
             transition-duration: 0.01ms !important;
             animation-duration: 0.01ms !important;
           }
         }
+
       `}</style>
 
       <div className="workflow-container">
+
+        {/* HEADER */}
+
         <motion.header
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.45, ease: "easeOut" }}
+          viewport={{
+            once: false,
+            amount: 0.2,
+          }}
+          transition={{
+            duration: 0.5,
+            ease: "easeOut",
+          }}
           className="workflow-header"
         >
           <div>
@@ -366,8 +634,11 @@ export default function HomeHowItWorks() {
             </p>
 
             <h2 className="workflow-heading">
-              <span>From detection</span>
-              <span>to enforcement.</span>
+              <AnimatedText text="From detection" />
+              <AnimatedText
+                text="to enforcement."
+                delay={0.15}
+              />
             </h2>
           </div>
 
@@ -377,39 +648,73 @@ export default function HomeHowItWorks() {
           </p>
         </motion.header>
 
-        <div className="workflow-grid">
-          {workflowStages.map((stage, index) => (
-            <motion.article
-              key={stage.number}
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{
-                duration: 0.35,
-                delay: index * 0.05,
-              }}
-              className="workflow-stage"
-            >
-              <span className="workflow-number">
-                {stage.number}
-              </span>
+        {/* TIMELINE */}
 
-              <h3 className="workflow-title">
-                {stage.title}
-              </h3>
+        <div className="workflow-timeline">
 
-              <p className="workflow-description">
-                {stage.description}
-              </p>
-            </motion.article>
-          ))}
+          <div className="workflow-grid">
+
+            {workflowStages.map((stage, index) => (
+              <motion.article
+                key={stage.number}
+                className="workflow-stage"
+                initial={{
+                  opacity: 0,
+                  rotateY: index % 2 === 0 ? 30 : -30,
+                  rotateX: 12,
+                  y: 30,
+                  scale: 0.92,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  rotateY: 0,
+                  rotateX: 0,
+                  y: 0,
+                  scale: 1,
+                }}
+                viewport={{
+                  once: false,
+                  amount: 0.3,
+                }}
+                transition={{
+                  duration: 0.7,
+                  delay: index * 0.1,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
+                <span className="workflow-dot" />
+
+                <span className="workflow-number">
+                  {stage.number}
+                </span>
+
+                <h3 className="workflow-title">
+                  <AnimatedText text={stage.title} />
+                </h3>
+
+                <p className="workflow-description">
+                  <AnimatedText
+                    text={stage.description}
+                    delay={0.08}
+                  />
+                </p>
+              </motion.article>
+            ))}
+
+          </div>
         </div>
 
+        {/* CTA */}
+
         <div className="workflow-cta-wrap">
-          <Link to="/how-it-works" className="workflow-cta">
+          <Link
+            to="/how-it-works"
+            className="workflow-cta"
+          >
             Understand the workflow
           </Link>
         </div>
+
       </div>
     </section>
   );

@@ -246,7 +246,7 @@ body.galaxy-site {
 .galaxy-site div[class*="bg-[#D5DDDA]"],
 .galaxy-site div[class*="bg-[#D3DCDA]"],
 .galaxy-site [class*="overflow-hidden"][class*="rounded"]:not(.galaxy-sticky):not(.site-galaxy-background):not(.category-marquee):not(a[href="/"]) {
-  background: rgba(10, 26, 46, 0.6) !important;
+  background: transparent !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
   border-color: rgba(171, 198, 215, 0.2) !important;
@@ -373,4 +373,25 @@ body.galaxy-site {
 
 .galaxy-site header nav a:hover:not([class*="bg-"]):not([aria-label="TrackOwls home"]) {
   color: #d1ed14 !important;
+}
+
+/* Remove the large dark background from How It Works */
+.galaxy-site #home-how-it-works,
+.galaxy-site #home-how-it-works > div,
+.galaxy-site #home-how-it-works > div > div,
+.galaxy-site #home-how-it-works .workflow-section,
+.galaxy-site #home-how-it-works .workflow-header {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove background from nested content wrappers */
+.galaxy-site #home-how-it-works div:not(.site-galaxy-background) {
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
