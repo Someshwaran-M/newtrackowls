@@ -64,11 +64,13 @@ export default function Footer() {
   return (
     <footer
       id="footer"
-      className="w-full bg-transparent font-['Roboto',sans-serif] text-white border-t border-[rgba(255,255,255,0.08)] backdrop-blur-md"
+      className="w-full border-t border-[rgba(255,255,255,0.08)] bg-transparent font-['Roboto',sans-serif] text-white backdrop-blur-md"
     >
       <div className="mx-auto max-w-[1420px] px-5 pt-12 sm:px-8 sm:pt-14 lg:px-10 lg:pt-16">
+
         {/* Main footer content */}
         <div className="footer-grid grid grid-cols-1 gap-10 pb-12 sm:grid-cols-2 lg:grid-cols-[1.25fr_1fr_0.78fr_0.72fr] lg:gap-8 lg:pb-16">
+
           {/* Brand section */}
           <div className="footer-brand max-w-[280px]">
             <a
@@ -134,9 +136,24 @@ export default function Footer() {
 
         {/* Copyright row */}
         <div className="flex flex-col gap-3 py-5 text-[10px] text-[#64748b] sm:flex-row sm:items-center sm:justify-between sm:py-6">
+
           <p>
             © {new Date().getFullYear()} TrackOwls. All rights reserved.
           </p>
+
+          {/* Powered by */}
+          <div className="flex flex-wrap items-center gap-1 text-[#94a3b8]">
+            <span>Powered by</span>
+
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-[#d1ed14] transition-colors duration-200 hover:text-white"
+            >
+              MK Dynamic Technology
+            </a>
+          </div>
 
           <p className="tracking-[0.01em] text-[#94a3b8]">
             Scan. Detect. Remove. Protect.
@@ -198,7 +215,7 @@ export default function Footer() {
             min-width: 0;
           }
 
-          /* Information: full width below both columns */
+          /* Information: full width */
           #footer .footer-information {
             grid-column: 1 / -1;
             grid-row: 3;
@@ -234,6 +251,9 @@ export default function Footer() {
           }
 
           #footer .footer-grid + div + div {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
             gap: 8px;
             padding-top: 20px;
             padding-bottom: 12px;
